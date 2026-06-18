@@ -38,7 +38,7 @@ from pathlib import Path
 import kuzu
 
 from tmkg import config
-from tmkg.loaders.debt_backfill import (
+from tmkg.loaders.name_match import (
     _identity_tokens, _lead_identity, _entity_type, _type_conflict, _brand_set,
 )
 

@@ -269,6 +269,11 @@ REL_TABLES = [
 # (CREATE TABLE IF NOT EXISTS won't add columns to an existing table.)
 _MIGRATIONS = [
     "ALTER TABLE Company ADD listing_status STRING",
+    # DORMANT (pre-pillar cleanup 2026-06-18): the debt/nominal Security columns
+    # and the ISSUES instrument_class below are no longer populated — the debt
+    # subsystem that wrote them is archived (archive/debt-subsystem-2026-06-18.zip).
+    # Kept as additive, unpopulated columns to avoid a risky migration; harmless on
+    # the equity-only graph and ready if a "credit-shock" event type revives them.
     # Debt-instrument stage: richer Security attributes + ISSUES provenance.
     "ALTER TABLE Security ADD issuer_name STRING",
     "ALTER TABLE Security ADD description STRING",

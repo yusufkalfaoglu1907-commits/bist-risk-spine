@@ -1,5 +1,5 @@
 {
-  "generated_iso": "2026-06-14T14:02:02.904169+00:00",
+  "generated_iso": "2026-06-18T18:17:05.809882+00:00",
   "source": "KAP-subsidiary",
   "confidence": 0.85,
   "threshold": 0.6,
@@ -7,9 +7,9 @@
     "loader_version": 1,
     "relations_in": 208,
     "matched": 14,
-    "controls_new": 0,
-    "controls_corroborated": 8,
-    "holds_stake_new": 0,
+    "controls_new": 1,
+    "controls_corroborated": 7,
+    "holds_stake_new": 14,
     "unmatched_child": 194,
     "unmatched_parent": 0,
     "self_links_skipped": 0
@@ -18,9 +18,9 @@
     {
       "parent_ticker": "ECILC",
       "parent_name": "EİS ECZACIBAŞI İLAÇ SINAİ VE FİNANSAL YATIRIMLAR SANAYİ VE TİCARET A.Ş.",
-      "child_ticker": "ECZYT",
+      "child_ticker": null,
       "child_name": "Eczacıbaşı Holding A.Ş.",
-      "matched_company": "ECZACIBAŞI YATIRIM HOLDİNG ORTAKLIĞI A.Ş.",
+      "matched_company": "ECZACIBAŞI HOLDİNG ANONİM ŞİRKETİ",
       "relation": "İştirak",
       "relation_kind": "associate",
       "pct": 37.28,
@@ -73,7 +73,7 @@
       "relation_kind": "subsidiary",
       "pct": 100.0,
       "score": 1.0,
-      "edge_status": "controls-corroborated"
+      "edge_status": "controls-new"
     },
     {
       "parent_ticker": "KCHOL",

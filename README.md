@@ -4,15 +4,23 @@ Property-graph research substrate over BİST entities — ownership, control, go
 events, regulation, and macro sensitivity. See `turkish-markets-kg-architecture.md` for
 the full design and `turkish-markets-kg-ontology.md` for the schema.
 
-**Status: Phase 1 (identity + ownership core) built and smoke-tested. LIVE KAP
-acquisition working — 729 listed companies + disclosure metadata ingest from
-www.kap.org.tr. LIVE GLEIF back-fill working — attaches the canonical LEI join
-key + legal_form by name match (≈87% auto-match), and the equity ISIN by
-instrument-class selection. Both stages are confidence-tiered: only high-
-confidence results are written; ambiguous cases are logged for review, never
-guessed. SECTOR classification loaded — KAP's two-level Sektörler taxonomy (16
-main / 57 sub) attached to the graph: 606/729 companies linked to their leaf
-sub-sector, main sector one hop up via `SUBSECTOR_OF`.**
+**Scope (after the 2026-06-18 pre-pillar cleanup): a clean, trustworthy
+*equities ownership/identity* core. The off-mission corporate-debt/refinancing
+subsystem has been retired — archived intact at
+`archive/debt-subsystem-2026-06-18.zip`, removed from the active tree — and the
+live graph rebuilt from on-mission stages only (zero debt instruments, zero
+fabricated `EXTERNAL_STUB` placeholders).**
+
+**Live graph (rebuilt 2026-06-18): 730 KAP companies + 730 equity securities;
++72 real external parents (GLEIF-L2 / KAP ownership, e.g. Sabancı, Koç, İş
+Bankası, OYAK, QIA, BBVA) → 802 `Company` nodes total. Equity-traded coverage:
+ISIN 100% (594/594), sector 100%, LEI 92%. `CONTROLS` 212 edges, a verified DAG.
+All identity stages are confidence-tiered: only high-confidence results are
+written; ambiguous cases are logged for review, never guessed.**
+
+**Next: three pillars on top of this core — (1) asset correlations, (2)
+geopolitical-event impact, (3) supply-chain dependencies. Build order and
+rationale below.**
 
 ## What's here
 
@@ -208,56 +216,30 @@ Phase-1 exit test output (the "does it earn its keep" check from architecture §
    Hizmetler) that are collapsed here. They exist to prove the graph and queries work —
    replace with live KAP extraction before trusting any number.
 
-## Corporate-debt instruments (debt stage)
+## Archived: corporate-debt subsystem
 
-The MKK "Menkul Kıymetler Listesi" used for the equity ticker→ISIN map is a
-superset: it also registers the issuers' debt. The debt stage turns the graph
-from "who owns whom" into "who owes what, due when".
+A working, tested debt/refinancing layer (MKK "Menkul Kıymetler Listesi"
+ingestion, nominal/issuance pricing, blast-radius analytics) was built earlier
+but served none of the three target pillars. The 2026-06-18 cleanup retired it:
+the code, tests, reference data and raw MKK export are archived intact at
+`archive/debt-subsystem-2026-06-18.zip`. The debt-specific `Security`/`ISSUES`
+schema columns are left in `ddl.py` as **dormant** (unpopulated) to avoid a
+risky migration, ready if a "credit-shock" event type revives the subsystem. The
+`backfill_gleif.py --stage debt|nominal|issuance|spv|stubs` stages were removed;
+surviving stages are `lei, isin, bist, classify, l2, subsidiary, both, all`.
 
-Same provenance-first stance as the equity side — extract once into a committed,
-dated reference file, then load from it (no live scrape):
+## Roadmap — three pillars on the equities core
 
-```bash
-# 1) extract debt from the MKK export -> data/reference/mkk_debt.json
-#    (TRS bonds, TRF financing bills, TRD sukuk, XS Eurobonds by default)
-PYTHONPATH=src python scripts/import_mkk_debt.py mkk_list.xlsx \
-    --isin-col "ISIN Kodu" --desc-col "Kıymet Açıklama" --issuer-col "MKKÇ Adı"
+Build order (lowest data risk first; rationale in `CLEANUP-PLAN.md` §7):
 
-# 2) attach debt Securities to their issuer Company nodes
-PYTHONPATH=src python scripts/backfill_gleif.py --db ./data/tmkg.kuzu --stage debt
-```
+1. **Asset correlations / price time-series** — keystone for correlations *and*
+   event studies; lowest data risk (BİST market-data MCP available). DuckDB
+   time-series (EVDS macro + BİST OHLCV) joined to the graph on the ISIN/LEI
+   identity spine.
+2. **Geopolitical-event impact** — `Event` + `SENSITIVE_TO`, measurable once
+   returns exist. The retained external parents (Çalık, Carrier Global, BBVA,
+   QIA, …) are valuable anchors here.
+3. **Supply-chain dependencies** — hardest data problem (no clean TR feed; needs
+   LLM extraction from KAP filings or curation); built last.
 
-What it does, and what it refuses to guess:
-
-- **ISIN** validated by ISO 6166 shape + check digit — for TR *and* XS codes
-  (`is_valid_isin_any`); malformed codes are quarantined, never written.
-- **Instrument class → `Security.type`** is a deterministic lookup on the ISIN
-  class char: `TRS`→`BOND`, `TRF`→`FINANCING_BILL`, `TRD`→`SUKUK`, `XS`→`EUROBOND`.
-- **Maturity** is *inferred* from the description's embedded `DDMMYYYY` run and
-  carries a confidence + method (`ddmmyyyy-single` 0.9; `ddmmyyyy-multi` 0.5 when
-  issue/coupon dates are also present — latest taken, flagged for review). Never
-  asserted as a structured fact; low-confidence parses are logged.
-- **Issuer match** reuses the GLEIF brand-token coverage matcher to map each
-  issuer short name (`MKKÇ Adı`, e.g. "AK FAKTORİNG") to an existing Company.
-  Default scope is **listed-only**: issuers not already in the graph (private
-  SPVs, unlisted banks) are logged to `mkk_debt_report.json`, not turned into
-  fuzzy-matched new entities. `--create-missing-issuers` opts into the fuller map.
-- **Edge provenance**: `(Company)-[:ISSUES {instrument_class, source,
-  extraction_method, confidence}]->(Security)`.
-
-> The committed `data/reference/mkk_debt.json` is what the loader reads; re-run
-> `import_mkk_debt.py` only when the MKK list is refreshed.
-
-## Not yet built (later phases, per architecture §6)
-
-- **GLEIF Level-2 parent back-fill.** Level-1 (LEI + legal_form) and equity ISINs
-  are done; the "who owns whom" relationship records that back-fill cross-border
-  parents (`CONTROLS`/`SUBSIDIARY_OF`) are not yet wired.
-- **Authoritative ticker→ISIN map.** GLEIF resolves the equity ISIN confidently
-  for most names but refuses on ambiguous multi-share-class issuers (see
-  `gleif_isin_report.json`). A BİST/MKK reference feed would close that gap.
-- **Phase 2:** DuckDB time-series (EVDS macro + BİST OHLCV), ISIN/LEI join, `SENSITIVE_TO`.
-- **Phase 3:** LLM extraction of `Event`s from KAP docs; TCMB/mevzuat → `Regulation`/`SUBJECT_TO`.
-- **Phase 4:** OpenSanctions PEP/sanction enrichment.
-- **Phase 5:** GraphRAG NL → Cypher interface.
-```
+Later: OpenSanctions PEP/sanction enrichment (keys on LEI); GraphRAG NL → Cypher.

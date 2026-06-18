@@ -170,34 +170,3 @@ def test_create_missing_parents_materialises_external():
             "MATCH (:Company {uuid:$u})-[:CONTROLS]->(:Company {ticker:'EXTCH'}) "
             "RETURN count(*)", {"u": f"ext-{L_FOREIGN}"})
         assert r2.get_next()[0] == 1
-
-
-def test_create_missing_parents_reconciles_onto_brand_stub():
-    """Phase 2.1 remainder: an external parent whose lead brand already has a
-    brand-keyed stub converges onto that stub (no split group, no ext-<LEI>)."""
-    with tempfile.TemporaryDirectory() as d:
-        conn = connect(Path(d) / "g.kuzu")
-        apply_schema(conn)
-        _seed(conn)
-        # The foreign parent's name is "FOREIGN PARENT INC" -> lead brand FOREIGN.
-        # A brand stub for FOREIGN already exists (from the SPV-parent source).
-        conn.execute(
-            "CREATE (:Company {uuid:'stub-FOREIGN', "
-            "name:'FOREIGN (external stub parent)', "
-            "listing_status:'EXTERNAL_STUB', is_listed:false})")
-        stats = backfill_l2_parents(
-            conn, FakeAdapter(_table()), only_missing=False,
-            create_missing_parents=True, report_path=Path(d) / "rep.json")
-        # reconciled onto the stub, NOT minted as a fresh LEI-keyed node
-        assert stats["external_reconciled"] == 1
-        assert stats["external_parents_created"] == 0
-        assert conn.execute(
-            "MATCH (c:Company {uuid:$u}) RETURN count(c)",
-            {"u": f"ext-{L_FOREIGN}"}).get_next()[0] == 0
-        # the stub now carries the LEI and controls the child (group converges)
-        r = conn.execute(
-            "MATCH (s:Company {uuid:'stub-FOREIGN'})-[:CONTROLS]->"
-            "(:Company {ticker:'EXTCH'}) RETURN s.lei, s.listing_status")
-        lei, status = r.get_next()
-        assert lei == L_FOREIGN
-        assert status == "EXTERNAL_STUB"        # stays denominator-excluded

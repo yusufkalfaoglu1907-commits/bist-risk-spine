@@ -40,36 +40,23 @@ from tmkg.loaders.gleif_l2_backfill import backfill_l2_parents
 from tmkg.loaders.bist_isin_backfill import (
     backfill_isins_from_bist, classify_listing_status,
 )
-from tmkg.adapters.mkk_debt_adapter import MkkDebtReference
-from tmkg.loaders.debt_backfill import backfill_debt
-from tmkg.adapters.kap_nominal_adapter import KapNominalReference
-from tmkg.loaders.nominal_backfill import backfill_nominals
-from tmkg.adapters.kap_issuance_adapter import load_issuance_reference
-from tmkg.loaders.kap_issuance_backfill import backfill_from_issuances
 from tmkg.adapters.kap_subsidiary_adapter import load_subsidiary_reference
 from tmkg.loaders.kap_subsidiary_backfill import backfill_subsidiaries
-from tmkg.loaders.spv_parent_backfill import (
-    backfill_spv_parents, demote_jv_suspect_edges,
-)
-from tmkg.loaders.external_stub_backfill import backfill_external_stubs
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--db", default=None)
     ap.add_argument("--stage",
-                    choices=("lei", "isin", "bist", "classify", "debt", "l2",
-                             "nominal", "issuance", "subsidiary", "spv", "stubs",
-                             "both", "all"),
+                    choices=("lei", "isin", "bist", "classify", "l2",
+                             "subsidiary", "both", "all"),
                     default="both",
                     help="which back-fill to run. 'both'=lei+isin (GLEIF); "
                          "'bist'=authoritative ticker->ISIN gap-fill; "
                          "'classify'=tag Company.listing_status; "
-                         "'debt'=attach MKK debt instruments to issuers; "
                          "'l2'=GLEIF Level-2 CONTROLS/SUBSIDIARY_OF parent edges; "
-                         "'nominal'=attach KAP issued-nominal amounts to Securities by ISIN; "
-                         "'all'=lei+isin+bist+classify+debt+l2+nominal. isin/l2 need LEIs first; "
-                         "nominal needs debt Securities first.")
+                         "'subsidiary'=KAP ownership CONTROLS/SUBSIDIARY_OF/HOLDS_STAKE edges; "
+                         "'all'=lei+isin+bist+classify+l2+subsidiary. isin/l2 need LEIs first.")
     ap.add_argument("--limit", type=int, default=None, help="cap number of companies")
     ap.add_argument("--threshold", type=float, default=0.6,
                     help="min coverage score to write an LEI (default 0.6)")
@@ -80,17 +67,10 @@ def main() -> None:
     ap.add_argument("--isin-report", default=None, help="path for the ISIN audit report JSON")
     ap.add_argument("--bist-report", default=None, help="path for the BİST ISIN audit report JSON")
     ap.add_argument("--reference", default=None, help="path to the BİST ticker->ISIN reference JSON")
-    ap.add_argument("--debt-reference", default=None, help="path to the MKK debt reference JSON")
-    ap.add_argument("--debt-report", default=None, help="path for the debt audit report JSON")
-    ap.add_argument("--create-missing-issuers", action="store_true",
-                    help="debt stage: create issuer nodes for unmatched (unlisted) debt issuers "
-                         "instead of logging+skipping them")
     ap.add_argument("--l2-report", default=None, help="path for the Level-2 parent audit report JSON")
     ap.add_argument("--create-missing-parents", action="store_true",
                     help="l2 stage: materialise external (out-of-universe) parent Company nodes "
                          "instead of logging+skipping them")
-    ap.add_argument("--nominal-reference", default=None, help="path to the KAP nominal reference JSON")
-    ap.add_argument("--nominal-report", default=None, help="path for the nominal audit report JSON")
     args = ap.parse_args()
 
     conn = connect(args.db)
@@ -157,56 +137,6 @@ def main() -> None:
         for k in ("total", "EQUITY_TRADED", "NON_EQUITY_ISSUER"):
             print(f"  {k:18} {cstats[k]}")
 
-    if args.stage in ("debt", "all"):
-        debt_ref = MkkDebtReference(reference_path=args.debt_reference)
-        debt_ref.load()
-        if len(debt_ref) == 0:
-            print("MKK debt back-fill: debt reference is empty or missing — "
-                  "run scripts/import_mkk_debt.py on the MKK export first.")
-        else:
-            dstats = backfill_debt(
-                conn, debt_ref, threshold=args.threshold, limit=args.limit,
-                create_missing_issuers=args.create_missing_issuers,
-                report_path=args.debt_report,
-            )
-            print("MKK debt back-fill (issuer -> debt Securities):")
-            print(f"  reference        {len(debt_ref)} instruments · {debt_ref.source!r}")
-            for k in ("issuers_total", "issuers_matched",
-                      "issuers_attached_to_stub", "issuers_unmatched",
-                      "issuers_sovereign_excluded", "securities_written",
-                      "securities_unmatched", "securities_sovereign_excluded",
-                      "edges_written", "in_scope_reference", "unmatched_rate",
-                      "low_confidence_maturities", "quarantined_isins"):
-                print(f"  {k:28} {dstats[k]}")
-            print(f"  report           {dstats['report']}")
-
-    if args.stage in ("nominal", "all"):
-        nom_ref = KapNominalReference(reference_path=args.nominal_reference)
-        nom_ref.load()
-        if len(nom_ref.all()) == 0:
-            print("KAP nominal back-fill: nominal reference is empty or missing — "
-                  "run scripts/extract_kap_nominals.py to harvest issuance amounts first.")
-        else:
-            nstats = backfill_nominals(
-                conn, reference=nom_ref, report_path=args.nominal_report,
-            )
-            print("KAP nominal back-fill (issued amount -> Security by ISIN):")
-            for k in ("reference_records", "matched", "absent_from_graph",
-                      "rejected_on_load"):
-                print(f"  {k:20} {nstats[k]}")
-
-    if args.stage in ("issuance", "all"):
-        records = load_issuance_reference()
-        if not records:
-            print("KAP issuance back-fill: issuance reference empty or missing — "
-                  "run scripts/discover_kap_issuances.py to harvest first.")
-        else:
-            istats = backfill_from_issuances(conn, records)
-            print("KAP issuance back-fill (create/price Securities from bulletins):")
-            for k in ("records_in", "written", "new_instruments",
-                      "unmatched_issuer", "out_of_scope_class"):
-                print(f"  {k:20} {istats[k]}")
-
     if args.stage in ("subsidiary", "all"):
         relations = load_subsidiary_reference()
         if not relations:
@@ -220,24 +150,6 @@ def main() -> None:
                       "unmatched_child", "unmatched_parent", "self_links_skipped"):
                 print(f"  {k:24} {sstats[k]}")
             print(f"  report                 {sstats['report']}")
-
-    if args.stage in ("spv", "all"):
-        spvstats = backfill_spv_parents(conn)
-        print("SPV->parent inference (CONTROLS from naming convention):")
-        for k in ("spv_candidates", "controls_new", "controls_corroborated",
-                  "ambiguous", "no_in_graph_parent", "no_brand"):
-            print(f"  {k:22} {spvstats[k]}")
-        print(f"  report                 {spvstats['report']}")
-        jv = demote_jv_suspect_edges(conn)
-        print(f"  jv_suspects_demoted    {jv['jv_suspects_demoted']}")
-
-    if args.stage == "stubs":
-        ststats = backfill_external_stubs(conn)
-        print("External stub parents (EXTERNAL_STUB — bounded universe widening, F3):")
-        for k in ("spv_no_parent_rows", "stubs_created", "controls_new",
-                  "controls_corroborated", "spv_not_in_graph"):
-            print(f"  {k:24} {ststats[k]}")
-        print(f"  report                   {ststats['report']}")
 
     # Coverage is reported over the IN-UNIVERSE companies only (the curated
     # 729). EXTERNAL_STUB / EXTERNAL_PARENT nodes are control anchors, not part of

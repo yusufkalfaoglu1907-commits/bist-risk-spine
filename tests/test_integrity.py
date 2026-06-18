@@ -1,7 +1,7 @@
-"""CONTROLS-graph integrity: cycle detection + SCC-aware rooting (F6).
+"""CONTROLS-graph integrity: cycle detection + Tarjan SCC primitive (F6).
 
 Offline. Builds tiny synthetic graphs in a temp Kuzu DB to exercise the
-post-load cycle guard and the cycle-safe / SUBSIDIARY_OF-aware group rooting.
+post-load cycle guard. (Group rooting moved to the archived debt analytics.)
 
     PYTHONPATH=src python -m pytest tests/test_integrity.py -v
 """
@@ -18,7 +18,6 @@ from tmkg.schema.integrity import (
     find_controls_cycles, check_no_controls_cycles, ControlsCycleError,
     strongly_connected_components,
 )
-from tmkg.analytics.blast_radius import resolve_group_root, group_members
 
 
 def _db():
@@ -38,14 +37,6 @@ def _controls(conn, a, b):
            CREATE (x)-[:CONTROLS {basis:'test', confidence:1.0,
                     source:'test', extraction_method:'structured'}]->(y)""",
         {"a": a, "b": b})
-
-
-def _subsidiary_of(conn, child, parent):
-    conn.execute(
-        """MATCH (c:Company {uuid:$c}), (p:Company {uuid:$p})
-           CREATE (c)-[:SUBSIDIARY_OF {source:'kap', extraction_method:'structured',
-                    confidence:1.0}]->(p)""",
-        {"c": child, "p": parent})
 
 
 # --- Tarjan SCC primitive --------------------------------------------------
@@ -98,43 +89,3 @@ def test_self_loop_reported_as_cycle():
     _co(conn, "x")
     _controls(conn, "x", "x")
     assert find_controls_cycles(conn) == [["x"]]
-
-
-# --- SCC-aware / SUBSIDIARY_OF-aware rooting -------------------------------
-
-def test_rooting_survives_a_cycle_and_still_assembles_group():
-    """With the injected cycle, rooting must NOT collapse to the seed; it returns
-    an apex inside the cycle and the group still fans out to every member."""
-    conn = _db()
-    for u in ("kchol", "kocfin", "kocfn", "leaf"):
-        _co(conn, u)
-    _controls(conn, "kchol", "kocfin")
-    _controls(conn, "kocfin", "kocfn")
-    _controls(conn, "kocfn", "kchol")        # cycle among the three
-    _controls(conn, "kchol", "leaf")         # a normal child off the apex
-    roots = resolve_group_root(conn, "leaf")
-    # apex is the nearest member of the cyclic top SCC (kchol, 1 hop up)
-    assert roots and roots[0]["uuid"] == "kchol"
-    assert roots[0]["hops_from_seed"] == 1
-    members = {m["uuid"] for m in group_members(conn, roots[0]["uuid"])}
-    assert members == {"kchol", "kocfin", "kocfn", "leaf"}
-
-
-def test_rooting_follows_kap_only_subsidiary_of_edge():
-    """A KAP-only SUBSIDIARY_OF edge (no mirror CONTROLS) must be honored when
-    walking up — the F6 docstring/code divergence fix."""
-    conn = _db()
-    for u in ("parent", "child"):
-        _co(conn, u)
-    _subsidiary_of(conn, "child", "parent")   # only edge: child -> parent
-    roots = resolve_group_root(conn, "child")
-    assert [r["uuid"] for r in roots] == ["parent"]
-    assert roots[0]["hops_from_seed"] == 1
-
-
-def test_uncontrolled_seed_is_its_own_apex():
-    conn = _db()
-    _co(conn, "solo")
-    roots = resolve_group_root(conn, "solo")
-    assert [r["uuid"] for r in roots] == ["solo"]
-    assert roots[0]["hops_from_seed"] == 0

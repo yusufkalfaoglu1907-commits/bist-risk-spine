@@ -52,12 +52,28 @@ import re
 from pathlib import Path
 
 from tmkg import config
-from tmkg.adapters.kap_nominal_adapter import parse_tr_amount
 
 DEFAULT_SUBSIDIARY_REFERENCE_PATH = (
     config.REPO_ROOT / "data" / "reference" / "kap_subsidiary.json"
 )
 SUBSIDIARY_SCHEMA_VERSION = 1
+
+# Turkish-formatted decimal: thousands '.', decimal ','. e.g. '1.400.000.000,50'.
+_TR_AMOUNT = r"\d{1,3}(?:\.\d{3})+(?:,\d+)?"
+
+
+def parse_tr_amount(text: str) -> float | None:
+    """'1.400.000.000,50' -> 1400000000.5 . Returns None if unparseable."""
+    if text is None:
+        return None
+    s = str(text).strip()
+    if not re.fullmatch(_TR_AMOUNT, s):
+        return None
+    s = s.replace(".", "").replace(",", ".")
+    try:
+        return float(s)
+    except ValueError:
+        return None
 
 # The last header cell of the subsidiaries table — everything after it is rows.
 _SECTION_ANCHOR = "Şirket ile Olan İlişkinin Niteliği"

@@ -1,12 +1,12 @@
 {
-  "ran_at": "2026-06-14T17:26:42.712630+00:00",
+  "ran_at": "2026-06-18T18:13:50.280006+00:00",
   "source": "KAP Sektörler listing (kap.org.tr) export, Sektörler.xlsx",
   "fetched_iso": "2026-06-07",
   "sector_nodes": 73,
   "subsector_edges": 57,
-  "companies_total": 729,
+  "companies_total": 730,
   "companies_linked": 606,
-  "companies_unmatched": 123,
+  "companies_unmatched": 124,
   "unmatched_tickers": [
     "ADLVY",
     "AFB",
@@ -108,6 +108,7 @@
     "QUFIN",
     "QYATB",
     "QYHOL",
+    "SARTN",
     "SMRFA",
     "TAC",
     "TAE",
@@ -133,161 +134,15 @@
     "ZKBVR"
   ],
   "leaves_populated": 48,
-  "inherited_sectors": 29,
-  "inherited_edges": [
-    {
-      "company": "AKFK",
-      "leaf": "BANKALAR",
-      "from_parent": "co-33e5fed7034100eae0530a4a622b2aea"
-    },
-    {
-      "company": "AKM",
-      "leaf": "BANKALAR",
-      "from_parent": "co-33e5fed7034100eae0530a4a622b2aea"
-    },
-    {
-      "company": "AKDFA",
-      "leaf": "HOLDINGLER_VE_YATIRIM_SIRKETLERI",
-      "from_parent": "co-33e5fed705e700eae0530a4a622b2aea"
-    },
-    {
-      "company": "ARSVY",
-      "leaf": "HOLDINGLER_VE_YATIRIM_SIRKETLERI",
-      "from_parent": "co-33e5fed7036000eae0530a4a622b2aea"
-    },
-    {
-      "company": "BRKT",
-      "leaf": "BANKALAR",
-      "from_parent": "co-33e5fed7056400eae0530a4a622b2aea"
-    },
-    {
-      "company": "BLKOM",
-      "leaf": "HOLDINGLER_VE_YATIRIM_SIRKETLERI",
-      "from_parent": "co-33e5fed703f500eae0530a4a622b2aea"
-    },
-    {
-      "company": "CLKMT",
-      "leaf": "HOLDINGLER_VE_YATIRIM_SIRKETLERI",
-      "from_parent": "co-33e5fed7048200eae0530a4a622b2aea"
-    },
-    {
-      "company": "DVRLK",
-      "leaf": "HOLDINGLER_VE_YATIRIM_SIRKETLERI",
-      "from_parent": "co-33e5fed7039700eae0530a4a622b2aea"
-    },
-    {
-      "company": "DYBNK",
-      "leaf": "HOLDINGLER_VE_YATIRIM_SIRKETLERI",
-      "from_parent": "co-33e5fed7039700eae0530a4a622b2aea"
-    },
-    {
-      "company": "DENVA",
-      "leaf": "HOLDINGLER_VE_YATIRIM_SIRKETLERI",
-      "from_parent": "co-33e5fed705ee00eae0530a4a622b2aea"
-    },
-    {
-      "company": "DFKTR",
-      "leaf": "HOLDINGLER_VE_YATIRIM_SIRKETLERI",
-      "from_parent": "co-33e5fed7039700eae0530a4a622b2aea"
-    },
-    {
-      "company": "DNYVA",
-      "leaf": "HOLDINGLER_VE_YATIRIM_SIRKETLERI",
-      "from_parent": "co-33e5fed7043d00eae0530a4a622b2aea"
-    },
-    {
-      "company": "ECZIP",
-      "leaf": "HOLDINGLER_VE_YATIRIM_SIRKETLERI",
-      "from_parent": "co-33e5fed703ae00eae0530a4a622b2aea"
-    },
-    {
-      "company": "HALKF",
-      "leaf": "BANKALAR",
-      "from_parent": "co-33e5fed7055e00eae0530a4a622b2aea"
-    },
-    {
-      "company": "HLVKS",
-      "leaf": "BANKALAR",
-      "from_parent": "co-33e5fed7055e00eae0530a4a622b2aea"
-    },
-    {
-      "company": "HALKI",
-      "leaf": "BANKALAR",
-      "from_parent": "co-33e5fed7055e00eae0530a4a622b2aea"
-    },
-    {
-      "company": "HDFVK",
-      "leaf": "ARACI_KURUMLAR",
-      "from_parent": "co-33e5fed705aa00eae0530a4a622b2aea"
-    },
-    {
-      "company": "ISTVY",
-      "leaf": "HOLDINGLER_VE_YATIRIM_SIRKETLERI",
-      "from_parent": "co-33e5fed7073400eae0530a4a622b2aea"
-    },
-    {
-      "company": "ISFAK",
-      "leaf": "BANKALAR",
-      "from_parent": "co-33e5fed7044d00eae0530a4a622b2aea"
-    },
-    {
-      "company": "KLVKS",
-      "leaf": "BANKALAR",
-      "from_parent": "co-33e5fed7044f00eae0530a4a622b2aea"
-    },
-    {
-      "company": "KOCFN",
-      "leaf": "HOLDINGLER_VE_YATIRIM_SIRKETLERI",
-      "from_parent": "co-33e5fed703f500eae0530a4a622b2aea"
-    },
-    {
-      "company": "KSFIN",
-      "leaf": "METAL_ESYA_MAKINE_ELEKTRIKLI_CIHAZLAR_VE_ULASIM_ARACLARI",
-      "from_parent": "co-33e5fed7045d00eae0530a4a622b2aea"
-    },
-    {
-      "company": "MRBAS",
-      "leaf": "HOLDINGLER_VE_YATIRIM_SIRKETLERI",
-      "from_parent": "co-33e5fed703c700eae0530a4a622b2aea"
-    },
-    {
-      "company": "OSVKS",
-      "leaf": "ARACI_KURUMLAR",
-      "from_parent": "co-33e5fed705ba00eae0530a4a622b2aea"
-    },
-    {
-      "company": "QNBFF",
-      "leaf": "BANKALAR",
-      "from_parent": "co-33e5fed703bf00eae0530a4a622b2aea"
-    },
-    {
-      "company": "QNBVK",
-      "leaf": "BANKALAR",
-      "from_parent": "co-33e5fed703bf00eae0530a4a622b2aea"
-    },
-    {
-      "company": "YKFKT",
-      "leaf": "HOLDINGLER_VE_YATIRIM_SIRKETLERI",
-      "from_parent": "co-33e5fed703f500eae0530a4a622b2aea"
-    },
-    {
-      "company": "YKFIN",
-      "leaf": "HOLDINGLER_VE_YATIRIM_SIRKETLERI",
-      "from_parent": "co-33e5fed703f500eae0530a4a622b2aea"
-    },
-    {
-      "company": "YKR",
-      "leaf": "BANKALAR",
-      "from_parent": "co-33e5fed7047e00eae0530a4a622b2aea"
-    }
-  ],
+  "inherited_sectors": 0,
+  "inherited_edges": [],
   "coverage": {
-    "companies_total": 729,
-    "companies_sectored": 635,
-    "companies_sectored_inherited": 29,
-    "company_weighted_coverage": 0.8711,
-    "instruments_total": 2688,
-    "instruments_sectored": 1675,
-    "instrument_weighted_coverage": 0.6231
+    "companies_total": 730,
+    "companies_sectored": 606,
+    "companies_sectored_inherited": 0,
+    "company_weighted_coverage": 0.8301,
+    "instruments_total": 730,
+    "instruments_sectored": 606,
+    "instrument_weighted_coverage": 0.8301
   }
 }

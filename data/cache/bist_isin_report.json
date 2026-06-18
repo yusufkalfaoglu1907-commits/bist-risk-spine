@@ -1,39 +1,192 @@
 {
-  "generated_iso": "2026-06-14T18:05:30.612855+00:00",
+  "generated_iso": "2026-06-18T18:14:08.134507+00:00",
   "reference_source": "MKK Menkul Kıymetler Listesi (Merkezi Kayıt İstanbul), uploaded 2026-06-07",
   "reference_tickers": 1014,
   "summary": {
-    "targets": 142,
-    "isins_written": 11,
+    "targets": 730,
+    "isins_written": 594,
     "disambiguated": 11,
     "disambiguation_skipped": {},
     "conflicts": 0,
-    "not_in_reference": 131,
+    "not_in_reference": 136,
     "invalid_or_nonequity": 0
   },
   "results": [
     {
+      "uuid": "co-8acae2c56faf888c0170677e56ae5975",
+      "ticker": "A1CAP",
+      "lei": null,
+      "bist_isin": "TREA1CP00024",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5794d3d6a017aa3aa38fe1d0f",
+      "ticker": "A1YEN",
+      "lei": null,
+      "bist_isin": "TREKARY00028",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c49c81f746019d6bc054b06baa",
+      "ticker": "AAGYO",
+      "lei": null,
+      "bist_isin": "TREAGVR00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705ea00eae0530a4a622b2aea",
+      "ticker": "ACSEL",
+      "lei": null,
+      "bist_isin": "TREACSS00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7033c00eae0530a4a622b2aea",
+      "ticker": "ADEL",
+      "lei": null,
+      "bist_isin": "TRAADELW91T1",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705ab00eae0530a4a622b2aea",
+      "ticker": "ADESE",
+      "lei": null,
+      "bist_isin": "TREADSE00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c586d22c53018aac3338fe1b9d",
+      "ticker": "ADGYO",
+      "lei": null,
+      "bist_isin": "TREADRA00023",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c4998f24d8019a0a8c69db5b4e",
       "ticker": "ADLVY",
-      "lei": "789000353S07MKM09014",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7035800eae0530a4a622b2aea",
+      "ticker": "AEFES",
+      "lei": null,
+      "bist_isin": "TRAAEFES91A9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed705ac00eae0530a4a622b2aea",
       "ticker": "AFB",
-      "lei": "789000HY231FVB3ZXK62",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed7033d00eae0530a4a622b2aea",
+      "ticker": "AFYON",
+      "lei": null,
+      "bist_isin": "TRAAFYON91F6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed706f300eae0530a4a622b2aea",
+      "ticker": "AGESA",
+      "lei": null,
+      "bist_isin": "TRECUHE00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7048200eae0530a4a622b2aea",
+      "ticker": "AGHOL",
+      "lei": null,
+      "bist_isin": "TRAYAZIC91Q6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48b2fa25a018bf5df223b6df4",
+      "ticker": "AGROT",
+      "lei": null,
+      "bist_isin": "TREAGRT00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7036300eae0530a4a622b2aea",
+      "ticker": "AGYO",
+      "lei": null,
+      "bist_isin": "TRAAGYOW91Q2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5830502c2018533572ae577e1",
+      "ticker": "AHGAZ",
+      "lei": null,
+      "bist_isin": "TREAHLA00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c59145e00e01915a6f1e3d0ed1",
+      "ticker": "AHSGY",
+      "lei": null,
+      "bist_isin": "TREAHES00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7034100eae0530a4a622b2aea",
+      "ticker": "AKBNK",
+      "lei": null,
+      "bist_isin": "TRAAKBNK91N6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7034300eae0530a4a622b2aea",
+      "ticker": "AKCNS",
+      "lei": null,
+      "bist_isin": "TRAAKCNS91F3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c4998f24d8019994316c230091",
       "ticker": "AKCVR",
-      "lei": "984500C6F13M596EA793",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -42,101 +195,542 @@
     {
       "uuid": "co-33e5fed706fb00eae0530a4a622b2aea",
       "ticker": "AKDFA",
-      "lei": "789000E80B3CKGE4EX23",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7033e00eae0530a4a622b2aea",
+      "ticker": "AKENR",
+      "lei": null,
+      "bist_isin": "TRAAKENR91L9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7059a00eae0530a4a622b2aea",
+      "ticker": "AKFGY",
+      "lei": null,
+      "bist_isin": "TREAKFG00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c59145e00a0192d1caa038754c",
+      "ticker": "AKFIS",
+      "lei": null,
+      "bist_isin": "TREAKFI00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7068100eae0530a4a622b2aea",
       "ticker": "AKFK",
-      "lei": "789000H3ZY0FEE8YTI46",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c586d22c510186e3ff923910cd",
+      "ticker": "AKFYE",
+      "lei": null,
+      "bist_isin": "TREAKFY00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7034600eae0530a4a622b2aea",
+      "ticker": "AKGRT",
+      "lei": null,
+      "bist_isin": "TRAAKGRT91O5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c49b85f8ce019c2c718bd303ea",
+      "ticker": "AKHAN",
+      "lei": null,
+      "bist_isin": "TREAKHN00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7073e00eae0530a4a622b2aea",
       "ticker": "AKM",
-      "lei": "789000ZSYXQD4Y7YRG72",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7053b00eae0530a4a622b2aea",
+      "ticker": "AKMGY",
+      "lei": null,
+      "bist_isin": "TREAKMG00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7034500eae0530a4a622b2aea",
+      "ticker": "AKSA",
+      "lei": null,
+      "bist_isin": "TRAAKSAW91E1",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7057300eae0530a4a622b2aea",
+      "ticker": "AKSEN",
+      "lei": null,
+      "bist_isin": "TREAKSN00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7064e00eae0530a4a622b2aea",
       "ticker": "AKSFA",
-      "lei": "789000DY4VXCPW0GB365",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7060000eae0530a4a622b2aea",
+      "ticker": "AKSGY",
+      "lei": null,
+      "bist_isin": "TREAIGY00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7034700eae0530a4a622b2aea",
+      "ticker": "AKSUE",
+      "lei": null,
+      "bist_isin": "TRAAKSUE91L2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7067900eae0530a4a622b2aea",
       "ticker": "AKTVK",
-      "lei": "789000JDW5J7T3R9RE63",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed705e700eae0530a4a622b2aea",
+      "ticker": "AKYHO",
+      "lei": null,
+      "bist_isin": "TREAKGH00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7034b00eae0530a4a622b2aea",
+      "ticker": "ALARK",
+      "lei": null,
+      "bist_isin": "TRAALARK91Q0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7056400eae0530a4a622b2aea",
+      "ticker": "ALBRK",
+      "lei": null,
+      "bist_isin": "TREALBK00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7034900eae0530a4a622b2aea",
+      "ticker": "ALCAR",
+      "lei": null,
+      "bist_isin": "TRAALRSA91H2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7034c00eae0530a4a622b2aea",
+      "ticker": "ALCTL",
+      "lei": null,
+      "bist_isin": "TRAALCTL91H9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5830502c301847a1babf628c3",
+      "ticker": "ALFAS",
+      "lei": null,
+      "bist_isin": "TREALFS00023",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7034a00eae0530a4a622b2aea",
+      "ticker": "ALGYO",
+      "lei": null,
+      "bist_isin": "TRAALGYO91Q5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed706fc00eae0530a4a622b2aea",
       "ticker": "ALJF",
-      "lei": "789000DNGU3UNAFN8480",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7034f00eae0530a4a622b2aea",
+      "ticker": "ALKA",
+      "lei": null,
+      "bist_isin": "TRAALKAW91D8",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7034e00eae0530a4a622b2aea",
+      "ticker": "ALKIM",
+      "lei": null,
+      "bist_isin": "TRAALKIM91E0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48c3efabf018fdcead2f17c43",
+      "ticker": "ALKLC",
+      "lei": null,
+      "bist_isin": "TREALTK00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c4794d364a0179c121fa342498",
       "ticker": "ALNUS",
-      "lei": "7890004QRHDYT10CLI14",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c58b2fa64e018f7aeaec6527ac",
+      "ticker": "ALTNY",
+      "lei": null,
+      "bist_isin": "TREALTA00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48c3efabf018dee6f34d270a1",
+      "ticker": "ALVES",
+      "lei": null,
+      "bist_isin": "TREALVS00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7056800eae0530a4a622b2aea",
+      "ticker": "ANELE",
+      "lei": null,
+      "bist_isin": "TREAEPT00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57afb2d71017c972c6c6d2a06",
+      "ticker": "ANGEN",
+      "lei": null,
+      "bist_isin": "TREANGN00028",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7035a00eae0530a4a622b2aea",
+      "ticker": "ANHYT",
+      "lei": null,
+      "bist_isin": "TRAANHYT91O3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7035600eae0530a4a622b2aea",
+      "ticker": "ANSGR",
+      "lei": null,
+      "bist_isin": "TRAANSGR91O1",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c47afb298b017d088772d9614d",
+      "ticker": "ARASE",
+      "lei": null,
+      "bist_isin": "TREARAS00039",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7035e00eae0530a4a622b2aea",
+      "ticker": "ARCLK",
+      "lei": null,
+      "bist_isin": "TRAARCLK91H5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c56faf888c016ff060352b1466",
+      "ticker": "ARDYZ",
+      "lei": null,
+      "bist_isin": "TREARDY00023",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7035f00eae0530a4a622b2aea",
+      "ticker": "ARENA",
+      "lei": null,
+      "bist_isin": "TRAARENA91U1",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5998f25d9019b7d4280a42716",
+      "ticker": "ARFYE",
+      "lei": null,
+      "bist_isin": "TREARFB00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c49145e00b019425a997a833e8",
+      "ticker": "ARMGD",
+      "lei": null,
+      "bist_isin": "TREARDG00020",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7036000eae0530a4a622b2aea",
+      "ticker": "ARSAN",
+      "lei": null,
+      "bist_isin": "TRAARSAN91B1",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c59145e00a0197bf6ea92d076e",
       "ticker": "ARSVY",
-      "lei": "789000ZOYKJLL67WDK88",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c58b2fa64e018df8d8b0550ac5",
+      "ticker": "ARTMS",
+      "lei": null,
+      "bist_isin": "TREATMS00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7065000eae0530a4a622b2aea",
+      "ticker": "ARZUM",
+      "lei": null,
+      "bist_isin": "TREAZEV00020",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7036100eae0530a4a622b2aea",
+      "ticker": "ASELS",
+      "lei": null,
+      "bist_isin": "TRAASELS91H2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3a0189b4e39c0c73d2",
+      "ticker": "ASGYO",
+      "lei": null,
+      "bist_isin": "TREASCE00033",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48304fe9e0185bfc1569055fe",
+      "ticker": "ASTOR",
+      "lei": null,
+      "bist_isin": "TREASTR00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7035c00eae0530a4a622b2aea",
+      "ticker": "ASUZU",
+      "lei": null,
+      "bist_isin": "TRAASUZU91H4",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c47f7cb492017ff86e558844ea",
       "ticker": "ATA",
-      "lei": "789000NN12X9UZM8VS94",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7036200eae0530a4a622b2aea",
+      "ticker": "ATAGY",
+      "lei": null,
+      "bist_isin": "TRAATAYO91Q1",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c586d22c53018990fe3b85659a",
+      "ticker": "ATAKP",
+      "lei": null,
+      "bist_isin": "TREATKY00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5794d3d660179c633071a23e2",
+      "ticker": "ATATP",
+      "lei": null,
+      "bist_isin": "TREATTP00023",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c59b85fa06019c6f605c482fbc",
+      "ticker": "ATATR",
+      "lei": null,
+      "bist_isin": "TREATTR00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c494bafc9301965707141a5b6f",
       "ticker": "ATAVK",
-      "lei": "789000RQ44NFCOUNBC50",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed7034400eae0530a4a622b2aea",
+      "ticker": "ATEKS",
+      "lei": null,
+      "bist_isin": "TRAATEKS91B5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7036500eae0530a4a622b2aea",
+      "ticker": "ATLAS",
+      "lei": null,
+      "bist_isin": "TRAATLAS91Q9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-33e5fed7065100eae0530a4a622b2aea",
       "ticker": "ATLFA",
-      "lei": "789000NHORT7MJ59XV33",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7036400eae0530a4a622b2aea",
+      "ticker": "ATSYH",
+      "lei": null,
+      "bist_isin": "TRAATSYO91Q3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7036600eae0530a4a622b2aea",
+      "ticker": "AVGYO",
+      "lei": null,
+      "bist_isin": "TRAAVRSY91Q2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705f900eae0530a4a622b2aea",
+      "ticker": "AVHOL",
+      "lei": null,
+      "bist_isin": "TREBYTS00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed705b100eae0530a4a622b2aea",
@@ -149,9 +743,315 @@
       "method": "bist-disambiguated"
     },
     {
+      "uuid": "co-8acae2c58b2fa64e018c85e63c393fa0",
+      "ticker": "AVPGY",
+      "lei": null,
+      "bist_isin": "TREAVRK00024",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7055d00eae0530a4a622b2aea",
+      "ticker": "AVTUR",
+      "lei": null,
+      "bist_isin": "TREMRYO00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7035500eae0530a4a622b2aea",
+      "ticker": "AYCES",
+      "lei": null,
+      "bist_isin": "TRAAYCES92K1",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c4782a4d580178b5710e69440d",
+      "ticker": "AYDEM",
+      "lei": null,
+      "bist_isin": "TREAYDM00024",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7036700eae0530a4a622b2aea",
+      "ticker": "AYEN",
+      "lei": null,
+      "bist_isin": "TRAAYENW91L0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705c400eae0530a4a622b2aea",
+      "ticker": "AYES",
+      "lei": null,
+      "bist_isin": "TREAYES00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7036800eae0530a4a622b2aea",
+      "ticker": "AYGAZ",
+      "lei": null,
+      "bist_isin": "TRAAYGAZ91E0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5819d0efb0182a6d867c507d4",
+      "ticker": "AZTEK",
+      "lei": null,
+      "bist_isin": "TREAZTK00021",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7036900eae0530a4a622b2aea",
+      "ticker": "BAGFS",
+      "lei": null,
+      "bist_isin": "TRABAGFS91E2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48c3efabf0191455dbde56df5",
+      "ticker": "BAHKM",
+      "lei": null,
+      "bist_isin": "TREBHDR00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7036a00eae0530a4a622b2aea",
+      "ticker": "BAKAB",
+      "lei": null,
+      "bist_isin": "TRABAKAB91D3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705eb00eae0530a4a622b2aea",
+      "ticker": "BALAT",
+      "lei": null,
+      "bist_isin": "TREBLTA00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c59145e00e01951cecbf1f03f3",
+      "ticker": "BALSU",
+      "lei": null,
+      "bist_isin": "TREBALS00022",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7036b00eae0530a4a622b2aea",
+      "ticker": "BANVT",
+      "lei": null,
+      "bist_isin": "TRABANVT92A9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c4819d0efe01828150a8257a60",
+      "ticker": "BARMA",
+      "lei": null,
+      "bist_isin": "TREBARM00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705c200eae0530a4a622b2aea",
+      "ticker": "BASCM",
+      "lei": null,
+      "bist_isin": "TREBASC00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c4794d364a0179f4a7c0b23b1d",
+      "ticker": "BASGZ",
+      "lei": null,
+      "bist_isin": "TREBSGZ00037",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c56faf888c01723baf73a152b7",
+      "ticker": "BAYRK",
+      "lei": null,
+      "bist_isin": "TREBYRK00026",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c58b2fa64e018c43045a0f1424",
+      "ticker": "BEGYO",
+      "lei": null,
+      "bist_isin": "TREBTEG00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705fb00eae0530a4a622b2aea",
+      "ticker": "BERA",
+      "lei": null,
+      "bist_isin": "TREKMBH00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703f200eae0530a4a622b2aea",
+      "ticker": "BESLR",
+      "lei": null,
+      "bist_isin": "TRAKERVT91A5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c49b85f8cf019c464522c1283a",
+      "ticker": "BESTE",
+      "lei": null,
+      "bist_isin": "TREBSBR00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7057e00eae0530a4a622b2aea",
+      "ticker": "BEYAZ",
+      "lei": null,
+      "bist_isin": "TREBFOK00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7037700eae0530a4a622b2aea",
+      "ticker": "BFREN",
+      "lei": null,
+      "bist_isin": "TRABFREN91H5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c586d22c530186db42dd880694",
+      "ticker": "BIENY",
+      "lei": null,
+      "bist_isin": "TREBNYP00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3b0187ff4716716bd3",
+      "ticker": "BIGCH",
+      "lei": null,
+      "bist_isin": "TREBIGC00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c59145e00e0194cfba804c4d23",
+      "ticker": "BIGEN",
+      "lei": null,
+      "bist_isin": "TREBYEN00010",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7039600eae0530a4a622b2aea",
+      "ticker": "BIGTK",
+      "lei": null,
+      "bist_isin": "TRADOBUR91D3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7053f00eae0530a4a622b2aea",
+      "ticker": "BIMAS",
+      "lei": null,
+      "bist_isin": "TREBIMM00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c59145e00a01926ae96611442e",
+      "ticker": "BINBN",
+      "lei": null,
+      "bist_isin": "TREBINU00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48b2fa259018bdbf238946c4e",
+      "ticker": "BINHO",
+      "lei": null,
+      "bist_isin": "TREBINH00024",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57902e74f0179120359bd04e3",
+      "ticker": "BIOEN",
+      "lei": null,
+      "bist_isin": "TREBION00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7059200eae0530a4a622b2aea",
+      "ticker": "BIZIM",
+      "lei": null,
+      "bist_isin": "TREBZMT00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7037000eae0530a4a622b2aea",
+      "ticker": "BJKAS",
+      "lei": null,
+      "bist_isin": "TRABJKAS91X6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-33e5fed7059900eae0530a4a622b2aea",
       "ticker": "BLCYT",
-      "lei": "789000QJQOV4IFJ4EX20",
+      "lei": null,
       "bist_isin": "TREBLCY00018",
       "found": true,
       "valid": true,
@@ -161,7 +1061,7 @@
     {
       "uuid": "co-8acae2c48304fe9c01845d61079d25cb",
       "ticker": "BLKOM",
-      "lei": "789000KUSX23DCB3RR56",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -170,11 +1070,38 @@
     {
       "uuid": "co-8acae2c59145e00e0194e0c262b25fce",
       "ticker": "BLS",
-      "lei": "7890002F6JMM4B4IT968",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7041300eae0530a4a622b2aea",
+      "ticker": "BLUME",
+      "lei": null,
+      "bist_isin": "TREMETU00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c4794d36480179d5bce8a12adc",
+      "ticker": "BMSCH",
+      "lei": null,
+      "bist_isin": "TREBMSC00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57f7cbb49018064aaf0f60e06",
+      "ticker": "BMSTL",
+      "lei": null,
+      "bist_isin": "TREBMSM00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c486d22a3b01886bd3f36748da",
@@ -186,9 +1113,54 @@
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed7072f00eae0530a4a622b2aea",
+      "ticker": "BNTAS",
+      "lei": null,
+      "bist_isin": "TREBANT00026",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5794d3d660179c6357eae23e3",
+      "ticker": "BOBET",
+      "lei": null,
+      "bist_isin": "TREBOBT00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c58b2fa64e018b41754b6007fb",
+      "ticker": "BORLS",
+      "lei": null,
+      "bist_isin": "TREBORL00025",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c58b2fa64e018da65528626215",
+      "ticker": "BORSK",
+      "lei": null,
+      "bist_isin": "TREBRSK00010",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7037800eae0530a4a622b2aea",
+      "ticker": "BOSSA",
+      "lei": null,
+      "bist_isin": "TRABOSSA91B5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-33e5fed7074500eae0530a4a622b2aea",
       "ticker": "BRGAN",
-      "lei": "78900002R7HQKQX0CS57",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -197,70 +1169,529 @@
     {
       "uuid": "co-33e5fed7071b00eae0530a4a622b2aea",
       "ticker": "BRGFK",
-      "lei": "789000IBV00NHHY7C556",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7037a00eae0530a4a622b2aea",
+      "ticker": "BRISA",
+      "lei": null,
+      "bist_isin": "TRABRISA91E3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7056900eae0530a4a622b2aea",
+      "ticker": "BRKO",
+      "lei": null,
+      "bist_isin": "TREBRKO00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7059300eae0530a4a622b2aea",
+      "ticker": "BRKSN",
+      "lei": null,
+      "bist_isin": "TREBERK00010",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7069800eae0530a4a622b2aea",
       "ticker": "BRKT",
-      "lei": "789000OLFQHUEMCO1A78",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c469a84c1f0169c98fb26d153b",
+      "ticker": "BRKVY",
+      "lei": null,
+      "bist_isin": "TREBVYS00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c47afb298a017b52bf360b39c0",
+      "ticker": "BRLSM",
+      "lei": null,
+      "bist_isin": "TREBLSM00027",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7037100eae0530a4a622b2aea",
+      "ticker": "BRMEN",
+      "lei": null,
+      "bist_isin": "TRABRMEN91B4",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7037500eae0530a4a622b2aea",
+      "ticker": "BRSAN",
+      "lei": null,
+      "bist_isin": "TRABRSAN91G8",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7037600eae0530a4a622b2aea",
+      "ticker": "BRYAT",
+      "lei": null,
+      "bist_isin": "TRABRYAT91Q2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7036d00eae0530a4a622b2aea",
+      "ticker": "BSOKE",
+      "lei": null,
+      "bist_isin": "TRABSOKE91F5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7036c00eae0530a4a622b2aea",
+      "ticker": "BTCIM",
+      "lei": null,
+      "bist_isin": "TRABTCIM91F5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7037e00eae0530a4a622b2aea",
+      "ticker": "BUCIM",
+      "lei": null,
+      "bist_isin": "TRABUCIM91F3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c494bafc93019522c5cfc7377f",
+      "ticker": "BULGS",
+      "lei": null,
+      "bist_isin": "TREBULS00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7037d00eae0530a4a622b2aea",
+      "ticker": "BURCE",
+      "lei": null,
+      "bist_isin": "TRABURCE91G9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7053100eae0530a4a622b2aea",
+      "ticker": "BURVA",
+      "lei": null,
+      "bist_isin": "TREBRVN00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48304fe9e01861637b0f100fd",
+      "ticker": "BVSAN",
+      "lei": null,
+      "bist_isin": "TREBVSB00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c586d22c53018a0786435550cf",
+      "ticker": "BYDNR",
+      "lei": null,
+      "bist_isin": "TREBYDN00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7066900eae0530a4a622b2aea",
       "ticker": "CAGFA",
-      "lei": "789000I0C39I6BM8AN27",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c57902e74f01791201eca404df",
+      "ticker": "CANTE",
+      "lei": null,
+      "bist_isin": "TRECAN200011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705ef00eae0530a4a622b2aea",
+      "ticker": "CASA",
+      "lei": null,
+      "bist_isin": "TREKRSS00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48b2fa25a018c3dd895330bec",
+      "ticker": "CATES",
+      "lei": null,
+      "bist_isin": "TRECATS00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7054c00eae0530a4a622b2aea",
+      "ticker": "CCOLA",
+      "lei": null,
+      "bist_isin": "TRECOLA00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7038700eae0530a4a622b2aea",
+      "ticker": "CELHA",
+      "lei": null,
+      "bist_isin": "TRACELHA91G1",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7057800eae0530a4a622b2aea",
+      "ticker": "CEMAS",
+      "lei": null,
+      "bist_isin": "TRECMAS00010",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7038800eae0530a4a622b2aea",
+      "ticker": "CEMTS",
+      "lei": null,
+      "bist_isin": "TRACEMTS91G6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c49145e00d0191c6140b624aaa",
+      "ticker": "CEMZY",
+      "lei": null,
+      "bist_isin": "TRECEMZ00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c469cee2a2016ada4a68e01879",
+      "ticker": "CEOEM",
+      "lei": null,
+      "bist_isin": "TRECEOM00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c59145e00e0193ce381b8000f6",
+      "ticker": "CGCAM",
+      "lei": null,
+      "bist_isin": "TRECGDC00010",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7038b00eae0530a4a622b2aea",
+      "ticker": "CIMSA",
+      "lei": null,
+      "bist_isin": "TRACIMSA91F9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7038600eae0530a4a622b2aea",
+      "ticker": "CLEBI",
+      "lei": null,
+      "bist_isin": "TRACLEBI91M5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c4550749770155100836c40fc3",
       "ticker": "CLKMT",
-      "lei": "78900084V5W5YKRMGZ42",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7038900eae0530a4a622b2aea",
+      "ticker": "CMBTN",
+      "lei": null,
+      "bist_isin": "TRACMBTN91F5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7038a00eae0530a4a622b2aea",
+      "ticker": "CMENT",
+      "lei": null,
+      "bist_isin": "TRACMENT91F9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5998f25d7019b732df2ff3a6c",
+      "ticker": "CMSAN",
+      "lei": null,
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c57f7cbb4901804068420079cd",
+      "ticker": "CONSE",
+      "lei": null,
+      "bist_isin": "TRECONS00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7037c00eae0530a4a622b2aea",
+      "ticker": "COSMO",
+      "lei": null,
+      "bist_isin": "TRABUMYO91Q2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7045e00eae0530a4a622b2aea",
+      "ticker": "CRDFA",
+      "lei": null,
+      "bist_isin": "TRATPFAC91P5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7055500eae0530a4a622b2aea",
+      "ticker": "CRFSA",
+      "lei": null,
+      "bist_isin": "TRECARF00032",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7076900eae0530a4a622b2aea",
+      "ticker": "CUSAN",
+      "lei": null,
+      "bist_isin": "TRECUHA00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c586d22c5301877428ccc4043f",
+      "ticker": "CVKMD",
+      "lei": null,
+      "bist_isin": "TRECVKM00021",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3a0187e67d0ff04f5a",
+      "ticker": "CWENE",
+      "lei": null,
+      "bist_isin": "TRECWEN00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7059b00eae0530a4a622b2aea",
+      "ticker": "DAGI",
+      "lei": null,
+      "bist_isin": "TREDAGI00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57d3bf001017f2535392e507d",
+      "ticker": "DAPGM",
+      "lei": null,
+      "bist_isin": "TREDAPG00032",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7038e00eae0530a4a622b2aea",
+      "ticker": "DARDL",
+      "lei": null,
+      "bist_isin": "TRADARDL91A3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c58b2fa64e0191024fb15e3535",
+      "ticker": "DCTTR",
+      "lei": null,
+      "bist_isin": "TREDCTT00025",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7066c00eae0530a4a622b2aea",
       "ticker": "DENFA",
-      "lei": "789000HEYLSTB17TIY13",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed705ee00eae0530a4a622b2aea",
+      "ticker": "DENGE",
+      "lei": null,
+      "bist_isin": "TREDNGH00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c56faf888c016fb3f6370101e1",
       "ticker": "DENVA",
-      "lei": "7890004N4U2UMY98C776",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c469cee2a4016bb6975ed75875",
+      "ticker": "DERHL",
+      "lei": null,
+      "bist_isin": "TREDDST00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7039300eae0530a4a622b2aea",
+      "ticker": "DERIM",
+      "lei": null,
+      "bist_isin": "TRADERIM91B0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7053200eae0530a4a622b2aea",
+      "ticker": "DESA",
+      "lei": null,
+      "bist_isin": "TREDESA00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7058c00eae0530a4a622b2aea",
+      "ticker": "DESPC",
+      "lei": null,
+      "bist_isin": "TREDSPC00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7039400eae0530a4a622b2aea",
+      "ticker": "DEVA",
+      "lei": null,
+      "bist_isin": "TRADEVAW91E2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c55d8500f8015e9f6f54c479a9",
       "ticker": "DFKTR",
-      "lei": "78900026AYMSJK313966",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed7054700eae0530a4a622b2aea",
+      "ticker": "DGATE",
+      "lei": null,
+      "bist_isin": "TREDGTE00010",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703c500eae0530a4a622b2aea",
+      "ticker": "DGGYO",
+      "lei": null,
+      "bist_isin": "TRAOSGYO91Q1",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703ee00eae0530a4a622b2aea",
+      "ticker": "DGNMO",
+      "lei": null,
+      "bist_isin": "TRAKLBMO91C0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c5819d0efb01827c2d99106c7d",
       "ticker": "DGRVK",
-      "lei": "789000W78ZAPQK42XH98",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -269,16 +1700,34 @@
     {
       "uuid": "co-8acae2c59c81f7fa019e39be621036a8",
       "ticker": "DIMES",
-      "lei": "789000S5L9FY15OQ2I84",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed705c000eae0530a4a622b2aea",
+      "ticker": "DIRIT",
+      "lei": null,
+      "bist_isin": "TREDRTK00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7039500eae0530a4a622b2aea",
+      "ticker": "DITAS",
+      "lei": null,
+      "bist_isin": "TRADITAS91H8",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c4998f24d80199b82c8edf18c5",
       "ticker": "DKVRL",
-      "lei": "7890004WGHEQTM4AUU30",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -287,7 +1736,7 @@
     {
       "uuid": "co-8acae2c5998f25d90199c7b9572b1fbf",
       "ticker": "DMD",
-      "lei": "789000UEPRX1708GAD27",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -303,18 +1752,45 @@
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-8acae2c586d22c53018ada744d9f2b15",
+      "ticker": "DMRGD",
+      "lei": null,
+      "bist_isin": "TREDMRU00026",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7038f00eae0530a4a622b2aea",
+      "ticker": "DMSAS",
+      "lei": null,
+      "bist_isin": "TRADMSAS91E9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-33e5fed7066d00eae0530a4a622b2aea",
       "ticker": "DNFIN",
-      "lei": "789000N413G0IMJEDR75",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-8acae2c57436079e01744dd9619f082b",
+      "ticker": "DNISI",
+      "lei": null,
+      "bist_isin": "TREDIMY00027",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c46faf872801730e4bfb024408",
       "ticker": "DNYVA",
-      "lei": "789000U4D889FDFRCM24",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -323,11 +1799,20 @@
     {
       "uuid": "co-8acae2c59b85fa03019c6517e3132eb0",
       "ticker": "DNZEN",
-      "lei": "789000C9GKH03EO4WK14",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7053400eae0530a4a622b2aea",
+      "ticker": "DOAS",
+      "lei": null,
+      "bist_isin": "TREDOTO00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7058d00eae0530a4a622b2aea",
@@ -339,13 +1824,58 @@
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-8acae2c486d22a3a018b27c088d848e3",
+      "ticker": "DOFER",
+      "lei": null,
+      "bist_isin": "TREDOFR00023",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5991b90af019932e37b1009dc",
+      "ticker": "DOFRB",
+      "lei": null,
+      "bist_isin": "TREDFRB00020",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7039900eae0530a4a622b2aea",
+      "ticker": "DOGUB",
+      "lei": null,
+      "bist_isin": "TRADOGUB92F9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c598f767f001990ed3be370802",
       "ticker": "DOGVY",
-      "lei": "7890001GCR39E5E8QV59",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7039700eae0530a4a622b2aea",
+      "ticker": "DOHOL",
+      "lei": null,
+      "bist_isin": "TRADOHOL91Q8",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7039a00eae0530a4a622b2aea",
+      "ticker": "DOKTA",
+      "lei": null,
+      "bist_isin": "TRADOKTS91G7",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c5830502c20185aa59a32348b1",
@@ -357,9 +1887,45 @@
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed7067300eae0530a4a622b2aea",
+      "ticker": "DSTKF",
+      "lei": null,
+      "bist_isin": "TREDSTF00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7043d00eae0530a4a622b2aea",
+      "ticker": "DUNYH",
+      "lei": null,
+      "bist_isin": "TRASELGD91A6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7039b00eae0530a4a622b2aea",
+      "ticker": "DURDO",
+      "lei": null,
+      "bist_isin": "TRADUROF91D4",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c49145e00d0191f993b40b6421",
+      "ticker": "DURKN",
+      "lei": null,
+      "bist_isin": "TREDRKN00025",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c59145e00e0194089413dd2550",
       "ticker": "DVRLK",
-      "lei": "7890003RDQTMPFZG6368",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -368,25 +1934,169 @@
     {
       "uuid": "co-8acae2c57d3bf001017da30c743c209e",
       "ticker": "DYBNK",
-      "lei": "7890006594UCFDHT1U38",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7039c00eae0530a4a622b2aea",
+      "ticker": "DYOBY",
+      "lei": null,
+      "bist_isin": "TRAYASAS91E0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7039000eae0530a4a622b2aea",
+      "ticker": "DZGYO",
+      "lei": null,
+      "bist_isin": "TRADMRYO91Q4",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3a018a692cadfc64e8",
+      "ticker": "EBEBK",
+      "lei": null,
+      "bist_isin": "TREEBEB00025",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703ae00eae0530a4a622b2aea",
+      "ticker": "ECILC",
+      "lei": null,
+      "bist_isin": "TRAECILC91E0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5998f25d7019a38e730b272ed",
+      "ticker": "ECOGR",
+      "lei": null,
+      "bist_isin": "TREECGR00024",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c59b85fa03019c1d0f6b9779d7",
       "ticker": "ECZIP",
-      "lei": "789000IGGS7DJEO04956",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed7039e00eae0530a4a622b2aea",
+      "ticker": "ECZYT",
+      "lei": null,
+      "bist_isin": "TRAECZYT91Q5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5794d3d66017a65d1fa7869b9",
+      "ticker": "EDATA",
+      "lei": null,
+      "bist_isin": "TREEDTA00021",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703a000eae0530a4a622b2aea",
+      "ticker": "EDIP",
+      "lei": null,
+      "bist_isin": "TRAEDIPW91B3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48c3efac001907c99377266f7",
+      "ticker": "EFOR",
+      "lei": null,
+      "bist_isin": "TREEFOR00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703a200eae0530a4a622b2aea",
+      "ticker": "EGEEN",
+      "lei": null,
+      "bist_isin": "TRAEGEEN91H5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c59145e00a01945f8059aa7087",
+      "ticker": "EGEGY",
+      "lei": null,
+      "bist_isin": "TREEGEY00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57afb2d71017b9af119384caf",
+      "ticker": "EGEPO",
+      "lei": null,
+      "bist_isin": "TRENSMD00029",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703a300eae0530a4a622b2aea",
+      "ticker": "EGGUB",
+      "lei": null,
+      "bist_isin": "TRAEGGUB91E8",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703a400eae0530a4a622b2aea",
+      "ticker": "EGPRO",
+      "lei": null,
+      "bist_isin": "TRAEGPRO91E8",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703a500eae0530a4a622b2aea",
+      "ticker": "EGSER",
+      "lei": null,
+      "bist_isin": "TRAEGSER91F0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c49c81f743019e492df47e4534",
+      "ticker": "EKDMR",
+      "lei": null,
+      "bist_isin": "TREEKNC00025",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c58b2fa64e018e5fad4abb4aa0",
       "ticker": "EKER",
-      "lei": "789000E9AUB8I2RGTW49",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -395,7 +2105,7 @@
     {
       "uuid": "co-33e5fed7058e00eae0530a4a622b2aea",
       "ticker": "EKGYO",
-      "lei": "789000IA5R88NAGSC462",
+      "lei": null,
       "bist_isin": "TREEGYO00017",
       "found": true,
       "valid": true,
@@ -403,63 +2113,360 @@
       "method": "bist-disambiguated"
     },
     {
+      "uuid": "co-33e5fed7057b00eae0530a4a622b2aea",
+      "ticker": "EKIZ",
+      "lei": null,
+      "bist_isin": "TREEKIZ00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-33e5fed7065700eae0530a4a622b2aea",
       "ticker": "EKOFA",
-      "lei": "789000A6QGS7ZFAW4K04",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c48b2fa25a018beb626fde69f5",
+      "ticker": "EKOS",
+      "lei": null,
+      "bist_isin": "TREEKOS00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3a01870d57f20925c8",
+      "ticker": "EKSUN",
+      "lei": null,
+      "bist_isin": "TREEKSN00021",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c56faf888c0171e494136217c0",
       "ticker": "EKTVK",
-      "lei": "789000QW3O9JE2RK2G37",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c57afb2d70017d12d51db366bd",
+      "ticker": "ELITE",
+      "lei": null,
+      "bist_isin": "TREELIT00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c57f7cbb48018074202b3c1aa9",
       "ticker": "EMIRV",
-      "lei": "789000LDVLWJZTDDSD18",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed703af00eae0530a4a622b2aea",
+      "ticker": "EMKEL",
+      "lei": null,
+      "bist_isin": "TRAEMKEL91L6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703b000eae0530a4a622b2aea",
+      "ticker": "EMNIS",
+      "lei": null,
+      "bist_isin": "TRAEMNIS91E1",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c49c81f743019c937947f60c7e",
+      "ticker": "EMPAE",
+      "lei": null,
+      "bist_isin": "TREEMPA00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c4745d74d901748cc631710e68",
       "ticker": "EMVAR",
-      "lei": "7890002IFHRWI3N5KE07",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c494bafc930194f8e4a55a1e42",
+      "ticker": "ENDAE",
+      "lei": null,
+      "bist_isin": "TREENDA00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3b018a1c4573b45bc5",
+      "ticker": "ENERY",
+      "lei": null,
+      "bist_isin": "TREENRY00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c55a980119015be7d30a7f286f",
+      "ticker": "ENJSA",
+      "lei": null,
+      "bist_isin": "TREENSA00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703b100eae0530a4a622b2aea",
+      "ticker": "ENKAI",
+      "lei": null,
+      "bist_isin": "TREENKA00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c59c81f7f7019d6181d3510f35",
+      "ticker": "ENPRA",
+      "lei": null,
+      "bist_isin": "TREENPR00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57f7cbb48017fab3df7731210",
+      "ticker": "ENSRI",
+      "lei": null,
+      "bist_isin": "TREENSR00026",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c58b2fa64e018ea2972c9f0cf1",
+      "ticker": "ENTRA",
+      "lei": null,
+      "bist_isin": "TREICNT00027",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703a600eae0530a4a622b2aea",
+      "ticker": "EPLAS",
+      "lei": null,
+      "bist_isin": "TRAEPLAS91E5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703b200eae0530a4a622b2aea",
+      "ticker": "ERBOS",
+      "lei": null,
+      "bist_isin": "TRAERBOS91G8",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57d3bf002017e520a04c276cc",
+      "ticker": "ERCB",
+      "lei": null,
+      "bist_isin": "TREERCY00027",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703b300eae0530a4a622b2aea",
+      "ticker": "EREGL",
+      "lei": null,
+      "bist_isin": "TRAEREGL91G3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7065800eae0530a4a622b2aea",
       "ticker": "ERGLI",
-      "lei": "789000H6BKDG6CXU4579",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed703b400eae0530a4a622b2aea",
+      "ticker": "ERSU",
+      "lei": null,
+      "bist_isin": "TRAERSUW91A4",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c4794d3648017a9962284a047a",
+      "ticker": "ESCAR",
+      "lei": null,
+      "bist_isin": "TREESCR00029",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703b500eae0530a4a622b2aea",
+      "ticker": "ESCOM",
+      "lei": null,
+      "bist_isin": "TRAESCOM91U8",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c4745d74d9017507e05be73b89",
+      "ticker": "ESEN",
+      "lei": null,
+      "bist_isin": "TREESEN00024",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705e900eae0530a4a622b2aea",
+      "ticker": "ETILR",
+      "lei": null,
+      "bist_isin": "TREEIBG00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7056600eae0530a4a622b2aea",
+      "ticker": "ETYAT",
+      "lei": null,
+      "bist_isin": "TREEUTY00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7057600eae0530a4a622b2aea",
+      "ticker": "EUHOL",
+      "lei": null,
+      "bist_isin": "TREEUYM00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705a800eae0530a4a622b2aea",
+      "ticker": "EUKYO",
+      "lei": null,
+      "bist_isin": "TREEKYO00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3b0187982f961f0fb4",
+      "ticker": "EUPWR",
+      "lei": null,
+      "bist_isin": "TREEUPW00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5812b84a401813ccc5c5d0446",
+      "ticker": "EUREN",
+      "lei": null,
+      "bist_isin": "TREEURN00030",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7054f00eae0530a4a622b2aea",
+      "ticker": "EUYO",
+      "lei": null,
+      "bist_isin": "TREEURY00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c465a51c3b01661b4ce38b29ed",
       "ticker": "EXIMB",
-      "lei": "789000JVRVYLAXGDWR11",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-8acae2c5830502c30185576b789208eb",
+      "ticker": "EYGYO",
+      "lei": null,
+      "bist_isin": "TREEYGG00021",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c573646c5a01738086fff30a4a",
+      "ticker": "FADE",
+      "lei": null,
+      "bist_isin": "TREFADE00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-33e5fed705b200eae0530a4a622b2aea",
       "ticker": "FBB",
-      "lei": "789000VTPKJYEVGSWM35",
+      "lei": null,
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7052e00eae0530a4a622b2aea",
+      "ticker": "FENER",
+      "lei": null,
+      "bist_isin": "TREFBAH00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703bf00eae0530a4a622b2aea",
+      "ticker": "FIN",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -468,29 +2475,344 @@
     {
       "uuid": "co-8acae2c59c81f7f7019c98a55bbe0ae0",
       "ticker": "FKPET",
-      "lei": "789000YAHQKQMCWPB891",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed705e100eae0530a4a622b2aea",
+      "ticker": "FLAP",
+      "lei": null,
+      "bist_isin": "TREFLAP00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703bb00eae0530a4a622b2aea",
+      "ticker": "FMIZP",
+      "lei": null,
+      "bist_isin": "TRAISTMP91H7",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c45a97ffbb015bcd252dc01f45",
+      "ticker": "FONET",
+      "lei": null,
+      "bist_isin": "TREFONT00010",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c562329bd1016381ae956131eb",
+      "ticker": "FORMT",
+      "lei": null,
+      "bist_isin": "TREFRMT00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3a0188b387f1da5a6b",
+      "ticker": "FORTE",
+      "lei": null,
+      "bist_isin": "TREFRTE00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703c200eae0530a4a622b2aea",
+      "ticker": "FRIGO",
+      "lei": null,
+      "bist_isin": "TRAFRIGO91A8",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c59b85fa03019bbb6d77f73189",
+      "ticker": "FRMPL",
+      "lei": null,
+      "bist_isin": "TREFRML00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703c100eae0530a4a622b2aea",
+      "ticker": "FROTO",
+      "lei": null,
+      "bist_isin": "TRAOTOSN91H6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3b018996096678654d",
+      "ticker": "FZLGY",
+      "lei": null,
+      "bist_isin": "TREFUZL00026",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7044b00eae0530a4a622b2aea",
+      "ticker": "GARAN",
+      "lei": null,
+      "bist_isin": "TRAGARAN91N1",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703c400eae0530a4a622b2aea",
+      "ticker": "GARFA",
+      "lei": null,
+      "bist_isin": "TRAAKFIN91P6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c4550749770155100b5c0b0fc5",
       "ticker": "GARFL",
-      "lei": "7890009KBBM2GZNFRQ58",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed7071f00eae0530a4a622b2aea",
+      "ticker": "GATEG",
+      "lei": null,
+      "bist_isin": "TRESNKR00023",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7057c00eae0530a4a622b2aea",
+      "ticker": "GEDIK",
+      "lei": null,
+      "bist_isin": "TREGDKM00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7067c00eae0530a4a622b2aea",
+      "ticker": "GEDZA",
+      "lei": null,
+      "bist_isin": "TREGDZA00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57afb2d70017b0aa2c0aa02e8",
+      "ticker": "GENIL",
+      "lei": null,
+      "bist_isin": "TREGENL00024",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c59c81f7fa019cbca2be734637",
+      "ticker": "GENKM",
+      "lei": null,
+      "bist_isin": "TREGNTK00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703c800eae0530a4a622b2aea",
+      "ticker": "GENTS",
+      "lei": null,
+      "bist_isin": "TRAGENTS91C4",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703c900eae0530a4a622b2aea",
+      "ticker": "GEREL",
+      "lei": null,
+      "bist_isin": "TREGREL00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57afb2d71017b52bc4fd83130",
+      "ticker": "GESAN",
+      "lei": null,
+      "bist_isin": "TREGESN00029",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c48304fe9c0184aa204cb84004",
       "ticker": "GGBVK",
-      "lei": "789000S50A0J8E8FKE55",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c586d22c51018a8d41bfcf0ad7",
+      "ticker": "GIPTA",
+      "lei": null,
+      "bist_isin": "TREGPTA00038",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705a400eae0530a4a622b2aea",
+      "ticker": "GLB",
+      "lei": null,
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c465a51c3801683c2aa2fc16d4",
+      "ticker": "GLCVY",
+      "lei": null,
+      "bist_isin": "TREGVYO00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c59145e00e01946df64a8f07c6",
+      "ticker": "GLRMK",
+      "lei": null,
+      "bist_isin": "TREGLRM00010",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7055000eae0530a4a622b2aea",
+      "ticker": "GLRYH",
+      "lei": null,
+      "bist_isin": "TREBSKY00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703cc00eae0530a4a622b2aea",
+      "ticker": "GLYHO",
+      "lei": null,
+      "bist_isin": "TRAGLMDE91R3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c47afb298a017d0da34d7273df",
+      "ticker": "GMTAS",
+      "lei": null,
+      "bist_isin": "TREGMAT00027",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5830502c30186bfe432516ad9",
+      "ticker": "GOKNR",
+      "lei": null,
+      "bist_isin": "TREGKNR00036",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703d200eae0530a4a622b2aea",
+      "ticker": "GOLTS",
+      "lei": null,
+      "bist_isin": "TRAGOLTS91F0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703cf00eae0530a4a622b2aea",
+      "ticker": "GOODY",
+      "lei": null,
+      "bist_isin": "TRAGOODY91E9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7056d00eae0530a4a622b2aea",
+      "ticker": "GOZDE",
+      "lei": null,
+      "bist_isin": "TREGZDF00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703c600eae0530a4a622b2aea",
+      "ticker": "GRNYO",
+      "lei": null,
+      "bist_isin": "TRAGRNYO91Q5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c47d3bee50017f6871e66f0231",
+      "ticker": "GRSEL",
+      "lei": null,
+      "bist_isin": "TREGRSL00025",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3a0187b7269c131490",
+      "ticker": "GRTHO",
+      "lei": null,
+      "bist_isin": "TREGRNT00029",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7045b00eae0530a4a622b2aea",
+      "ticker": "GSDDE",
+      "lei": null,
+      "bist_isin": "TRARANTL91P6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703d300eae0530a4a622b2aea",
+      "ticker": "GSDHO",
+      "lei": null,
+      "bist_isin": "TRAGSDHO91Q9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c57d3bf002017d6fae1c240ef1",
@@ -502,18 +2824,72 @@
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed703c300eae0530a4a622b2aea",
+      "ticker": "GSRAY",
+      "lei": null,
+      "bist_isin": "TRAGSRAY91X9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703d400eae0530a4a622b2aea",
+      "ticker": "GUBRF",
+      "lei": null,
+      "bist_isin": "TRAGUBRF91E2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c59145e00a0191739302a01f4d",
+      "ticker": "GUNDG",
+      "lei": null,
+      "bist_isin": "TREGUND00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c4782a4d560178f335d041689e",
+      "ticker": "GWIND",
+      "lei": null,
+      "bist_isin": "TREGWIN00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c49c81f746019df1a6113d4fde",
       "ticker": "GYVAR",
-      "lei": "7890007DCS95VAQL2X96",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-8acae2c47d3bee50017f53b3fe0e76ec",
+      "ticker": "GZNMI",
+      "lei": null,
+      "bist_isin": "TREGZNM00027",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7055e00eae0530a4a622b2aea",
+      "ticker": "HALKB",
+      "lei": null,
+      "bist_isin": "TRETHAL00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c5553c6b31015631f2cd0f031f",
       "ticker": "HALKF",
-      "lei": "789000UFZETBG8P4UZ40",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -522,16 +2898,34 @@
     {
       "uuid": "co-8acae2c5553c6b3501559add81d13521",
       "ticker": "HALKI",
-      "lei": "789000Y304QQ2SY8S774",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed7058f00eae0530a4a622b2aea",
+      "ticker": "HATEK",
+      "lei": null,
+      "bist_isin": "TREHTKS00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c586d22c53018ab66b07392040",
+      "ticker": "HATSN",
+      "lei": null,
+      "bist_isin": "TREHTSN00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c59145e00e0198837b4aa13e05",
       "ticker": "HAYVK",
-      "lei": "7890006PMYNLY37GSN34",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -540,16 +2934,25 @@
     {
       "uuid": "co-8acae2c5830502c30184f2332d5f57bf",
       "ticker": "HDFFL",
-      "lei": "789000KHX8WLV6A68C65",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed7062800eae0530a4a622b2aea",
+      "ticker": "HDFGS",
+      "lei": null,
+      "bist_isin": "TREHEDF00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c49145e00b01919d15b4823311",
       "ticker": "HDFVK",
-      "lei": "789000MMEV1B1D0VLS29",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -558,25 +2961,115 @@
     {
       "uuid": "co-8acae2c49145e00b0192241d6c670735",
       "ticker": "HDFYB",
-      "lei": "789000TQIQDI7VLQF627",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c57afb2d71017c972bd2912a02",
+      "ticker": "HEDEF",
+      "lei": null,
+      "bist_isin": "TREHDEF00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703d800eae0530a4a622b2aea",
+      "ticker": "HEKTS",
+      "lei": null,
+      "bist_isin": "TRAHEKTS91E4",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5819d0efb0182abfc9d12121a",
+      "ticker": "HKTM",
+      "lei": null,
+      "bist_isin": "TREHDRP00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7060300eae0530a4a622b2aea",
+      "ticker": "HLGYO",
+      "lei": null,
+      "bist_isin": "TREHLGY00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c45fc5ff9c01606ee5ec9936ce",
       "ticker": "HLVKS",
-      "lei": "7890004594ZB8AAWRM67",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-8acae2c58b2fa64e018fec684ee42c46",
+      "ticker": "HOROZ",
+      "lei": null,
+      "bist_isin": "TREHROZ00022",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c58b2fa64e018f9ef7e7b25180",
+      "ticker": "HRKET",
+      "lei": null,
+      "bist_isin": "TREHRKT00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c47d3bee4e017f4968a5607ab8",
+      "ticker": "HTTBT",
+      "lei": null,
+      "bist_isin": "TREHTTB00036",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7055a00eae0530a4a622b2aea",
+      "ticker": "HUBVC",
+      "lei": null,
+      "bist_isin": "TREMBYO00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57d3bf002017f0b79b7294bd1",
+      "ticker": "HUNER",
+      "lei": null,
+      "bist_isin": "TREHUNR00025",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703d900eae0530a4a622b2aea",
+      "ticker": "HURGZ",
+      "lei": null,
+      "bist_isin": "TRAHURGZ91D9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c4550749770155100c1bea0fc6",
       "ticker": "HUZFA",
-      "lei": "789000XMVH6LRJDC0318",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -585,7 +3078,7 @@
     {
       "uuid": "co-8acae2c48b2fa25a018b65941fb018ac",
       "ticker": "IAZ",
-      "lei": "789000OLKL51AJ19E972",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -594,16 +3087,187 @@
     {
       "uuid": "co-33e5fed7045900eae0530a4a622b2aea",
       "ticker": "ICB",
-      "lei": "789000E0F702OZ6WTZ16",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed7047400eae0530a4a622b2aea",
+      "ticker": "ICUGS",
+      "lei": null,
+      "bist_isin": "TRAVKFRS91Q0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7057400eae0530a4a622b2aea",
+      "ticker": "IDGYO",
+      "lei": null,
+      "bist_isin": "TREIDGY00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7041200eae0530a4a622b2aea",
+      "ticker": "IEYHO",
+      "lei": null,
+      "bist_isin": "TRAMTEKS91B0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c47afb298a017cdf40bd1f53f1",
+      "ticker": "IHAAS",
+      "lei": null,
+      "bist_isin": "TREIHAS00025",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703db00eae0530a4a622b2aea",
+      "ticker": "IHEVA",
+      "lei": null,
+      "bist_isin": "TRAIHEVA91H5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7057500eae0530a4a622b2aea",
+      "ticker": "IHGZT",
+      "lei": null,
+      "bist_isin": "TREIHGZ00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703dd00eae0530a4a622b2aea",
+      "ticker": "IHLAS",
+      "lei": null,
+      "bist_isin": "TRAIHLAS91D5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7042000eae0530a4a622b2aea",
+      "ticker": "IHLGM",
+      "lei": null,
+      "bist_isin": "TRAOKANT91B5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7058900eae0530a4a622b2aea",
+      "ticker": "IHYAY",
+      "lei": null,
+      "bist_isin": "TREIHYA00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57f7cbb4801806eec553212cd",
+      "ticker": "IMASM",
+      "lei": null,
+      "bist_isin": "TREIMAS00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7053300eae0530a4a622b2aea",
+      "ticker": "INDES",
+      "lei": null,
+      "bist_isin": "TREINDX00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705aa00eae0530a4a622b2aea",
+      "ticker": "INFO",
+      "lei": null,
+      "bist_isin": "TREINFM00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7055200eae0530a4a622b2aea",
+      "ticker": "INGRM",
+      "lei": null,
+      "bist_isin": "TREARMD00010",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705c700eae0530a4a622b2aea",
+      "ticker": "INTEK",
+      "lei": null,
+      "bist_isin": "TREUZER00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703e000eae0530a4a622b2aea",
+      "ticker": "INTEM",
+      "lei": null,
+      "bist_isin": "TRAINTEM91I0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703c700eae0530a4a622b2aea",
+      "ticker": "INVEO",
+      "lei": null,
+      "bist_isin": "TRAGDKYO91Q1",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57d3bf002017f3efa65d96909",
+      "ticker": "INVES",
+      "lei": null,
+      "bist_isin": "TREINVS00029",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7044d00eae0530a4a622b2aea",
+      "ticker": "ISATR",
+      "lei": null,
+      "bist_isin": "TRAISATR91N6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705f300eae0530a4a622b2aea",
+      "ticker": "ISBIR",
+      "lei": null,
+      "bist_isin": "TREISBR00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-33e5fed7075600eae0530a4a622b2aea",
       "ticker": "ISDMR",
-      "lei": "789000W8HVAZCXF6O806",
+      "lei": null,
       "bist_isin": "TREISDC00020",
       "found": true,
       "valid": true,
@@ -613,16 +3277,70 @@
     {
       "uuid": "co-8acae2c4550749770155100c558e0fc7",
       "ticker": "ISFAK",
-      "lei": "78900067TPE5637LI553",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed703e300eae0530a4a622b2aea",
+      "ticker": "ISFIN",
+      "lei": null,
+      "bist_isin": "TRAISGEN91P9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7053a00eae0530a4a622b2aea",
+      "ticker": "ISGSY",
+      "lei": null,
+      "bist_isin": "TREIGSY00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703e200eae0530a4a622b2aea",
+      "ticker": "ISGYO",
+      "lei": null,
+      "bist_isin": "TRAISGYO91Q3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c475a188400177427db78e1b82",
+      "ticker": "ISKPL",
+      "lei": null,
+      "bist_isin": "TREISKP00027",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7056100eae0530a4a622b2aea",
+      "ticker": "ISMEN",
+      "lei": null,
+      "bist_isin": "TREISMD00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57afb2d71017d2c902e5578cf",
+      "ticker": "ISSEN",
+      "lei": null,
+      "bist_isin": "TREISBS00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c48c3efabf018d9c03b05f44c0",
       "ticker": "ISTFK",
-      "lei": "789000K6FADEO84CHC77",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -631,52 +3349,313 @@
     {
       "uuid": "co-8acae2c57afb2d71017c2669feed7b5c",
       "ticker": "ISTVY",
-      "lei": "7890002EMQDUGECYO595",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed703e400eae0530a4a622b2aea",
+      "ticker": "ISYAT",
+      "lei": null,
+      "bist_isin": "TRAISYAT91Q5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3b0189f80656ad3e47",
+      "ticker": "IZENR",
+      "lei": null,
+      "bist_isin": "TREIZDM00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7069400eae0530a4a622b2aea",
+      "ticker": "IZFAS",
+      "lei": null,
+      "bist_isin": "TREIFIR00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7064700eae0530a4a622b2aea",
+      "ticker": "IZINV",
+      "lei": null,
+      "bist_isin": "TREIZTA00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703e600eae0530a4a622b2aea",
+      "ticker": "IZMDC",
+      "lei": null,
+      "bist_isin": "TRAIZMDC91G6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705f100eae0530a4a622b2aea",
+      "ticker": "JANTS",
+      "lei": null,
+      "bist_isin": "TREJANT00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703e800eae0530a4a622b2aea",
+      "ticker": "KAPLM",
+      "lei": null,
+      "bist_isin": "TRAKAPLM91D7",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7055800eae0530a4a622b2aea",
+      "ticker": "KAREL",
+      "lei": null,
+      "bist_isin": "TREKREL00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703ea00eae0530a4a622b2aea",
+      "ticker": "KARSN",
+      "lei": null,
+      "bist_isin": "TRAKARSN91H7",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703ec00eae0530a4a622b2aea",
+      "ticker": "KARTN",
+      "lei": null,
+      "bist_isin": "TRAKARTN91D4",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7058b00eae0530a4a622b2aea",
+      "ticker": "KATMR",
+      "lei": null,
+      "bist_isin": "TREKTMR00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c45d84ff82015ee29712317ed8",
       "ticker": "KATVK",
-      "lei": "789000D13R7R0N4IXW83",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3a01882864f61b14db",
+      "ticker": "KAYSE",
+      "lei": null,
+      "bist_isin": "TREKAYS00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48c3efabf018c61fd676b10f9",
+      "ticker": "KBORU",
+      "lei": null,
+      "bist_isin": "TREKZYB00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c4819d0eff0181ae1470b80605",
+      "ticker": "KCAER",
+      "lei": null,
+      "bist_isin": "TREKCAE00030",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703f500eae0530a4a622b2aea",
+      "ticker": "KCHOL",
+      "lei": null,
+      "bist_isin": "TRAKCHOL91Q8",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703ef00eae0530a4a622b2aea",
+      "ticker": "KENT",
+      "lei": null,
+      "bist_isin": "TRAKENTW91A2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7038000eae0530a4a622b2aea",
+      "ticker": "KERVN",
+      "lei": null,
+      "bist_isin": "TRACEYLN91B0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c462329a610163636d68813315",
+      "ticker": "KFEIN",
+      "lei": null,
+      "bist_isin": "TREKFIN00037",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c5991b90af0199566961ee18c1",
       "ticker": "KFILO",
-      "lei": "789000AJKQIBT1YUZM36",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7047b00eae0530a4a622b2aea",
+      "ticker": "KGYO",
+      "lei": null,
+      "bist_isin": "TRAYKGYO91Q7",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c47afb298b017be8395bae6f1c",
+      "ticker": "KIMMR",
+      "lei": null,
+      "bist_isin": "TREERSN00026",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7059700eae0530a4a622b2aea",
+      "ticker": "KLGYO",
+      "lei": null,
+      "bist_isin": "TREKGYO00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5794d3d6601795a2597220521",
+      "ticker": "KLKIM",
+      "lei": null,
+      "bist_isin": "TREKLKM00025",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703f400eae0530a4a622b2aea",
+      "ticker": "KLMSN",
+      "lei": null,
+      "bist_isin": "TRAKLMSN91H5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7044f00eae0530a4a622b2aea",
       "ticker": "KLN",
-      "lei": "789000XDO1DH4T258176",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c5819d0efb0181d244d9cf1883",
+      "ticker": "KLRHO",
+      "lei": null,
+      "bist_isin": "TREKLRH00038",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c555074ad201551558b8301087",
+      "ticker": "KLSER",
+      "lei": null,
+      "bist_isin": "TREKALE00049",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57d3bf001017f470f93896e09",
+      "ticker": "KLSYN",
+      "lei": null,
+      "bist_isin": "TREKLSN00026",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c47afb298b017b638f347440d9",
       "ticker": "KLVKS",
-      "lei": "7890008CAXF0Q68JQB66",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-8acae2c494bafc930194f8e4ec4d1e43",
+      "ticker": "KLYPV",
+      "lei": null,
+      "bist_isin": "TREKLYN00024",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c47f7cb491018069daee050c98",
+      "ticker": "KMPUR",
+      "lei": null,
+      "bist_isin": "TREKMPU00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703f600eae0530a4a622b2aea",
+      "ticker": "KNFRT",
+      "lei": null,
+      "bist_isin": "TRAKNFRT91A9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-33e5fed7065a00eae0530a4a622b2aea",
       "ticker": "KNTFA",
-      "lei": "789000FU3BNTB49GSL23",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -685,34 +3664,115 @@
     {
       "uuid": "co-33e5fed7055400eae0530a4a622b2aea",
       "ticker": "KOCFN",
-      "lei": "789000DUD9KVS08XQX55",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c48c3efabf018f801efed23b6c",
+      "ticker": "KOCMT",
+      "lei": null,
+      "bist_isin": "TREKOCM00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57d3bf001017d4b7799a202e8",
+      "ticker": "KONKA",
+      "lei": null,
+      "bist_isin": "TREKNKA00026",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c4745d74d9017530184a4c4ab8",
+      "ticker": "KONTR",
+      "lei": null,
+      "bist_isin": "TREKNTR00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703f800eae0530a4a622b2aea",
+      "ticker": "KONYA",
+      "lei": null,
+      "bist_isin": "TRAKONYA91F6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c586d22c53018774288b87043b",
+      "ticker": "KOPOL",
+      "lei": null,
+      "bist_isin": "TREKOPL00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703f900eae0530a4a622b2aea",
+      "ticker": "KORDS",
+      "lei": null,
+      "bist_isin": "TRAKORDS91B2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed706eb00eae0530a4a622b2aea",
       "ticker": "KORTS",
-      "lei": "7890001R97ADCPNA2231",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed706ee00eae0530a4a622b2aea",
+      "ticker": "KOTON",
+      "lei": null,
+      "bist_isin": "TREKOTN00028",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c49c81f743019e012460fa11f5",
       "ticker": "KPTGY",
-      "lei": "789000D3RIW6U154CK89",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed703e900eae0530a4a622b2aea",
+      "ticker": "KRDMA",
+      "lei": null,
+      "bist_isin": "TRAKRDMA91G3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705db00eae0530a4a622b2aea",
+      "ticker": "KRGYO",
+      "lei": null,
+      "bist_isin": "TREKRFZ00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-33e5fed7059c00eae0530a4a622b2aea",
       "ticker": "KRONT",
-      "lei": "78900036VY8UT22RXH75",
+      "lei": null,
       "bist_isin": "TREKRON00014",
       "found": true,
       "valid": true,
@@ -720,13 +3780,58 @@
       "method": "bist-disambiguated"
     },
     {
+      "uuid": "co-8acae2c5819d0efb01823e940e3440c6",
+      "ticker": "KRPLS",
+      "lei": null,
+      "bist_isin": "TREKRPL00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703fb00eae0530a4a622b2aea",
+      "ticker": "KRSTL",
+      "lei": null,
+      "bist_isin": "TRAKRSTL91A6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703eb00eae0530a4a622b2aea",
+      "ticker": "KRTEK",
+      "lei": null,
+      "bist_isin": "TRAKRTEK91B6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c475a188400175e479f99715bc",
+      "ticker": "KRVGD",
+      "lei": null,
+      "bist_isin": "TREKRVG00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-33e5fed705d600eae0530a4a622b2aea",
       "ticker": "KSFIN",
-      "lei": "789000Z7QV10Z7EWG674",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed705c800eae0530a4a622b2aea",
+      "ticker": "KSTUR",
+      "lei": null,
+      "bist_isin": "TREKUST00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c454f7150e0154f7bc926d0024",
@@ -740,30 +3845,291 @@
     {
       "uuid": "co-33e5fed7064500eae0530a4a622b2aea",
       "ticker": "KTKVK",
-      "lei": "789000UOETNN4TR7SC41",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3a01889eda03df5283",
+      "ticker": "KTLEV",
+      "lei": null,
+      "bist_isin": "TREKTLV00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c4794d364a017a7f93bb2c7205",
+      "ticker": "KTSKR",
+      "lei": null,
+      "bist_isin": "TREKTSR00046",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c45c459015015ced93c305388d",
       "ticker": "KTSVK",
-      "lei": "7890007TZKFIKGSRWM59",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed703fc00eae0530a4a622b2aea",
+      "ticker": "KUTPO",
+      "lei": null,
+      "bist_isin": "TRAKUTPO91F9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7043e00eae0530a4a622b2aea",
+      "ticker": "KUVVA",
+      "lei": null,
+      "bist_isin": "TRASERVE91T0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705e300eae0530a4a622b2aea",
+      "ticker": "KUYAS",
+      "lei": null,
+      "bist_isin": "TREKYAS00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57afb2d70017b33d501781fca",
+      "ticker": "KZBGY",
+      "lei": null,
+      "bist_isin": "TREKZBG00026",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c586d22c53018a3ad37e4b691b",
+      "ticker": "KZGYO",
+      "lei": null,
+      "bist_isin": "TREKZGR00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c45d84ff82015e052abed33c26",
+      "ticker": "LIDER",
+      "lei": null,
+      "bist_isin": "TRELDRT00020",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7057700eae0530a4a622b2aea",
+      "ticker": "LIDFA",
+      "lei": null,
+      "bist_isin": "TRELDFK00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c58b2fa64e018f56ee695f2c32",
+      "ticker": "LILAK",
+      "lei": null,
+      "bist_isin": "TRELILA00022",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703ff00eae0530a4a622b2aea",
+      "ticker": "LINK",
+      "lei": null,
+      "bist_isin": "TRALINKW91U8",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7059100eae0530a4a622b2aea",
+      "ticker": "LKMNH",
+      "lei": null,
+      "bist_isin": "TRELKMH00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c58b2fa64e018dca5f3bf770e4",
+      "ticker": "LMKDC",
+      "lei": null,
+      "bist_isin": "TRELIMK00029",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7040000eae0530a4a622b2aea",
+      "ticker": "LOGO",
+      "lei": null,
+      "bist_isin": "TRALOGOW91U2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7056c00eae0530a4a622b2aea",
+      "ticker": "LRSHO",
+      "lei": null,
+      "bist_isin": "TREITFK00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7040100eae0530a4a622b2aea",
+      "ticker": "LUKSK",
+      "lei": null,
+      "bist_isin": "TRALUKSK91B7",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c49c81f743019cd151fa6252ae",
+      "ticker": "LXGYO",
+      "lei": null,
+      "bist_isin": "TRELUXR00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7041600eae0530a4a622b2aea",
+      "ticker": "LYDHO",
+      "lei": null,
+      "bist_isin": "TRAMIPAZ91J8",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705f600eae0530a4a622b2aea",
+      "ticker": "LYDYE",
+      "lei": null,
+      "bist_isin": "TRETKGD00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7040600eae0530a4a622b2aea",
+      "ticker": "MAALT",
+      "lei": null,
+      "bist_isin": "TRAMAALT91K5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48304fe9c0185e80812fd6438",
+      "ticker": "MACKO",
+      "lei": null,
+      "bist_isin": "TREMACK00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c47afb298a017c3032dcdf09f1",
+      "ticker": "MAGEN",
+      "lei": null,
+      "bist_isin": "TREMARN00027",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5812b84a4018165febf2814b7",
+      "ticker": "MAKIM",
+      "lei": null,
+      "bist_isin": "TREMAKM00024",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7040200eae0530a4a622b2aea",
+      "ticker": "MAKTK",
+      "lei": null,
+      "bist_isin": "TRAMAKTK91H2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c5794d3d66017abd603b411be6",
       "ticker": "MANAS",
-      "lei": "789000VH8OHYPOW1M172",
+      "lei": null,
       "bist_isin": "TREMANS00025",
       "found": true,
       "valid": true,
       "disambiguated": true,
       "method": "bist-disambiguated"
+    },
+    {
+      "uuid": "co-8acae2c48b2fa25a018ba87350c14449",
+      "ticker": "MARBL",
+      "lei": null,
+      "bist_isin": "TRETRKT00044",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7053e00eae0530a4a622b2aea",
+      "ticker": "MARKA",
+      "lei": null,
+      "bist_isin": "TREIFTY00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5991b90b001995154cb3d1b2c",
+      "ticker": "MARMR",
+      "lei": null,
+      "bist_isin": "TREMRMH00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7040700eae0530a4a622b2aea",
+      "ticker": "MARTI",
+      "lei": null,
+      "bist_isin": "TRAMMART91K7",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c55c45918d015ca021962f1e4f",
+      "ticker": "MAVI",
+      "lei": null,
+      "bist_isin": "TREMAVI00037",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7065f00eae0530a4a622b2aea",
@@ -775,9 +4141,18 @@
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-8acae2c49c81f746019cd6657d954b4d",
+      "ticker": "MCARD",
+      "lei": null,
+      "bist_isin": "TREMTRP00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c59145e00e01973b131883759c",
       "ticker": "MDASM",
-      "lei": "98450046D1LT0FDF5857",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -786,25 +4161,79 @@
     {
       "uuid": "co-8acae2c49c81f746019da99904b32a61",
       "ticker": "MDIAZ",
-      "lei": "789000HD1KR485YCSV62",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c5794d3d66017a5b9bd40c6271",
+      "ticker": "MEDTR",
+      "lei": null,
+      "bist_isin": "TREMDTR00028",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705d300eae0530a4a622b2aea",
+      "ticker": "MEGAP",
+      "lei": null,
+      "bist_isin": "TREMEGA00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48c3efac0018c670fef431357",
+      "ticker": "MEGMT",
+      "lei": null,
+      "bist_isin": "TREMEGM00024",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3a018b1d663c1e3e41",
+      "ticker": "MEKAG",
+      "lei": null,
+      "bist_isin": "TREMEKA00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c5830502c201860790c51f69f1",
       "ticker": "MEKMD",
-      "lei": "549300R0ZX1E7MISH129",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed705a300eae0530a4a622b2aea",
+      "ticker": "MEPET",
+      "lei": null,
+      "bist_isin": "TREMEPT00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c4794d364a0179a75a454a1b30",
+      "ticker": "MERCN",
+      "lei": null,
+      "bist_isin": "TREMRCN00023",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-33e5fed705ce00eae0530a4a622b2aea",
       "ticker": "MERIT",
-      "lei": "789000W00G2Q7F441M66",
+      "lei": null,
       "bist_isin": "TREMRTT00016",
       "found": true,
       "valid": true,
@@ -812,18 +4241,72 @@
       "method": "bist-disambiguated"
     },
     {
+      "uuid": "co-33e5fed7040f00eae0530a4a622b2aea",
+      "ticker": "MERKO",
+      "lei": null,
+      "bist_isin": "TRAMERKO91A5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c59c81f7f7019db3d849174fc6",
       "ticker": "METEN",
-      "lei": "789000MMLYXGK47DCI31",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed7047600eae0530a4a622b2aea",
+      "ticker": "METRO",
+      "lei": null,
+      "bist_isin": "TRAVANET91A5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c49b85f8ce019bb0d261c235f7",
+      "ticker": "MEYSU",
+      "lei": null,
+      "bist_isin": "TREMYSU00020",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7056a00eae0530a4a622b2aea",
+      "ticker": "MGROS",
+      "lei": null,
+      "bist_isin": "TREMGTI00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c58b2fa64e018b3c59cc3f042a",
+      "ticker": "MHRGY",
+      "lei": null,
+      "bist_isin": "TREMHRG00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c47afb298b017d36d9c18472d4",
+      "ticker": "MIATK",
+      "lei": null,
+      "bist_isin": "TREMIAT00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c49e4a234b019e4e5b286c033f",
       "ticker": "MILKS",
-      "lei": "789000W1K176HJ5QK492",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -832,7 +4315,7 @@
     {
       "uuid": "co-8acae2c5998f25d7019ae2e7639072f8",
       "ticker": "MINTF",
-      "lei": "789000F17V25MYL3OY78",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -841,7 +4324,7 @@
     {
       "uuid": "co-33e5fed705b000eae0530a4a622b2aea",
       "ticker": "MMCAS",
-      "lei": "789000OV45P7YOH2GW94",
+      "lei": null,
       "bist_isin": "TREGNTR00011",
       "found": true,
       "valid": true,
@@ -849,18 +4332,72 @@
       "method": "bist-disambiguated"
     },
     {
+      "uuid": "co-33e5fed7040d00eae0530a4a622b2aea",
+      "ticker": "MNDRS",
+      "lei": null,
+      "bist_isin": "TRAMNDRS91B0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7045c00eae0530a4a622b2aea",
+      "ticker": "MNDTR",
+      "lei": null,
+      "bist_isin": "TRATIREW91D1",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c494bafc930196fbf9f82e7744",
       "ticker": "MNGFA",
-      "lei": "98450044F1C65Y2C9962",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-8acae2c57d3bf001017d4b7834cb02e9",
+      "ticker": "MOBTL",
+      "lei": null,
+      "bist_isin": "TREMBTL00025",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c58b2fa64e018dd4adc70e76e5",
+      "ticker": "MOGAN",
+      "lei": null,
+      "bist_isin": "TREMOGN00021",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c49145e00b0194ac3fea9c21ad",
+      "ticker": "MOPAS",
+      "lei": null,
+      "bist_isin": "TREMPAS00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7065e00eae0530a4a622b2aea",
+      "ticker": "MPARK",
+      "lei": null,
+      "bist_isin": "TREMLPC00021",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c5812b84a401816b26de6616fd",
       "ticker": "MRBAS",
-      "lei": "7890007LK5OFI753CK19",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -869,52 +4406,196 @@
     {
       "uuid": "co-8acae2c486d22a3b0187287001593927",
       "ticker": "MRBKF",
-      "lei": "789000C389WYVEI52069",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7058100eae0530a4a622b2aea",
+      "ticker": "MRGYO",
+      "lei": null,
+      "bist_isin": "TREMRGY00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c586d22c5101875aa5e4245c38",
       "ticker": "MRMAG",
-      "lei": "789000Q5HOSGKPXYUR21",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7040800eae0530a4a622b2aea",
+      "ticker": "MRSHL",
+      "lei": null,
+      "bist_isin": "TRAMRSHL91E9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c4594ca5020159b03ecdb240e8",
+      "ticker": "MSGYO",
+      "lei": null,
+      "bist_isin": "TREMIST00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c49145e00b0194b6a08cb72ddc",
       "ticker": "MSY",
-      "lei": "7890001EMBM86WCUYK18",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c4782a4d560178a0bee4eb36f2",
+      "ticker": "MTRKS",
+      "lei": null,
+      "bist_isin": "TREMTRK00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7039f00eae0530a4a622b2aea",
+      "ticker": "MTRYO",
+      "lei": null,
+      "bist_isin": "TRAECBYO91Q7",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7040900eae0530a4a622b2aea",
+      "ticker": "MZHLD",
+      "lei": null,
+      "bist_isin": "TRAMZHLD94Q2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c469cee2a2016c660a0f0f30b3",
+      "ticker": "NATEN",
+      "lei": null,
+      "bist_isin": "TRENATU00026",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7041d00eae0530a4a622b2aea",
+      "ticker": "NETAS",
+      "lei": null,
+      "bist_isin": "TRANETAS91H6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c59b85fa06019c2759666c00b7",
+      "ticker": "NETCD",
+      "lei": null,
+      "bist_isin": "TRENETC00026",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705bc00eae0530a4a622b2aea",
+      "ticker": "NIBAS",
+      "lei": null,
+      "bist_isin": "TRENNBS00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7067600eae0530a4a622b2aea",
       "ticker": "NRBNK",
-      "lei": "789000FCI412SY8ENP13",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c5782a4e6d01788711cf0d3220",
+      "ticker": "NTGAZ",
+      "lei": null,
+      "bist_isin": "TRENTGZ00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7041b00eae0530a4a622b2aea",
+      "ticker": "NTHOL",
+      "lei": null,
+      "bist_isin": "TRANTHOL91Q6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7041f00eae0530a4a622b2aea",
+      "ticker": "NUGYO",
+      "lei": null,
+      "bist_isin": "TRANUGYO91Q9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7041e00eae0530a4a622b2aea",
+      "ticker": "NUHCM",
+      "lei": null,
+      "bist_isin": "TRANUHCM91F0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c45fc5ff9d0161049e220c12da",
       "ticker": "NURVK",
-      "lei": "789000X34IW5YDSZXF17",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-8acae2c48c3efabf018df39b641e73b4",
+      "ticker": "OBAMS",
+      "lei": null,
+      "bist_isin": "TREOBAM00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c4819d0efe01825d63f5705ee3",
+      "ticker": "OBASE",
+      "lei": null,
+      "bist_isin": "TREOBAS00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-33e5fed7061700eae0530a4a622b2aea",
       "ticker": "ODAS",
-      "lei": "7890002IRSRY2Q3CID69",
+      "lei": null,
       "bist_isin": "TREODAS00014",
       "found": true,
       "valid": true,
@@ -922,63 +4603,405 @@
       "method": "bist-disambiguated"
     },
     {
+      "uuid": "co-8acae2c58b2fa64e018e5ad000e04638",
+      "ticker": "ODINE",
+      "lei": null,
+      "bist_isin": "TREODNE00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3b0189f7f752503e3f",
+      "ticker": "OFSYM",
+      "lei": null,
+      "bist_isin": "TREOFSY00027",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-33e5fed705ba00eae0530a4a622b2aea",
       "ticker": "OMD",
-      "lei": "789000A78TPDGREZSN84",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c5830502c30185764f82741898",
+      "ticker": "ONCSM",
+      "lei": null,
+      "bist_isin": "TREONCO00026",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48c3efabf018fb8d0d9926677",
+      "ticker": "ONRYT",
+      "lei": null,
+      "bist_isin": "TREONRY00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c55fc601110161c16bc9e56c8a",
       "ticker": "OPET",
-      "lei": "213800I7W6GACPT4JV71",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c47afb298a017ba0046e99584b",
+      "ticker": "ORCAY",
+      "lei": null,
+      "bist_isin": "TREORCY00026",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7066100eae0530a4a622b2aea",
       "ticker": "ORFIN",
-      "lei": "789000ZB9QP6M8Z9I709",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed705d500eae0530a4a622b2aea",
+      "ticker": "ORGE",
+      "lei": null,
+      "bist_isin": "TREORGE00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705e500eae0530a4a622b2aea",
+      "ticker": "ORMA",
+      "lei": null,
+      "bist_isin": "TREORMA00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705d000eae0530a4a622b2aea",
+      "ticker": "OSTIM",
+      "lei": null,
+      "bist_isin": "TREOSTM00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c49c81f743019cd151c08f52ad",
       "ticker": "OSVKS",
-      "lei": "789000ME66RZOU2X6E74",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7042200eae0530a4a622b2aea",
+      "ticker": "OTKAR",
+      "lei": null,
+      "bist_isin": "TRAOTKAR91H3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c58b2fa64e018b898cfa8e3c4e",
       "ticker": "OTOSR",
-      "lei": "789000YM1DC9QZ0ROR74",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7060c00eae0530a4a622b2aea",
+      "ticker": "OTTO",
+      "lei": null,
+      "bist_isin": "TRETTUR00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7073f00eae0530a4a622b2aea",
+      "ticker": "OYA",
+      "lei": null,
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7040300eae0530a4a622b2aea",
+      "ticker": "OYAKC",
+      "lei": null,
+      "bist_isin": "TRAMRDIN91F2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7056000eae0530a4a622b2aea",
+      "ticker": "OYAYO",
+      "lei": null,
+      "bist_isin": "TREOYAY00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705d100eae0530a4a622b2aea",
+      "ticker": "OYLUM",
+      "lei": null,
+      "bist_isin": "TREOYLS00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c59145e00e0191bbabfd204163",
+      "ticker": "OZATD",
+      "lei": null,
+      "bist_isin": "TREOZAT00023",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7042400eae0530a4a622b2aea",
+      "ticker": "OZGYO",
+      "lei": null,
+      "bist_isin": "TRAOZFIN91P5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705b900eae0530a4a622b2aea",
+      "ticker": "OZKGY",
+      "lei": null,
+      "bist_isin": "TREOZAK00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7071900eae0530a4a622b2aea",
+      "ticker": "OZRDN",
+      "lei": null,
+      "bist_isin": "TREOZER00029",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48304fe9c0184bce8a198445b",
+      "ticker": "OZSUB",
+      "lei": null,
+      "bist_isin": "TREOZSU00023",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48c3efac0018fbdf677205805",
+      "ticker": "OZYSR",
+      "lei": null,
+      "bist_isin": "TREOZYS00025",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7060d00eae0530a4a622b2aea",
+      "ticker": "PAGYO",
+      "lei": null,
+      "bist_isin": "TREPGYO00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c4998f24d8019aa000b1774439",
+      "ticker": "PAHOL",
+      "lei": null,
+      "bist_isin": "TREPSFH00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7068f00eae0530a4a622b2aea",
+      "ticker": "PAMEL",
+      "lei": null,
+      "bist_isin": "TREBOMO00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c56eccfc0d016ed4b920a902fd",
+      "ticker": "PAPIL",
+      "lei": null,
+      "bist_isin": "TREPAPL00010",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7042600eae0530a4a622b2aea",
+      "ticker": "PARSN",
+      "lei": null,
+      "bist_isin": "TRAPARSN91H6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3a0188b3872aa75a67",
+      "ticker": "PASEU",
+      "lei": null,
+      "bist_isin": "TREPASF00024",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48c3efabf018d9c035d6d44bf",
+      "ticker": "PATEK",
+      "lei": null,
+      "bist_isin": "TREPSFD00010",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c457f513cd015800128edc06bd",
       "ticker": "PBT",
-      "lei": "789000LASBHYXXZ0UM63",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-8acae2c57d3bf002017d6a4fa0640b4a",
+      "ticker": "PCILT",
+      "lei": null,
+      "bist_isin": "TREPCIL00029",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c45fc5ff9c0161b36ba2b9625f",
+      "ticker": "PEKGY",
+      "lei": null,
+      "bist_isin": "TREPEGY00022",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7042900eae0530a4a622b2aea",
+      "ticker": "PENGD",
+      "lei": null,
+      "bist_isin": "TRAPENGD91A8",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5794d3d6601795a2406c00520",
+      "ticker": "PENTA",
+      "lei": null,
+      "bist_isin": "TREPNTA00042",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7042a00eae0530a4a622b2aea",
+      "ticker": "PETKM",
+      "lei": null,
+      "bist_isin": "TRAPETKM91E0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7042e00eae0530a4a622b2aea",
+      "ticker": "PETUN",
+      "lei": null,
+      "bist_isin": "TRAPETUN91A5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7060700eae0530a4a622b2aea",
+      "ticker": "PGSUS",
+      "lei": null,
+      "bist_isin": "TREPEGS00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7042f00eae0530a4a622b2aea",
+      "ticker": "PINSU",
+      "lei": null,
+      "bist_isin": "TRAPINSU91A8",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7053d00eae0530a4a622b2aea",
+      "ticker": "PKART",
+      "lei": null,
+      "bist_isin": "TREPKRT00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7042b00eae0530a4a622b2aea",
+      "ticker": "PKENT",
+      "lei": null,
+      "bist_isin": "TRAPKENT91K5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48304fe9e01850a4bad1a6d23",
+      "ticker": "PLTUR",
+      "lei": null,
+      "bist_isin": "TREPLTU00028",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c47d3bee50017f0134898c3466",
       "ticker": "PNLSN",
-      "lei": "789000WX5H5ZKQ40UH25",
+      "lei": null,
       "bist_isin": "TREPNLS00017",
       "found": true,
       "valid": true,
@@ -986,36 +5009,135 @@
       "method": "bist-disambiguated"
     },
     {
+      "uuid": "co-33e5fed7043000eae0530a4a622b2aea",
+      "ticker": "PNSUT",
+      "lei": null,
+      "bist_isin": "TRAPNSUT91A5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705d900eae0530a4a622b2aea",
+      "ticker": "POLHO",
+      "lei": null,
+      "bist_isin": "TREPOHO00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7068300eae0530a4a622b2aea",
+      "ticker": "POLTK",
+      "lei": null,
+      "bist_isin": "TREPOLT00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5812b83c7018141f955790762",
+      "ticker": "PRDGS",
+      "lei": null,
+      "bist_isin": "TREPRDS00023",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c48c3efac0018e83d66f6046b8",
       "ticker": "PRFFK",
-      "lei": "789000E3AD4MKP2JJ767",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7046a00eae0530a4a622b2aea",
+      "ticker": "PRKAB",
+      "lei": null,
+      "bist_isin": "TRASMENS91H3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7042500eae0530a4a622b2aea",
+      "ticker": "PRKME",
+      "lei": null,
+      "bist_isin": "TRAPRKTE91B5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705d200eae0530a4a622b2aea",
+      "ticker": "PRZMA",
+      "lei": null,
+      "bist_isin": "TREPRZM00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed706f400eae0530a4a622b2aea",
+      "ticker": "PSDTC",
+      "lei": null,
+      "bist_isin": "TREPERG00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57d3bf002017dbcb74f932a04",
+      "ticker": "PSGYO",
+      "lei": null,
+      "bist_isin": "TREPSFK00023",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7068200eae0530a4a622b2aea",
       "ticker": "QNBFF",
-      "lei": "789000ZQ1F4GRSV2W302",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed703bd00eae0530a4a622b2aea",
+      "ticker": "QNBFK",
+      "lei": null,
+      "bist_isin": "TRAFFKRL91P0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c469cee2a2016b56690e143cce",
       "ticker": "QNBVK",
-      "lei": "789000P1DTT9LSJ4PR20",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-8acae2c4782a4d560178b0367e714580",
+      "ticker": "QUAGR",
+      "lei": null,
+      "bist_isin": "TREQAGR00022",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c48b2fa25a018b605bcf9513f5",
       "ticker": "QUFIN",
-      "lei": "789000B8V9OEDACTPY51",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -1024,7 +5146,7 @@
     {
       "uuid": "co-8acae2c59145e00e0192b9d8da686c12",
       "ticker": "QYATB",
-      "lei": "789000H3M2XMH4WOA920",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -1033,11 +5155,146 @@
     {
       "uuid": "co-8acae2c48304fe9e018562231a1c14ce",
       "ticker": "QYHOL",
-      "lei": "789000I5A7L4WLZ4YH35",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7037200eae0530a4a622b2aea",
+      "ticker": "RALYH",
+      "lei": null,
+      "bist_isin": "TRABISAS91B7",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7043500eae0530a4a622b2aea",
+      "ticker": "RAYSG",
+      "lei": null,
+      "bist_isin": "TRARAYSG91O8",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c586d22c53018ab154481b1e24",
+      "ticker": "REEDR",
+      "lei": null,
+      "bist_isin": "TREREED00035",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7059e00eae0530a4a622b2aea",
+      "ticker": "RGYAS",
+      "lei": null,
+      "bist_isin": "TRERSGY00036",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57d3bf001017d7ee7f27913d0",
+      "ticker": "RNPOL",
+      "lei": null,
+      "bist_isin": "TRERNPL00027",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7062700eae0530a4a622b2aea",
+      "ticker": "RODRG",
+      "lei": null,
+      "bist_isin": "TRERDRT00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7068d00eae0530a4a622b2aea",
+      "ticker": "RTALB",
+      "lei": null,
+      "bist_isin": "TRERTAL00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5819d0efb0181cd0891c3142e",
+      "ticker": "RUBNS",
+      "lei": null,
+      "bist_isin": "TRERBNS00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7035300eae0530a4a622b2aea",
+      "ticker": "RUZYE",
+      "lei": null,
+      "bist_isin": "TRAALYAG91A8",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7057a00eae0530a4a622b2aea",
+      "ticker": "RYGYO",
+      "lei": null,
+      "bist_isin": "TRERGYO00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7054600eae0530a4a622b2aea",
+      "ticker": "RYSAS",
+      "lei": null,
+      "bist_isin": "TREREYS00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c45fc5ff9d0160fa5a8ee10be9",
+      "ticker": "SAFKR",
+      "lei": null,
+      "bist_isin": "TRESFEK00027",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703d600eae0530a4a622b2aea",
+      "ticker": "SAHOL",
+      "lei": null,
+      "bist_isin": "TRASAHOL91Q5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705a200eae0530a4a622b2aea",
+      "ticker": "SAMAT",
+      "lei": null,
+      "bist_isin": "TRESRAY00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7064b00eae0530a4a622b2aea",
+      "ticker": "SANEL",
+      "lei": null,
+      "bist_isin": "TRESNEL00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed705bd00eae0530a4a622b2aea",
@@ -1050,36 +5307,351 @@
       "method": "bist-disambiguated"
     },
     {
-      "uuid": "co-33e5fed7044700eae0530a4a622b2aea",
-      "ticker": "SEK",
-      "lei": "549300WFSFBN7NQX3Q33",
+      "uuid": "co-33e5fed7043a00eae0530a4a622b2aea",
+      "ticker": "SANKO",
+      "lei": null,
+      "bist_isin": "TRASANKO91I2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7043b00eae0530a4a622b2aea",
+      "ticker": "SARKY",
+      "lei": null,
+      "bist_isin": "TRASARKY91G6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705f700eae0530a4a622b2aea",
+      "ticker": "SARTN",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7043c00eae0530a4a622b2aea",
+      "ticker": "SASA",
+      "lei": null,
+      "bist_isin": "TRASASAW91E4",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7062300eae0530a4a622b2aea",
+      "ticker": "SAYAS",
+      "lei": null,
+      "bist_isin": "TRESAYR00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5830502c30185764b75881893",
+      "ticker": "SDTTR",
+      "lei": null,
+      "bist_isin": "TRESDTT00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48c3efabf019077c515185eaa",
+      "ticker": "SEGMN",
+      "lei": null,
+      "bist_isin": "TRESGMN00022",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c4812b8630018137b1ebc40038",
+      "ticker": "SEGYO",
+      "lei": null,
+      "bist_isin": "TRESKGY00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7044700eae0530a4a622b2aea",
+      "ticker": "SEK",
+      "lei": null,
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7053500eae0530a4a622b2aea",
+      "ticker": "SEKFK",
+      "lei": null,
+      "bist_isin": "TRESKFK00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7064300eae0530a4a622b2aea",
+      "ticker": "SEKUR",
+      "lei": null,
+      "bist_isin": "TRESKPA00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7054900eae0530a4a622b2aea",
+      "ticker": "SELEC",
+      "lei": null,
+      "bist_isin": "TRESLEC00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5794d3d6a017a3cb316075ad1",
+      "ticker": "SELVA",
+      "lei": null,
+      "bist_isin": "TRESLVA00020",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c494bafc930194cace51b10810",
+      "ticker": "SERNT",
+      "lei": null,
+      "bist_isin": "TRESRNT00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7074800eae0530a4a622b2aea",
+      "ticker": "SEYKM",
+      "lei": null,
+      "bist_isin": "TRESEYT00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7055300eae0530a4a622b2aea",
+      "ticker": "SILVR",
+      "lei": null,
+      "bist_isin": "TRESLVR00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7045300eae0530a4a622b2aea",
+      "ticker": "SISE",
+      "lei": null,
+      "bist_isin": "TRASISEW91Q3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7044200eae0530a4a622b2aea",
+      "ticker": "SKTAS",
+      "lei": null,
+      "bist_isin": "TRASKTAS91B5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c45d84ff82015ea94c21986c6f",
       "ticker": "SKY",
-      "lei": "789000IVZ34WLES17O63",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed705d400eae0530a4a622b2aea",
+      "ticker": "SKYLP",
+      "lei": null,
+      "bist_isin": "TREMCTD00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c569cee403016ab6b749330ccc",
+      "ticker": "SMART",
+      "lei": null,
+      "bist_isin": "TRESMRT00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7070300eae0530a4a622b2aea",
       "ticker": "SMRFA",
-      "lei": "789000X6MDS8OGZUF603",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-8acae2c47f7cb492017fb5976fdc15ca",
+      "ticker": "SMRTG",
+      "lei": null,
+      "bist_isin": "TRESMAR00026",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c461c44bf40162005d86813109",
+      "ticker": "SMRVA",
+      "lei": null,
+      "bist_isin": "TRESUVY00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7056300eae0530a4a622b2aea",
+      "ticker": "SNGYO",
+      "lei": null,
+      "bist_isin": "TRESNGY00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48304fe9c0184a362d06d3b8b",
+      "ticker": "SNICA",
+      "lei": null,
+      "bist_isin": "TRESANK00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7044400eae0530a4a622b2aea",
+      "ticker": "SNPAM",
+      "lei": null,
+      "bist_isin": "TRASNPAM91B0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705c300eae0530a4a622b2aea",
+      "ticker": "SODSN",
+      "lei": null,
+      "bist_isin": "TRESODS00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48304fe9e01859f887c3f44e9",
+      "ticker": "SOKE",
+      "lei": null,
+      "bist_isin": "TRESOKE00029",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c562329bd101636d3a34482b56",
+      "ticker": "SOKM",
+      "lei": null,
+      "bist_isin": "TRESOKM00022",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7044300eae0530a4a622b2aea",
+      "ticker": "SONME",
+      "lei": null,
+      "bist_isin": "TRASONME91B5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7060600eae0530a4a622b2aea",
+      "ticker": "SRVGY",
+      "lei": null,
+      "bist_isin": "TRESRGY00010",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c45fc5ff9d0161744575df47ce",
+      "ticker": "SUMAS",
+      "lei": null,
+      "bist_isin": "TRESMAS00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c47f7cb4910180d5fe920f4e08",
+      "ticker": "SUNTK",
+      "lei": null,
+      "bist_isin": "TRESUNT00010",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48c3efabf018c61fd196710f8",
+      "ticker": "SURGY",
+      "lei": null,
+      "bist_isin": "TRESRTE00023",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c47f7cb4920180471039120037",
+      "ticker": "SUWEN",
+      "lei": null,
+      "bist_isin": "TRESUWN00022",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c59c81f7fa019cbca2fd9c4638",
+      "ticker": "SVGYO",
+      "lei": null,
+      "bist_isin": "TRESVRG00024",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c48b2fa25a018b6594b2d518b1",
+      "ticker": "TABGD",
+      "lei": null,
+      "bist_isin": "TRETABG00020",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-33e5fed7075300eae0530a4a622b2aea",
       "ticker": "TAC",
-      "lei": "7890006RPP7KOZYBJ340",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -1088,7 +5660,7 @@
     {
       "uuid": "co-8acae2c59145e00e01928ef2d7925ba7",
       "ticker": "TAE",
-      "lei": "789000OS9LB25B2WHU53",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -1097,47 +5669,263 @@
     {
       "uuid": "co-33e5fed7067100eae0530a4a622b2aea",
       "ticker": "TAMFA",
-      "lei": "789000KE26I2A4C0CN40",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3a018a8307ac6270bd",
+      "ticker": "TARKM",
+      "lei": null,
+      "bist_isin": "TRETRKM00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3a0189fd0eee182d7c",
+      "ticker": "TATEN",
+      "lei": null,
+      "bist_isin": "TRETATL00022",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7045700eae0530a4a622b2aea",
+      "ticker": "TATGD",
+      "lei": null,
+      "bist_isin": "TRATATKS91A5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7055b00eae0530a4a622b2aea",
+      "ticker": "TAVHL",
+      "lei": null,
+      "bist_isin": "TRETAVH00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7045400eae0530a4a622b2aea",
+      "ticker": "TBORG",
+      "lei": null,
+      "bist_isin": "TRATBORG91A4",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7046400eae0530a4a622b2aea",
+      "ticker": "TCELL",
+      "lei": null,
+      "bist_isin": "TRATCELL91M1",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c59145e00e01916e78737319b7",
+      "ticker": "TCKRC",
+      "lei": null,
+      "bist_isin": "TREKIRC00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c55fc60110016140cebb312353",
+      "ticker": "TDGYO",
+      "lei": null,
+      "bist_isin": "TRETGYO00023",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c47f7cb491017f982f34350d6e",
       "ticker": "TEBFA",
-      "lei": "789000H7CLUP3W6ODL02",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed703cd00eae0530a4a622b2aea",
+      "ticker": "TEHOL",
+      "lei": null,
+      "bist_isin": "TRAGLOBL91Q0",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7045800eae0530a4a622b2aea",
+      "ticker": "TEKTU",
+      "lei": null,
+      "bist_isin": "TRATEKTU91K2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7072b00eae0530a4a622b2aea",
+      "ticker": "TERA",
+      "lei": null,
+      "bist_isin": "TRETERA00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c59b85fa03019c65183baf2eb4",
       "ticker": "TEVKS",
-      "lei": "7890002UY6XMAEEP6761",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c57afb2d70017be2e0ddc16980",
+      "ticker": "TEZOL",
+      "lei": null,
+      "bist_isin": "TRETEZL00021",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7060800eae0530a4a622b2aea",
       "ticker": "TFNVK",
-      "lei": "635400BL7XGTQHK8HM19",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed705dd00eae0530a4a622b2aea",
+      "ticker": "TGSAS",
+      "lei": null,
+      "bist_isin": "TRETGSD00010",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7046900eae0530a4a622b2aea",
+      "ticker": "THYAO",
+      "lei": null,
+      "bist_isin": "TRATHYAO91M5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-33e5fed7073300eae0530a4a622b2aea",
       "ticker": "TIMUR",
-      "lei": "789000BCESGE4A7IUR69",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7056500eae0530a4a622b2aea",
+      "ticker": "TKFEN",
+      "lei": null,
+      "bist_isin": "TRETKHO00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705d800eae0530a4a622b2aea",
+      "ticker": "TKNSA",
+      "lei": null,
+      "bist_isin": "TRETKNO00010",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c45fc5ff9d01612226a7371a02",
+      "ticker": "TLMAN",
+      "lei": null,
+      "bist_isin": "TRETLMN00020",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7064c00eae0530a4a622b2aea",
+      "ticker": "TMPOL",
+      "lei": null,
+      "bist_isin": "TRETMPL00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705fc00eae0530a4a622b2aea",
+      "ticker": "TMSN",
+      "lei": null,
+      "bist_isin": "TRETUMO00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5830502c201859a684d863daa",
+      "ticker": "TNZTP",
+      "lei": null,
+      "bist_isin": "TRETAPD00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7045d00eae0530a4a622b2aea",
+      "ticker": "TOASO",
+      "lei": null,
+      "bist_isin": "TRATOASO91H3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7056e00eae0530a4a622b2aea",
+      "ticker": "TRALT",
+      "lei": null,
+      "bist_isin": "TREKOAL00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7046300eae0530a4a622b2aea",
+      "ticker": "TRCAS",
+      "lei": null,
+      "bist_isin": "TRATRCAS92E6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703e100eae0530a4a622b2aea",
+      "ticker": "TRENJ",
+      "lei": null,
+      "bist_isin": "TRAIPMAT92D2",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7072a00eae0530a4a622b2aea",
@@ -1149,9 +5937,36 @@
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed7058700eae0530a4a622b2aea",
+      "ticker": "TRGYO",
+      "lei": null,
+      "bist_isin": "TRETRGY00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7045500eae0530a4a622b2aea",
+      "ticker": "TRHOL",
+      "lei": null,
+      "bist_isin": "TRATACYO91Q7",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c475a188400177fbfbf30f7adf",
+      "ticker": "TRILC",
+      "lei": null,
+      "bist_isin": "TRETRLC00022",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c586d22c53018b27c2a8c86121",
       "ticker": "TRKFN",
-      "lei": "7890000NKTNUVSMGGO67",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -1160,7 +5975,7 @@
     {
       "uuid": "co-8acae2c48c3efabf018d11067cbd011b",
       "ticker": "TRKNT",
-      "lei": "7890009AIBO9QTGD3831",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -1169,34 +5984,133 @@
     {
       "uuid": "co-8acae2c57afb2d71017c3aa409120348",
       "ticker": "TRMEN",
-      "lei": "789000KDZPQJMKF0Z448",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed703fa00eae0530a4a622b2aea",
+      "ticker": "TRMET",
+      "lei": null,
+      "bist_isin": "TREKOZA00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7071a00eae0530a4a622b2aea",
       "ticker": "TRYKI",
-      "lei": "549300WMXSGX1C9FLY81",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7057000eae0530a4a622b2aea",
+      "ticker": "TSGYO",
+      "lei": null,
+      "bist_isin": "TRETSGY00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-33e5fed7045100eae0530a4a622b2aea",
       "ticker": "TSK",
-      "lei": "549300MFCXK5HOOEWP84",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed7053c00eae0530a4a622b2aea",
+      "ticker": "TSPOR",
+      "lei": null,
+      "bist_isin": "TRETRBZ00016",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7056700eae0530a4a622b2aea",
+      "ticker": "TTKOM",
+      "lei": null,
+      "bist_isin": "TRETTLK00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7053600eae0530a4a622b2aea",
+      "ticker": "TTRAK",
+      "lei": null,
+      "bist_isin": "TRETTRK00010",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7069100eae0530a4a622b2aea",
+      "ticker": "TUCLK",
+      "lei": null,
+      "bist_isin": "TRETUGC00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7046200eae0530a4a622b2aea",
+      "ticker": "TUKAS",
+      "lei": null,
+      "bist_isin": "TRATUKAS91A3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7046600eae0530a4a622b2aea",
+      "ticker": "TUPRS",
+      "lei": null,
+      "bist_isin": "TRATUPRS91E8",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5782a4e6a0178aaf6f47c378f",
+      "ticker": "TUREX",
+      "lei": null,
+      "bist_isin": "TRETURX00045",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7062600eae0530a4a622b2aea",
+      "ticker": "TURGG",
+      "lei": null,
+      "bist_isin": "TREMYPG00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed703d500eae0530a4a622b2aea",
+      "ticker": "TURSG",
+      "lei": null,
+      "bist_isin": "TRAGUSGR91O3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c48c3efac001906d8608eb557a",
       "ticker": "TV8TV",
-      "lei": "789000HU3V37U5J24946",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -1205,25 +6119,160 @@
     {
       "uuid": "co-33e5fed7054300eae0530a4a622b2aea",
       "ticker": "TVB",
-      "lei": "789000KAIHOLSQKQ9858",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c59b85fa03019bdf4fea175204",
+      "ticker": "UCAYM",
+      "lei": null,
+      "bist_isin": "TREUCYM00024",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7055900eae0530a4a622b2aea",
+      "ticker": "UFUK",
+      "lei": null,
+      "bist_isin": "TREFNFK00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705ed00eae0530a4a622b2aea",
+      "ticker": "ULAS",
+      "lei": null,
+      "bist_isin": "TREULAS00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7035900eae0530a4a622b2aea",
+      "ticker": "ULKER",
+      "lei": null,
+      "bist_isin": "TREULKR00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7066800eae0530a4a622b2aea",
+      "ticker": "ULUFA",
+      "lei": null,
+      "bist_isin": "TREULFK00036",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed706f800eae0530a4a622b2aea",
+      "ticker": "ULUSE",
+      "lei": null,
+      "bist_isin": "TREULET00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed706f900eae0530a4a622b2aea",
+      "ticker": "ULUUN",
+      "lei": null,
+      "bist_isin": "TREULSY00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7064900eae0530a4a622b2aea",
+      "ticker": "UMPAS",
+      "lei": null,
+      "bist_isin": "TREUMPA00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7073400eae0530a4a622b2aea",
+      "ticker": "UNLU",
+      "lei": null,
+      "bist_isin": "TREUNCO00023",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7046d00eae0530a4a622b2aea",
+      "ticker": "USAK",
+      "lei": null,
+      "bist_isin": "TRAUSAKW91F6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7075e00eae0530a4a622b2aea",
+      "ticker": "VAKFA",
+      "lei": null,
+      "bist_isin": "TREVFAS00022",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7047100eae0530a4a622b2aea",
+      "ticker": "VAKFN",
+      "lei": null,
+      "bist_isin": "TRAVAKFN91P9",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7047500eae0530a4a622b2aea",
+      "ticker": "VAKKO",
+      "lei": null,
+      "bist_isin": "TRAVAKKO91B7",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c55c45918c015d5010d20668ad",
       "ticker": "VAKVK",
-      "lei": "7890005C2RHSMJGAQU39",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed705a900eae0530a4a622b2aea",
+      "ticker": "VANGD",
+      "lei": null,
+      "bist_isin": "TREVNGS00015",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c4794d3648017a8a048fea01ff",
+      "ticker": "VBTYZ",
+      "lei": null,
+      "bist_isin": "TREVBTY00029",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-8acae2c4553c69ec01555406af9f093c",
       "ticker": "VDFAS",
-      "lei": "529900H2QI9WGGEF7277",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -1232,25 +6281,178 @@
     {
       "uuid": "co-8acae2c48304fe9c01860200a86a6d27",
       "ticker": "VDFLO",
-      "lei": "7890007SS6WO14XL7G72",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c45507497601550b1f074301cc",
+      "ticker": "VERTU",
+      "lei": null,
+      "bist_isin": "TREVRSA00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7064600eae0530a4a622b2aea",
+      "ticker": "VERUS",
+      "lei": null,
+      "bist_isin": "TREVERS00011",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7054800eae0530a4a622b2aea",
+      "ticker": "VESBE",
+      "lei": null,
+      "bist_isin": "TREVEST00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7047800eae0530a4a622b2aea",
+      "ticker": "VESTL",
+      "lei": null,
+      "bist_isin": "TRAVESTL91H6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7047300eae0530a4a622b2aea",
+      "ticker": "VKFYO",
+      "lei": null,
+      "bist_isin": "TRAVKFYT91Q4",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7047200eae0530a4a622b2aea",
+      "ticker": "VKGYO",
+      "lei": null,
+      "bist_isin": "TRAVKGYO91Q3",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7047900eae0530a4a622b2aea",
+      "ticker": "VKING",
+      "lei": null,
+      "bist_isin": "TRAVKING91D6",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c58b2fa64e018b6ac0d8c51e51",
+      "ticker": "VRGYO",
+      "lei": null,
+      "bist_isin": "TREVRKP00022",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c59145e00e0194eed30e5b6495",
+      "ticker": "VSNMD",
+      "lei": null,
+      "bist_isin": "TREVISN00029",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7059800eae0530a4a622b2aea",
+      "ticker": "YAPRK",
+      "lei": null,
+      "bist_isin": "TREYSBS00019",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7048000eae0530a4a622b2aea",
+      "ticker": "YATAS",
+      "lei": null,
+      "bist_isin": "TRAYATAS91B4",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     },
     {
       "uuid": "co-8acae2c46e7fdc6a016f56ea368d3dc4",
       "ticker": "YATVK",
-      "lei": "7890004JPWTGOER2MD02",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-33e5fed7064800eae0530a4a622b2aea",
+      "ticker": "YAYLA",
+      "lei": null,
+      "bist_isin": "TREYAYL00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705cf00eae0530a4a622b2aea",
+      "ticker": "YBTAS",
+      "lei": null,
+      "bist_isin": "TREYBTS00017",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c57afb2d70017ba51d8bbc5066",
+      "ticker": "YEOTK",
+      "lei": null,
+      "bist_isin": "TREYEOT00010",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7052f00eae0530a4a622b2aea",
+      "ticker": "YESIL",
+      "lei": null,
+      "bist_isin": "TREINFO00013",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7062d00eae0530a4a622b2aea",
+      "ticker": "YGGYO",
+      "lei": null,
+      "bist_isin": "TREYGMI00012",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c58b2fa64e018fe7a176a30187",
+      "ticker": "YIGIT",
+      "lei": null,
+      "bist_isin": "TREYIGT00025",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-33e5fed7047e00eae0530a4a622b2aea",
       "ticker": "YKB",
-      "lei": "B85ZYWEZ5IZCZ2WNIO12",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -1259,7 +6461,7 @@
     {
       "uuid": "co-33e5fed7047a00eae0530a4a622b2aea",
       "ticker": "YKFIN",
-      "lei": "7890006A2EF7UABLGZ05",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -1268,7 +6470,7 @@
     {
       "uuid": "co-33e5fed706ae00eae0530a4a622b2aea",
       "ticker": "YKFKT",
-      "lei": "789000THRHGRI4JYBZ48",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -1284,9 +6486,81 @@
       "method": "not-in-reference"
     },
     {
+      "uuid": "co-8acae2c56d759b01016e60088ae85acf",
+      "ticker": "YKSLN",
+      "lei": null,
+      "bist_isin": "TREYUKC00028",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed705c500eae0530a4a622b2aea",
+      "ticker": "YONGA",
+      "lei": null,
+      "bist_isin": "TREYONG00018",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7048300eae0530a4a622b2aea",
+      "ticker": "YUNSA",
+      "lei": null,
+      "bist_isin": "TRAYUNSA91B5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7037400eae0530a4a622b2aea",
+      "ticker": "YYAPI",
+      "lei": null,
+      "bist_isin": "TRABROVA91S5",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c47f7cb4910180d6022ab14e09",
+      "ticker": "YYLGD",
+      "lei": null,
+      "bist_isin": "TREYYLA00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-33e5fed7059500eae0530a4a622b2aea",
+      "ticker": "ZEDUR",
+      "lei": null,
+      "bist_isin": "TREUTOP00014",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c5998f25d7019b2af00b751457",
+      "ticker": "ZERGY",
+      "lei": null,
+      "bist_isin": "TREZERY00028",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c49b85f8cf019bc04b41893210",
+      "ticker": "ZGYO",
+      "lei": null,
+      "bist_isin": "TREZGYO00020",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
       "uuid": "co-33e5fed7076b00eae0530a4a622b2aea",
       "ticker": "ZKBVK",
-      "lei": "789000NE04RSMGOX9737",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
@@ -1295,11 +6569,29 @@
     {
       "uuid": "co-8acae2c465a51c3b0167ea9e354a6ff7",
       "ticker": "ZKBVR",
-      "lei": "789000R6Z9HR1RXMO121",
+      "lei": null,
       "bist_isin": null,
       "found": false,
       "valid": false,
       "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7048400eae0530a4a622b2aea",
+      "ticker": "ZOREN",
+      "lei": null,
+      "bist_isin": "TRAZOREN91L8",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
+    },
+    {
+      "uuid": "co-8acae2c47902e75601793b3e71822989",
+      "ticker": "ZRGYO",
+      "lei": null,
+      "bist_isin": "TREZRGY00023",
+      "found": true,
+      "valid": true,
+      "method": "bist-authoritative"
     }
   ]
 }

@@ -37,7 +37,6 @@ import kuzu
 
 from tmkg import config
 from tmkg.adapters.gleif_adapter import GleifAdapter
-from tmkg.loaders.external_stub_backfill import reconcile_to_brand_stub
 
 _SOURCE = "GLEIF-L2"
 _METHOD = "gleif-relationship-api"
@@ -152,13 +151,10 @@ def backfill_l2_parents(
         if parent_lei in lei2uuid:
             return lei2uuid[parent_lei], "in_universe"
         if create_missing_parents:
-            # Phase 2.1 remainder: converge onto an existing brand stub if this
-            # external parent is the same real group (no group-splitting); only
-            # mint a fresh LEI-keyed node when no such stub exists.
-            stub = reconcile_to_brand_stub(conn, parent_lei, parent_name)
-            if stub is not None:
-                stats["external_reconciled"] += 1
-                return stub, "external_reconciled"
+            # Mint a fresh LEI-keyed node for this out-of-universe parent. (Brand-
+            # stub reconciliation was retired with the debt/stubs subsystem —
+            # external parents are no longer collapsed onto inferred EXTERNAL_STUB
+            # placeholders; real GLEIF entities stand on their own LEI.)
             uuid = _ensure_external_parent(conn, parent_lei, parent_name)
             stats["external_parents_created"] += 1
             return uuid, "external_created"

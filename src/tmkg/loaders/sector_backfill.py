@@ -110,7 +110,7 @@ def load_company_sectors(conn: kuzu.Connection, adapter: SectorAdapter) -> dict:
 
 def _upward_parent_map(conn: kuzu.Connection) -> dict[str, set[str]]:
     """child_uuid -> {parent_uuid} over BOTH control sources (CONTROLS reversed +
-    SUBSIDIARY_OF as-is), mirroring blast_radius._load_parent_map."""
+    SUBSIDIARY_OF as-is)."""
     parent_of: dict[str, set[str]] = {}
     r = conn.execute("MATCH (p:Company)-[:CONTROLS]->(c:Company) RETURN p.uuid, c.uuid")
     while r.has_next():

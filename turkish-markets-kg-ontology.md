@@ -3,6 +3,8 @@
 **Companion to:** `turkish-markets-kg-architecture.md` (the system this schema lives in).
 **Status:** This file was reconstructed from the node/edge vocabulary enumerated in the architecture doc. The original `turkish-markets-kg-ontology.md` was not present in the project folder when the build started, so treat this as a v0.1 working schema, not the canonical original. Where the architecture is silent, choices are marked `[design choice]`.
 
+**Scope (post 2026-06-18 pre-pillar cleanup):** the populated graph is an **equities ownership/identity core** — `Company`, `Person`, `Security` (equity only), `Sector`, `Portfolio` and the ownership/control edges below. The corporate-debt/refinancing subsystem is **archived** (`archive/debt-subsystem-2026-06-18.zip`): no debt `Security` nodes, no debt `ISSUES` edges, and no fabricated `EXTERNAL_STUB` placeholders are present. The debt-specific `Security`/`ISSUES` columns remain in `ddl.py` as **dormant** (unpopulated). Three pillars are planned on top of this core: (1) asset correlations, (2) geopolitical-event impact, (3) supply-chain dependencies.
+
 ---
 
 ## 0. Cross-cutting design rules
@@ -63,7 +65,7 @@ A tradeable instrument issued by a Company.
 | `uuid` | STRING (PK) | |
 | `isin` | STRING | join key to time-series store |
 | `ticker` | STRING | |
-| `type` | STRING | FIBO Securities: `EQUITY` \| `PREF` \| `BOND` \| `WARRANT` |
+| `type` | STRING | FIBO Securities: `EQUITY` (populated) \| `PREF` \| `BOND` \| `WARRANT` (debt/other classes dormant — debt subsystem archived) |
 | `currency` | STRING | |
 
 ### Disclosure

@@ -1,5 +1,5 @@
 {
-  "generated_iso": "2026-06-14T17:21:40.808947+00:00",
+  "generated_iso": "2026-06-18T18:16:47.069041+00:00",
   "source": "GLEIF-L2",
   "confidence": 0.95,
   "create_missing_parents": true,
@@ -11,8 +11,8 @@
     "ultimate_external": 36,
     "no_parent": 502,
     "http_errors": 0,
-    "external_parents_created": 102,
-    "external_reconciled": 8,
+    "external_parents_created": 110,
+    "external_reconciled": 0,
     "edges_written": 374
   },
   "relationships": [
@@ -1821,7 +1821,7 @@
       "ultimate_lei": "789000QGIMN6IXXM5O66",
       "ultimate_name": "DESTEK YATIRIM BANKASI ANONİM ŞİRKETİ",
       "note": "ok",
-      "direct_disposition": "external_reconciled"
+      "direct_disposition": "external_created"
     },
     {
       "ticker": "DMRGD",
@@ -2027,7 +2027,7 @@
       "ultimate_lei": "54930029BCN8HF3B1286",
       "ultimate_name": "بنك المارات دبي الوطني (ش.م.ع)",
       "note": "ok",
-      "direct_disposition": "external_reconciled",
+      "direct_disposition": "external_created",
       "ultimate_disposition": "external_created"
     },
     {
@@ -2294,7 +2294,7 @@
       "ultimate_lei": "7890008OJ9KDICW88X05",
       "ultimate_name": "TÜRKİYE EMLAK KATILIM BANKASI ANONİM ŞİRKETİ",
       "note": "ok",
-      "direct_disposition": "external_reconciled"
+      "direct_disposition": "external_created"
     },
     {
       "ticker": "ENDAE",
@@ -3058,7 +3058,7 @@
       "ultimate_lei": "7890001OT1O3F54ADE81",
       "ultimate_name": "HAYAT FİNANS KATILIM BANKASI ANONİM ŞİRKETİ",
       "note": "ok",
-      "direct_disposition": "external_reconciled"
+      "direct_disposition": "external_created"
     },
     {
       "ticker": "HDFFL",
@@ -3638,7 +3638,7 @@
       "ultimate_lei": "789000WX4UDD5T9RLC80",
       "ultimate_name": "VAKIF KATILIM BANKASI ANONİM ŞİRKETİ",
       "note": "ok",
-      "direct_disposition": "external_reconciled"
+      "direct_disposition": "external_created"
     },
     {
       "ticker": "KAYSE",
@@ -4418,16 +4418,6 @@
       "ticker": "MEKMD",
       "lei": "549300R0ZX1E7MISH129",
       "kap_name": "MEKSA YATIRIM MENKUL DEĞERLER A.Ş.",
-      "direct_lei": null,
-      "direct_name": null,
-      "ultimate_lei": null,
-      "ultimate_name": null,
-      "note": "ok"
-    },
-    {
-      "ticker": "MEPET",
-      "lei": "789000MWI1TBF8ZQ1597",
-      "kap_name": "MEPET METRO PETROL VE TESİSLERİ SANAYİ TİCARET A.Ş.",
       "direct_lei": null,
       "direct_name": null,
       "ultimate_lei": null,
@@ -5635,6 +5625,16 @@
       "note": "ok"
     },
     {
+      "ticker": "SARTN",
+      "lei": "7890003DA380EANQWM71",
+      "kap_name": "SARTEN AMBALAJ SANAYİ VE TİCARET A.Ş.",
+      "direct_lei": null,
+      "direct_name": null,
+      "ultimate_lei": null,
+      "ultimate_name": null,
+      "note": "ok"
+    },
+    {
       "ticker": "SASA",
       "lei": "789000PXBZOJWTDSXE13",
       "kap_name": "SASA POLYESTER SANAYİ A.Ş.",
@@ -6564,7 +6564,7 @@
       "ultimate_lei": "789000WX4UDD5T9RLC80",
       "ultimate_name": "VAKIF KATILIM BANKASI ANONİM ŞİRKETİ",
       "note": "ok",
-      "direct_disposition": "external_reconciled"
+      "direct_disposition": "external_created"
     },
     {
       "ticker": "VANGD",
@@ -6906,7 +6906,7 @@
       "ultimate_lei": "213800K5KTZFSUS8MR51",
       "ultimate_name": "TÜRKIYE CUMHURIYETI ZIRAAT BANKASI ANONIM ŞIRKETI",
       "note": "ok",
-      "direct_disposition": "external_reconciled",
+      "direct_disposition": "external_created",
       "ultimate_disposition": "external_created"
     },
     {
@@ -6918,7 +6918,7 @@
       "ultimate_lei": "213800K5KTZFSUS8MR51",
       "ultimate_name": "TÜRKIYE CUMHURIYETI ZIRAAT BANKASI ANONIM ŞIRKETI",
       "note": "ok",
-      "direct_disposition": "external_reconciled",
+      "direct_disposition": "external_created",
       "ultimate_disposition": "external_created"
     },
     {

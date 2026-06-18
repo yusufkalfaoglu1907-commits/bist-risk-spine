@@ -5,9 +5,8 @@ stylesheet), so ``read_xlsx`` parses the sheet XML directly (zip + ElementTree)
 and tolerates both shared-string and inline-string cells. ``read_rows``
 dispatches on the file extension and returns a list of header→value dicts.
 
-Shared by ``scripts/import_bist_isin.py`` (equity ticker→ISIN) and
-``scripts/import_mkk_debt.py`` (debt instruments) so there is exactly one
-parser to trust and test for the MKK "Menkul Kıymetler Listesi".
+Used by ``scripts/import_bist_isin.py`` (equity ticker→ISIN) so there is
+exactly one parser to trust and test for the MKK "Menkul Kıymetler Listesi".
 """
 from __future__ import annotations
 
