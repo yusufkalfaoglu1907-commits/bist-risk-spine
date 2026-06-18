@@ -1,0 +1,576 @@
+{
+  "generated_iso": "2026-06-14T14:02:02.172272+00:00",
+  "source": "spv-name-inference",
+  "confidence": 0.7,
+  "summary": {
+    "loader_version": 1,
+    "spv_candidates": 95,
+    "controls_new": 0,
+    "controls_corroborated": 24,
+    "ambiguous": 4,
+    "no_in_graph_parent": 65,
+    "no_brand": 2
+  },
+  "written": [
+    {
+      "parent_ticker": "ARSAN",
+      "parent_name": "ARSAN HOLDİNG A.Ş.",
+      "spv_ticker": "ARSVY",
+      "spv_name": "ARSAN VARLIK YÖNETİM A.Ş.",
+      "brand": "ARSAN",
+      "new": false
+    },
+    {
+      "parent_ticker": "HALKB",
+      "parent_name": "TÜRKİYE HALK BANKASI A.Ş.",
+      "spv_ticker": "HALKI",
+      "spv_name": "HALK YATIRIM MENKUL DEĞERLER A.Ş.",
+      "brand": "HALK",
+      "new": false
+    },
+    {
+      "parent_ticker": "NRBNK",
+      "parent_name": "NUROL YATIRIM BANKASI A.Ş.",
+      "spv_ticker": "NURVK",
+      "spv_name": "NUROL VARLIK KİRALAMA A.Ş.",
+      "brand": "NUROL",
+      "new": false
+    },
+    {
+      "parent_ticker": "DYBNK",
+      "parent_name": "D YATIRIM BANKASI A.Ş.",
+      "spv_ticker": "DVRLK",
+      "spv_name": "D VARLIK KİRALAMA A.Ş.",
+      "brand": "D",
+      "new": false
+    },
+    {
+      "parent_ticker": "KCHOL",
+      "parent_name": "KOÇ HOLDİNG A.Ş.",
+      "spv_ticker": "KOCFN",
+      "spv_name": "KOÇ FİNANSMAN A.Ş.",
+      "brand": "KOC",
+      "new": false
+    },
+    {
+      "parent_ticker": "FIN",
+      "parent_name": "QNB BANK A.Ş.",
+      "spv_ticker": "QNBFK",
+      "spv_name": "QNB FİNANSAL KİRALAMA A.Ş.",
+      "brand": "QNB",
+      "new": false
+    },
+    {
+      "parent_ticker": "BRGAN",
+      "parent_name": "BURGAN BANK A.Ş.",
+      "spv_ticker": "BRGFK",
+      "spv_name": "BURGAN FİNANSAL KİRALAMA A.Ş.",
+      "brand": "BURGAN",
+      "new": false
+    },
+    {
+      "parent_ticker": "DUNYH",
+      "parent_name": "DÜNYA HOLDİNG A.Ş.",
+      "spv_ticker": "DNYVA",
+      "spv_name": "DÜNYA VARLIK YÖNETİM A.Ş.",
+      "brand": "DUNYA",
+      "new": false
+    },
+    {
+      "parent_ticker": "ISATR",
+      "parent_name": "TÜRKİYE İŞ BANKASI A.Ş.",
+      "spv_ticker": "ISMEN",
+      "spv_name": "İŞ YATIRIM MENKUL DEĞERLER A.Ş.",
+      "brand": "IS",
+      "new": false
+    },
+    {
+      "parent_ticker": "AKYHO",
+      "parent_name": "AKDENİZ YATIRIM HOLDİNG A.Ş.",
+      "spv_ticker": "AKDFA",
+      "spv_name": "AKDENİZ FAKTORİNG A.Ş.",
+      "brand": "AKDENIZ",
+      "new": false
+    },
+    {
+      "parent_ticker": "HALKB",
+      "parent_name": "TÜRKİYE HALK BANKASI A.Ş.",
+      "spv_ticker": "HLVKS",
+      "spv_name": "HALK VARLIK KİRALAMA A.Ş.",
+      "brand": "HALK",
+      "new": false
+    },
+    {
+      "parent_ticker": "ISATR",
+      "parent_name": "TÜRKİYE İŞ BANKASI A.Ş.",
+      "spv_ticker": "ISFAK",
+      "spv_name": "İŞ FAKTORİNG A.Ş.",
+      "brand": "IS",
+      "new": false
+    },
+    {
+      "parent_ticker": "ISATR",
+      "parent_name": "TÜRKİYE İŞ BANKASI A.Ş.",
+      "spv_ticker": "ISFIN",
+      "spv_name": "İŞ FİNANSAL KİRALAMA A.Ş.",
+      "brand": "IS",
+      "new": false
+    },
+    {
+      "parent_ticker": "KLN",
+      "parent_name": "TÜRKİYE KALKINMA VE YATIRIM BANKASI A.Ş.",
+      "spv_ticker": "KLVKS",
+      "spv_name": "KALKINMA YATIRIM VARLIK KİRALAMA A.Ş.",
+      "brand": "KALKINMA",
+      "new": false
+    },
+    {
+      "parent_ticker": "DENGE",
+      "parent_name": "DENGE YATIRIM HOLDİNG A.Ş.",
+      "spv_ticker": "DENVA",
+      "spv_name": "DENGE VARLIK YÖNETİM A.Ş.",
+      "brand": "DENGE",
+      "new": false
+    },
+    {
+      "parent_ticker": "FIN",
+      "parent_name": "QNB BANK A.Ş.",
+      "spv_ticker": "QNBVK",
+      "spv_name": "QNB VARLIK KİRALAMA A.Ş.",
+      "brand": "QNB",
+      "new": false
+    },
+    {
+      "parent_ticker": "YKB",
+      "parent_name": "YAPI VE KREDİ BANKASI A.Ş.",
+      "spv_ticker": "YKFIN",
+      "spv_name": "YAPI KREDİ FİNANSAL KİRALAMA A.O.",
+      "brand": "YAPI",
+      "new": false
+    },
+    {
+      "parent_ticker": "GARAN",
+      "parent_name": "TÜRKİYE GARANTİ BANKASI A.Ş.",
+      "spv_ticker": "GARFA",
+      "spv_name": "GARANTİ FAKTORİNG A.Ş.",
+      "brand": "GARANTI",
+      "new": false
+    },
+    {
+      "parent_ticker": "KCHOL",
+      "parent_name": "KOÇ HOLDİNG A.Ş.",
+      "spv_ticker": "KSFIN",
+      "spv_name": "KOÇ STELLANTİS FİNANSMAN A.Ş.",
+      "brand": "KOC",
+      "new": false
+    },
+    {
+      "parent_ticker": "YKB",
+      "parent_name": "YAPI VE KREDİ BANKASI A.Ş.",
+      "spv_ticker": "YKR",
+      "spv_name": "YAPI KREDİ YATIRIM MENKUL DEĞERLER A.Ş.",
+      "brand": "YAPI",
+      "new": false
+    },
+    {
+      "parent_ticker": "AFB",
+      "parent_name": "AKTİF YATIRIM BANKASI A.Ş.",
+      "spv_ticker": "AKTVK",
+      "spv_name": "AKTİF BANK SUKUK VARLIK KİRALAMA A.Ş.",
+      "brand": "AKTIF",
+      "new": false
+    },
+    {
+      "parent_ticker": "HALKB",
+      "parent_name": "TÜRKİYE HALK BANKASI A.Ş.",
+      "spv_ticker": "HALKF",
+      "spv_name": "HALK FİNANSAL KİRALAMA A.Ş.",
+      "brand": "HALK",
+      "new": false
+    },
+    {
+      "parent_ticker": "FIN",
+      "parent_name": "QNB BANK A.Ş.",
+      "spv_ticker": "QNBFF",
+      "spv_name": "QNB FAKTORİNG A.Ş.",
+      "brand": "QNB",
+      "new": false
+    },
+    {
+      "parent_ticker": "YKB",
+      "parent_name": "YAPI VE KREDİ BANKASI A.Ş.",
+      "spv_ticker": "YKFKT",
+      "spv_name": "YAPI KREDİ FAKTORİNG A.Ş.",
+      "brand": "YAPI",
+      "new": false
+    }
+  ],
+  "ambiguous": [
+    {
+      "spv": "TEVKS",
+      "brand": "TERA",
+      "name": "TERA VARLIK KİRALAMA A.Ş.",
+      "candidates": [
+        "TRHOL",
+        "TAE",
+        "TEHOL"
+      ]
+    },
+    {
+      "spv": "TRFFA",
+      "brand": "TERA",
+      "name": "TERA FİNANS FAKTORİNG A.Ş.",
+      "candidates": [
+        "TRHOL",
+        "TAE",
+        "TEHOL"
+      ]
+    },
+    {
+      "spv": "TERA",
+      "brand": "TERA",
+      "name": "TERA YATIRIM MENKUL DEĞERLER A.Ş.",
+      "candidates": [
+        "TRHOL",
+        "TAE",
+        "TEHOL"
+      ]
+    },
+    {
+      "spv": "HDFVK",
+      "brand": "HEDEF",
+      "name": "HEDEF VARLIK KİRALAMA A.Ş.",
+      "candidates": [
+        "HEDEF",
+        "HDFYB"
+      ]
+    }
+  ],
+  "no_in_graph_parent": [
+    {
+      "spv": "GEDIK",
+      "brand": "GEDIK",
+      "name": "GEDİK YATIRIM MENKUL DEĞERLER A.Ş."
+    },
+    {
+      "spv": "DNFIN",
+      "brand": "DENIZ",
+      "name": "DENİZ FİNANSAL KİRALAMA A.Ş."
+    },
+    {
+      "spv": "DKVRL",
+      "brand": "DK",
+      "name": "DK VARLIK KİRALAMA A.Ş."
+    },
+    {
+      "spv": "DOGVY",
+      "brand": "DOGRU",
+      "name": "DOĞRU VARLIK YÖNETİM A.Ş."
+    },
+    {
+      "spv": "OMD",
+      "brand": "OSMANLI",
+      "name": "OSMANLI YATIRIM MENKUL DEĞERLER A.Ş."
+    },
+    {
+      "spv": "TAMFA",
+      "brand": "TAM",
+      "name": "TAM FİNANS FAKTORİNG A.Ş."
+    },
+    {
+      "spv": "EMIRV",
+      "brand": "EMIR",
+      "name": "EMİR VARLIK YÖNETİM A.Ş."
+    },
+    {
+      "spv": "EMVAR",
+      "brand": "EMLAK",
+      "name": "EMLAK VARLIK KİRALAMA A.Ş."
+    },
+    {
+      "spv": "GLCVY",
+      "brand": "GELECEK",
+      "name": "GELECEK VARLIK YÖNETİMİ A.Ş."
+    },
+    {
+      "spv": "LIDFA",
+      "brand": "LIDER",
+      "name": "LİDER FAKTORİNG A.Ş."
+    },
+    {
+      "spv": "MRBAS",
+      "brand": "MARBAS",
+      "name": "MARBAŞ MENKUL DEĞERLER A.Ş."
+    },
+    {
+      "spv": "MRBKF",
+      "brand": "MERCEDES",
+      "name": "MERCEDES BENZ KAMYON FİNANSMAN A.Ş."
+    },
+    {
+      "spv": "ORFIN",
+      "brand": "ORFIN",
+      "name": "ORFİN FİNANSMAN A.Ş."
+    },
+    {
+      "spv": "PRFFK",
+      "brand": "PARAFINANS",
+      "name": "PARAFİNANS FAKTORİNG A.Ş."
+    },
+    {
+      "spv": "VDFAS",
+      "brand": "VOLKSWAGEN",
+      "name": "VOLKSWAGEN DOĞUŞ FİNANSMAN A.Ş."
+    },
+    {
+      "spv": "ZKBVK",
+      "brand": "ZIRAAT",
+      "name": "ZİRAAT KATILIM VARLIK KİRALAMA A.Ş."
+    },
+    {
+      "spv": "AKSFA",
+      "brand": "AK",
+      "name": "AK FAKTORİNG A.Ş."
+    },
+    {
+      "spv": "DENFA",
+      "brand": "DENIZ",
+      "name": "DENİZ FAKTORİNG A.Ş."
+    },
+    {
+      "spv": "DFKTR",
+      "brand": "DORUK",
+      "name": "DORUK FAKTORİNG A.Ş."
+    },
+    {
+      "spv": "EKTVK",
+      "brand": "EMLAK",
+      "name": "EMLAK KATILIM VARLIK KİRALAMA A.Ş."
+    },
+    {
+      "spv": "GYVAR",
+      "brand": "GY",
+      "name": "GY VARLIK KİRALAMA A.Ş."
+    },
+    {
+      "spv": "IAZ",
+      "brand": "INVEST",
+      "name": "INVEST-AZ YATIRIM MENKUL DEĞERLER A.Ş."
+    },
+    {
+      "spv": "KTSVK",
+      "brand": "KT",
+      "name": "KT SUKUK VARLIK KİRALAMA A.Ş."
+    },
+    {
+      "spv": "MEKMD",
+      "brand": "MEKSA",
+      "name": "MEKSA YATIRIM MENKUL DEĞERLER A.Ş."
+    },
+    {
+      "spv": "MDASM",
+      "brand": "MIDAS",
+      "name": "MİDAS MENKUL DEĞERLER A.Ş."
+    },
+    {
+      "spv": "OSVKS",
+      "brand": "OSMANLI",
+      "name": "OSMANLI VARLIK KİRALAMA A.Ş."
+    },
+    {
+      "spv": "OYA",
+      "brand": "OYAK",
+      "name": "OYAK YATIRIM MENKUL DEĞERLER A.Ş."
+    },
+    {
+      "spv": "SMRFA",
+      "brand": "SUMER",
+      "name": "SÜMER FAKTORİNG A.Ş."
+    },
+    {
+      "spv": "TEBFA",
+      "brand": "TEB",
+      "name": "TEB FAKTORİNG A.Ş."
+    },
+    {
+      "spv": "AKM",
+      "brand": "AK",
+      "name": "AK YATIRIM MENKUL DEĞERLER A.Ş."
+    },
+    {
+      "spv": "HUZFA",
+      "brand": "HUZUR",
+      "name": "HUZUR FAKTORİNG A.Ş."
+    },
+    {
+      "spv": "INFO",
+      "brand": "INFO",
+      "name": "İNFO YATIRIM MENKUL DEĞERLER A.Ş."
+    },
+    {
+      "spv": "SMRVA",
+      "brand": "SUMER",
+      "name": "SÜMER VARLIK YÖNETİM A.Ş."
+    },
+    {
+      "spv": "VAKVK",
+      "brand": "VAKIF",
+      "name": "VAKIF VARLIK KİRALAMA A.Ş."
+    },
+    {
+      "spv": "ZKBVR",
+      "brand": "ZKB",
+      "name": "ZKB VARLIK KİRALAMA A.Ş."
+    },
+    {
+      "spv": "ADLVY",
+      "brand": "ADIL",
+      "name": "ADİL VARLIK YÖNETİM A.Ş."
+    },
+    {
+      "spv": "ALJF",
+      "brand": "ALJ",
+      "name": "ALJ FİNANSMAN A.Ş."
+    },
+    {
+      "spv": "A1CAP",
+      "brand": "A1",
+      "name": "A1 CAPİTAL YATIRIM MENKUL DEĞERLER A.Ş."
+    },
+    {
+      "spv": "BLS",
+      "brand": "BULLS",
+      "name": "BULLS YATIRIM MENKUL DEĞERLER A.Ş."
+    },
+    {
+      "spv": "ISTFK",
+      "brand": "ISTANBUL",
+      "name": "İSTANBUL FAKTORİNG A.Ş."
+    },
+    {
+      "spv": "MINTF",
+      "brand": "MINT",
+      "name": "MİNT FİNANSMAN A.Ş."
+    },
+    {
+      "spv": "MNGFA",
+      "brand": "MNG",
+      "name": "MNG FAKTORİNG A.Ş."
+    },
+    {
+      "spv": "QUFIN",
+      "brand": "QUICK",
+      "name": "QUICK FİNANSMAN A.Ş."
+    },
+    {
+      "spv": "ULUFA",
+      "brand": "ULUSAL",
+      "name": "ULUSAL FAKTORİNG A.Ş."
+    },
+    {
+      "spv": "ATAVK",
+      "brand": "ATA",
+      "name": "ATA VARLIK KİRALAMA A.Ş."
+    },
+    {
+      "spv": "BRKT",
+      "brand": "BEREKET",
+      "name": "BEREKET VARLIK KİRALAMA A.Ş."
+    },
+    {
+      "spv": "CRDFA",
+      "brand": "CREDITWEST",
+      "name": "CREDITWEST FAKTORİNG A.Ş."
+    },
+    {
+      "spv": "CAGFA",
+      "brand": "CAGDAS",
+      "name": "ÇAĞDAŞ FAKTORİNG A.Ş."
+    },
+    {
+      "spv": "DGRVK",
+      "brand": "DEGER",
+      "name": "DEĞER VARLIK KİRALAMA A.Ş."
+    },
+    {
+      "spv": "GGBVK",
+      "brand": "GOLDEN",
+      "name": "GOLDEN GLOBAL VARLIK KİRALAMA A.Ş."
+    },
+    {
+      "spv": "ISTVY",
+      "brand": "ISTANBUL",
+      "name": "İSTANBUL VARLIK YÖNETİM A.Ş."
+    },
+    {
+      "spv": "TRMEN",
+      "brand": "TRIVE",
+      "name": "TRIVE YATIRIM MENKUL DEĞERLER A.Ş."
+    },
+    {
+      "spv": "ALNUS",
+      "brand": "ALNUS",
+      "name": "ALNUS YATIRIM MENKUL DEĞERLER A.Ş."
+    },
+    {
+      "spv": "ATLFA",
+      "brand": "ATILIM",
+      "name": "ATILIM FAKTORİNG A.Ş."
+    },
+    {
+      "spv": "BRKVY",
+      "brand": "BIRIKIM",
+      "name": "BİRİKİM VARLIK YÖNETİM A.Ş."
+    },
+    {
+      "spv": "DMD",
+      "brand": "DESTEK",
+      "name": "DESTEK YATIRIM MENKUL DEĞERLER A.Ş."
+    },
+    {
+      "spv": "KNTFA",
+      "brand": "KENT",
+      "name": "KENT FİNANS FAKTORİNG A.Ş."
+    },
+    {
+      "spv": "MBFTR",
+      "brand": "MERCEDES",
+      "name": "MERCEDES-BENZ FİNANSMAN TÜRK A.Ş."
+    },
+    {
+      "spv": "TAC",
+      "brand": "TACIRLER",
+      "name": "TACİRLER YATIRIM MENKUL DEĞERLER A.Ş."
+    },
+    {
+      "spv": "TFNVK",
+      "brand": "TF",
+      "name": "TF VARLIK KİRALAMA A.Ş."
+    },
+    {
+      "spv": "AKFK",
+      "brand": "AK",
+      "name": "AK FİNANSAL KİRALAMA A.Ş."
+    },
+    {
+      "spv": "ATA",
+      "brand": "ATA",
+      "name": "ATA YATIRIM MENKUL KIYMETLER A.Ş."
+    },
+    {
+      "spv": "EKOFA",
+      "brand": "EKO",
+      "name": "EKO FAKTORİNG A.Ş."
+    },
+    {
+      "spv": "HAYVK",
+      "brand": "HAYAT",
+      "name": "HAYAT VARLIK KİRALAMA A.Ş."
+    },
+    {
+      "spv": "KTKVK",
+      "brand": "KT",
+      "name": "KT KİRA SERTİFİKALARI VARLIK KİRALAMA A.Ş."
+    }
+  ]
+}

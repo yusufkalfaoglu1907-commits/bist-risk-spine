@@ -1,0 +1,107 @@
+{
+  "source": "manual disambiguation of bist_isin.json:ambiguous — resolved via public market-data providers (investing.com / marketscreener / fintables / getmidas), web-verified 2026-06-14",
+  "fetched_iso": "2026-06-14",
+  "schema_version": 1,
+  "note": "Each ticker had TWO candidate equity ISINs in bist_isin.json:ambiguous and GLEIF surfaced no equity candidate to break the tie. Each was resolved by looking up the listed common-share ISIN from public market-data providers and CONFIRMING it exactly matches one of the two MKK candidates (the loader independently re-validates shape + ISO-6166 check digit and candidate membership before writing). NB ISDMR and MANAS resolve to the HIGHER candidate; MMCAS resolves to the legacy TREGNTR (GENTAŞ) root, which is the security now trading under MMCAS. The loader (scripts/backfill_gleif.py --stage bist) writes only confirmed=true rows; a pick that conflicts with a GLEIF candidate is logged, not written.",
+  "disambiguations": {
+    "EKGYO": {
+      "company": "EMLAK KONUT GAYRİMENKUL YATIRIM ORTAKLIĞI A.Ş.",
+      "candidates": ["TREEGYO00017", "TREEGYO00025"],
+      "gleif_candidates": [],
+      "chosen": "TREEGYO00017",
+      "confirmed": true,
+      "source": "investing.com / market-data web-verified 2026-06-14",
+      "rationale": "listed common line; matches lower candidate"
+    },
+    "ISDMR": {
+      "company": "İSKENDERUN DEMİR VE ÇELİK A.Ş.",
+      "candidates": ["TREISDC00012", "TREISDC00020"],
+      "gleif_candidates": [],
+      "chosen": "TREISDC00020",
+      "confirmed": true,
+      "source": "marketscreener.com (ISIN in URL) / investing.com web-verified 2026-06-14",
+      "rationale": "listed common line; matches HIGHER candidate"
+    },
+    "AVOD": {
+      "company": "A.V.O.D. KURUTULMUŞ GIDA VE TARIM ÜRÜNLERİ A.Ş.",
+      "candidates": ["TREAVOD00018", "TREAVOD00026"],
+      "gleif_candidates": [],
+      "chosen": "TREAVOD00018",
+      "confirmed": true,
+      "source": "investing.com / fintables web-verified 2026-06-14",
+      "rationale": "listed common line; matches lower candidate"
+    },
+    "BLCYT": {
+      "company": "BİLİCİ YATIRIM SANAYİ VE TİCARET A.Ş.",
+      "candidates": ["TREBLCY00018", "TREBLCY00026"],
+      "gleif_candidates": [],
+      "chosen": "TREBLCY00018",
+      "confirmed": true,
+      "source": "investing.com / isyatirim web-verified 2026-06-14",
+      "rationale": "listed common line; matches lower candidate"
+    },
+    "KRONT": {
+      "company": "KRON TEKNOLOJİ A.Ş.",
+      "candidates": ["TREKRON00014", "TREKRON00022"],
+      "gleif_candidates": [],
+      "chosen": "TREKRON00014",
+      "confirmed": true,
+      "source": "investing.com / isyatirim web-verified 2026-06-14",
+      "rationale": "listed common line; matches lower candidate"
+    },
+    "MANAS": {
+      "company": "MANAS ENERJİ YÖNETİMİ SANAYİ VE TİCARET A.Ş.",
+      "candidates": ["TREMANS00017", "TREMANS00025"],
+      "gleif_candidates": [],
+      "chosen": "TREMANS00025",
+      "confirmed": true,
+      "source": "investing.com web-verified 2026-06-14",
+      "rationale": "listed common line; matches HIGHER candidate"
+    },
+    "MERIT": {
+      "company": "MERİT TURİZM YATIRIM VE İŞLETME A.Ş.",
+      "candidates": ["TREMRTT00016", "TREMRTT00024"],
+      "gleif_candidates": [],
+      "chosen": "TREMRTT00016",
+      "confirmed": true,
+      "source": "investing.com / fintables web-verified 2026-06-14",
+      "rationale": "listed common line; matches lower candidate"
+    },
+    "MMCAS": {
+      "company": "MMC SANAYİ VE TİCARİ YATIRIMLAR A.Ş.",
+      "candidates": ["TREGNTR00011", "TREGNTR00029"],
+      "gleif_candidates": [],
+      "chosen": "TREGNTR00011",
+      "confirmed": true,
+      "source": "getmidas / investing.com / tradingview web-verified 2026-06-14",
+      "rationale": "candidate root TREGNTR (legacy GENTAŞ) is the security now trading under MMCAS; matches lower candidate"
+    },
+    "ODAS": {
+      "company": "ODAŞ ELEKTRİK ÜRETİM SANAYİ TİCARET A.Ş.",
+      "candidates": ["TREODAS00014", "TREODAS00022"],
+      "gleif_candidates": [],
+      "chosen": "TREODAS00014",
+      "confirmed": true,
+      "source": "investing.com / tradingview web-verified 2026-06-14",
+      "rationale": "listed common line; matches lower candidate"
+    },
+    "PNLSN": {
+      "company": "PANELSAN ÇATI CEPHE SİSTEMLERİ SANAYİ VE TİCARET A.Ş.",
+      "candidates": ["TREPNLS00017", "TREPNLS00025"],
+      "gleif_candidates": [],
+      "chosen": "TREPNLS00017",
+      "confirmed": true,
+      "source": "getmidas / investing.com web-verified 2026-06-14",
+      "rationale": "listed common line (Main Market); matches lower candidate"
+    },
+    "SANFM": {
+      "company": "SANİFOAM ENDÜSTRİ VE TÜKETİM ÜRÜNLERİ SANAYİ A.Ş.",
+      "candidates": ["TRESNFM00016", "TRESNFM00024"],
+      "gleif_candidates": [],
+      "chosen": "TRESNFM00016",
+      "confirmed": true,
+      "source": "gcmyatirim / getmidas / investing.com web-verified 2026-06-14",
+      "rationale": "listed common line; matches lower candidate"
+    }
+  }
+}

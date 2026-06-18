@@ -1,0 +1,10 @@
+[
+  {"uuid": "se-kchol-e", "issuer": "co-kchol", "isin": "TRAKCHOL91Q8", "ticker": "KCHOL", "type": "EQUITY", "currency": "TRY"},
+  {"uuid": "se-tuprs-e", "issuer": "co-tuprs", "isin": "TRATUPRS91E8", "ticker": "TUPRS", "type": "EQUITY", "currency": "TRY"},
+  {"uuid": "se-froto-e", "issuer": "co-froto", "isin": "TRAOTOSAN91H6", "ticker": "FROTO", "type": "EQUITY", "currency": "TRY"},
+  {"uuid": "se-toaso-e", "issuer": "co-toaso", "isin": "TRATOASO91H3", "ticker": "TOASO", "type": "EQUITY", "currency": "TRY"},
+  {"uuid": "se-arclk-e", "issuer": "co-arclk", "isin": "TRAARCLK91H5", "ticker": "ARCLK", "type": "EQUITY", "currency": "TRY"},
+  {"uuid": "se-aygaz-e", "issuer": "co-aygaz", "isin": "TRAAYGAZ91E0", "ticker": "AYGAZ", "type": "EQUITY", "currency": "TRY"},
+  {"uuid": "se-ykbnk-e", "issuer": "co-ykbnk", "isin": "TRAYKBNK91N6", "ticker": "YKBNK", "type": "EQUITY", "currency": "TRY"},
+  {"uuid": "se-thyao-e", "issuer": "co-thyao", "isin": "TRATHYAO91M5", "ticker": "THYAO", "type": "EQUITY", "currency": "TRY"}
+]

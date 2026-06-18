@@ -1,0 +1,8 @@
+[
+  {"code": "HOLDING", "name": "Holding & Investment"},
+  {"code": "ENERGY", "name": "Energy / Refining"},
+  {"code": "AUTO", "name": "Automotive"},
+  {"code": "DURABLES", "name": "Consumer Durables"},
+  {"code": "BANK", "name": "Banking"},
+  {"code": "AIRLINE", "name": "Airlines / Transport"}
+]

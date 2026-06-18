@@ -1,0 +1,48 @@
+{
+  "_note": "ILLUSTRATIVE fixture data for smoke-testing the Phase-1 graph. Stake percentages are approximate and simplified (some real chains run through intermediate entities like Enerji Yatırımları / Koç Finansal Hizmetler). Do NOT treat as filings-grade truth — replace with live KAP extraction.",
+
+  "in_sector": [
+    {"company": "co-kchol", "sector": "HOLDING"},
+    {"company": "co-tuprs", "sector": "ENERGY"},
+    {"company": "co-froto", "sector": "AUTO"},
+    {"company": "co-toaso", "sector": "AUTO"},
+    {"company": "co-arclk", "sector": "DURABLES"},
+    {"company": "co-aygaz", "sector": "ENERGY"},
+    {"company": "co-ykbnk", "sector": "BANK"},
+    {"company": "co-thyao", "sector": "AIRLINE"}
+  ],
+
+  "holds_stake": [
+    {"from": "pe-omkoc", "from_label": "Person", "to": "co-kchol", "pct": 9.5, "as_of": "2025-12-31", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-kchol", "extraction_method": "llm_extracted", "confidence": 0.85},
+    {"from": "pe-rmkoc", "from_label": "Person", "to": "co-kchol", "pct": 8.5, "as_of": "2025-12-31", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-kchol", "extraction_method": "llm_extracted", "confidence": 0.85},
+    {"from": "pe-alikoc", "from_label": "Person", "to": "co-kchol", "pct": 6.0, "as_of": "2025-12-31", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-kchol", "extraction_method": "llm_extracted", "confidence": 0.85},
+
+    {"from": "co-kchol", "from_label": "Company", "to": "co-tuprs", "pct": 75.0, "as_of": "2025-12-31", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-tuprs", "extraction_method": "llm_extracted", "confidence": 0.9},
+    {"from": "co-kchol", "from_label": "Company", "to": "co-froto", "pct": 38.46, "as_of": "2025-12-31", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-froto", "extraction_method": "llm_extracted", "confidence": 0.9},
+    {"from": "co-kchol", "from_label": "Company", "to": "co-toaso", "pct": 37.86, "as_of": "2025-12-31", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-toaso", "extraction_method": "llm_extracted", "confidence": 0.9},
+    {"from": "co-kchol", "from_label": "Company", "to": "co-arclk", "pct": 40.51, "as_of": "2025-12-31", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-arclk", "extraction_method": "llm_extracted", "confidence": 0.9},
+    {"from": "co-kchol", "from_label": "Company", "to": "co-aygaz", "pct": 40.68, "as_of": "2025-12-31", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-aygaz", "extraction_method": "llm_extracted", "confidence": 0.9},
+    {"from": "co-kchol", "from_label": "Company", "to": "co-ykbnk", "pct": 49.99, "as_of": "2025-12-31", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-ykbnk", "extraction_method": "llm_extracted", "confidence": 0.8}
+  ],
+
+  "controls": [
+    {"from": "pe-omkoc", "from_label": "Person", "to": "co-kchol", "basis": "family_block_and_chair", "as_of": "2025-12-31", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-kchol", "extraction_method": "manual", "confidence": 1.0},
+    {"from": "co-kchol", "from_label": "Company", "to": "co-tuprs", "basis": "majority_stake", "as_of": "2025-12-31", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-tuprs", "extraction_method": "llm_extracted", "confidence": 0.9},
+    {"from": "co-kchol", "from_label": "Company", "to": "co-froto", "basis": "management_control_jv", "as_of": "2025-12-31", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-froto", "extraction_method": "llm_extracted", "confidence": 0.8},
+    {"from": "co-kchol", "from_label": "Company", "to": "co-toaso", "basis": "management_control_jv", "as_of": "2025-12-31", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-toaso", "extraction_method": "llm_extracted", "confidence": 0.8},
+    {"from": "co-kchol", "from_label": "Company", "to": "co-arclk", "basis": "largest_shareholder_control", "as_of": "2025-12-31", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-arclk", "extraction_method": "llm_extracted", "confidence": 0.8},
+    {"from": "co-kchol", "from_label": "Company", "to": "co-aygaz", "basis": "largest_shareholder_control", "as_of": "2025-12-31", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-aygaz", "extraction_method": "llm_extracted", "confidence": 0.8},
+    {"from": "co-kchol", "from_label": "Company", "to": "co-ykbnk", "basis": "controlling_shareholder", "as_of": "2025-12-31", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-ykbnk", "extraction_method": "llm_extracted", "confidence": 0.75}
+  ],
+
+  "subsidiary_of": [
+    {"from": "co-tuprs", "to": "co-kchol", "as_of": "2025-12-31", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-tuprs", "extraction_method": "llm_extracted", "confidence": 0.9}
+  ],
+
+  "board_member_of": [
+    {"person": "pe-omkoc", "company": "co-kchol", "role": "Chairman", "since": "2016-01-30", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-board", "extraction_method": "llm_extracted", "confidence": 0.9},
+    {"person": "pe-alikoc", "company": "co-kchol", "role": "Vice Chairman", "since": "2008-05-01", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-board", "extraction_method": "llm_extracted", "confidence": 0.9},
+    {"person": "pe-alikoc", "company": "co-froto", "role": "Board Member", "since": "2010-03-01", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-board", "extraction_method": "llm_extracted", "confidence": 0.85},
+    {"person": "pe-alikoc", "company": "co-ykbnk", "role": "Board Member", "since": "2018-04-01", "source": "https://www.kap.org.tr/tr/Bildirim/illustrative-board", "extraction_method": "llm_extracted", "confidence": 0.85}
+  ]
+}

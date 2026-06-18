@@ -1,0 +1,11 @@
+{
+  "uuid": "pf-main",
+  "name": "Main Research Portfolio",
+  "holdings": [
+    {"security": "se-tuprs-e", "weight": 0.25, "qty": 1000},
+    {"security": "se-froto-e", "weight": 0.20, "qty": 300},
+    {"security": "se-arclk-e", "weight": 0.15, "qty": 2000},
+    {"security": "se-ykbnk-e", "weight": 0.10, "qty": 5000},
+    {"security": "se-thyao-e", "weight": 0.30, "qty": 800}
+  ]
+}

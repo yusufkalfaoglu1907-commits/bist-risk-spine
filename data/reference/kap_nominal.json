@@ -1,0 +1,1188 @@
+{
+  "source": "KAP issuance disclosures (detail extract)",
+  "fetched_iso": "2026-06-08",
+  "method": "kap-detail-extract",
+  "schema_version": 1,
+  "complete": false,
+  "nominals": [
+    {
+      "isin": "TRDABVK62624",
+      "nominal": 500000000.0,
+      "currency": "TRY",
+      "source": "KAP:1527784",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDATAV42611",
+      "nominal": 150000000.0,
+      "currency": "TRY",
+      "source": "KAP:1513143",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDATAVK2512",
+      "nominal": 120000000.0,
+      "currency": "TRY",
+      "source": "KAP:1452820",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDBRKT22634",
+      "nominal": 1000000000.0,
+      "currency": "TRY",
+      "source": "KAP:1518991",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDBRKT22642",
+      "nominal": 3000000000.0,
+      "currency": "TRY",
+      "source": "KAP:1518991",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDBRKT22675",
+      "nominal": 1000000000.0,
+      "currency": "TRY",
+      "source": "KAP:1527784",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDBRKT32625",
+      "nominal": 2000000000.0,
+      "currency": "TRY",
+      "source": "KAP:1529430",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDBRKT42541",
+      "nominal": 750000000.0,
+      "currency": "TRY",
+      "source": "KAP:1382242",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDBRKT52524",
+      "nominal": 1000000000.0,
+      "currency": "TRY",
+      "source": "KAP:1392980",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDBRKT52532",
+      "nominal": 500000000.0,
+      "currency": "TRY",
+      "source": "KAP:1392980",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDEMVK12636",
+      "nominal": 250000000.0,
+      "currency": "TRY",
+      "source": "KAP:1382242",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDEMVK12644",
+      "nominal": 250000000.0,
+      "currency": "TRY",
+      "source": "KAP:1382242",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDEMVK12651",
+      "nominal": 250000000.0,
+      "currency": "TRY",
+      "source": "KAP:1382242",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDEMVK22619",
+      "nominal": 250000000.0,
+      "currency": "TRY",
+      "source": "KAP:1392980",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDEMVK32535",
+      "nominal": 350000000.0,
+      "currency": "TRY",
+      "source": "KAP:1382242",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDEMVK72614",
+      "nominal": 100000000.0,
+      "currency": "TRY",
+      "source": "KAP:1463541",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDEMVKA2614",
+      "nominal": 100000000.0,
+      "currency": "TRY",
+      "source": "KAP:1527784",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDEVKS82552",
+      "nominal": 85000000.0,
+      "currency": "TRY",
+      "source": "KAP:1426836",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDEVKS92627",
+      "nominal": 1950000000.0,
+      "currency": "TRY",
+      "source": "KAP:1613262",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDHDFVE2516",
+      "nominal": 100000000.0,
+      "currency": "TRY",
+      "source": "KAP:1452820",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDHVKA12618",
+      "nominal": 200000000.0,
+      "currency": "TRY",
+      "source": "KAP:1382242",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDHVKA22633",
+      "nominal": 50000000.0,
+      "currency": "TRY",
+      "source": "KAP:1513143",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDKTLM62614",
+      "nominal": 300000000.0,
+      "currency": "TRY",
+      "source": "KAP:1529430",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDKTSK22641",
+      "nominal": 400000000.0,
+      "currency": "TRY",
+      "source": "KAP:1507348",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDKTSK52515",
+      "nominal": 150000000.0,
+      "currency": "TRY",
+      "source": "KAP:1382242",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDKTSK52630",
+      "nominal": 300000000.0,
+      "currency": "TRY",
+      "source": "KAP:1529430",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDKTSK52648",
+      "nominal": 290000000.0,
+      "currency": "TRY",
+      "source": "KAP:1529430",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDKTSK82546",
+      "nominal": 400000000.0,
+      "currency": "TRY",
+      "source": "KAP:1438553",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDKTSKE2537",
+      "nominal": 200000000.0,
+      "currency": "TRY",
+      "source": "KAP:1450646",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDKTSKE26C2",
+      "nominal": 250000000.0,
+      "currency": "TRY",
+      "source": "KAP:1613262",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDKTSKE26D0",
+      "nominal": 340000000.0,
+      "currency": "TRY",
+      "source": "KAP:1613262",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDKTSKK2513",
+      "nominal": 400000000.0,
+      "currency": "TRY",
+      "source": "KAP:1426836",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDKTVK32511",
+      "nominal": 1000000000.0,
+      "currency": "TRY",
+      "source": "KAP:1382242",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDNVKA52612",
+      "nominal": 250000000.0,
+      "currency": "TRY",
+      "source": "KAP:1513143",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDNVKA82528",
+      "nominal": 350000000.0,
+      "currency": "TRY",
+      "source": "KAP:1392980",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDVVRK32637",
+      "nominal": 850000000.0,
+      "currency": "TRY",
+      "source": "KAP:1527784",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDZKBV42631",
+      "nominal": 270150000.0,
+      "currency": "TRY",
+      "source": "KAP:1527784",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDZKVK42616",
+      "nominal": 2000000000.0,
+      "currency": "TRY",
+      "source": "KAP:1529430",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDZKVK52532",
+      "nominal": 2500000000.0,
+      "currency": "TRY",
+      "source": "KAP:1392980",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDZKVK92611",
+      "nominal": 1500000000.0,
+      "currency": "TRY",
+      "source": "KAP:1613262",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRDZKVKE2518",
+      "nominal": 2000000000.0,
+      "currency": "TRY",
+      "source": "KAP:1452820",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFA1CP72519",
+      "nominal": 450000000.0,
+      "currency": "TRY",
+      "source": "KAP:1426836",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFAKYM52530",
+      "nominal": 355000000.0,
+      "currency": "TRY",
+      "source": "KAP:1392980",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFAKYM82537",
+      "nominal": 250000000.0,
+      "currency": "TRY",
+      "source": "KAP:1463541",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFAKYM92619",
+      "nominal": 3500000000.0,
+      "currency": "TRY",
+      "source": "KAP:1613262",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFALNF82524",
+      "nominal": 325000000.0,
+      "currency": "TRY",
+      "source": "KAP:1392980",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFARSV22614",
+      "nominal": 158000000.0,
+      "currency": "TRY",
+      "source": "KAP:1479885",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFARSVA2514",
+      "nominal": 50000000.0,
+      "currency": "TRY",
+      "source": "KAP:1452820",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFATAMK2511",
+      "nominal": 178650000.0,
+      "currency": "TRY",
+      "source": "KAP:1479885",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFBLLY42612",
+      "nominal": 800000000.0,
+      "currency": "TRY",
+      "source": "KAP:1527784",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFBUFK62612",
+      "nominal": 800000000.0,
+      "currency": "TRY",
+      "source": "KAP:1529430",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFDNZY42564",
+      "nominal": 305000000.0,
+      "currency": "TRY",
+      "source": "KAP:1382242",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFDNZY62521",
+      "nominal": 260000000.0,
+      "currency": "TRY",
+      "source": "KAP:1426836",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFDRDL22611",
+      "nominal": 230000000.0,
+      "currency": "TRY",
+      "source": "KAP:1479885",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFDRDL72517",
+      "nominal": 100000000.0,
+      "currency": "TRY",
+      "source": "KAP:1382242",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFDRDL72525",
+      "nominal": 150000000.0,
+      "currency": "TRY",
+      "source": "KAP:1392980",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFDSTK22617",
+      "nominal": 172000000.0,
+      "currency": "TRY",
+      "source": "KAP:1518991",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFDSTK32616",
+      "nominal": 150000000.0,
+      "currency": "TRY",
+      "source": "KAP:1527784",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFDYBYE2514",
+      "nominal": 70000000.0,
+      "currency": "TRY",
+      "source": "KAP:1426836",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFERCY42612",
+      "nominal": 105300000.0,
+      "currency": "TRY",
+      "source": "KAP:1513143",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFERTT62523",
+      "nominal": 130000000.0,
+      "currency": "TRY",
+      "source": "KAP:1392980",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFGDKM62712",
+      "nominal": 1000000000.0,
+      "currency": "TRY",
+      "source": "KAP:1613262",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFGZNMK2611",
+      "nominal": 185000000.0,
+      "currency": "TRY",
+      "source": "KAP:1513143",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFISFNE2615",
+      "nominal": 500000000.0,
+      "currency": "TRY",
+      "source": "KAP:1507348",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFISMD22624",
+      "nominal": 1430140000.0,
+      "currency": "TRY",
+      "source": "KAP:1518991",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFKNTF62627",
+      "nominal": 31000000.0,
+      "currency": "TRY",
+      "source": "KAP:1529430",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFLDFK62625",
+      "nominal": 100000000.0,
+      "currency": "TRY",
+      "source": "KAP:1526008",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFMARB52616",
+      "nominal": 125000000.0,
+      "currency": "TRY",
+      "source": "KAP:1438553",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFMARB52624",
+      "nominal": 341000000.0,
+      "currency": "TRY",
+      "source": "KAP:1513143",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFMKSA42517",
+      "nominal": 60000000.0,
+      "currency": "TRY",
+      "source": "KAP:1382242",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFMNGF72611",
+      "nominal": 130000000.0,
+      "currency": "TRY",
+      "source": "KAP:1529430",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFMSYN62717",
+      "nominal": 500000000.0,
+      "currency": "TRY",
+      "source": "KAP:1613262",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFNURL62610",
+      "nominal": 500000000.0,
+      "currency": "TRY",
+      "source": "KAP:1527784",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFNURL72551",
+      "nominal": 500000000.0,
+      "currency": "TRY",
+      "source": "KAP:1382242",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFNURLK2523",
+      "nominal": 650000000.0,
+      "currency": "TRY",
+      "source": "KAP:1438553",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFOYMD72518",
+      "nominal": 650000000.0,
+      "currency": "TRY",
+      "source": "KAP:1438553",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFOYMD92516",
+      "nominal": 600000000.0,
+      "currency": "TRY",
+      "source": "KAP:1452820",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFOYMDK2549",
+      "nominal": 500000000.0,
+      "currency": "TRY",
+      "source": "KAP:1498570",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFPNST92634",
+      "nominal": 111750000.0,
+      "currency": "TRY",
+      "source": "KAP:1613262",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFQNBB22633",
+      "nominal": 2635000000.0,
+      "currency": "TRY",
+      "source": "KAP:1479885",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFQNBB52614",
+      "nominal": 2075000000.0,
+      "currency": "TRY",
+      "source": "KAP:1513143",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFQNBBA2513",
+      "nominal": 2741000000.0,
+      "currency": "TRY",
+      "source": "KAP:1392980",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFQNBFK2533",
+      "nominal": 347765000.0,
+      "currency": "TRY",
+      "source": "KAP:1438553",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFSUZK22618",
+      "nominal": 200000000.0,
+      "currency": "TRY",
+      "source": "KAP:1392980",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFTERA22618",
+      "nominal": 50000000.0,
+      "currency": "TRY",
+      "source": "KAP:1452820",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFTERA72621",
+      "nominal": 170000000.0,
+      "currency": "TRY",
+      "source": "KAP:1463541",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFTVSKK2518",
+      "nominal": 50000000.0,
+      "currency": "TRY",
+      "source": "KAP:1450646",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFTVSKK2526",
+      "nominal": 250000000.0,
+      "currency": "TRY",
+      "source": "KAP:1450646",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFULFKK2611",
+      "nominal": 155000000.0,
+      "currency": "TRY",
+      "source": "KAP:1513143",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFVKFB22622",
+      "nominal": 24895617.0,
+      "currency": "TRY",
+      "source": "KAP:1513143",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFYKBK82521",
+      "nominal": 444000000.0,
+      "currency": "TRY",
+      "source": "KAP:1392980",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFYKYM22616",
+      "nominal": 902000000.0,
+      "currency": "TRY",
+      "source": "KAP:1479885",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRFYKYM42523",
+      "nominal": 195800000.0,
+      "currency": "TRY",
+      "source": "KAP:1382242",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRPPYSV12618",
+      "nominal": 90000000.0,
+      "currency": "TRY",
+      "source": "KAP:1452820",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRPPYSV22617",
+      "nominal": 85000000.0,
+      "currency": "TRY",
+      "source": "KAP:1452820",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRPTMFA62611",
+      "nominal": 212000000.0,
+      "currency": "TRY",
+      "source": "KAP:1452820",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRPTMKG32611",
+      "nominal": 1400000000.0,
+      "currency": "TRY",
+      "source": "KAP:1529430",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRPTMKG62618",
+      "nominal": 1600000000.0,
+      "currency": "TRY",
+      "source": "KAP:1529430",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRPTMKG92615",
+      "nominal": 2000000000.0,
+      "currency": "TRY",
+      "source": "KAP:1529430",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRPTMKGA2612",
+      "nominal": 2000000000.0,
+      "currency": "TRY",
+      "source": "KAP:1529430",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRPTMKV52618",
+      "nominal": 204000000.0,
+      "currency": "TRY",
+      "source": "KAP:1438553",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRPTMKV72533",
+      "nominal": 670000000.0,
+      "currency": "TRY",
+      "source": "KAP:1438553",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRPTMKV82540",
+      "nominal": 430000000.0,
+      "currency": "TRY",
+      "source": "KAP:1438553",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRPTMKVA2522",
+      "nominal": 252000000.0,
+      "currency": "TRY",
+      "source": "KAP:1438553",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRPTMKVE2536",
+      "nominal": 460000000.0,
+      "currency": "TRY",
+      "source": "KAP:1438553",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSARCL52619",
+      "nominal": 2500000000.0,
+      "currency": "TRY",
+      "source": "KAP:1438553",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSDEVAA2719",
+      "nominal": 500000000.0,
+      "currency": "TRY",
+      "source": "KAP:1526008",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSHDAK42710",
+      "nominal": 120000000.0,
+      "currency": "TRY",
+      "source": "KAP:1529430",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSHDAK52719",
+      "nominal": 110000000.0,
+      "currency": "TRY",
+      "source": "KAP:1518991",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSISFNK2711",
+      "nominal": 1000000000.0,
+      "currency": "TRY",
+      "source": "KAP:1518991",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSKCTF12719",
+      "nominal": 900000000.0,
+      "currency": "TRY",
+      "source": "KAP:1518991",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSKCTF12727",
+      "nominal": 515000000.0,
+      "currency": "TRY",
+      "source": "KAP:1526008",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSKCTF22619",
+      "nominal": 350000000.0,
+      "currency": "TRY",
+      "source": "KAP:1382242",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSKCTF22627",
+      "nominal": 425000000.0,
+      "currency": "TRY",
+      "source": "KAP:1392980",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSKCTF22718",
+      "nominal": 530000000.0,
+      "currency": "TRY",
+      "source": "KAP:1527784",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSKCTF22726",
+      "nominal": 620000000.0,
+      "currency": "TRY",
+      "source": "KAP:1529430",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSKCTF42617",
+      "nominal": 650000000.0,
+      "currency": "TRY",
+      "source": "KAP:1426836",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSKCTF62615",
+      "nominal": 650000000.0,
+      "currency": "TRY",
+      "source": "KAP:1450646",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSKCTF72614",
+      "nominal": 350000000.0,
+      "currency": "TRY",
+      "source": "KAP:1452820",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSKCTF72622",
+      "nominal": 400000000.0,
+      "currency": "TRY",
+      "source": "KAP:1463541",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSKCTF92612",
+      "nominal": 650000000.0,
+      "currency": "TRY",
+      "source": "KAP:1479885",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSKCTFA2612",
+      "nominal": 1150000000.0,
+      "currency": "TRY",
+      "source": "KAP:1513143",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSKCTFA2711",
+      "nominal": 650000000.0,
+      "currency": "TRY",
+      "source": "KAP:1613262",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSKCTFE2618",
+      "nominal": 500000000.0,
+      "currency": "TRY",
+      "source": "KAP:1498570",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSKCTFK2610",
+      "nominal": 1050000000.0,
+      "currency": "TRY",
+      "source": "KAP:1507348",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSOTKR62714",
+      "nominal": 1000000000.0,
+      "currency": "TRY",
+      "source": "KAP:1613262",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSSUMF52715",
+      "nominal": 50000000.0,
+      "currency": "TRY",
+      "source": "KAP:1518991",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSYKBKA2619",
+      "nominal": 3200000000.0,
+      "currency": "TRY",
+      "source": "KAP:1518991",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSYKFK72724",
+      "nominal": 1750000000.0,
+      "currency": "TRY",
+      "source": "KAP:1463541",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSYKYME2632",
+      "nominal": 1500000000.0,
+      "currency": "TRY",
+      "source": "KAP:1507348",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    },
+    {
+      "isin": "TRSYKYME2640",
+      "nominal": 1500000000.0,
+      "currency": "TRY",
+      "source": "KAP:1507348",
+      "as_of": null,
+      "confidence": 0.9,
+      "extraction_method": "kap-adjacency"
+    }
+  ]
+}

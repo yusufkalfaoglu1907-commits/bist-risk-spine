@@ -1,0 +1,6 @@
+# Turkish Equities KG — Phase 1 dependencies
+kuzu>=0.11,<0.12          # embedded property graph (local-first)
+kap-client>=1.1.1         # KAP disclosure layer (MIT) — used for disclosures only; see README
+httpx>=0.27               # direct calls to KAP member-list endpoint
+pydantic>=2.0             # typed models for nodes/edges
+python-dotenv>=1.0        # .env config loading

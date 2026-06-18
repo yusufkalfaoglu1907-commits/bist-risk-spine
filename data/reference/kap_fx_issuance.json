@@ -1,0 +1,30 @@
+{
+  "source": "KAP eurobond issue certificates (İhraç Belgesi)",
+  "fetched_iso": "2026-06-15",
+  "schema_version": 1,
+  "complete": false,
+  "fx_issuances": [
+    {
+      "isin": "XS2758916063",
+      "nominal": 15000000.0,
+      "currency": "USD",
+      "basis": "fx-issue-size-upper-bound",
+      "instrument_class": "XS",
+      "type": "EUROBOND",
+      "issue_date": "2024-02-02",
+      "maturity_date": "2025-02-03",
+      "source": "KAP:1246045"
+    },
+    {
+      "isin": "XS2783589844",
+      "nominal": 600000000.0,
+      "currency": "USD",
+      "basis": "fx-issue-size-upper-bound",
+      "instrument_class": "XS",
+      "type": "EUROBOND",
+      "issue_date": "2024-03-14",
+      "maturity_date": null,
+      "source": "KAP:1258577"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+[
+  {"uuid": "co-kchol", "ticker": "KCHOL", "name": "Koç Holding A.Ş.", "isin": "TRAKCHOL91Q8", "lei": "789000F2RYLW3A4FNJ32", "kap_oid": "1f0e3dad99908345f7439f8ffabdffc4", "legal_form": "Anonim Şirket", "jurisdiction": "TR", "is_listed": true},
+  {"uuid": "co-tuprs", "ticker": "TUPRS", "name": "Türkiye Petrol Rafinerileri A.Ş.", "isin": "TRATUPRS91E8", "lei": "7890003GUDS6PA8DBA56", "kap_oid": "98f13708210194c475687be6106a3b84", "legal_form": "Anonim Şirket", "jurisdiction": "TR", "is_listed": true},
+  {"uuid": "co-froto", "ticker": "FROTO", "name": "Ford Otomotiv Sanayi A.Ş.", "isin": "TRAOTOSAN91H6", "lei": "789000RCC1HFFCDS8753", "kap_oid": "3c59dc048e8850243be8079a5c74d079", "legal_form": "Anonim Şirket", "jurisdiction": "TR", "is_listed": true},
+  {"uuid": "co-toaso", "ticker": "TOASO", "name": "Tofaş Türk Otomobil Fabrikası A.Ş.", "isin": "TRATOASO91H3", "lei": "789000NCD8E5XCQTQT34", "kap_oid": "b6d767d2f8ed5d21a44b0e5886680cb9", "legal_form": "Anonim Şirket", "jurisdiction": "TR", "is_listed": true},
+  {"uuid": "co-arclk", "ticker": "ARCLK", "name": "Arçelik A.Ş.", "isin": "TRAARCLK91H5", "lei": "789000C6BL6I9CB86430", "kap_oid": "37693cfc748049e45d87b8c7d8b9aacd", "legal_form": "Anonim Şirket", "jurisdiction": "TR", "is_listed": true},
+  {"uuid": "co-aygaz", "ticker": "AYGAZ", "name": "Aygaz A.Ş.", "isin": "TRAAYGAZ91E0", "lei": "789000P3DDTRTM7QKP82", "kap_oid": "1ff1de774005f8da13f42943881c655f", "legal_form": "Anonim Şirket", "jurisdiction": "TR", "is_listed": true},
+  {"uuid": "co-ykbnk", "ticker": "YKBNK", "name": "Yapı ve Kredi Bankası A.Ş.", "isin": "TRAYKBNK91N6", "lei": "M1GVWWCXBZBROXH9TM12", "kap_oid": "8e296a067a375633700ded05f5a3bf3ec", "legal_form": "Anonim Şirket", "jurisdiction": "TR", "is_listed": true},
+  {"uuid": "co-thyao", "ticker": "THYAO", "name": "Türk Hava Yolları A.O.", "isin": "TRATHYAO91M5", "lei": "7890001PR8C4MS5EQR60", "kap_oid": "4e732ced3463d06de0ca9a15b6153677", "legal_form": "Anonim Şirket", "jurisdiction": "TR", "is_listed": true}
+]

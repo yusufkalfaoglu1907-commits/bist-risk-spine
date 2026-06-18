@@ -1,0 +1,1305 @@
+{
+  "generated_iso": "2026-06-14T18:05:30.612855+00:00",
+  "reference_source": "MKK Menkul Kıymetler Listesi (Merkezi Kayıt İstanbul), uploaded 2026-06-07",
+  "reference_tickers": 1014,
+  "summary": {
+    "targets": 142,
+    "isins_written": 11,
+    "disambiguated": 11,
+    "disambiguation_skipped": {},
+    "conflicts": 0,
+    "not_in_reference": 131,
+    "invalid_or_nonequity": 0
+  },
+  "results": [
+    {
+      "uuid": "co-8acae2c4998f24d8019a0a8c69db5b4e",
+      "ticker": "ADLVY",
+      "lei": "789000353S07MKM09014",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed705ac00eae0530a4a622b2aea",
+      "ticker": "AFB",
+      "lei": "789000HY231FVB3ZXK62",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c4998f24d8019994316c230091",
+      "ticker": "AKCVR",
+      "lei": "984500C6F13M596EA793",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed706fb00eae0530a4a622b2aea",
+      "ticker": "AKDFA",
+      "lei": "789000E80B3CKGE4EX23",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7068100eae0530a4a622b2aea",
+      "ticker": "AKFK",
+      "lei": "789000H3ZY0FEE8YTI46",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7073e00eae0530a4a622b2aea",
+      "ticker": "AKM",
+      "lei": "789000ZSYXQD4Y7YRG72",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7064e00eae0530a4a622b2aea",
+      "ticker": "AKSFA",
+      "lei": "789000DY4VXCPW0GB365",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7067900eae0530a4a622b2aea",
+      "ticker": "AKTVK",
+      "lei": "789000JDW5J7T3R9RE63",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed706fc00eae0530a4a622b2aea",
+      "ticker": "ALJF",
+      "lei": "789000DNGU3UNAFN8480",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c4794d364a0179c121fa342498",
+      "ticker": "ALNUS",
+      "lei": "7890004QRHDYT10CLI14",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c59145e00a0197bf6ea92d076e",
+      "ticker": "ARSVY",
+      "lei": "789000ZOYKJLL67WDK88",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c47f7cb492017ff86e558844ea",
+      "ticker": "ATA",
+      "lei": "789000NN12X9UZM8VS94",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c494bafc9301965707141a5b6f",
+      "ticker": "ATAVK",
+      "lei": "789000RQ44NFCOUNBC50",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7065100eae0530a4a622b2aea",
+      "ticker": "ATLFA",
+      "lei": "789000NHORT7MJ59XV33",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed705b100eae0530a4a622b2aea",
+      "ticker": "AVOD",
+      "lei": null,
+      "bist_isin": "TREAVOD00018",
+      "found": true,
+      "valid": true,
+      "disambiguated": true,
+      "method": "bist-disambiguated"
+    },
+    {
+      "uuid": "co-33e5fed7059900eae0530a4a622b2aea",
+      "ticker": "BLCYT",
+      "lei": "789000QJQOV4IFJ4EX20",
+      "bist_isin": "TREBLCY00018",
+      "found": true,
+      "valid": true,
+      "disambiguated": true,
+      "method": "bist-disambiguated"
+    },
+    {
+      "uuid": "co-8acae2c48304fe9c01845d61079d25cb",
+      "ticker": "BLKOM",
+      "lei": "789000KUSX23DCB3RR56",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c59145e00e0194e0c262b25fce",
+      "ticker": "BLS",
+      "lei": "7890002F6JMM4B4IT968",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3b01886bd3f36748da",
+      "ticker": "BNPPI",
+      "lei": null,
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7074500eae0530a4a622b2aea",
+      "ticker": "BRGAN",
+      "lei": "78900002R7HQKQX0CS57",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7071b00eae0530a4a622b2aea",
+      "ticker": "BRGFK",
+      "lei": "789000IBV00NHHY7C556",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7069800eae0530a4a622b2aea",
+      "ticker": "BRKT",
+      "lei": "789000OLFQHUEMCO1A78",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7066900eae0530a4a622b2aea",
+      "ticker": "CAGFA",
+      "lei": "789000I0C39I6BM8AN27",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c4550749770155100836c40fc3",
+      "ticker": "CLKMT",
+      "lei": "78900084V5W5YKRMGZ42",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7066c00eae0530a4a622b2aea",
+      "ticker": "DENFA",
+      "lei": "789000HEYLSTB17TIY13",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c56faf888c016fb3f6370101e1",
+      "ticker": "DENVA",
+      "lei": "7890004N4U2UMY98C776",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c55d8500f8015e9f6f54c479a9",
+      "ticker": "DFKTR",
+      "lei": "78900026AYMSJK313966",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c5819d0efb01827c2d99106c7d",
+      "ticker": "DGRVK",
+      "lei": "789000W78ZAPQK42XH98",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c59c81f7fa019e39be621036a8",
+      "ticker": "DIMES",
+      "lei": "789000S5L9FY15OQ2I84",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c4998f24d80199b82c8edf18c5",
+      "ticker": "DKVRL",
+      "lei": "7890004WGHEQTM4AUU30",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c5998f25d90199c7b9572b1fbf",
+      "ticker": "DMD",
+      "lei": "789000UEPRX1708GAD27",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c59145e00a0198a26814155c6e",
+      "ticker": "DMLKT",
+      "lei": null,
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7066d00eae0530a4a622b2aea",
+      "ticker": "DNFIN",
+      "lei": "789000N413G0IMJEDR75",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c46faf872801730e4bfb024408",
+      "ticker": "DNYVA",
+      "lei": "789000U4D889FDFRCM24",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c59b85fa03019c6517e3132eb0",
+      "ticker": "DNZEN",
+      "lei": "789000C9GKH03EO4WK14",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7058d00eae0530a4a622b2aea",
+      "ticker": "DOCO",
+      "lei": null,
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c598f767f001990ed3be370802",
+      "ticker": "DOGVY",
+      "lei": "7890001GCR39E5E8QV59",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c5830502c20185aa59a32348b1",
+      "ticker": "DRPHN",
+      "lei": null,
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c59145e00e0194089413dd2550",
+      "ticker": "DVRLK",
+      "lei": "7890003RDQTMPFZG6368",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c57d3bf001017da30c743c209e",
+      "ticker": "DYBNK",
+      "lei": "7890006594UCFDHT1U38",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c59b85fa03019c1d0f6b9779d7",
+      "ticker": "ECZIP",
+      "lei": "789000IGGS7DJEO04956",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c58b2fa64e018e5fad4abb4aa0",
+      "ticker": "EKER",
+      "lei": "789000E9AUB8I2RGTW49",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7058e00eae0530a4a622b2aea",
+      "ticker": "EKGYO",
+      "lei": "789000IA5R88NAGSC462",
+      "bist_isin": "TREEGYO00017",
+      "found": true,
+      "valid": true,
+      "disambiguated": true,
+      "method": "bist-disambiguated"
+    },
+    {
+      "uuid": "co-33e5fed7065700eae0530a4a622b2aea",
+      "ticker": "EKOFA",
+      "lei": "789000A6QGS7ZFAW4K04",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c56faf888c0171e494136217c0",
+      "ticker": "EKTVK",
+      "lei": "789000QW3O9JE2RK2G37",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c57f7cbb48018074202b3c1aa9",
+      "ticker": "EMIRV",
+      "lei": "789000LDVLWJZTDDSD18",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c4745d74d901748cc631710e68",
+      "ticker": "EMVAR",
+      "lei": "7890002IFHRWI3N5KE07",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7065800eae0530a4a622b2aea",
+      "ticker": "ERGLI",
+      "lei": "789000H6BKDG6CXU4579",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c465a51c3b01661b4ce38b29ed",
+      "ticker": "EXIMB",
+      "lei": "789000JVRVYLAXGDWR11",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed705b200eae0530a4a622b2aea",
+      "ticker": "FBB",
+      "lei": "789000VTPKJYEVGSWM35",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c59c81f7f7019c98a55bbe0ae0",
+      "ticker": "FKPET",
+      "lei": "789000YAHQKQMCWPB891",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c4550749770155100b5c0b0fc5",
+      "ticker": "GARFL",
+      "lei": "7890009KBBM2GZNFRQ58",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c48304fe9c0184aa204cb84004",
+      "ticker": "GGBVK",
+      "lei": "789000S50A0J8E8FKE55",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c57d3bf002017d6fae1c240ef1",
+      "ticker": "GSIPD",
+      "lei": null,
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c49c81f746019df1a6113d4fde",
+      "ticker": "GYVAR",
+      "lei": "7890007DCS95VAQL2X96",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c5553c6b31015631f2cd0f031f",
+      "ticker": "HALKF",
+      "lei": "789000UFZETBG8P4UZ40",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c5553c6b3501559add81d13521",
+      "ticker": "HALKI",
+      "lei": "789000Y304QQ2SY8S774",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c59145e00e0198837b4aa13e05",
+      "ticker": "HAYVK",
+      "lei": "7890006PMYNLY37GSN34",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c5830502c30184f2332d5f57bf",
+      "ticker": "HDFFL",
+      "lei": "789000KHX8WLV6A68C65",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c49145e00b01919d15b4823311",
+      "ticker": "HDFVK",
+      "lei": "789000MMEV1B1D0VLS29",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c49145e00b0192241d6c670735",
+      "ticker": "HDFYB",
+      "lei": "789000TQIQDI7VLQF627",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c45fc5ff9c01606ee5ec9936ce",
+      "ticker": "HLVKS",
+      "lei": "7890004594ZB8AAWRM67",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c4550749770155100c1bea0fc6",
+      "ticker": "HUZFA",
+      "lei": "789000XMVH6LRJDC0318",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c48b2fa25a018b65941fb018ac",
+      "ticker": "IAZ",
+      "lei": "789000OLKL51AJ19E972",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7045900eae0530a4a622b2aea",
+      "ticker": "ICB",
+      "lei": "789000E0F702OZ6WTZ16",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7075600eae0530a4a622b2aea",
+      "ticker": "ISDMR",
+      "lei": "789000W8HVAZCXF6O806",
+      "bist_isin": "TREISDC00020",
+      "found": true,
+      "valid": true,
+      "disambiguated": true,
+      "method": "bist-disambiguated"
+    },
+    {
+      "uuid": "co-8acae2c4550749770155100c558e0fc7",
+      "ticker": "ISFAK",
+      "lei": "78900067TPE5637LI553",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c48c3efabf018d9c03b05f44c0",
+      "ticker": "ISTFK",
+      "lei": "789000K6FADEO84CHC77",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c57afb2d71017c2669feed7b5c",
+      "ticker": "ISTVY",
+      "lei": "7890002EMQDUGECYO595",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c45d84ff82015ee29712317ed8",
+      "ticker": "KATVK",
+      "lei": "789000D13R7R0N4IXW83",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c5991b90af0199566961ee18c1",
+      "ticker": "KFILO",
+      "lei": "789000AJKQIBT1YUZM36",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7044f00eae0530a4a622b2aea",
+      "ticker": "KLN",
+      "lei": "789000XDO1DH4T258176",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c47afb298b017b638f347440d9",
+      "ticker": "KLVKS",
+      "lei": "7890008CAXF0Q68JQB66",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7065a00eae0530a4a622b2aea",
+      "ticker": "KNTFA",
+      "lei": "789000FU3BNTB49GSL23",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7055400eae0530a4a622b2aea",
+      "ticker": "KOCFN",
+      "lei": "789000DUD9KVS08XQX55",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed706eb00eae0530a4a622b2aea",
+      "ticker": "KORTS",
+      "lei": "7890001R97ADCPNA2231",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c49c81f743019e012460fa11f5",
+      "ticker": "KPTGY",
+      "lei": "789000D3RIW6U154CK89",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7059c00eae0530a4a622b2aea",
+      "ticker": "KRONT",
+      "lei": "78900036VY8UT22RXH75",
+      "bist_isin": "TREKRON00014",
+      "found": true,
+      "valid": true,
+      "disambiguated": true,
+      "method": "bist-disambiguated"
+    },
+    {
+      "uuid": "co-33e5fed705d600eae0530a4a622b2aea",
+      "ticker": "KSFIN",
+      "lei": "789000Z7QV10Z7EWG674",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c454f7150e0154f7bc926d0024",
+      "ticker": "KTEST",
+      "lei": null,
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7064500eae0530a4a622b2aea",
+      "ticker": "KTKVK",
+      "lei": "789000UOETNN4TR7SC41",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c45c459015015ced93c305388d",
+      "ticker": "KTSVK",
+      "lei": "7890007TZKFIKGSRWM59",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c5794d3d66017abd603b411be6",
+      "ticker": "MANAS",
+      "lei": "789000VH8OHYPOW1M172",
+      "bist_isin": "TREMANS00025",
+      "found": true,
+      "valid": true,
+      "disambiguated": true,
+      "method": "bist-disambiguated"
+    },
+    {
+      "uuid": "co-33e5fed7065f00eae0530a4a622b2aea",
+      "ticker": "MBFTR",
+      "lei": null,
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c59145e00e01973b131883759c",
+      "ticker": "MDASM",
+      "lei": "98450046D1LT0FDF5857",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c49c81f746019da99904b32a61",
+      "ticker": "MDIAZ",
+      "lei": "789000HD1KR485YCSV62",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c5830502c201860790c51f69f1",
+      "ticker": "MEKMD",
+      "lei": "549300R0ZX1E7MISH129",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed705ce00eae0530a4a622b2aea",
+      "ticker": "MERIT",
+      "lei": "789000W00G2Q7F441M66",
+      "bist_isin": "TREMRTT00016",
+      "found": true,
+      "valid": true,
+      "disambiguated": true,
+      "method": "bist-disambiguated"
+    },
+    {
+      "uuid": "co-8acae2c59c81f7f7019db3d849174fc6",
+      "ticker": "METEN",
+      "lei": "789000MMLYXGK47DCI31",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c49e4a234b019e4e5b286c033f",
+      "ticker": "MILKS",
+      "lei": "789000W1K176HJ5QK492",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c5998f25d7019ae2e7639072f8",
+      "ticker": "MINTF",
+      "lei": "789000F17V25MYL3OY78",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed705b000eae0530a4a622b2aea",
+      "ticker": "MMCAS",
+      "lei": "789000OV45P7YOH2GW94",
+      "bist_isin": "TREGNTR00011",
+      "found": true,
+      "valid": true,
+      "disambiguated": true,
+      "method": "bist-disambiguated"
+    },
+    {
+      "uuid": "co-8acae2c494bafc930196fbf9f82e7744",
+      "ticker": "MNGFA",
+      "lei": "98450044F1C65Y2C9962",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c5812b84a401816b26de6616fd",
+      "ticker": "MRBAS",
+      "lei": "7890007LK5OFI753CK19",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c486d22a3b0187287001593927",
+      "ticker": "MRBKF",
+      "lei": "789000C389WYVEI52069",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c586d22c5101875aa5e4245c38",
+      "ticker": "MRMAG",
+      "lei": "789000Q5HOSGKPXYUR21",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c49145e00b0194b6a08cb72ddc",
+      "ticker": "MSY",
+      "lei": "7890001EMBM86WCUYK18",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7067600eae0530a4a622b2aea",
+      "ticker": "NRBNK",
+      "lei": "789000FCI412SY8ENP13",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c45fc5ff9d0161049e220c12da",
+      "ticker": "NURVK",
+      "lei": "789000X34IW5YDSZXF17",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7061700eae0530a4a622b2aea",
+      "ticker": "ODAS",
+      "lei": "7890002IRSRY2Q3CID69",
+      "bist_isin": "TREODAS00014",
+      "found": true,
+      "valid": true,
+      "disambiguated": true,
+      "method": "bist-disambiguated"
+    },
+    {
+      "uuid": "co-33e5fed705ba00eae0530a4a622b2aea",
+      "ticker": "OMD",
+      "lei": "789000A78TPDGREZSN84",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c55fc601110161c16bc9e56c8a",
+      "ticker": "OPET",
+      "lei": "213800I7W6GACPT4JV71",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7066100eae0530a4a622b2aea",
+      "ticker": "ORFIN",
+      "lei": "789000ZB9QP6M8Z9I709",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c49c81f743019cd151c08f52ad",
+      "ticker": "OSVKS",
+      "lei": "789000ME66RZOU2X6E74",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c58b2fa64e018b898cfa8e3c4e",
+      "ticker": "OTOSR",
+      "lei": "789000YM1DC9QZ0ROR74",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c457f513cd015800128edc06bd",
+      "ticker": "PBT",
+      "lei": "789000LASBHYXXZ0UM63",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c47d3bee50017f0134898c3466",
+      "ticker": "PNLSN",
+      "lei": "789000WX5H5ZKQ40UH25",
+      "bist_isin": "TREPNLS00017",
+      "found": true,
+      "valid": true,
+      "disambiguated": true,
+      "method": "bist-disambiguated"
+    },
+    {
+      "uuid": "co-8acae2c48c3efac0018e83d66f6046b8",
+      "ticker": "PRFFK",
+      "lei": "789000E3AD4MKP2JJ767",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7068200eae0530a4a622b2aea",
+      "ticker": "QNBFF",
+      "lei": "789000ZQ1F4GRSV2W302",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c469cee2a2016b56690e143cce",
+      "ticker": "QNBVK",
+      "lei": "789000P1DTT9LSJ4PR20",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c48b2fa25a018b605bcf9513f5",
+      "ticker": "QUFIN",
+      "lei": "789000B8V9OEDACTPY51",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c59145e00e0192b9d8da686c12",
+      "ticker": "QYATB",
+      "lei": "789000H3M2XMH4WOA920",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c48304fe9e018562231a1c14ce",
+      "ticker": "QYHOL",
+      "lei": "789000I5A7L4WLZ4YH35",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed705bd00eae0530a4a622b2aea",
+      "ticker": "SANFM",
+      "lei": null,
+      "bist_isin": "TRESNFM00016",
+      "found": true,
+      "valid": true,
+      "disambiguated": true,
+      "method": "bist-disambiguated"
+    },
+    {
+      "uuid": "co-33e5fed7044700eae0530a4a622b2aea",
+      "ticker": "SEK",
+      "lei": "549300WFSFBN7NQX3Q33",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c45d84ff82015ea94c21986c6f",
+      "ticker": "SKY",
+      "lei": "789000IVZ34WLES17O63",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7070300eae0530a4a622b2aea",
+      "ticker": "SMRFA",
+      "lei": "789000X6MDS8OGZUF603",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7075300eae0530a4a622b2aea",
+      "ticker": "TAC",
+      "lei": "7890006RPP7KOZYBJ340",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c59145e00e01928ef2d7925ba7",
+      "ticker": "TAE",
+      "lei": "789000OS9LB25B2WHU53",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7067100eae0530a4a622b2aea",
+      "ticker": "TAMFA",
+      "lei": "789000KE26I2A4C0CN40",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c47f7cb491017f982f34350d6e",
+      "ticker": "TEBFA",
+      "lei": "789000H7CLUP3W6ODL02",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c59b85fa03019c65183baf2eb4",
+      "ticker": "TEVKS",
+      "lei": "7890002UY6XMAEEP6761",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7060800eae0530a4a622b2aea",
+      "ticker": "TFNVK",
+      "lei": "635400BL7XGTQHK8HM19",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7073300eae0530a4a622b2aea",
+      "ticker": "TIMUR",
+      "lei": "789000BCESGE4A7IUR69",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7072a00eae0530a4a622b2aea",
+      "ticker": "TRFFA",
+      "lei": null,
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c586d22c53018b27c2a8c86121",
+      "ticker": "TRKFN",
+      "lei": "7890000NKTNUVSMGGO67",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c48c3efabf018d11067cbd011b",
+      "ticker": "TRKNT",
+      "lei": "7890009AIBO9QTGD3831",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c57afb2d71017c3aa409120348",
+      "ticker": "TRMEN",
+      "lei": "789000KDZPQJMKF0Z448",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7071a00eae0530a4a622b2aea",
+      "ticker": "TRYKI",
+      "lei": "549300WMXSGX1C9FLY81",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7045100eae0530a4a622b2aea",
+      "ticker": "TSK",
+      "lei": "549300MFCXK5HOOEWP84",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c48c3efac001906d8608eb557a",
+      "ticker": "TV8TV",
+      "lei": "789000HU3V37U5J24946",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7054300eae0530a4a622b2aea",
+      "ticker": "TVB",
+      "lei": "789000KAIHOLSQKQ9858",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c55c45918c015d5010d20668ad",
+      "ticker": "VAKVK",
+      "lei": "7890005C2RHSMJGAQU39",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c4553c69ec01555406af9f093c",
+      "ticker": "VDFAS",
+      "lei": "529900H2QI9WGGEF7277",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c48304fe9c01860200a86a6d27",
+      "ticker": "VDFLO",
+      "lei": "7890007SS6WO14XL7G72",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c46e7fdc6a016f56ea368d3dc4",
+      "ticker": "YATVK",
+      "lei": "7890004JPWTGOER2MD02",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7047e00eae0530a4a622b2aea",
+      "ticker": "YKB",
+      "lei": "B85ZYWEZ5IZCZ2WNIO12",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7047a00eae0530a4a622b2aea",
+      "ticker": "YKFIN",
+      "lei": "7890006A2EF7UABLGZ05",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed706ae00eae0530a4a622b2aea",
+      "ticker": "YKFKT",
+      "lei": "789000THRHGRI4JYBZ48",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7075900eae0530a4a622b2aea",
+      "ticker": "YKR",
+      "lei": null,
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-33e5fed7076b00eae0530a4a622b2aea",
+      "ticker": "ZKBVK",
+      "lei": "789000NE04RSMGOX9737",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    },
+    {
+      "uuid": "co-8acae2c465a51c3b0167ea9e354a6ff7",
+      "ticker": "ZKBVR",
+      "lei": "789000R6Z9HR1RXMO121",
+      "bist_isin": null,
+      "found": false,
+      "valid": false,
+      "method": "not-in-reference"
+    }
+  ]
+}
