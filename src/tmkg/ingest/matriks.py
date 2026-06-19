@@ -186,6 +186,94 @@ class MatriksAdapter(IngestionAdapter):
                 f"Matriks {tool}: unexpected envelope shape: {str(envelope)[:200]}"
             ) from e
 
+    # --- parsers (M1: bars + corporate actions -> L2-shaped rows) ---------
+    @staticmethod
+    def parse_bars(payload: dict, *, symbol: str | None = None) -> list[dict]:
+        """``historicalData`` payload -> ``prices``-schema rows (no L2 write here).
+
+        Accepts both the equity shape (``allBars`` with full OHLCV) and the FX/index
+        shape (``bars`` with date+close only — USDTRY has no turnover, legit). Missing
+        OHLC fields become ``None``, never a fabricated value. ``knowledge_date`` =
+        ``bar_date`` (a daily close is known end-of-that-day). ``adjusted`` carries the
+        vendor flag through so the return constructor knows the basis (W7 back-adjusted).
+        """
+        sym = symbol or payload.get("symbol")
+        if sym is None:
+            raise ContractDrift("parse_bars: no symbol on payload and none supplied")
+        bars = payload.get("allBars")
+        if bars is None:
+            bars = payload.get("bars")
+        if bars is None:
+            raise ContractDrift("parse_bars: payload has neither 'allBars' nor 'bars'")
+        adjusted = payload.get("period", {}).get("adjusted")
+        rows = []
+        for b in bars:
+            d = b.get("date")
+            if not d:
+                continue  # blank bar date -> drop, never guess (§4)
+            rows.append(
+                {
+                    "symbol": sym,
+                    "bar_date": d,
+                    "open": b.get("open"),
+                    "high": b.get("high"),
+                    "low": b.get("low"),
+                    "close": b.get("close"),
+                    "volume_try": b.get("volume"),
+                    "quantity": b.get("quantity"),
+                    "adjusted": adjusted,
+                    "is_limit_lock": False,
+                    "is_stale": False,
+                    "knowledge_date": d,
+                    "source": MatriksAdapter.source_name,
+                }
+            )
+        return rows
+
+    @staticmethod
+    def parse_corporate_actions(payload: dict) -> dict:
+        """``fundamentalAnalysis`` (``dividendsCapital``) payload -> a structured
+        corporate-action record. Blank/garbage ex-date strings are **dropped and
+        counted** (``refused_*``), never coerced to a guessed date — the golden
+        sample warns some ``capital_increase`` rows carry empty ex-dates.
+
+        Returns ``{symbol, capital_increase_exdates, dividends, refused_capital,
+        refused_dividend}``. ``dividends`` items keep ``ex_date, gross, net, unit``.
+        """
+        sym = payload.get("symbol")
+        cap_in = payload.get("capital_increases_exdates", []) or []
+        cap_out, refused_cap = [], 0
+        for ex in cap_in:
+            if isinstance(ex, str) and ex.strip():
+                cap_out.append(ex.strip())
+            else:
+                refused_cap += 1
+
+        div_in = []
+        for key in ("dividends", "dividends_2024", "dividends_2023"):
+            div_in += payload.get(key, []) or []
+        div_out, refused_div = [], 0
+        for d in div_in:
+            ex = (d.get("exDividend") or d.get("exDate") or "").strip()
+            if not ex:
+                refused_div += 1
+                continue
+            div_out.append(
+                {
+                    "ex_date": ex,
+                    "gross": d.get("gross"),
+                    "net": d.get("net"),
+                    "unit": d.get("unit"),
+                }
+            )
+        return {
+            "symbol": sym,
+            "capital_increase_exdates": cap_out,
+            "dividends": div_out,
+            "refused_capital": refused_cap,
+            "refused_dividend": refused_div,
+        }
+
     # --- drift guard (M0 [STOP] gate) -------------------------------------
     def smoke_check(self) -> None:
         """Re-fetch the golden samples and prove the live data path (scripts/
