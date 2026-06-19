@@ -1,0 +1,46 @@
+{
+  "_provenance": {
+    "source": "Matriks MCP (server 3181c780-dca2-497f-9514-81cfb8540278)",
+    "tool": "historicalData",
+    "params": {"symbol": "ASELS", "startDate": "2023-08-15", "endDate": "2023-09-05", "interval": "daily", "rawBars": true, "limit": 20, "includeBenchmark": true, "includeStatistics": false},
+    "captured_at": "2026-06-19",
+    "currency": "TRY"
+  },
+  "_golden_master": {
+    "backs": "M1 corporate-action back-adjustment — second example (different year/sector)",
+    "corporate_action": "ASELS Bedelli Sermaye Artırımı (rights issue), ex-date 2023-08-25 (confirmed via corpactions_EREGL_ASELS.json)",
+    "expected_behavior": "Back-adjusted across the 2023-08-25 ex-date: close 2023-08-24=36.82293 -> 2023-08-25=37.5992 (a normal up move), no rights-ratio gap. Confirms the W7 finding generalizes beyond EREGL."
+  },
+  "data": {
+    "symbol": "ASELS",
+    "interval": "daily",
+    "currency": "TRY",
+    "period": {"start": "2023-08-15", "end": "2023-09-05", "tradingDays": 15, "adjusted": false},
+    "summary": {"firstPrice": 39.31097, "lastPrice": 38.31576, "totalReturnPercent": -2.53, "vwap": 37.62},
+    "allBars": [
+      {"date": "2023-08-15", "open": 38.86312, "high": 39.75882, "low": 38.11671, "close": 39.31097, "volume": 3892358715, "quantity": 99714242.3712},
+      {"date": "2023-08-16", "open": 37.96743, "high": 38.36552, "low": 37.07174, "close": 37.07174, "volume": 5124175177, "quantity": 136750578.67961},
+      {"date": "2023-08-17", "open": 37.66887, "high": 37.71863, "low": 36.87269, "close": 36.87269, "volume": 3421495443, "quantity": 91702688.44804},
+      {"date": "2023-08-18", "open": 36.94734, "high": 37.2459, "low": 34.80762, "close": 35.15595, "volume": 3428335000, "quantity": 95409047.5217},
+      {"date": "2023-08-21", "open": 34.90715, "high": 37.09662, "low": 34.73298, "close": 36.74829, "volume": 3732404732, "quantity": 103558489.31815},
+      {"date": "2023-08-22", "open": 36.74829, "high": 36.92246, "low": 35.90236, "close": 36.42485, "volume": 2546457040, "quantity": 69918763.75837},
+      {"date": "2023-08-23", "open": 36.47461, "high": 37.17126, "low": 36.07652, "close": 36.20092, "volume": 3839381510, "quantity": 104927269.72474},
+      {"date": "2023-08-24", "open": 36.32533, "high": 38.48992, "low": 36.32533, "close": 36.82293, "volume": 7008140470, "quantity": 187294952.76818},
+      {"date": "2023-08-25", "open": 36.82293, "high": 38.19633, "low": 36.52437, "close": 37.5992, "volume": 3123571943, "quantity": 83753716.01353, "_note": "rights-issue ex-date — no gap, back-adjusted"},
+      {"date": "2023-08-28", "open": 37.91767, "high": 39.41049, "low": 37.91767, "close": 39.17164, "volume": 4469307995, "quantity": 115139220.82212},
+      {"date": "2023-08-29", "open": 39.23135, "high": 39.60953, "low": 38.0769, "close": 38.45509, "volume": 2468987701, "quantity": 63600173.64705},
+      {"date": "2023-08-31", "open": 38.5148, "high": 39.31097, "low": 38.21623, "close": 38.33566, "volume": 3975468716, "quantity": 102864553.43325},
+      {"date": "2023-09-01", "open": 38.5347, "high": 39.15174, "low": 38.25604, "close": 38.5347, "volume": 2729252318, "quantity": 70527199.47548},
+      {"date": "2023-09-04", "open": 38.81336, "high": 39.11193, "low": 38.21623, "close": 38.37547, "volume": 3132554900, "quantity": 80716931.24049},
+      {"date": "2023-09-05", "open": 38.37547, "high": 38.39537, "low": 37.65891, "close": 38.31576, "volume": 2112616054, "quantity": 55565394.57812}
+    ],
+    "benchmark": {
+      "symbolReturn": -2.53,
+      "comparisons": [
+        {"benchmark": "USDTRY", "benchmarkReturn": -1.04, "correlation": -0.041, "beta": -0.07},
+        {"benchmark": "XU100", "benchmarkReturn": 7.09, "correlation": 0.715, "beta": 1.0},
+        {"benchmark": "GLDGR", "benchmarkReturn": 0.18, "correlation": -0.007, "beta": -0.01}
+      ]
+    }
+  }
+}

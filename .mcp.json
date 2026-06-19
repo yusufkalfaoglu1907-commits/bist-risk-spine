@@ -1,0 +1,13 @@
+{
+  "$comment": "OPTIONAL — interactive Matriks MCP for the Claude Code agent (header-auth /mcp endpoint, the Cursor/Antigravity recipe per Matriks_MCP_Dokumani.pdf — NOT the /claude OAuth endpoint). The INGESTION adapter uses the REST API instead (Python can't call MCP tools). SAFE TO COMMIT: no literal secret. Claude Code expands ${VARS} from the shell env, NOT from .env — run `set -a && source .env && set +a` before `claude`, or use `claude mcp add` with literal --header values (see M0_TASKS.md T1).",
+  "mcpServers": {
+    "matriks-finance": {
+      "type": "http",
+      "url": "https://mcp.matriks.ai/mcp",
+      "headers": {
+        "X-Client-ID": "${MATRIKS_USERNAME}",
+        "X-API-Key": "${MATRIKS_API_KEY}"
+      }
+    }
+  }
+}

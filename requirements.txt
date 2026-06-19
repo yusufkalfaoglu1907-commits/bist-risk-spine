@@ -4,3 +4,14 @@ kap-client>=1.1.1         # KAP disclosure layer (MIT) — used for disclosures 
 httpx>=0.27               # direct calls to KAP member-list endpoint
 pydantic>=2.0             # typed models for nodes/edges
 python-dotenv>=1.0        # .env config loading
+
+# --- v2 alpha system (L2 quant store + L3 signal layer) ---
+duckdb>=1.0          # L2 quant store (embedded, columnar, local-first)
+pyarrow>=16          # Parquet I/O for L2
+polars>=1.0          # fast dataframes for L3
+pandas>=2.0
+numpy>=1.26
+scipy>=1.11
+statsmodels>=0.14    # factor regressions, event studies
+scikit-learn>=1.4    # Ledoit-Wolf shrinkage, graphical lasso
+networkx>=3.2        # PMFG / MST residual-network filtering

@@ -1,0 +1,64 @@
+{
+  "_provenance": {
+    "source": "Matriks MCP (server 3181c780-dca2-497f-9514-81cfb8540278)",
+    "tool": "historicalData",
+    "params": [
+      {"symbol": "USDTRY", "startDate": "2024-11-01", "endDate": "2024-12-05", "interval": "daily", "rawBars": true},
+      {"symbol": "XU100", "startDate": "2024-11-01", "endDate": "2024-12-05", "interval": "daily", "rawBars": true}
+    ],
+    "captured_at": "2026-06-19"
+  },
+  "_golden_master": {
+    "backs": "M2 factor-series sanity. Core factors USD/TRY and BIST100 must align day-by-day with these.",
+    "expected_behavior": "USDTRY is an FX rate: volume=0 and vwap=0 are EXPECTED (no turnover on a rate) — the build agent must not treat zero volume as a staleness/error flag for factor series. XU100 carries real turnover. Both align on the same trading-day calendar as the equity bars (e.g. EREGL) for the overlapping window 2024-11-20..2024-12-05."
+  },
+  "USDTRY": {
+    "period": {"start": "2024-11-01", "end": "2024-12-05", "tradingDays": 25, "adjusted": false},
+    "note": "FX rate — volume/vwap legitimately 0",
+    "bars": [
+      {"date": "2024-11-01", "close": 34.3286}, {"date": "2024-11-04", "close": 34.3445},
+      {"date": "2024-11-05", "close": 34.3085}, {"date": "2024-11-06", "close": 34.19985},
+      {"date": "2024-11-07", "close": 34.21918}, {"date": "2024-11-08", "close": 34.3624},
+      {"date": "2024-11-11", "close": 34.3352}, {"date": "2024-11-12", "close": 34.3634},
+      {"date": "2024-11-13", "close": 34.358}, {"date": "2024-11-14", "close": 34.3348},
+      {"date": "2024-11-15", "close": 34.6}, {"date": "2024-11-18", "close": 34.55717},
+      {"date": "2024-11-19", "close": 34.4845}, {"date": "2024-11-20", "close": 34.46598},
+      {"date": "2024-11-21", "close": 34.4862}, {"date": "2024-11-22", "close": 34.52028},
+      {"date": "2024-11-25", "close": 34.5711}, {"date": "2024-11-26", "close": 34.645},
+      {"date": "2024-11-27", "close": 34.63908}, {"date": "2024-11-28", "close": 34.6002},
+      {"date": "2024-11-29", "close": 34.7025}, {"date": "2024-12-02", "close": 34.71442},
+      {"date": "2024-12-03", "close": 34.7339}, {"date": "2024-12-04", "close": 34.72834},
+      {"date": "2024-12-05", "close": 34.6841}
+    ]
+  },
+  "XU100": {
+    "period": {"start": "2024-11-01", "end": "2024-12-05", "tradingDays": 25, "adjusted": false},
+    "bars": [
+      {"date": "2024-11-01", "close": 8885, "volume": 76063538737.41},
+      {"date": "2024-11-04", "close": 8663.87988, "volume": 68073110309.65},
+      {"date": "2024-11-05", "close": 8618.57031, "volume": 67783839046.55},
+      {"date": "2024-11-06", "close": 8862.32031, "volume": 97836340383.3},
+      {"date": "2024-11-07", "close": 8946.12988, "volume": 79567009137.36},
+      {"date": "2024-11-08", "close": 9184.82031, "volume": 100053272004.91},
+      {"date": "2024-11-11", "close": 9276.78027, "volume": 96039909643.34},
+      {"date": "2024-11-12", "close": 9226.86035, "volume": 85164919384.94},
+      {"date": "2024-11-13", "close": 9300.2998, "volume": 109154165659.56},
+      {"date": "2024-11-14", "close": 9420.41992, "volume": 88805361259.24},
+      {"date": "2024-11-15", "close": 9389.62012, "volume": 85449561870.38},
+      {"date": "2024-11-18", "close": 9395.38965, "volume": 80756336670.97},
+      {"date": "2024-11-19", "close": 9232.90039, "volume": 92159494069.73},
+      {"date": "2024-11-20", "close": 9031.82031, "volume": 83768785307.38},
+      {"date": "2024-11-21", "close": 9367.76953, "volume": 103359189835},
+      {"date": "2024-11-22", "close": 9549.88965, "volume": 119747558346.46},
+      {"date": "2024-11-25", "close": 9659.95996, "volume": 124985215295.44},
+      {"date": "2024-11-26", "close": 9636.12012, "volume": 92250168046.42},
+      {"date": "2024-11-27", "close": 9639.76953, "volume": 99086804936.89},
+      {"date": "2024-11-28", "close": 9640.08008, "volume": 83659958617.52},
+      {"date": "2024-11-29", "close": 9652, "volume": 113582368847.69},
+      {"date": "2024-12-02", "close": 9681.11035, "volume": 80851992390.32},
+      {"date": "2024-12-03", "close": 9827.23047, "volume": 108873641636.34},
+      {"date": "2024-12-04", "close": 9886.0498, "volume": 103924336418.03},
+      {"date": "2024-12-05", "close": 9935.95996, "volume": 82483210883.66}
+    ]
+  }
+}

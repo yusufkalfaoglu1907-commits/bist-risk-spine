@@ -1,0 +1,31 @@
+{
+  "_provenance": {
+    "source": "Matriks MCP (server 3181c780-dca2-497f-9514-81cfb8540278)",
+    "tool": "newsAndEvents",
+    "params": {"category": ["SIYASET", "EKONOMI"], "count": 8, "compactMode": true, "includeNews": true},
+    "captured_at": "2026-06-19",
+    "QUIRK": "category=['SIYASET','EKONOMI'] did NOT strictly filter — the response mixed SIRKET/KAP, GENEL, and EKONOMI items. The build agent must not assume the category param hard-filters; filter client-side after fetch if strict categories are needed for the event engine."
+  },
+  "_golden_master": {
+    "backs": "M6 geopolitical event engine — the raw news/KAP feed shape (id, headline, date, timestamp, source[], category[], symbol[], isFlash). Sources span KAP / MATRIKS / AA / REUTERS.",
+    "notes": [
+      "KAP filings arrive here too (e.g. 'Sirket Genel Bilgi Formu', 'Ozel Durum Aciklamasi') — same feed the v1 KAP layer reads, now timestamped.",
+      "A 'BISTECH Devre Kesici Uygulamasi' (circuit-breaker) KAP item appears (symbol YAYLA) — relevant to limit-lock/halt detection (M1).",
+      "A geopolitical headline (Trump/Iran) tagged GENEL is the kind of SIYASET/DUNYA item the event taxonomy must classify.",
+      "timestamp is epoch-ms; date is YYYY-MM-DD."
+    ]
+  },
+  "data": {
+    "count": 10,
+    "items": [
+      {"id": "6532836", "headline": "KAP: ELP BTCTURK YATIRIM MENKUL DEGERLER A.S. Sirket Genel Bilgi Formu", "date": "2026-06-19", "timestamp": 1781873344164, "source": ["KAP"], "category": ["SIRKET", "COMPANY"], "isFlash": false},
+      {"id": "6532829", "headline": "KAP: EUKYO EURO KAPITAL YATIRIM ORTAKLIGI A.S. Ozel Durum Aciklamasi (Genel)", "date": "2026-06-19", "timestamp": 1781873126908, "source": ["KAP"], "category": ["SIRKET", "COMPANY"], "symbol": ["EUKYO"], "isFlash": false},
+      {"id": "6532822", "headline": "Belcika'da asiri sicaklik ve siddetli firtina nedeniyle 'turuncu alarm' verildi", "date": "2026-06-19", "timestamp": 1781872936908, "source": ["AA"], "category": ["GENEL", "GENERAL"], "isFlash": false},
+      {"id": "6532821", "headline": "Takasbank Para Piyasasi'nda bugun 74 milyar 12 milyon TL'lik islem hacmi gerceklesti", "date": "2026-06-19", "timestamp": 1781872933572, "source": ["MATRIKS"], "category": ["SIRKET", "COMPANY"], "isFlash": false},
+      {"id": "6532820", "headline": "Trump: ... Iran gorustu. ... 60 gunluk sureci sonuna kadar isleteceğiz ...", "date": "2026-06-19", "timestamp": 1781872931448, "source": ["MATRIKS"], "category": ["GENEL", "GENERAL"], "isFlash": false},
+      {"id": "6532813", "headline": "Capital Economics/Peach: Turkiye ekonomisi cok daha dusuk buyume oranlarinin gorulecegi bir doneme girdi", "date": "2026-06-19", "timestamp": 1781872831755, "source": ["MATRIKS"], "category": ["EKONOMI", "ECONOMY"], "isFlash": false},
+      {"id": "6532811", "headline": "KAP: BORSA ISTANBUL BISTECH DEVRE KESICI UYGULAMASI (circuit breaker)", "date": "2026-06-19", "timestamp": 1781872755385, "source": ["KAP"], "category": ["SIRKET", "COMPANY"], "symbol": ["YAYLA"], "isFlash": false}
+    ],
+    "summary": {"totalNews": 10, "kapAnnouncements": 6, "flashNews": 0}
+  }
+}

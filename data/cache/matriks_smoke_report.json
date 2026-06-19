@@ -1,0 +1,31 @@
+{
+  "_written_at": "2026-06-19T20:52:21",
+  "source": "matriks",
+  "transport": "rest",
+  "rest_url": "https://mcp.matriks.ai/mcp-api/v1",
+  "value_matched": [
+    "ohlcv_ASELS_2023-08.json",
+    "ohlcv_EREGL_2024-11.json"
+  ],
+  "reachable_only": [
+    "declaration_dates_KCHOL.json",
+    "foreign_flow_GARAN_monthly.json",
+    "news_sample_2026-06-19.json",
+    "universe_bist30.json"
+  ],
+  "skipped": [
+    {
+      "file": "accounting_regime_KCHOL_202412.json",
+      "reason": "composite/curated multi-call anchor (M1/M2)"
+    },
+    {
+      "file": "corpactions_EREGL_ASELS.json",
+      "reason": "composite/curated multi-call anchor (M1/M2)"
+    },
+    {
+      "file": "factors_USDTRY_XU100_2024-11.json",
+      "reason": "composite/curated multi-call anchor (M1/M2)"
+    }
+  ],
+  "drift": []
+}

@@ -1,0 +1,45 @@
+{
+  "_provenance": {
+    "source": "Matriks MCP (server 3181c780-dca2-497f-9514-81cfb8540278)",
+    "tool": "historicalData",
+    "params": {"symbol": "EREGL", "startDate": "2024-11-20", "endDate": "2024-12-05", "interval": "daily", "rawBars": true, "limit": 15, "includeBenchmark": true, "includeStatistics": false},
+    "captured_at": "2026-06-19",
+    "captured_in": "Cowork session (pre-M0). Re-fetch in Claude Code's M0 smoke test must match.",
+    "currency": "TRY"
+  },
+  "_golden_master": {
+    "backs": "M1 corporate-action back-adjustment / VERIFICATION.md total-return reconciliation",
+    "corporate_action": "EREGL Bedelli Sermaye Artırımı (rights issue), ex-date 2024-11-27 (confirmed via corpactions_EREGL_ASELS.json)",
+    "expected_behavior": "The series is BACK-ADJUSTED across the rights ex-date: close 2024-11-26=24.48255 -> 2024-11-27=24.14048 is a normal -1.40% move, NOT a rights-ratio gap. The period flag adjusted=false does NOT mean raw bars (it means dividends-not-reinvested). The M1 test must assert no fake gap on the ex-date and that total-return construction adds cash dividends on top of these back-adjusted bars.",
+    "note": "avgVolume/volume are in TRY (turnover); quantity is shares."
+  },
+  "data": {
+    "symbol": "EREGL",
+    "interval": "daily",
+    "currency": "TRY",
+    "period": {"start": "2024-11-20", "end": "2024-12-05", "tradingDays": 12, "adjusted": false},
+    "summary": {"firstPrice": 23.44657, "lastPrice": 25.33285, "totalReturnPercent": 8.05, "vwap": 24.77},
+    "allBars": [
+      {"date": "2024-11-20", "open": 24.27731, "high": 24.38482, "low": 23.37815, "close": 23.44657, "volume": 3401408854.62, "quantity": 141845970.47346},
+      {"date": "2024-11-21", "open": 23.60294, "high": 24.40437, "low": 23.53453, "close": 24.33595, "volume": 4615160775.6, "quantity": 192728154.65831},
+      {"date": "2024-11-22", "open": 24.32618, "high": 24.60472, "low": 24.19912, "close": 24.48255, "volume": 5403304441.29, "quantity": 221347072.41585},
+      {"date": "2024-11-25", "open": 24.65359, "high": 25.0201, "low": 24.45812, "close": 24.77576, "volume": 4434218283.05, "quantity": 179007642.89844},
+      {"date": "2024-11-26", "open": 24.77576, "high": 24.77576, "low": 24.32618, "close": 24.48255, "volume": 2817896854.35, "quantity": 114840523.85528},
+      {"date": "2024-11-27", "open": 24.72689, "high": 24.86372, "low": 24.0623, "close": 24.14048, "volume": 2664781482.74, "quantity": 109191230.28741, "_note": "rights-issue ex-date — no gap, back-adjusted"},
+      {"date": "2024-11-28", "open": 24.12094, "high": 24.72689, "low": 24.0623, "close": 24.6487, "volume": 3413417647.44, "quantity": 139557659.532},
+      {"date": "2024-11-29", "open": 24.6487, "high": 25.35239, "low": 24.49233, "close": 25.19602, "volume": 4999807621.48, "quantity": 201639162.16972},
+      {"date": "2024-12-02", "open": 25.09828, "high": 25.68469, "low": 25.0201, "close": 25.45013, "volume": 4065582518.1, "quantity": 159777242.43811},
+      {"date": "2024-12-03", "open": 25.46968, "high": 25.76288, "low": 25.25466, "close": 25.41104, "volume": 3705627073.02, "quantity": 144771823.32691},
+      {"date": "2024-12-04", "open": 25.50877, "high": 25.76288, "low": 25.43058, "close": 25.50877, "volume": 3828536348.1, "quantity": 149439660.46245},
+      {"date": "2024-12-05", "open": 25.60651, "high": 25.70424, "low": 25.23511, "close": 25.33285, "volume": 2716684718.18, "quantity": 106466467.62762}
+    ],
+    "benchmark": {
+      "symbolReturn": 8.05,
+      "comparisons": [
+        {"benchmark": "USDTRY", "benchmarkReturn": 0.63, "correlation": 0.15, "beta": 1.84},
+        {"benchmark": "XU100", "benchmarkReturn": 10.01, "correlation": 0.556, "beta": 0.75},
+        {"benchmark": "GLDGR", "benchmarkReturn": -0.04, "correlation": 0.078, "beta": 0.09}
+      ]
+    }
+  }
+}

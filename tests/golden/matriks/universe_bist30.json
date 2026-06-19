@@ -1,0 +1,20 @@
+{
+  "_provenance": {
+    "source": "Matriks MCP (server 3181c780-dca2-497f-9514-81cfb8540278)",
+    "tool": "symbolSearch",
+    "params": {"operation": "indexSymbols", "index": "bist_30", "includeDetails": true},
+    "captured_at": "2026-06-19",
+    "note": "indexSymbols returns symbols only (no per-name details despite includeDetails). For details use operation='metaSymbols' or stockProfile per name."
+  },
+  "_golden_master": {
+    "backs": "Universe + id-bridge anchor (M0) and universe_class segmentation (design §4.3). A small, liquid, representative cross-section that includes the segmentation edge cases.",
+    "universe_class_hints": "EKGYO -> gyo_reit; KCHOL, SAHOL -> holding (ENKAI, SISE are conglomerates to review); DSTKF, TRALT -> likely fund/etf (verify — F-suffixed codes are often funds); banks (AKBNK, GARAN, ISCTR, VAKBN, YKBNK) report on a bank template (no COGS — see accounting_regime sample). DO NOT hardcode classes — derive at ingestion and store on Security.universe_class; this list is only for cross-checking that derivation.",
+    "id_bridge_anchors": "EREGL, ASELS, KCHOL, GARAN all resolve here and have golden samples in this folder; use them to test ticker<->ISIN<->mkkMemberOid<->LEI round-trips against the v1 graph."
+  },
+  "data": {
+    "index": "bist_30",
+    "indexName": "BIST 30",
+    "totalSymbols": 30,
+    "symbols": ["AEFES", "AKBNK", "ASELS", "ASTOR", "BIMAS", "DSTKF", "EKGYO", "ENKAI", "EREGL", "FROTO", "GARAN", "GUBRF", "ISCTR", "KCHOL", "KRDMD", "MGROS", "PETKM", "PGSUS", "SAHOL", "SASA", "SISE", "TAVHL", "TCELL", "THYAO", "TOASO", "TRALT", "TTKOM", "TUPRS", "VAKBN", "YKBNK"]
+  }
+}

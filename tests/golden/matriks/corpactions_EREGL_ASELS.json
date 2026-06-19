@@ -1,0 +1,32 @@
+{
+  "_provenance": {
+    "source": "Matriks MCP (server 3181c780-dca2-497f-9514-81cfb8540278)",
+    "tool": "fundamentalAnalysis",
+    "params": [
+      {"symbol": "EREGL", "mode": "dividendsCapital", "dividendsStartDate": "2024-01-01", "dividendsEndDate": "2024-12-31", "dividendsType": "all", "includeCapitalIncrease": true},
+      {"symbol": "ASELS", "mode": "dividendsCapital", "dividendsStartDate": "2023-01-01", "dividendsEndDate": "2023-12-31", "dividendsType": "all", "includeCapitalIncrease": true}
+    ],
+    "captured_at": "2026-06-19",
+    "note": "Despite the date params, the API returned each name's FULL action history. Below is the price-relevant subset (all capital_increase actions + the snapshot-year dividend) plus summary. Re-fetch for the complete list."
+  },
+  "_golden_master": {
+    "backs": "Ground truth for the M1 back-adjustment masters (ohlcv_EREGL_2024-11.json, ohlcv_ASELS_2023-08.json) and for total-return construction (cash dividends added on top of back-adjusted bars).",
+    "key_facts": [
+      "EREGL capital_increase (rights/bedelli) ex-date 2024-11-27 == the EREGL OHLCV snapshot date -> price series shows no gap -> back-adjusted.",
+      "ASELS capital_increase (rights/bedelli) ex-date 2023-08-25 == the ASELS OHLCV snapshot date -> same conclusion.",
+      "Some capital_increase rows have empty ex-date strings — the ingestion adapter must handle blank/garbage dates without fabricating (drop+log, never guess)."
+    ]
+  },
+  "EREGL": {
+    "summary": {"total": 26, "byType": {"dividend": 19, "capital_increase": 7}, "lastPayment": "2026-06-03"},
+    "capital_increases_exdates": ["2007-05-29", "2008-05-28", "2009-10-27", "2011-03-15", "2012-04-30", "2013-04-12", "2024-11-27"],
+    "dividends_2024": [{"exDividend": "2024-04-16", "gross": 50.0, "net": 45.0, "unit": "TL"}],
+    "key_action": {"type": "capital_increase", "typeTR": "Bedelli Sermaye Artırımı", "exDividend": "2024-11-27", "status": "paid"}
+  },
+  "ASELS": {
+    "summary": {"total": 40, "byType": {"dividend": 31, "capital_increase": 9}, "lastPayment": "2025-11-25", "nextPayment": "2026-11-24"},
+    "capital_increases_exdates": ["2008-06-26", "2010-06-07", "2012-08-06", "2016-05-25", "2018-06-08", "2020-08-05", "2023-08-25", "", ""],
+    "dividends_2023": [{"exDividend": "2023-11-22", "gross": 8.77191, "net": 7.89472, "unit": "TL"}],
+    "key_action": {"type": "capital_increase", "typeTR": "Bedelli Sermaye Artırımı", "exDividend": "2023-08-25", "status": "paid"}
+  }
+}

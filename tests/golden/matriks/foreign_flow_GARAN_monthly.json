@@ -1,0 +1,29 @@
+{
+  "_provenance": {
+    "source": "Matriks MCP (server 3181c780-dca2-497f-9514-81cfb8540278)",
+    "tool": "institutionalFlow",
+    "params": {"symbol": "GARAN", "foreignInvestorMode": "monthly", "foreignPeriods": ["202411"], "includeForeignInvestorAnalysis": true},
+    "captured_at": "2026-06-19",
+    "QUIRK": "foreignPeriods=['202411'] was IGNORED — the service returned the latest available month (202605) instead. The build agent must verify how to pull a SPECIFIC historical month for the foreign-flow factor series (likely foreignInvestorMode='historic' with startDate/endDate, MKK-gated), and must not assume foreignPeriods filters."
+  },
+  "_golden_master": {
+    "backs": "Foreign-flow factor source (CLAUDE.md §5 — a core factor; if not stripped, flow comovement masquerades as residual linkage). Also confirms the MKK/AKDE license is LIVE: foreign broker houses (BANK-OF-AMERICA, HSBC) are visible in broker-level detail.",
+    "license_finding": "Broker-level monthly + the per-broker buy/sell breakdown returned successfully in this session -> AKDE/MKK access is active. Per-name daily investor-level (foreignInvestorMode='investor') was previously 400 — the build agent should re-test it in M0 and log, not assume."
+  },
+  "data": {
+    "symbol": "GARAN",
+    "returned_period": "202605",
+    "monthlyForeignTrades": [
+      {"period": "202605", "buyVolume": 31963635079, "sellVolume": 33266700128, "netVolume": -1303065049, "buyQuantity": 243736684, "sellQuantity": 254336009, "netQuantity": -10599325}
+    ],
+    "summary": {"netFlow": -688324739.61, "flowDirection": "CIKIS (outflow)", "flowStrength": "GUCLU (strong)", "dominantSide": "SATIS (sell)"},
+    "foreignInvestorAnalysis_text": "AYLIK YABANCI ISLEMLERI — GARAN, Mayis 2026: Pozisyon SATICI (Net -1.30M TL); Alis 31.96M TL; Satis 33.27M TL; Islem Yogunlugu DUSUK",
+    "sample_brokers_byVolume": [
+      {"code": "YKR", "name": "YAPI KREDI YAT.", "marketShare": 21.67, "netPosition": "SATIM"},
+      {"code": "MLB", "name": "BANK-OF-AMERICA YATIRIM BANK", "marketShare": 10.62, "netPosition": "SATIM"},
+      {"code": "IYM", "name": "IS YATIRIM", "marketShare": 7.60, "netPosition": "SATIM"},
+      {"code": "GRM", "name": "GARANTI BBVA", "marketShare": 5.31, "netPosition": "ALIM"},
+      {"code": "HSY", "name": "HSBC YATIRIM", "netPosition": "ALIM"}
+    ]
+  }
+}

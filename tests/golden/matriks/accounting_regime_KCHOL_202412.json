@@ -1,0 +1,42 @@
+{
+  "_provenance": {
+    "source": "Matriks MCP (server 3181c780-dca2-497f-9514-81cfb8540278)",
+    "tool": "fundamentalAnalysis",
+    "params": [
+      {"symbol": "KCHOL", "periods": ["202412"], "includeIncome": true, "unadjusted": false},
+      {"symbol": "KCHOL", "periods": ["202412"], "includeIncome": true, "unadjusted": true}
+    ],
+    "captured_at": "2026-06-19",
+    "currency": "TRY",
+    "statementType": "consolidated"
+  },
+  "_golden_master": {
+    "backs": "accounting_regime invariant (CLAUDE.md §5, design §3). Proves the vendor serves BOTH bases per period, so the regime state SELECTS a basis — no restatement needed.",
+    "expected_behavior": "FY2024 (period 202412) is in the ias29_2023_2024 regime. The IAS-29 inflation-adjusted revenue (2,109,310M TRY) and the unadjusted revenue (1,611,489M TRY) differ by ~30.9%. The invariant test must REFUSE any growth/intensity/materiality calc that mixes an adjusted figure with an unadjusted one, or that straddles the FY2023 (nominal->IAS29) or FY2025 (IAS29->suspended) switch without converting to a common basis.",
+    "regime_map": {"<=202212": "nominal_pre2023", "202303..202412": "ias29_2023_2024", ">=202503": "suspended_2025_2027"}
+  },
+  "adjusted_ias29": {
+    "period": "202412",
+    "revenue": 2109310000000,
+    "cogs": -1814794000000,
+    "grossProfit": 429110000000,
+    "operatingProfit": 114356000000,
+    "preTaxProfit": 34964000000,
+    "netProfit": -6922000000,
+    "netProfitToParent": 1709000000
+  },
+  "unadjusted_nominal": {
+    "period": "202412",
+    "revenue": 1611489000000,
+    "cogs": -1386482000000,
+    "grossProfit": 327835000000,
+    "operatingProfit": 87366000000,
+    "preTaxProfit": 26712000000,
+    "netProfit": -5288000000,
+    "netProfitToParent": 1306000000
+  },
+  "_checks": {
+    "revenue_ratio_adjusted_over_unadjusted": 1.309,
+    "both_bases_present": true
+  }
+}
