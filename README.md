@@ -1,8 +1,8 @@
 # Turkish Equities Knowledge Graph (tmkg)
 
 Property-graph research substrate over BİST entities — ownership, control, governance,
-events, regulation, and macro sensitivity. See `turkish-markets-kg-architecture.md` for
-the full design and `turkish-markets-kg-ontology.md` for the schema.
+events, regulation, and macro sensitivity. See `system-design-v2.md` for the
+current design (the correlation / supply-chain / geopolitical-event redesign).
 
 **Scope (after the 2026-06-18 pre-pillar cleanup): a clean, trustworthy
 *equities ownership/identity* core. The off-mission corporate-debt/refinancing
@@ -230,7 +230,7 @@ surviving stages are `lei, isin, bist, classify, l2, subsidiary, both, all`.
 
 ## Roadmap — three pillars on the equities core
 
-Build order (lowest data risk first; rationale in `CLEANUP-PLAN.md` §7):
+Build order (lowest data risk first; rationale in `system-design-v2.md`):
 
 1. **Asset correlations / price time-series** — keystone for correlations *and*
    event studies; lowest data risk (BİST market-data MCP available). DuckDB
