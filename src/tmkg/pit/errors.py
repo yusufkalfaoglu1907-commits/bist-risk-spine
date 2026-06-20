@@ -30,3 +30,11 @@ class IdentityAmbiguous(RuntimeError):
     """The id-bridge (ticker ↔ ISIN ↔ kap_oid ↔ LEI) found more than one Company
     for an identifier. The bridge is a single point of failure (CLAUDE.md §5): it
     REFUSES and logs rather than guess which name a signal should resolve to."""
+
+
+class RegimeStraddle(RuntimeError):
+    """A growth / intensity / materiality figure was computed across two fundamental
+    periods in DIFFERENT accounting_regime states (the FY2023 nominal→IAS-29 switch
+    or the FY2025 IAS-29→suspended switch) without converting to a common basis
+    (CLAUDE.md §5). The regime SELECTS the comparable basis; straddling it silently
+    compares inflation-adjusted against nominal figures — a fabricated growth rate."""

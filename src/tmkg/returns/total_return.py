@@ -36,6 +36,8 @@ from typing import Mapping
 
 import pandas as pd
 
+from tmkg.returns.limit_lock import censor_lock_windows
+
 
 def dividend_yields_from_raw(
     dividends: Mapping[date, float], raw_close: Mapping[date, float]
@@ -96,7 +98,10 @@ def compute_total_returns(
     if sym is None:
         raise ValueError("compute_total_returns: no symbol (pass symbol= or a column)")
 
-    p = prices[["bar_date", "close"]].copy()
+    keep = ["bar_date", "close"]
+    if "is_limit_lock" in prices.columns:
+        keep.append("is_limit_lock")
+    p = prices[keep].copy()
     p["bar_date"] = pd.to_datetime(p["bar_date"]).dt.date
     p = p.sort_values("bar_date").drop_duplicates("bar_date").reset_index(drop=True)
 
@@ -130,9 +135,17 @@ def compute_total_returns(
         p["ret_real_try"] = pd.NA
 
     p["symbol"] = sym
-    p["limit_lock_adj"] = False
     kd = knowledge_date or {}
     p["knowledge_date"] = p["bar_date"].map(lambda d: kd.get(d, d))
+
+    # Limit-lock censoring: replace censored daily returns in each lock run with the
+    # cumulative cross-window return (design §3). No-op when no bar is limit-locked,
+    # so back-adjustment goldens are unaffected. Sets limit_lock_adj on touched rows.
+    if "is_limit_lock" not in p.columns:
+        p["is_limit_lock"] = False
+    p = censor_lock_windows(
+        p, ["ret_usd", "ret_real_try", "ret_nominal_try"]
+    )
 
     out = p.iloc[1:].copy()  # first row has no prior close
     return out[

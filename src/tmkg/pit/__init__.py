@@ -11,6 +11,7 @@ from tmkg.pit.errors import (
     FabricationGuard,
     IdentityAmbiguous,
     PITViolation,
+    RegimeStraddle,
     SourceUnreachable,
 )
 from tmkg.pit.idbridge import IdBridge
@@ -27,4 +28,5 @@ __all__ = [
     "FabricationGuard",
     "ContractDrift",
     "IdentityAmbiguous",
+    "RegimeStraddle",
 ]

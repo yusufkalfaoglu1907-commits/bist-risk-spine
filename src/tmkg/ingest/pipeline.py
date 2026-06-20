@@ -36,6 +36,8 @@ from tmkg.ingest.audit import write_run_report
 from tmkg.ingest.matriks import MatriksAdapter
 from tmkg.l2.store import L2Store
 from tmkg.pit.access import PITAccess
+from tmkg.returns.limit_lock import flag_limit_lock
+from tmkg.returns.staleness import flag_staleness
 from tmkg.returns.total_return import compute_total_returns
 
 _DATE_COLS = ("bar_date", "knowledge_date")
@@ -77,17 +79,23 @@ def ingest_prices(
     start: str,
     end: str,
     interval: str = "daily",
+    band: float = 0.10,
 ) -> dict:
-    """Fetch one symbol's daily bars, parse, and land them in L2 ``prices``.
+    """Fetch one symbol's daily bars, parse, flag, and land them in L2 ``prices``.
 
-    Returns an audit summary (counts only — never the data). Raises on an
-    unreachable source via ``adapter.fetch`` (§4); never writes a partial-guess row.
+    ``band`` is the daily price limit for the limit-lock detection (±10% standard;
+    pass a wider value for market-maker names). Returns an audit summary (counts
+    only — never the data). Raises on an unreachable source via ``adapter.fetch``
+    (§4); never writes a partial-guess row.
     """
     payload = _fetch_bars(adapter, symbol, start, end, interval)
     rows = adapter.parse_bars(payload, symbol=symbol)
     if not rows:
         return {"symbol": symbol, "table": "prices", "n_bars": 0}
     df = _coerce_dates(pd.DataFrame(rows))
+    # detection passes (pure): censored ±band days + carried-forward (no-trade) bars
+    df = flag_limit_lock(df, band=band)
+    df = flag_staleness(df)
     store.write_parquet("prices", df)
     return {
         "symbol": symbol,
@@ -95,6 +103,8 @@ def ingest_prices(
         "n_bars": len(df),
         "first_bar": str(df["bar_date"].min()),
         "last_bar": str(df["bar_date"].max()),
+        "n_limit_lock": int(df["is_limit_lock"].sum()),
+        "n_stale": int(df["is_stale"].sum()),
     }
 
 

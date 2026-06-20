@@ -13,6 +13,7 @@ import pytest
 
 from tmkg.l2.store import L2Store
 from tmkg.pit import PITAccess, PITViolation
+from tmkg.returns import regime_for_period
 
 
 @pytest.mark.invariant
@@ -21,23 +22,13 @@ def test_pitaccess_refuses_without_as_of():
         PITAccess(None)  # type: ignore[arg-type]
 
 
-def _accounting_regime_for(period: str) -> str:
-    """The documented accounting_regime state machine (CLAUDE.md §5), by FY."""
-    year = int(period[:4])
-    if year <= 2022:
-        return "nominal_pre2023"
-    if year <= 2024:
-        return "ias29_2023_2024"
-    return "suspended_2025_2027"
-
-
 def _land_kchol_declarations(store: L2Store, load_golden) -> None:
     periods = load_golden("declaration_dates_KCHOL.json")["data"]["periods"]
     rows = [
         {
             "symbol": "KCHOL",
             "period": p["period"],
-            "regime": _accounting_regime_for(p["period"]),
+            "regime": regime_for_period(p["period"]),
             "knowledge_date": pd.to_datetime(p["declarationDate"]).date(),
         }
         for p in periods
