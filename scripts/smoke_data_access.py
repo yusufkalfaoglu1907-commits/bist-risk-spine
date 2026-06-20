@@ -75,9 +75,25 @@ def check_connector() -> bool:
     return True
 
 
+def check_evds() -> bool:
+    """Re-fetch the committed CPI golden and assert the live evds3 values match.
+    EVDS is the CPI-real-TRY cross-check source (M1). Fail loud on drift/unreachable."""
+    if not os.getenv("EVDS_API_KEY", ""):
+        _fail("EVDS_API_KEY missing — load .env (it is gitignored)")
+        return False
+    try:
+        from tmkg.ingest import EvdsAdapter
+        EvdsAdapter().smoke_check()
+    except Exception as e:  # noqa: BLE001  (SourceUnreachable / ContractDrift)
+        _fail(f"EVDS check failed: {e}")
+        return False
+    _ok("EVDS reachable and CPI matches golden")
+    return True
+
+
 def main() -> int:
     print("M0 data-access smoke test")
-    results = [check_env(), check_golden(), check_connector()]
+    results = [check_env(), check_golden(), check_connector(), check_evds()]
     if all(results):
         print("PASS — data path proven; M0 may proceed.")
         return 0

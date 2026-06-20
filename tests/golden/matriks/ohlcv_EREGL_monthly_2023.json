@@ -1,0 +1,271 @@
+{
+ "_provenance": {
+  "source": "Matriks REST (historicalData)",
+  "tool": "historicalData",
+  "params": {
+   "symbol": "EREGL",
+   "startDate": "2023-01-01",
+   "endDate": "2023-12-31",
+   "interval": "monthly",
+   "rawBars": true,
+   "limit": 13
+  },
+  "captured_at": "2026-06-20",
+  "note": "EREGL monthly closes 2023, month-start dates — companion to the CPI golden for the real-TRY deflation reconciliation. period.adjusted carried through.",
+  "currency": "TRY"
+ },
+ "data": {
+  "symbol": "EREGL",
+  "interval": "monthly",
+  "currency": "TRY",
+  "period": {
+   "start": "2023-01-01",
+   "end": "2023-12-01",
+   "tradingDays": 12,
+   "requestedStart": "2023-01-01",
+   "requestedEnd": "2023-12-31",
+   "adjusted": false
+  },
+  "summary": {
+   "firstPrice": 18.39317,
+   "lastPrice": 19.79318,
+   "highestPrice": 25.85182,
+   "highestDate": "2023-02-01",
+   "lowestPrice": 13.38212,
+   "lowestDate": "2023-05-01",
+   "totalReturn": 1.4,
+   "totalReturnPercent": 7.61,
+   "avgVolume": 91386370349,
+   "volatility": 37.39,
+   "trend": "UPTREND",
+   "trendStrength": 9.02,
+   "vwap": 19.45
+  },
+  "statistics": {
+   "price": {
+    "mean": 18.89,
+    "median": 19.08,
+    "stdDev": 1.86,
+    "range": 5.54
+   },
+   "returns": {
+    "annualized": 7.61,
+    "sharpeRatio": -1,
+    "maxDrawdown": 5.34,
+    "maxDrawdownPercent": 25.08
+   },
+   "days": {
+    "upDays": 7,
+    "downDays": 4,
+    "upDayPercent": 63.6,
+    "downDayPercent": 36.4,
+    "maxDailyGain": 15.75,
+    "maxDailyGainDate": "2023-02-01",
+    "maxDailyLoss": -19.73,
+    "maxDailyLossDate": "2023-03-01"
+   }
+  },
+  "allBars": [
+   {
+    "date": "2023-01-01",
+    "timestamp": 1672531200000,
+    "open": 20.03456,
+    "high": 21.24146,
+    "low": 17.58213,
+    "close": 18.39317,
+    "volume": 171934812399,
+    "quantity": 8717958006.7155
+   },
+   {
+    "date": "2023-02-01",
+    "timestamp": 1675209600000,
+    "open": 18.4511,
+    "high": 25.85182,
+    "low": 17.15731,
+    "close": 21.28973,
+    "volume": 84909351096,
+    "quantity": 3944618420.53401
+   },
+   {
+    "date": "2023-03-01",
+    "timestamp": 1677628800000,
+    "open": 21.4056,
+    "high": 22.06215,
+    "low": 17.07041,
+    "close": 17.08972,
+    "volume": 114850588978,
+    "quantity": 5892109002.46394
+   },
+   {
+    "date": "2023-04-01",
+    "timestamp": 1680307200000,
+    "open": 17.03179,
+    "high": 17.83317,
+    "low": 15.70902,
+    "close": 15.99868,
+    "volume": 50008725456,
+    "quantity": 2960612621.93438
+   },
+   {
+    "date": "2023-05-01",
+    "timestamp": 1682899200000,
+    "open": 16.02765,
+    "high": 16.73248,
+    "low": 13.38212,
+    "close": 15.9504,
+    "volume": 47339770830,
+    "quantity": 3104331946.83589
+   },
+   {
+    "date": "2023-06-01",
+    "timestamp": 1685577600000,
+    "open": 16.10489,
+    "high": 18.93386,
+    "low": 15.98903,
+    "close": 17.72696,
+    "volume": 54170765642,
+    "quantity": 3092331708.76561
+   },
+   {
+    "date": "2023-07-01",
+    "timestamp": 1688169600000,
+    "open": 17.94903,
+    "high": 20.27594,
+    "low": 17.77524,
+    "close": 20.13111,
+    "volume": 92802555002.12003,
+    "quantity": 4977418873.59538
+   },
+   {
+    "date": "2023-08-01",
+    "timestamp": 1690848000000,
+    "open": 20.06352,
+    "high": 22.29388,
+    "low": 18.97248,
+    "close": 20.76835,
+    "volume": 154619938308.56,
+    "quantity": 7519377812.22858
+   },
+   {
+    "date": "2023-09-01",
+    "timestamp": 1693526400000,
+    "open": 20.88422,
+    "high": 23.40423,
+    "low": 19.44559,
+    "close": 21.49249,
+    "volume": 116535224557.56001,
+    "quantity": 5389805116.85911
+   },
+   {
+    "date": "2023-10-01",
+    "timestamp": 1696118400000,
+    "open": 21.50215,
+    "high": 22.00422,
+    "low": 18.16145,
+    "close": 18.27731,
+    "volume": 91063709456.20003,
+    "quantity": 4466154721.57459
+   },
+   {
+    "date": "2023-11-01",
+    "timestamp": 1698796800000,
+    "open": 18.36421,
+    "high": 20.25663,
+    "low": 17.5242,
+    "close": 19.77387,
+    "volume": 59139940841.92,
+    "quantity": 3135198346.20883
+   },
+   {
+    "date": "2023-12-01",
+    "timestamp": 1701388800000,
+    "open": 20.0249,
+    "high": 21.02904,
+    "low": 18.22903,
+    "close": 19.79318,
+    "volume": 59261061626.08,
+    "quantity": 3003308385.80104
+   }
+  ],
+  "sampling": {
+   "method": "RAW_LIMITED",
+   "totalBars": 12,
+   "returnedBars": 12,
+   "sampledPercentage": 100,
+   "significantBarsCount": 0
+  },
+  "benchmark": {
+   "symbol": "EREGL",
+   "period": {
+    "start": "2023-01-01",
+    "end": "2023-12-01",
+    "tradingDays": 12
+   },
+   "symbolReturn": 7.61,
+   "comparisons": [
+    {
+     "benchmark": "XU100",
+     "benchmarkName": "BIST 100",
+     "symbolReturn": 7.61,
+     "benchmarkReturn": 61.28,
+     "relativeReturn": -53.67,
+     "outperformed": false,
+     "correlation": 0.832,
+     "beta": 0.9
+    },
+    {
+     "benchmark": "GLDGR",
+     "benchmarkName": "Gram Altın",
+     "symbolReturn": 7.61,
+     "benchmarkReturn": 65.02,
+     "relativeReturn": -57.41,
+     "outperformed": false,
+     "correlation": -0.183,
+     "beta": -0.27
+    },
+    {
+     "benchmark": "USDTRY",
+     "benchmarkName": "USD/TRY",
+     "symbolReturn": 7.61,
+     "benchmarkReturn": 53.59,
+     "relativeReturn": -45.98,
+     "outperformed": false,
+     "correlation": 0.264,
+     "beta": 0.43
+    }
+   ],
+   "bestPerformer": {
+    "asset": "Gram Altın",
+    "return": 65.02,
+    "rank": 1
+   },
+   "worstPerformer": {
+    "asset": "EREGL",
+    "return": 7.61,
+    "rank": 4
+   },
+   "ranking": [
+    {
+     "asset": "Gram Altın",
+     "return": 65.02,
+     "rank": 1
+    },
+    {
+     "asset": "BIST 100",
+     "return": 61.28,
+     "rank": 2
+    },
+    {
+     "asset": "USD/TRY",
+     "return": 53.59,
+     "rank": 3
+    },
+    {
+     "asset": "EREGL",
+     "return": 7.61,
+     "rank": 4
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,9 @@
+{
+  "_written_at": "2026-06-20T11:21:47",
+  "source": "evds",
+  "base_url": "https://evds3.tcmb.gov.tr/igmevdsms-dis",
+  "series": "TP.FG.J0",
+  "window": "01-01-2023..01-12-2023",
+  "value_matched": 12,
+  "drift": []
+}

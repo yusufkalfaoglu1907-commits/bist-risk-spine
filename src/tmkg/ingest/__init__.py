@@ -4,6 +4,7 @@ Each external source = one adapter with a smoke_check() drift guard, landing
 bitemporal rows in L2. Signal code never imports this package — it reads L2.
 """
 from tmkg.ingest.base import IngestionAdapter
+from tmkg.ingest.evds import EvdsAdapter
 from tmkg.ingest.matriks import MatriksAdapter
 from tmkg.ingest.pipeline import (
     build_total_returns,
@@ -15,6 +16,7 @@ from tmkg.ingest.pipeline import (
 __all__ = [
     "IngestionAdapter",
     "MatriksAdapter",
+    "EvdsAdapter",
     "ingest_prices",
     "ingest_factor_series",
     "build_total_returns",

@@ -1,0 +1,105 @@
+{
+ "_provenance": {
+  "source": "TCMB EVDS3 (https://evds3.tcmb.gov.tr/igmevdsms-dis)",
+  "series": "TP.FG.J0",
+  "description": "TUFE genel endeks (CPI, all items, 2003=100), monthly",
+  "params": {
+   "series": "TP.FG.J0",
+   "startDate": "01-01-2023",
+   "endDate": "01-12-2023",
+   "type": "json"
+  },
+  "auth": "HTTP header key:<EVDS_API_KEY>",
+  "captured_at": "2026-06-20",
+  "immutable": "published CPI index is not revised after release -> VALUE anchor"
+ },
+ "data": {
+  "totalCount": 12,
+  "items": [
+   {
+    "Tarih": "2023-1",
+    "TP_FG_J0": "1203.48000000",
+    "UNIXTIME": {
+     "$numberLong": "1672520400"
+    }
+   },
+   {
+    "Tarih": "2023-2",
+    "TP_FG_J0": "1241.33000000",
+    "UNIXTIME": {
+     "$numberLong": "1675198800"
+    }
+   },
+   {
+    "Tarih": "2023-3",
+    "TP_FG_J0": "1269.75000000",
+    "UNIXTIME": {
+     "$numberLong": "1677618000"
+    }
+   },
+   {
+    "Tarih": "2023-4",
+    "TP_FG_J0": "1300.04000000",
+    "UNIXTIME": {
+     "$numberLong": "1680296400"
+    }
+   },
+   {
+    "Tarih": "2023-5",
+    "TP_FG_J0": "1300.60000000",
+    "UNIXTIME": {
+     "$numberLong": "1682888400"
+    }
+   },
+   {
+    "Tarih": "2023-6",
+    "TP_FG_J0": "1351.59000000",
+    "UNIXTIME": {
+     "$numberLong": "1685566800"
+    }
+   },
+   {
+    "Tarih": "2023-7",
+    "TP_FG_J0": "1479.84000000",
+    "UNIXTIME": {
+     "$numberLong": "1688158800"
+    }
+   },
+   {
+    "Tarih": "2023-8",
+    "TP_FG_J0": "1614.31000000",
+    "UNIXTIME": {
+     "$numberLong": "1690837200"
+    }
+   },
+   {
+    "Tarih": "2023-9",
+    "TP_FG_J0": "1691.04000000",
+    "UNIXTIME": {
+     "$numberLong": "1693515600"
+    }
+   },
+   {
+    "Tarih": "2023-10",
+    "TP_FG_J0": "1749.11000000",
+    "UNIXTIME": {
+     "$numberLong": "1696107600"
+    }
+   },
+   {
+    "Tarih": "2023-11",
+    "TP_FG_J0": "1806.50000000",
+    "UNIXTIME": {
+     "$numberLong": "1698786000"
+    }
+   },
+   {
+    "Tarih": "2023-12",
+    "TP_FG_J0": "1859.38000000",
+    "UNIXTIME": {
+     "$numberLong": "1701378000"
+    }
+   }
+  ]
+ }
+}
