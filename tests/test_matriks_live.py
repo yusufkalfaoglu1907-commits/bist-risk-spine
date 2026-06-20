@@ -64,10 +64,11 @@ def _adapter_or_skip() -> MatriksAdapter:
     if not os.getenv("MATRIKS_API_KEY"):
         pytest.skip("MATRIKS_API_KEY not in env (load .env) — skipping live Matriks test")
     a = MatriksAdapter()
+    # Probe a real, cheap tool — NOT openapi.json, which has been observed to
+    # time out (504/HTTP 000) while the actual tool endpoints serve fine. The
+    # reachability signal must be a real tool call or the live guard skips falsely.
     try:
-        import httpx
-
-        httpx.get("https://mcp.matriks.ai/openapi.json", timeout=8)
+        a.fetch("symbolSearch", query="EREGL")
     except Exception:
         pytest.skip("Matriks unreachable — skipping live test")
     return a
@@ -79,3 +80,36 @@ def test_matriks_smoke_check_live():
     value anchors and every connector tool is reachable. Raises on drift."""
     a = _adapter_or_skip()
     a.smoke_check()  # raises ContractDrift / SourceUnreachable on failure
+
+
+@pytest.mark.live
+def test_m1_pipeline_live_reconciles_eregl_anchor(tmp_path):
+    """M1 end-to-end over the REAL network: fetch EREGL bars + USDTRY live, land them
+    in a throwaway L2, build total_returns through PIT, and reconcile the hand-verified
+    anchor (EREGL 2024-11-27 = TRY -1.3972% / USD -1.3803%). This is the live twin of
+    tests/l2/test_m1_ingestion_pipeline.py — proves the live path, not just the goldens."""
+    from datetime import date
+
+    import pandas as pd
+
+    from tmkg.ingest.pipeline import build_total_returns, ingest_factor_series, ingest_prices
+    from tmkg.l2.store import L2Store
+    from tmkg.pit.access import PITAccess
+
+    a = _adapter_or_skip()
+    store = L2Store(db_path=tmp_path / "l2.duckdb")
+    store.bootstrap_schema()
+
+    ingest_factor_series(a, store, "USDTRY", "USDTRY", start="2024-11-01", end="2024-12-05")
+    ingest_prices(a, store, "EREGL", start="2024-11-20", end="2024-12-05")
+    build_total_returns(store, "EREGL", as_of=date(2024, 12, 31))
+
+    con = store.connect()
+    try:
+        tr = PITAccess(date(2024, 12, 31), l2=con).series("total_returns", symbol="EREGL")
+    finally:
+        con.close()
+    tr["bar_date"] = pd.to_datetime(tr["bar_date"]).dt.date
+    row = tr.loc[tr["bar_date"] == date(2024, 11, 27)].iloc[0]
+    assert row["ret_nominal_try"] == pytest.approx(-0.013972, abs=1e-6)
+    assert row["ret_usd"] == pytest.approx(-0.013803, abs=1e-6)
