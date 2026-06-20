@@ -1,0 +1,48 @@
+{
+  "_written_at": "2026-06-20T14:25:39",
+  "as_of": "2024-12-31",
+  "window": [
+    "2024-10-01",
+    "2024-12-05"
+  ],
+  "prices": [
+    {
+      "symbol": "EREGL",
+      "table": "prices",
+      "n_bars": 47,
+      "first_bar": "2024-10-01",
+      "last_bar": "2024-12-05",
+      "n_limit_lock": 0,
+      "n_stale": 0
+    }
+  ],
+  "factors": [
+    {
+      "factor": "USDTRY",
+      "table": "factors",
+      "n_points": 48,
+      "first": "2024-10-01",
+      "last": "2024-12-05"
+    },
+    {
+      "factor": "CPI_TUFE",
+      "table": "factors",
+      "series": "TP.FG.J0",
+      "n_points": 12,
+      "first": "2024-01-01",
+      "last": "2024-12-01"
+    }
+  ],
+  "total_returns": [
+    {
+      "symbol": "EREGL",
+      "table": "total_returns",
+      "n_returns": 46,
+      "as_of": "2024-12-31",
+      "fx_factor": "USDTRY",
+      "cpi_factor": "CPI_TUFE",
+      "ret_usd_null": 0,
+      "ret_real_try_null": 46
+    }
+  ]
+}

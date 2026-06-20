@@ -35,7 +35,25 @@ GREEN end-to-end (96 passed / 4 skipped, the skips deferred to M1/M3). Next mile
 
 ---
 
-## M1 — Clean return series (the financial-accuracy core)
+## M1 — Clean return series (the financial-accuracy core)  ✅ COMPLETE (2026-06-20)
+
+**Status:** exit gate met — `make verify` GREEN (146 passed / 2 skipped; the 2 skips are M3 signal-AST-scan + L1 provenance soft-edges, both later milestones), `make smoke` PASS (Matriks + EVDS). Each gate criterion mapped to its evidence:
+
+| Exit-gate criterion | Evidence |
+|---|---|
+| Total return across a hand-verified corporate action matches to tolerance | `tests/golden/test_total_return_reconciliation.py` — EREGL rights ex-date 2024-11-27 = TRY −1.3972% / USD −1.3803%; ASELS rights 2023-08-25 = TRY +2.1081% (back-adjusted ⇒ no dilution gap) |
+| USD-primary + CPI-real-TRY cross-check, end-to-end through L2/PIT | `tests/l2/test_cpi_pipeline_end_to_end.py` + `tests/golden/test_cpi_real_try_reconciliation.py` — FY2023 EREGL real −30.3486% vs nominal +7.6116%, reconciled read-back from L2; CPI knowledge-date gate holds |
+| Limit-lock days flagged on a known locked sequence | `tests/returns/test_limit_lock.py`, `tests/invariants/test_limit_lock.py` — ±10% censoring + cumulative-across-lock-window |
+| Staleness flags (non-trading / carried-forward) | `tests/returns/test_staleness.py` |
+| Delisted name present in the as-of universe (survivorship) | `tests/invariants/test_real_delisting.py` — SODA (Soda Sanayii, delisted 2020-09-30 into Şişecam), bitemporal two-row model; `tests/invariants/test_survivorship.py` (mechanism) |
+| accounting_regime correct across both FY2023 and FY2025 switches | `tests/invariants/test_accounting_regime.py` (state machine + no-straddle guard) + `tests/l2/test_accounting_regime_ingestion.py` (real KCHOL declaration-dated rows land in L2, knowledge_date = declarationDate) |
+| Reconciliation reports written (§4) | `data/cache/{m1_ingestion,survivorship_ingestion,evds_smoke,matriks_smoke}_report.json` |
+
+**Deferred (non-blocking, NOT gate criteria) — carried into M2:**
+- **Real declared-dividend full-TR reconciliation through the pipeline.** The dividend-as-yield mechanism (`dividend_yields_from_raw` + the constructor) is unit-tested on a fixture and is correct; an end-to-end reconciliation on a *real* declared EREGL/ASELS dividend additionally needs the vendor's **unadjusted** close on the ex-date (the yield denominator), which is a fundamentals-data verification best done with the M2 factor/fundamentals pull. The exit gate is satisfied by the bedelsiz/rights reconciliation above; this only hardens the dividend path.
+- **SODA's true first-listing `valid_from`.** Modelled as a documented sourced lower bound (2020-01-30 merger-announcement date); the true IPO date could not be cleanly sourced for the delisted entity (vendors surface the unrelated SODSN). All survivorship assertions sit inside the airtight 2020-06..2020-10 sourced window, so nothing depends on the bound. Backfill when an authoritative IPO date is sourced.
+
+**Next milestone: M2.**
 
 **Goal:** the one input every signal shares — a trustworthy USD-primary total-return series. The easiest thing to get silently wrong, so it gets its own milestone and golden masters.
 
