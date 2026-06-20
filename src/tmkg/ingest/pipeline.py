@@ -37,6 +37,7 @@ from tmkg.ingest.evds import CPI_TUFE_FACTOR, CPI_TUFE_SERIES, EvdsAdapter
 from tmkg.ingest.matriks import MatriksAdapter
 from tmkg.l2.store import L2Store
 from tmkg.pit.access import PITAccess
+from tmkg.returns.accounting_regime import regime_for_period
 from tmkg.returns.limit_lock import flag_limit_lock
 from tmkg.returns.staleness import flag_staleness
 from tmkg.returns.total_return import compute_total_returns
@@ -185,6 +186,50 @@ def ingest_cpi(
         "n_points": len(df),
         "first": str(df["bar_date"].min()),
         "last": str(df["bar_date"].max()),
+    }
+
+
+# --- accounting_regime (fundamentals declaration dates -> regime tags) ------
+def ingest_accounting_regime(
+    adapter: MatriksAdapter,
+    store: L2Store,
+    symbol: str,
+) -> dict:
+    """Tag every declared fundamental period of ``symbol`` with its accounting_regime
+    and land it in L2 ``accounting_regime`` (CLAUDE.md §5, design §3).
+
+    The consumer the regime state machine was missing: it pulls the vendor's
+    declaration-date history (``fundamentalAnalysis(includeDeclarationDates=True)``),
+    maps each period to ``regime_for_period`` (nominal_pre2023 / ias29_2023_2024 /
+    suspended_2025_2027), and sets ``knowledge_date = declarationDate`` so a period is
+    invisible until it was actually declared — the regime tag inherits the same PIT
+    gate as the fundamental it describes. Raises on an unreachable source (§4); a
+    period with no declaration date is dropped in ``parse_declaration_periods``.
+    """
+    payload = adapter.fetch(
+        "fundamentalAnalysis", symbol=symbol, includeDeclarationDates=True
+    )
+    decls = adapter.parse_declaration_periods(payload, symbol=symbol)
+    rows = [
+        {
+            "symbol": d["symbol"],
+            "period": d["period"],
+            "regime": regime_for_period(d["period"]),
+            "knowledge_date": date.fromisoformat(d["declaration_date"]),
+        }
+        for d in decls
+    ]
+    if not rows:
+        return {"symbol": symbol, "table": "accounting_regime", "n_periods": 0}
+    df = _coerce_dates(pd.DataFrame(rows))
+    store.write_parquet("accounting_regime", df)
+    return {
+        "symbol": symbol,
+        "table": "accounting_regime",
+        "n_periods": len(df),
+        "first_period": df["period"].min(),
+        "last_period": df["period"].max(),
+        "regimes": sorted(df["regime"].unique().tolist()),
     }
 
 

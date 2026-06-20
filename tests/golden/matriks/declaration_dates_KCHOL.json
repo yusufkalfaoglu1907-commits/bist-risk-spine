@@ -1,50 +1,297 @@
 {
   "_provenance": {
-    "source": "Matriks MCP (server 3181c780-dca2-497f-9514-81cfb8540278)",
+    "source": "Matriks REST fundamentalAnalysis (raw single-call capture)",
     "tool": "fundamentalAnalysis",
-    "params": {"symbol": "KCHOL", "includeDeclarationDates": true, "declarationDatesLast": 6},
-    "captured_at": "2026-06-19",
-    "note": "declarationDatesLast=6 was passed but the API returned the FULL declaration history back to FY2008. Kept in full — it is the highest-value PIT artifact."
+    "params": {
+      "symbol": "KCHOL",
+      "includeDeclarationDates": true
+    },
+    "captured_at": "2026-06-20",
+    "note": "RAW live shape: declarationDates.items[*].periods[*]={period,declarationDate}. Supersedes the earlier curated/flattened capture (M0 reshape caveat). Declaration dates are immutable history -> a VALUE anchor."
   },
   "_golden_master": {
-    "backs": "M0 PIT-leak detector + the bitemporal knowledge_date convention. For a fundamental of period P, knowledge_date = its declarationDate. A read as_of=D must NOT return a period whose declarationDate > D.",
-    "worked_example": "Period 202503 (Q1 2025) was declared 2025-04-30. A backtest as_of 2025-04-15 must see period 202412 (declared 2025-02-18) as the latest known KCHOL fundamental, NOT 202503. This single mapping is the make-or-break for an honest backtest.",
-    "coverage": "Declaration dates available back to FY2008 (period 200812 declared 2009-03-11) — matches the data-sourcing finding of publication dates from 2009."
+    "backs": "accounting_regime fundamentals ingestion + M0 PIT-leak detector. knowledge_date for a fundamental of period P = its declarationDate.",
+    "worked_example": "Period 202503 (Q1 2025) declared 2025-04-30. A read as_of 2025-04-15 must see 202412 (declared 2025-02-18, ias29_2023_2024) as the latest KNOWN KCHOL period, NOT 202503."
   },
   "data": {
     "symbol": "KCHOL",
-    "latestPeriod": "202603",
-    "latestDeclarationDate": "2026-05-08",
-    "periods": [
-      {"period": "202603", "declarationDate": "2026-05-08"},
-      {"period": "202512", "declarationDate": "2026-02-11"},
-      {"period": "202509", "declarationDate": "2025-11-06"},
-      {"period": "202506", "declarationDate": "2025-07-31"},
-      {"period": "202503", "declarationDate": "2025-04-30"},
-      {"period": "202412", "declarationDate": "2025-02-18"},
-      {"period": "202409", "declarationDate": "2024-11-07"},
-      {"period": "202406", "declarationDate": "2024-08-08"},
-      {"period": "202403", "declarationDate": "2024-05-23"},
-      {"period": "202312", "declarationDate": "2024-03-15"},
-      {"period": "202309", "declarationDate": "2023-10-26"},
-      {"period": "202306", "declarationDate": "2023-08-01"},
-      {"period": "202303", "declarationDate": "2023-05-02"},
-      {"period": "202212", "declarationDate": "2023-02-10"},
-      {"period": "202112", "declarationDate": "2022-02-17"},
-      {"period": "202012", "declarationDate": "2021-02-15"},
-      {"period": "201912", "declarationDate": "2020-02-13"},
-      {"period": "201812", "declarationDate": "2019-02-15"},
-      {"period": "201712", "declarationDate": "2018-02-16"},
-      {"period": "201612", "declarationDate": "2017-02-17"},
-      {"period": "201512", "declarationDate": "2016-02-14"},
-      {"period": "201412", "declarationDate": "2015-03-02"},
-      {"period": "201312", "declarationDate": "2014-02-20"},
-      {"period": "201212", "declarationDate": "2013-03-07"},
-      {"period": "201112", "declarationDate": "2012-03-08"},
-      {"period": "201012", "declarationDate": "2011-03-10"},
-      {"period": "200912", "declarationDate": "2010-03-11"},
-      {"period": "200812", "declarationDate": "2009-03-11"}
-    ],
-    "_note": "Annual (12) periods listed in full back to 2008; intra-year quarters present back to ~2009 in the source. Full set re-fetchable."
+    "declarationDates": {
+      "symbol": "KCHOL",
+      "items": [
+        {
+          "symbol": "KCHOL",
+          "periods": [
+            {
+              "period": "202603",
+              "declarationDate": "2026-05-08"
+            },
+            {
+              "period": "202512",
+              "declarationDate": "2026-02-11"
+            },
+            {
+              "period": "202509",
+              "declarationDate": "2025-11-06"
+            },
+            {
+              "period": "202506",
+              "declarationDate": "2025-07-31"
+            },
+            {
+              "period": "202503",
+              "declarationDate": "2025-04-30"
+            },
+            {
+              "period": "202412",
+              "declarationDate": "2025-02-18"
+            },
+            {
+              "period": "202409",
+              "declarationDate": "2024-11-07"
+            },
+            {
+              "period": "202406",
+              "declarationDate": "2024-08-08"
+            },
+            {
+              "period": "202403",
+              "declarationDate": "2024-05-23"
+            },
+            {
+              "period": "202312",
+              "declarationDate": "2024-03-15"
+            },
+            {
+              "period": "202309",
+              "declarationDate": "2023-10-26"
+            },
+            {
+              "period": "202306",
+              "declarationDate": "2023-08-01"
+            },
+            {
+              "period": "202303",
+              "declarationDate": "2023-05-02"
+            },
+            {
+              "period": "202212",
+              "declarationDate": "2023-02-10"
+            },
+            {
+              "period": "202209",
+              "declarationDate": "2022-11-04"
+            },
+            {
+              "period": "202206",
+              "declarationDate": "2022-08-16"
+            },
+            {
+              "period": "202203",
+              "declarationDate": "2022-05-09"
+            },
+            {
+              "period": "202112",
+              "declarationDate": "2022-02-17"
+            },
+            {
+              "period": "202109",
+              "declarationDate": "2021-11-05"
+            },
+            {
+              "period": "202106",
+              "declarationDate": "2021-08-12"
+            },
+            {
+              "period": "202103",
+              "declarationDate": "2021-05-06"
+            },
+            {
+              "period": "202012",
+              "declarationDate": "2021-02-15"
+            },
+            {
+              "period": "202009",
+              "declarationDate": "2020-11-05"
+            },
+            {
+              "period": "202006",
+              "declarationDate": "2020-08-13"
+            },
+            {
+              "period": "202003",
+              "declarationDate": "2020-05-22"
+            },
+            {
+              "period": "201912",
+              "declarationDate": "2020-02-13"
+            },
+            {
+              "period": "201909",
+              "declarationDate": "2019-11-08"
+            },
+            {
+              "period": "201906",
+              "declarationDate": "2019-08-08"
+            },
+            {
+              "period": "201903",
+              "declarationDate": "2019-05-09"
+            },
+            {
+              "period": "201812",
+              "declarationDate": "2019-02-15"
+            },
+            {
+              "period": "201809",
+              "declarationDate": "2018-11-08"
+            },
+            {
+              "period": "201806",
+              "declarationDate": "2018-08-14"
+            },
+            {
+              "period": "201803",
+              "declarationDate": "2018-05-10"
+            },
+            {
+              "period": "201712",
+              "declarationDate": "2018-02-16"
+            },
+            {
+              "period": "201709",
+              "declarationDate": "2017-11-09"
+            },
+            {
+              "period": "201706",
+              "declarationDate": "2017-08-18"
+            },
+            {
+              "period": "201703",
+              "declarationDate": "2017-05-10"
+            },
+            {
+              "period": "201612",
+              "declarationDate": "2017-02-17"
+            },
+            {
+              "period": "201609",
+              "declarationDate": "2016-11-07"
+            },
+            {
+              "period": "201603",
+              "declarationDate": "2016-05-06"
+            },
+            {
+              "period": "201512",
+              "declarationDate": "2016-02-14"
+            },
+            {
+              "period": "201509",
+              "declarationDate": "2015-11-08"
+            },
+            {
+              "period": "201506",
+              "declarationDate": "2015-08-13"
+            },
+            {
+              "period": "201503",
+              "declarationDate": "2015-05-10"
+            },
+            {
+              "period": "201412",
+              "declarationDate": "2015-03-02"
+            },
+            {
+              "period": "201409",
+              "declarationDate": "2014-11-09"
+            },
+            {
+              "period": "201406",
+              "declarationDate": "2014-08-14"
+            },
+            {
+              "period": "201403",
+              "declarationDate": "2014-05-11"
+            },
+            {
+              "period": "201312",
+              "declarationDate": "2014-02-20"
+            },
+            {
+              "period": "201309",
+              "declarationDate": "2013-11-10"
+            },
+            {
+              "period": "201306",
+              "declarationDate": "2013-08-21"
+            },
+            {
+              "period": "201303",
+              "declarationDate": "2013-05-16"
+            },
+            {
+              "period": "201212",
+              "declarationDate": "2013-03-07"
+            },
+            {
+              "period": "201209",
+              "declarationDate": "2012-11-15"
+            },
+            {
+              "period": "201206",
+              "declarationDate": "2012-08-28"
+            },
+            {
+              "period": "201203",
+              "declarationDate": "2012-06-10"
+            },
+            {
+              "period": "201112",
+              "declarationDate": "2012-03-08"
+            },
+            {
+              "period": "201109",
+              "declarationDate": "2011-11-03"
+            },
+            {
+              "period": "201103",
+              "declarationDate": "2011-05-12"
+            },
+            {
+              "period": "201012",
+              "declarationDate": "2011-03-10"
+            },
+            {
+              "period": "201009",
+              "declarationDate": "2010-11-10"
+            },
+            {
+              "period": "201006",
+              "declarationDate": "2010-08-26"
+            },
+            {
+              "period": "201003",
+              "declarationDate": "2010-05-14"
+            },
+            {
+              "period": "200912",
+              "declarationDate": "2010-03-11"
+            },
+            {
+              "period": "200909",
+              "declarationDate": "2009-11-12"
+            },
+            {
+              "period": "200903",
+              "declarationDate": "2009-05-14"
+            },
+            {
+              "period": "200812",
+              "declarationDate": "2009-03-11"
+            }
+          ]
+        }
+      ]
+    }
   }
 }

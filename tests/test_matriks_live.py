@@ -113,3 +113,32 @@ def test_m1_pipeline_live_reconciles_eregl_anchor(tmp_path):
     row = tr.loc[tr["bar_date"] == date(2024, 11, 27)].iloc[0]
     assert row["ret_nominal_try"] == pytest.approx(-0.013972, abs=1e-6)
     assert row["ret_usd"] == pytest.approx(-0.013803, abs=1e-6)
+
+
+@pytest.mark.live
+def test_accounting_regime_ingestion_live_reconciles_kchol_declaration_gate(tmp_path):
+    """The accounting_regime consumer over the REAL network: pull KCHOL's live
+    declaration history, tag regimes, land them in a throwaway L2, and reconcile the
+    golden's PIT worked example — as_of 2025-04-15 the latest KNOWN period is 202412
+    (declared 2025-02-18, ias29), with 202503 (declared 2025-04-30) still invisible.
+    Declaration dates are immutable history, so this is a real value anchor."""
+    from datetime import date
+
+    from tmkg.ingest.pipeline import ingest_accounting_regime
+    from tmkg.l2.store import L2Store
+    from tmkg.pit.access import PITAccess
+
+    a = _adapter_or_skip()
+    store = L2Store(db_path=tmp_path / "l2.duckdb")
+    store.bootstrap_schema()
+    ingest_accounting_regime(a, store, "KCHOL")
+
+    con = store.connect()
+    try:
+        latest = PITAccess(date(2025, 4, 15), l2=con).series(
+            "accounting_regime", symbol="KCHOL", latest_by="period"
+        )
+    finally:
+        con.close()
+    assert list(latest["period"]) == ["202412"]   # 202503 declared later -> not yet known
+    assert latest.iloc[0]["regime"] == "ias29_2023_2024"

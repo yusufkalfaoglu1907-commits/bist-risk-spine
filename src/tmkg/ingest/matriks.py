@@ -274,6 +274,44 @@ class MatriksAdapter(IngestionAdapter):
             "refused_dividend": refused_div,
         }
 
+    @staticmethod
+    def parse_declaration_periods(
+        payload: dict, *, symbol: str | None = None
+    ) -> list[dict]:
+        """``fundamentalAnalysis(includeDeclarationDates=True)`` payload -> a list of
+        ``{symbol, period, declaration_date}`` — the PIT knowledge_date source for
+        every fundamental period.
+
+        Real live contract (raw-captured golden): the declaration history lives at
+        ``payload['declarationDates']['items'][*]['periods'][*]`` as
+        ``{period, declarationDate}``. (The top-level ``payload['periods']`` is a list
+        of recent statement-period CODES, NOT the declaration map — do not read it.)
+
+        For a fundamental of period P, ``knowledge_date = its declarationDate``: a
+        backtest as_of D must not see a period declared after D (the M0 PIT-leak
+        worked example). A row with a blank/garbage ``period`` or ``declarationDate``
+        is DROPPED, never coerced to a guessed date (§4). Raises ``ContractDrift`` if
+        the payload carries no ``declarationDates`` envelope at all (was the flag set?).
+        """
+        sym = symbol or payload.get("symbol")
+        dd = payload.get("declarationDates")
+        if not isinstance(dd, dict) or "items" not in dd:
+            raise ContractDrift(
+                "parse_declaration_periods: payload has no 'declarationDates.items' "
+                "(was includeDeclarationDates=True passed?)"
+            )
+        out: list[dict] = []
+        for item in dd.get("items", []):
+            for p in item.get("periods", []) or []:
+                period = str(p.get("period") or "").strip()
+                decl = str(p.get("declarationDate") or "").strip()
+                if not period or not decl:
+                    continue  # drop, never guess (§4)
+                out.append(
+                    {"symbol": sym, "period": period, "declaration_date": decl}
+                )
+        return out
+
     # --- drift guard (M0 [STOP] gate) -------------------------------------
     def smoke_check(self) -> None:
         """Re-fetch the golden samples and prove the live data path (scripts/

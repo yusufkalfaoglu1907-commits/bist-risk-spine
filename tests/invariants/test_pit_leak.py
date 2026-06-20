@@ -11,6 +11,7 @@ from datetime import date
 import pandas as pd
 import pytest
 
+from tmkg.ingest.matriks import MatriksAdapter
 from tmkg.l2.store import L2Store
 from tmkg.pit import PITAccess, PITViolation
 from tmkg.returns import regime_for_period
@@ -23,15 +24,20 @@ def test_pitaccess_refuses_without_as_of():
 
 
 def _land_kchol_declarations(store: L2Store, load_golden) -> None:
-    periods = load_golden("declaration_dates_KCHOL.json")["data"]["periods"]
+    # parse the REAL declaration-dates contract (declarationDates.items[*].periods)
+    # via the production parser, then tag each period's regime — the same path the
+    # ingestion uses, so this detector exercises the shipped code, not a parallel copy.
+    decls = MatriksAdapter.parse_declaration_periods(
+        load_golden("declaration_dates_KCHOL.json")["data"]
+    )
     rows = [
         {
             "symbol": "KCHOL",
-            "period": p["period"],
-            "regime": regime_for_period(p["period"]),
-            "knowledge_date": pd.to_datetime(p["declarationDate"]).date(),
+            "period": d["period"],
+            "regime": regime_for_period(d["period"]),
+            "knowledge_date": pd.to_datetime(d["declaration_date"]).date(),
         }
-        for p in periods
+        for d in decls
     ]
     store.bootstrap_schema()
     store.write_parquet("accounting_regime", pd.DataFrame(rows))

@@ -34,10 +34,14 @@ def test_eregl_back_adjusted_no_gap_on_rights_exdate():
 
 @pytest.mark.golden
 def test_declaration_dates_support_pit_example():
-    periods = {
-        p["period"]: p["declarationDate"]
-        for p in _load("declaration_dates_KCHOL.json")["data"]["periods"]
-    }
+    from tmkg.ingest.matriks import MatriksAdapter
+
+    # parse the REAL contract shape (declarationDates.items[*].periods) via the
+    # production parser, so this golden anchor and the ingestion code can't diverge.
+    rows = MatriksAdapter.parse_declaration_periods(
+        _load("declaration_dates_KCHOL.json")["data"]
+    )
+    periods = {r["period"]: r["declaration_date"] for r in rows}
     # the PIT-leak worked example: 202503 only knowable from 2025-04-30
     assert periods["202503"] == "2025-04-30"
     assert periods["202412"] == "2025-02-18"
