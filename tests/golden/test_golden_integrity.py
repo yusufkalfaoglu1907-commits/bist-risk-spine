@@ -59,3 +59,29 @@ def test_universe_cross_section_present():
     assert u["totalSymbols"] == 30
     for s in ("EKGYO", "KCHOL", "EREGL", "GARAN"):
         assert s in u["symbols"]
+
+
+@pytest.mark.golden
+def test_foreign_flow_historic_resolves_quirk_and_classifies_foreign_houses():
+    """The historic (range) mode is the fix for the M0 foreign-flow quirk; foreign
+    custodian houses are present and classifiable, and the per-investor demographic
+    series is the still-open 400 residual."""
+    d = _load("foreign_flow_GARAN_historic_2025Q1.json")["data"]
+    foreign = {b["code"]: b for b in d["foreign_brokers_seen"]}
+    assert {"MLB", "HSY"} <= set(foreign)  # BofA + HSBC, the foreign conduits
+    assert all(b["classification"] == "foreign" for b in d["foreign_brokers_seen"])
+    # GARANTI BBVA is DOMESTIC despite the foreign parent — the classification caveat
+    grm = next(b for b in d["domestic_brokers_sample"] if b["code"] == "GRM")
+    assert grm["classification"] == "domestic"
+    # the open residual is pinned so we notice if it ever starts working
+    assert any("investor/historic" in lim["service"] for lim in d["limitations"])
+
+
+@pytest.mark.golden
+def test_takas_custody_shows_the_imamoglu_shock():
+    """The 19-Mar-2025 regime boundary is visible in settlement-custody value — a
+    real-data anchor for the M2 betas-break-across-the-shock exit-gate criterion."""
+    tv = _load("takas_GARAN_2025_shock.json")["data"]["tV_series"]
+    assert tv["20250319"] < tv["20250318"]        # shock day drop
+    assert tv["20250321"] < tv["20250319"]        # keeps falling
+    assert tv["20250318"] / tv["20250321"] > 1.25  # ~23%+ custody-value contraction

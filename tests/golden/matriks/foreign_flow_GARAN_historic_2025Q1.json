@@ -1,0 +1,32 @@
+{
+  "_provenance": {
+    "source": "Matriks MCP (interactive probe, sanctioned per CLAUDE.md §4)",
+    "tool": "institutionalFlow",
+    "params": {"symbol": "GARAN", "foreignInvestorMode": "historic", "startDate": "2025-01-02", "endDate": "2025-04-30", "includeForeignInvestorAnalysis": true},
+    "captured_at": "2026-06-21",
+    "RESOLVES": "The M0 foreign-flow QUIRK. The original M0 call used foreignInvestorMode='monthly' — a CURRENT-SNAPSHOT service that returns the latest month and does NOT honor foreignPeriods as a historical selector. The fix is the RANGE mode foreignInvestorMode='historic' + startDate/endDate, which works now that the MKK license is live: broker-level foreign buy/sell over the window, foreign houses classifiable (BANK-OF-AMERICA=MLB, HSBC=HSY)."
+  },
+  "_golden_master": {
+    "backs": "Foreign-flow factor (CLAUDE.md §5 — THE BIST comovement driver). Construction decision 2026-06-21: broker-netting (tag foreign houses, net them) + EVDS weekly non-resident holdings as the market-wide cross-check, at DAILY granularity (loop historic mode per day).",
+    "stable_window": "A FIXED past window (2025Q1) — history does not change, so this is a value-anchored drift guard, not reachability-only.",
+    "OPEN_RESIDUAL": "The per-investor %-non-resident demographic series (v1/investor/historic) STILL returns 400 even with the MKK license, in both the institutionalFlow and historicalData paths. Escalate to Matriks/MKK: is it a higher VAP tier, a different param shape (discrete investorDates not a range), or simply not API-exposed? The chosen broker-netting path does NOT depend on it.",
+    "classification_caveat": "Foreign vs domestic is about non-resident CUSTODY, not the parent's nationality — e.g. GARANTI BBVA (GRM) is a DOMESTIC broker despite the BBVA (Spanish) parent. So the foreign-broker map must be a CURATED, verified reference (ideally an authoritative MKK custodian-type list), never inferred from names. Unknown brokers must be surfaced/refused, never silently bucketed as domestic."
+  },
+  "data": {
+    "symbol": "GARAN",
+    "period": {"start": "2025-01-02", "end": "2025-04-30"},
+    "summary": {"netFlow": 91401281800.69995, "flowDirection": "GIRIS", "flowStrength": "GUCLU", "dominantSide": "ALIS"},
+    "foreign_brokers_seen": [
+      {"code": "MLB", "name": "BANK-OF-AMERICA YATIRIM BANK", "classification": "foreign", "netPosition": "ALIM", "netQuantity": 11489193, "marketShare": 14.539},
+      {"code": "HSY", "name": "HSBC YATIRIM", "classification": "foreign", "netPosition": "SATIM", "netQuantity": -30870789}
+    ],
+    "domestic_brokers_sample": [
+      {"code": "YKR", "name": "YAPI KREDI YAT.", "classification": "domestic", "netPosition": "ALIM", "netQuantity": 6207633, "marketShare": 17.233},
+      {"code": "IYM", "name": "IS YATIRIM", "classification": "domestic", "netPosition": "SATIM", "netQuantity": -26726000, "marketShare": 10.376},
+      {"code": "GRM", "name": "GARANTI BBVA", "classification": "domestic", "netPosition": "ALIM", "netQuantity": 3453123}
+    ],
+    "limitations": [
+      {"service": "v1/investor/historic", "message": "Request failed with status code 400"}
+    ]
+  }
+}

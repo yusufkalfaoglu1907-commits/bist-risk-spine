@@ -21,15 +21,19 @@ These are **real captured data, not fixtures.** They live under `tests/golden/` 
 | `declaration_dates_KCHOL.json` | **PIT-leak detector** · M0 / bitemporal | `knowledge_date = declarationDate`; e.g. 202503 known only from 2025-04-30; coverage back to FY2008 |
 | `accounting_regime_KCHOL_202412.json` | **accounting_regime** invariant · M1 | FY2024 IAS-29-adjusted revenue 2,109bn vs unadjusted 1,611bn (~+31%); both bases served |
 | `foreign_flow_GARAN_monthly.json` | foreign-flow factor · M2 | MKK/AKDE license is **live** (BofA/HSBC visible); monthly net-flow shape |
+| `foreign_flow_GARAN_historic_2025Q1.json` | foreign-flow factor · M2 | **quirk RESOLVED** — `mode='historic'`+dates returns broker-level history; foreign houses classifiable; `v1/investor/historic` still 400 |
+| `takas_GARAN_2025_shock.json` | foreign-flow (takas) + M2 regime break | MKK takas custody **live**, dated daily series; 19-Mar-2025 shock visible (custody value −23% over 3 sessions) |
 | `news_sample_2026-06-19.json` | event/news feed · M6 | feed schema; KAP filings + circuit-breaker + geopolitical items share one feed |
 | `universe_bist30.json` | universe + id-bridge + universe_class · M0 | 30-name liquid cross-section incl. EKGYO (reit), KCHOL/SAHOL (holding), bank templates |
 
 ## Data-access findings for M0 (verified live in this session)
 
 - **Reachable now:** `historicalData` (OHLCV + USDTRY/XU100/gold benchmark in one call), `fundamentalAnalysis` (financials, **declaration dates**, **adjusted+unadjusted**, dividends/capital actions), `symbolSearch`, `institutionalFlow` (**AKDE/MKK license active** — broker-level returns), `newsAndEvents`. OHLCV back to 2006; declaration dates back to 2008/09.
-- **Quirk — period filters not always honored.** `institutionalFlow` ignored `foreignPeriods=['202411']` and returned the latest month (202605); `newsAndEvents` did not strictly honor `category`. The build agent must verify how to pull a *specific historical* foreign-flow month (likely `foreignInvestorMode='historic'` + dates) and filter news categories client-side. **Do not assume these params filter.**
-- **Re-test in M0, don't assume:** per-name daily *investor-level* foreign data (`foreignInvestorMode='investor'`) was previously a 400; limit-lock/halt flags are not delivered (derive ±10% band — design §3 / data-sourcing W5); EVDS, KAP-direct, and GDELT are separate connectors not snapshotted here (add their own golden samples when wired).
-- **Not in Matriks (per data-sourcing-v2):** Turkey CDS, VIX, MSCI-EM → proxies (FRED VIX, EEM, scraped CDS). No golden sample yet.
+- **Quirk — RESOLVED 2026-06-21 (M2).** `institutionalFlow` ignored `foreignPeriods=['202411']` because `mode='monthly'` is a CURRENT-SNAPSHOT service (returns the latest month, no historical backfill). The fix is the RANGE mode **`foreignInvestorMode='historic'` + `startDate`/`endDate`**, verified live now that the MKK license is bought: broker-level foreign history returns, foreign houses classifiable. `newsAndEvents` still needs client-side `category` filtering. See `foreign_flow_GARAN_historic_2025Q1.json`.
+- **Foreign-flow construction (decided 2026-06-21):** broker-netting (curated foreign-custodian map, net the foreign houses) + **EVDS weekly non-resident holdings** as the market-wide cross-check, **daily** granularity (loop `historic` mode per day). The **takas custody** path (`historicalData includeHistoricalTakasIndicator`) is also live and dated — a candidate for the per-name foreign-holdings series once the foreign-custodian agent filter is confirmed.
+- **STILL 400 (escalate to Matriks/MKK):** the per-investor **%-non-resident demographic series** (`v1/investor/historic`) returns 400 even with MKK, via both tool paths. Is it a higher VAP tier, a different param shape (discrete `investorDates`, not a range), or unexposed? The chosen broker-netting path does **not** depend on it.
+- **Classification caveat:** foreign vs domestic = non-resident **custody**, not parent nationality (GARANTI BBVA is domestic despite the BBVA parent). The foreign-broker map must be a **curated, verified** reference; unknown brokers are surfaced/refused, never bucketed as domestic.
+- **Not in Matriks:** **VIX** confirmed absent (`symbolSearch('VIX')` → 0 results) → **FRED `VIXCLS`** (free API key) needed. Turkey CDS → scrape/paid feed (W3). **MSCI-EM/EEM** is a US ETF — may be reachable via Matriks `foreignMarkets` (US/NBBO); verify before adding an external source.
 
 ## Re-capture
 

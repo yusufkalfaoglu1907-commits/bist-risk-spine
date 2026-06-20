@@ -1,0 +1,27 @@
+{
+  "_provenance": {
+    "source": "Matriks MCP (interactive probe, sanctioned per CLAUDE.md §4)",
+    "tool": "historicalData",
+    "params": {"symbol": "GARAN", "startDate": "2025-03-01", "endDate": "2025-04-30", "includeHistoricalTakasIndicator": true},
+    "captured_at": "2026-06-21",
+    "note": "Takas (settlement custody) historical indicator — MKK-gated, now LIVE. Returns a clean DATED daily series {YYYYMMDD: {tQ: total custody quantity, tV: total custody value TRY}}. tQ is constant (= total float/custody quantity); tV moves with price. The plain call is the AGGREGATE (foreign+domestic) — isolating foreign custodians needs an agent-level takas filter (to confirm in the live session)."
+  },
+  "_golden_master": {
+    "backs": "(a) The MKK takas path is live (dated custody series). (b) A vivid anchor for the M2 regime break: the 19-Mar-2025 Imamoglu shock is VISIBLE in custody value — tV drops 341.7bn (03-18) -> 307.6bn (03-19) -> 287.7bn (03-20) -> 263.2bn (03-21), a ~23% custody-value contraction over three sessions. This is exactly the regime boundary the beta engine must break across (factors/regime.py imamoglu_shock_2025 = 2025-03-19).",
+    "stable_window": "Fixed past window — value-anchored drift guard."
+  },
+  "data": {
+    "symbol": "GARAN",
+    "tQ_constant": 2454957789.22,
+    "tV_series": {
+      "20250317": 350076995726.65,
+      "20250318": 341730116767.49,
+      "20250319": 307606218481.20,
+      "20250320": 287721045404.65,
+      "20250321": 263171467512.45,
+      "20250324": 272009330537.51,
+      "20250428": 248687231539.92,
+      "20250430": 252124157460.96
+    }
+  }
+}
