@@ -34,6 +34,9 @@ _RAW_BARS = True
 
 from tmkg.ingest.audit import write_run_report
 from tmkg.ingest.evds import CPI_TUFE_FACTOR, CPI_TUFE_SERIES, EvdsAdapter
+from tmkg.factors.betas import rolling_factor_betas
+from tmkg.factors.neutralize import rolling_residuals
+from tmkg.factors.series import compute_factor_returns
 from tmkg.ingest.matriks import MatriksAdapter
 from tmkg.l2.store import L2Store
 from tmkg.pit.access import PITAccess
@@ -344,4 +347,193 @@ def run_m1_ingestion(
         )
 
     write_run_report("m1_ingestion", report)
+    return report
+
+
+# === M2: factor model + neutralization ====================================
+# These builders read inputs back through PITAccess (the same gate signal code is
+# held to) and land the derived betas/residuals to L2 — the precedent set by
+# build_total_returns above. Factor returns are derived on read from the L2 factor
+# *levels* (BUILD_LOG 2026-06-20 decision: not persisted into the append-only
+# factors.ret rows), so a vintage's factor returns can only use levels knowable then.
+_DEFAULT_LADDER_ORDER = ("market", "fx", "rates_cds", "energy", "sector",
+                         "foreign_flow", "holding")
+
+
+def build_factor_return_panel(
+    store: L2Store,
+    *,
+    as_of: date,
+    specs: dict[str, str],
+) -> pd.DataFrame:
+    """Read L2 factor *levels* through PIT and return a long ``[factor, bar_date, ret]``
+    panel. ``specs`` maps each factor name to its return method
+    (``simple`` / ``log`` / ``diff`` — see ``factors.series``); only the listed factors
+    are read (e.g. exclude the CPI deflator, which is not a model factor). A factor with
+    no levels visible as of ``as_of`` is simply absent — never a fabricated series.
+    """
+    con = store.connect()
+    try:
+        pit = PITAccess(as_of, l2=con)
+        frames = []
+        for factor in specs:
+            lv = pit.series("factors", where=f"factor = '{factor}'")
+            if lv.empty:
+                continue
+            frames.append(lv[["factor", "bar_date", "value"]])
+    finally:
+        con.close()
+    if not frames:
+        return pd.DataFrame(columns=["factor", "bar_date", "ret"])
+    levels = pd.concat(frames, ignore_index=True)
+    rets = compute_factor_returns(levels, method=specs)
+    return rets[["factor", "bar_date", "ret"]].dropna(subset=["ret"]).reset_index(drop=True)
+
+
+def _universe_class(pit: PITAccess, symbol: str) -> str | None:
+    """The name's universe_class as known at the PIT vintage (None if unrecorded)."""
+    try:
+        u = pit.series("universe_membership", symbol=symbol, latest_by="valid_from")
+    except Exception:
+        return None
+    if u.empty or "universe_class" not in u.columns:
+        return None
+    vals = u["universe_class"].dropna().unique().tolist()
+    return vals[0] if vals else None
+
+
+def _stock_returns(pit: PITAccess, symbol: str) -> pd.DataFrame:
+    """USD-primary total returns for one name as a ``[bar_date, ret]`` frame."""
+    tr = pit.series("total_returns", symbol=symbol)
+    if tr.empty:
+        return pd.DataFrame(columns=["bar_date", "ret"])
+    return tr[["bar_date", "ret_usd"]].rename(columns={"ret_usd": "ret"})
+
+
+def build_betas(
+    store: L2Store,
+    symbol: str,
+    *,
+    as_of: date,
+    specs: dict[str, str],
+    panel: pd.DataFrame | None = None,
+    window: int = 60,
+    min_obs: int | None = None,
+    method: str = "ledoit_wolf",
+) -> dict:
+    """Fit rolling regime-aware factor betas for ``symbol`` as of ``as_of`` and land
+    them in L2 ``betas``. Reads the name's USD total returns + the factor panel through
+    PIT; tags each row with the name's PIT-known ``universe_class``. Pass a prebuilt
+    ``panel`` to avoid re-reading factors per symbol in a batch run.
+    """
+    con = store.connect()
+    try:
+        pit = PITAccess(as_of, l2=con)
+        y = _stock_returns(pit, symbol)
+        uclass = _universe_class(pit, symbol)
+    finally:
+        con.close()
+    if panel is None:
+        panel = build_factor_return_panel(store, as_of=as_of, specs=specs)
+    if y.empty or panel.empty:
+        return {"symbol": symbol, "table": "betas", "n_betas": 0,
+                "note": f"no returns/factors visible as of {as_of}"}
+
+    betas = rolling_factor_betas(
+        y, panel, symbol=symbol, window=window, min_obs=min_obs,
+        method=method, universe_class=uclass,
+    )
+    if betas.empty:
+        return {"symbol": symbol, "table": "betas", "n_betas": 0,
+                "note": "no full in-regime window"}
+    betas = _coerce_dates(betas)
+    store.write_parquet("betas", betas)
+    return {
+        "symbol": symbol, "table": "betas", "n_betas": len(betas),
+        "as_of": str(as_of), "universe_class": uclass,
+        "factors": sorted(betas["factor"].unique().tolist()),
+        "regimes": sorted(betas["regime"].dropna().unique().tolist()),
+    }
+
+
+def build_residuals(
+    store: L2Store,
+    symbol: str,
+    *,
+    as_of: date,
+    specs: dict[str, str],
+    order: tuple[str, ...] = _DEFAULT_LADDER_ORDER,
+    panel: pd.DataFrame | None = None,
+    window: int = 60,
+    min_obs: int | None = None,
+) -> dict:
+    """Compute the neutralized residual-return series for ``symbol`` as of ``as_of`` and
+    land it in L2 ``residuals``. ``order`` is the concrete factor-name strip order; only
+    factors present in the panel are stripped, and the order is recorded verbatim on each
+    row (``strip_order``) so the ladder is auditable.
+    """
+    con = store.connect()
+    try:
+        pit = PITAccess(as_of, l2=con)
+        y = _stock_returns(pit, symbol)
+        uclass = _universe_class(pit, symbol)
+    finally:
+        con.close()
+    if panel is None:
+        panel = build_factor_return_panel(store, as_of=as_of, specs=specs)
+    if y.empty or panel.empty:
+        return {"symbol": symbol, "table": "residuals", "n_residuals": 0,
+                "note": f"no returns/factors visible as of {as_of}"}
+
+    # strip only factors that actually have a return series in the panel, in ladder order
+    present = list(dict.fromkeys(panel["factor"]))
+    strip_order = tuple(f for f in order if f in present)
+    res = rolling_residuals(
+        y, panel, order=strip_order, symbol=symbol, window=window,
+        min_obs=min_obs, universe_class=uclass,
+    )
+    if res.empty:
+        return {"symbol": symbol, "table": "residuals", "n_residuals": 0,
+                "note": "no full in-regime window"}
+    res = _coerce_dates(res)
+    store.write_parquet("residuals", res)
+    return {
+        "symbol": symbol, "table": "residuals", "n_residuals": len(res),
+        "as_of": str(as_of), "universe_class": uclass,
+        "strip_order": ">".join(strip_order),
+    }
+
+
+def run_m2_factor_model(
+    store: L2Store,
+    *,
+    symbols: list[str],
+    as_of: date,
+    specs: dict[str, str],
+    order: tuple[str, ...] = _DEFAULT_LADDER_ORDER,
+    window: int = 60,
+    min_obs: int | None = None,
+    method: str = "ledoit_wolf",
+) -> dict:
+    """One M2 run: build the factor-return panel once, then fit betas and neutralized
+    residuals for every name as of ``as_of``, landing both to L2 and writing a single
+    audit report (§4). Reads only L2 (no network) — the inputs were landed in M1.
+    """
+    store.bootstrap_schema()
+    panel = build_factor_return_panel(store, as_of=as_of, specs=specs)
+    report: dict = {
+        "as_of": str(as_of), "window": window, "method": method,
+        "factors": sorted(panel["factor"].unique().tolist()) if not panel.empty else [],
+        "ladder": ">".join(order), "betas": [], "residuals": [],
+    }
+    for sym in symbols:
+        report["betas"].append(
+            build_betas(store, sym, as_of=as_of, specs=specs, panel=panel,
+                        window=window, min_obs=min_obs, method=method)
+        )
+        report["residuals"].append(
+            build_residuals(store, sym, as_of=as_of, specs=specs, order=order,
+                            panel=panel, window=window, min_obs=min_obs)
+        )
+    write_run_report("m2_factor_model", report)
     return report
