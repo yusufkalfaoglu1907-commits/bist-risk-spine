@@ -1,0 +1,16 @@
+{
+  "_written_at": "2026-06-20T13:57:28",
+  "table": "universe_membership",
+  "entity": "Soda Sanayii A.\u015e.",
+  "ticker": "SODA",
+  "n_rows": 2,
+  "symbols": [
+    "SODA"
+  ],
+  "key_dates": {
+    "merger_announced": "2020-01-30",
+    "delisting_announced_by_borsa": "2020-09-18",
+    "last_trading_day": "2020-09-30",
+    "delisted_from": "2020-10-01"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "_provenance": {
+    "entity": "Soda Sanayii A.Ş.",
+    "ticker": "SODA",
+    "kap_company_id": 1072,
+    "event": "Merger by absorption (devralma yoluyla birleşme) into Türkiye Şişe ve Cam Fabrikaları A.Ş. (SISE); Borsa İstanbul delisting",
+    "sources": [
+      {
+        "what": "Borsa İstanbul A.Ş. announcement of last trading day & delisting",
+        "url": "https://www.qnbinvest.com.tr/duyuru/borsa-istanbul-as-anacm-dencm-trkcm-soda-sise18092020",
+        "announced_on": "2020-09-18",
+        "quote": "Anadolu Cam, Denizli Cam, Soda Sanayi ve Trakya Cam payları Borsamızda en son 30/09/2020 tarihinde işlem görmüş olacaktır... 01/10/2020 tarihinden itibaren Kotasyon Yönergesinin 23/1-ç maddesi kapsamında kottan çıkarılacak"
+      },
+      {
+        "what": "Merger timeline (announcement / SPK approval / completion)",
+        "url": "https://www.erdem-erdem.av.tr/en/insights/anadolu-cam-denizli-cam-pasabahce-soda-sanayii-and-trakya-cam-were-merged-under-sisecam",
+        "publicly_announced": "2020-01-30",
+        "cmb_spk_approval": "2020-07-23",
+        "egm_approval": "2020-08-28",
+        "completed": "2020-09-30"
+      }
+    ],
+    "key_dates": {
+      "merger_announced": "2020-01-30",
+      "delisting_announced_by_borsa": "2020-09-18",
+      "last_trading_day": "2020-09-30",
+      "delisted_from": "2020-10-01"
+    },
+    "exchange_ratio_soda_to_sise": 1.15997,
+    "captured_at": "2026-06-20",
+    "valid_from_note": "valid_from=2020-01-30 is the merger public-announcement date, used as a SOURCED LOWER BOUND for SODA's listing membership in this slice. SODA's true first-listing/IPO date predates it but could not be cleanly sourced for the delisted entity (data vendors surface the unrelated SODSN / Sodaş Sodyum). Backfilling the true IPO date is a later refinement; no assertion in the survivorship test depends on this bound — all checks sit inside the airtight 2020-06..2020-10 sourced window.",
+    "bitemporal_model": "Two rows. (1) Open membership as KNOWN at the merger announcement (valid_to NULL, knowledge_date 2020-01-30) — in mid-2020 the market did not yet know SODA would delist. (2) The delisting correction as KNOWN at the Borsa İstanbul announcement (valid_to 2020-09-30, knowledge_date 2020-09-18). PITAccess.universe resolves the latest correction known by as_of per (symbol, valid_from) span."
+  },
+  "universe_membership": [
+    {
+      "symbol": "SODA",
+      "universe": "listed",
+      "universe_class": "operating",
+      "valid_from": "2020-01-30",
+      "valid_to": null,
+      "knowledge_date": "2020-01-30",
+      "source": "borsa_istanbul"
+    },
+    {
+      "symbol": "SODA",
+      "universe": "listed",
+      "universe_class": "operating",
+      "valid_from": "2020-01-30",
+      "valid_to": "2020-09-30",
+      "knowledge_date": "2020-09-18",
+      "source": "borsa_istanbul"
+    }
+  ]
+}

@@ -33,6 +33,7 @@ import pandas as pd
 _RAW_BARS = True
 
 from tmkg.ingest.audit import write_run_report
+from tmkg.ingest.evds import CPI_TUFE_FACTOR, CPI_TUFE_SERIES, EvdsAdapter
 from tmkg.ingest.matriks import MatriksAdapter
 from tmkg.l2.store import L2Store
 from tmkg.pit.access import PITAccess
@@ -153,6 +154,40 @@ def ingest_factor_series(
     }
 
 
+# --- CPI (EVDS macro series -> factors, the real-TRY deflator) --------------
+def ingest_cpi(
+    adapter: EvdsAdapter,
+    store: L2Store,
+    *,
+    start: str,
+    end: str,
+    series: str = CPI_TUFE_SERIES,
+    factor: str = CPI_TUFE_FACTOR,
+) -> dict:
+    """Fetch the TÜFE/CPI series from EVDS and land it in L2 ``factors``.
+
+    The deflator for the CPI-real-TRY cross-check (CLAUDE.md §5). ``parse_cpi``
+    already yields ``factors``-schema rows with a PIT-honest ``knowledge_date`` (the
+    TÜİK release, ~3rd of the next month) — so a backtest cannot deflate a month by a
+    CPI print it could not yet have seen. ``ret`` is left NULL (inflation is derived
+    in the return constructor, never stored). Raises on an unreachable source via
+    ``adapter.fetch`` (§4); a blank reading is dropped in ``parse_cpi``, never guessed.
+    """
+    payload = adapter.fetch(series, start=start, end=end)
+    rows = adapter.parse_cpi(payload, series=series, factor=factor)
+    df = _coerce_dates(pd.DataFrame(rows))
+    df["value"] = pd.to_numeric(df["value"], errors="coerce")
+    store.write_parquet("factors", df)
+    return {
+        "factor": factor,
+        "table": "factors",
+        "series": series,
+        "n_points": len(df),
+        "first": str(df["bar_date"].min()),
+        "last": str(df["bar_date"].max()),
+    }
+
+
 # --- total returns (read inputs through PIT, construct, land) ---------------
 def build_total_returns(
     store: L2Store,
@@ -160,14 +195,18 @@ def build_total_returns(
     *,
     as_of: date,
     fx_factor: str | None = "USDTRY",
+    cpi_factor: str | None = CPI_TUFE_FACTOR,
     dividend_yields: dict | None = None,
 ) -> dict:
     """Build and land the USD-primary ``total_returns`` for ``symbol`` as of ``as_of``.
 
     Inputs are read back through ``PITAccess`` so the series can only depend on bars
-    whose ``knowledge_date <= as_of`` — the same gate signal code is held to. The
-    pure ``compute_total_returns`` does the financial construction; this function is
-    the L2/PIT plumbing around it.
+    whose ``knowledge_date <= as_of`` — the same gate signal code is held to. FX and
+    CPI both live in L2 ``factors`` (selected by name); the CPI deflator carries the
+    TÜİK release as its ``knowledge_date``, so a month's ``ret_real_try`` only lands
+    once that month's CPI print was knowable at ``as_of`` (else the column stays NULL,
+    never an interpolated deflator — §4). The pure ``compute_total_returns`` does the
+    financial construction; this function is the L2/PIT plumbing around it.
     """
     con = store.connect()
     try:
@@ -176,6 +215,9 @@ def build_total_returns(
         fx = None
         if fx_factor is not None:
             fx = pit.series("factors", where=f"factor = '{fx_factor}'")
+        cpi = None
+        if cpi_factor is not None:
+            cpi = pit.series("factors", where=f"factor = '{cpi_factor}'")
     finally:
         con.close()
 
@@ -187,8 +229,13 @@ def build_total_returns(
     if fx is not None and not fx.empty:
         fx_frame = fx.rename(columns={"value": "close"})[["bar_date", "close"]]
 
+    cpi_frame = None
+    if cpi is not None and not cpi.empty:
+        cpi_frame = cpi[["bar_date", "value"]]
+
     tr = compute_total_returns(
-        prices, fx_frame, symbol=symbol, dividend_yields=dividend_yields
+        prices, fx_frame, symbol=symbol,
+        dividend_yields=dividend_yields, cpi=cpi_frame,
     )
     tr = _coerce_dates(tr)
     for c in _RET_COLS:  # pd.NA (object) -> float NaN so DuckDB sees a DOUBLE NULL
@@ -200,7 +247,9 @@ def build_total_returns(
         "n_returns": len(tr),
         "as_of": str(as_of),
         "fx_factor": fx_factor,
+        "cpi_factor": cpi_factor,
         "ret_usd_null": int(tr["ret_usd"].isna().sum()),
+        "ret_real_try_null": int(tr["ret_real_try"].isna().sum()),
     }
 
 
@@ -214,12 +263,18 @@ def run_m1_ingestion(
     end: str,
     as_of: date,
     fx: tuple[str, str] = ("USDTRY", "USDTRY"),
+    cpi_adapter: EvdsAdapter | None = None,
+    cpi_window: tuple[str, str] | None = None,
 ) -> dict:
-    """One M1 run: land prices for ``symbols`` + the FX factor, build total returns
-    for each symbol as of ``as_of``, and write a single audit report (§4).
+    """One M1 run: land prices for ``symbols`` + the FX factor (and, when a
+    ``cpi_adapter`` is given, the CPI deflator from EVDS), build total returns for
+    each symbol as of ``as_of``, and write a single audit report (§4).
 
-    ``fx = (factor_name, symbol)``. Stops loud on the first unreachable source — a
-    partial run is logged, never silently completed with fabricated gaps.
+    ``fx = (factor_name, symbol)``. CPI is a separate source (EVDS, not Matriks), so
+    it takes its own ``cpi_adapter``; ``cpi_window`` defaults to the price window but
+    a wider one is usually wanted (CPI is monthly, and a month's deflator needs the
+    prior month too). Stops loud on the first unreachable source — a partial run is
+    logged, never silently completed with fabricated gaps.
     """
     store.bootstrap_schema()
     report: dict = {"as_of": str(as_of), "window": [start, end],
@@ -229,6 +284,11 @@ def run_m1_ingestion(
     report["factors"].append(
         ingest_factor_series(adapter, store, factor_name, fx_symbol, start=start, end=end)
     )
+    if cpi_adapter is not None:
+        c_start, c_end = cpi_window or (start, end)
+        report["factors"].append(
+            ingest_cpi(cpi_adapter, store, start=c_start, end=c_end)
+        )
     for sym in symbols:
         report["prices"].append(
             ingest_prices(adapter, store, sym, start=start, end=end)

@@ -97,15 +97,32 @@ class PITAccess:
         is retained in universe_membership — so a read at an earlier ``as_of``
         inside its window still includes it (no survivorship bias). Returns a frame
         of (symbol, universe_class).
+
+        **Bitemporal correction.** A membership span (keyed by symbol + universe +
+        valid_from) can be re-stated as facts arrive — e.g. an open membership later
+        corrected to closed when a delisting is announced. Among the versions of a
+        span that were KNOWN by ``as_of`` (knowledge_date <= as_of) only the latest
+        is applied, so a read dated before a delisting was announced honestly shows
+        the name as still-open (the market did not yet know it would delist), while a
+        read after the announcement sees the closed window. This is what makes the
+        as-of universe both survivorship-correct AND free of delisting look-ahead.
         """
         if self._l2 is None:
             raise PITViolation("PITAccess.universe needs an L2 (DuckDB) connection.")
         sql = (
-            "SELECT DISTINCT symbol, universe_class FROM universe_membership "
-            "WHERE universe = ? "
-            "AND knowledge_date <= ? "       # could we have known the membership?
-            "AND valid_from <= ? "           # already a member by as_of
-            "AND (valid_to IS NULL OR valid_to >= ?) "  # not yet delisted at as_of
+            "WITH visible AS ("
+            "  SELECT symbol, universe_class, valid_from, valid_to, "
+            "         ROW_NUMBER() OVER ("
+            "             PARTITION BY symbol, universe, valid_from "
+            "             ORDER BY knowledge_date DESC"
+            "         ) AS _rn "
+            "  FROM universe_membership "
+            "  WHERE universe = ? AND knowledge_date <= ? "  # could we have known it?
+            ") "
+            "SELECT DISTINCT symbol, universe_class FROM visible "
+            "WHERE _rn = 1 "                                 # latest known version of the span
+            "AND valid_from <= ? "                           # already a member by as_of
+            "AND (valid_to IS NULL OR valid_to >= ?) "       # not yet delisted at as_of
             "ORDER BY symbol"
         )
         return self._l2.execute(
