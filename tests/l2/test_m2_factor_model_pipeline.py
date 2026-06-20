@@ -24,6 +24,8 @@ from tmkg.ingest.pipeline import (
     build_betas,
     build_factor_return_panel,
     build_residuals,
+    factor_coverage,
+    run_m2_factor_model,
 )
 from tmkg.l2.store import L2Store
 
@@ -117,6 +119,44 @@ def test_residuals_land_and_are_near_zero_for_a_pure_factor_name(tmp_path):
     finally:
         con.close()
     assert np.abs(res["residual"].to_numpy()).max() < 1e-9
+
+
+def test_no_factor_silently_dropped(tmp_path):
+    """Exit-gate rule: a configured factor with no series must be surfaced (and, under
+    require_all, refused) — never silently omitted to fit a thinner model."""
+    store = _store(tmp_path)
+    dates = _seed(store)
+    specs = {"market": "simple", "fx": "simple", "brent": "simple"}  # brent never landed
+
+    panel = build_factor_return_panel(store, as_of=dates[-1], specs=specs)
+    present, missing = factor_coverage(panel, specs)
+    assert present == ["market", "fx"]
+    assert missing == ["brent"]
+
+    # require_all turns the silent drop into a loud failure
+    with pytest.raises(ValueError, match="brent"):
+        build_factor_return_panel(store, as_of=dates[-1], specs=specs, require_all=True)
+
+
+def test_run_reports_factor_coverage(tmp_path):
+    import tmkg.config as config
+
+    store = _store(tmp_path)
+    dates = _seed(store)
+    specs = {"market": "simple", "fx": "simple", "brent": "simple"}
+    report_path = config.REPO_ROOT / "data" / "cache" / "m2_factor_model_report.json"
+    existed = report_path.exists()
+    try:
+        report = run_m2_factor_model(store, symbols=["AAA"], as_of=dates[-1],
+                                     specs=specs, order=("market", "fx", "brent"),
+                                     window=40, method="ols")
+        assert report["missing_factors"] == ["brent"]
+        assert set(report["present_factors"]) == {"market", "fx"}
+        # the residual strip_order reflects only the factors actually present
+        assert report["residuals"][0]["strip_order"] == "market>fx"
+    finally:
+        if not existed and report_path.exists():
+            report_path.unlink()  # synthetic run: don't leave a fake audit report behind
 
 
 def test_pit_gate_holds_on_built_betas(tmp_path):

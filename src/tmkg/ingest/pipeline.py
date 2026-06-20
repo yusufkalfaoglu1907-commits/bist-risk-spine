@@ -360,17 +360,31 @@ _DEFAULT_LADDER_ORDER = ("market", "fx", "rates_cds", "energy", "sector",
                          "foreign_flow", "holding")
 
 
+def factor_coverage(panel: pd.DataFrame, specs: dict[str, str]) -> tuple[list[str], list[str]]:
+    """Split the configured factors into (present, missing) given a built panel.
+    The basis for the "no factor silently dropped" exit-gate guard."""
+    present_set = set(panel["factor"]) if not panel.empty else set()
+    present = [f for f in specs if f in present_set]
+    missing = [f for f in specs if f not in present_set]
+    return present, missing
+
+
 def build_factor_return_panel(
     store: L2Store,
     *,
     as_of: date,
     specs: dict[str, str],
+    require_all: bool = False,
 ) -> pd.DataFrame:
     """Read L2 factor *levels* through PIT and return a long ``[factor, bar_date, ret]``
     panel. ``specs`` maps each factor name to its return method
     (``simple`` / ``log`` / ``diff`` — see ``factors.series``); only the listed factors
     are read (e.g. exclude the CPI deflator, which is not a model factor). A factor with
     no levels visible as of ``as_of`` is simply absent — never a fabricated series.
+
+    ``require_all=True`` makes a missing configured factor a **loud failure** rather than
+    a silent thinner model — the M2 exit-gate rule "no factor silently dropped" / §4. The
+    caller (and the audit report) should always surface coverage via ``factor_coverage``.
     """
     con = store.connect()
     try:
@@ -383,11 +397,21 @@ def build_factor_return_panel(
             frames.append(lv[["factor", "bar_date", "value"]])
     finally:
         con.close()
-    if not frames:
-        return pd.DataFrame(columns=["factor", "bar_date", "ret"])
-    levels = pd.concat(frames, ignore_index=True)
-    rets = compute_factor_returns(levels, method=specs)
-    return rets[["factor", "bar_date", "ret"]].dropna(subset=["ret"]).reset_index(drop=True)
+    panel = (
+        pd.DataFrame(columns=["factor", "bar_date", "ret"])
+        if not frames
+        else compute_factor_returns(pd.concat(frames, ignore_index=True), method=specs)[
+            ["factor", "bar_date", "ret"]
+        ].dropna(subset=["ret"]).reset_index(drop=True)
+    )
+    if require_all:
+        _, missing = factor_coverage(panel, specs)
+        if missing:
+            raise ValueError(
+                f"configured factors {missing} have no levels in L2 as of {as_of}; "
+                f"refusing to fit a silently-thinner model (M2 'no factor silently dropped' / §4)"
+            )
+    return panel
 
 
 def _universe_class(pit: PITAccess, symbol: str) -> str | None:
@@ -514,16 +538,24 @@ def run_m2_factor_model(
     window: int = 60,
     min_obs: int | None = None,
     method: str = "ledoit_wolf",
+    require_all_factors: bool = False,
 ) -> dict:
     """One M2 run: build the factor-return panel once, then fit betas and neutralized
     residuals for every name as of ``as_of``, landing both to L2 and writing a single
     audit report (§4). Reads only L2 (no network) — the inputs were landed in M1.
+
+    ``require_all_factors=True`` enforces the exit-gate rule "no factor silently
+    dropped": the run fails loud if any configured factor has no series as of ``as_of``.
+    Either way the report records the present/missing split so coverage is auditable.
     """
     store.bootstrap_schema()
-    panel = build_factor_return_panel(store, as_of=as_of, specs=specs)
+    panel = build_factor_return_panel(store, as_of=as_of, specs=specs,
+                                      require_all=require_all_factors)
+    present, missing = factor_coverage(panel, specs)
     report: dict = {
         "as_of": str(as_of), "window": window, "method": method,
-        "factors": sorted(panel["factor"].unique().tolist()) if not panel.empty else [],
+        "configured_factors": list(specs), "present_factors": present,
+        "missing_factors": missing,  # surfaced, never silently dropped
         "ladder": ">".join(order), "betas": [], "residuals": [],
     }
     for sym in symbols:
