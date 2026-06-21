@@ -35,6 +35,7 @@ _RAW_BARS = True
 from tmkg.ingest.audit import write_run_report
 from tmkg.ingest.evds import CPI_TUFE_FACTOR, CPI_TUFE_SERIES, EvdsAdapter
 from tmkg.ingest.fred import VIX_FACTOR, VIX_SERIES, FredAdapter
+from tmkg.factors import registry
 from tmkg.factors.betas import rolling_factor_betas
 from tmkg.factors.neutralize import rolling_residuals
 from tmkg.factors.series import compute_factor_returns
@@ -390,8 +391,11 @@ def run_m1_ingestion(
 # build_total_returns above. Factor returns are derived on read from the L2 factor
 # *levels* (BUILD_LOG 2026-06-20 decision: not persisted into the append-only
 # factors.ret rows), so a vintage's factor returns can only use levels knowable then.
-_DEFAULT_LADDER_ORDER = ("market", "fx", "rates_cds", "energy", "sector",
-                         "foreign_flow", "holding")
+#
+# The strip order is a sequence of concrete factor *names* (XU100, USDTRY, …), not ladder
+# roles — derived from ``factors.registry`` so it follows the §200 rung order without being
+# retyped. ``order=None`` (the default) means "derive the name order from the registry for
+# whatever factors are actually present"; an explicit ``order`` is honored verbatim.
 
 
 def factor_coverage(panel: pd.DataFrame, specs: dict[str, str]) -> tuple[list[str], list[str]]:
@@ -520,15 +524,16 @@ def build_residuals(
     *,
     as_of: date,
     specs: dict[str, str],
-    order: tuple[str, ...] = _DEFAULT_LADDER_ORDER,
+    order: tuple[str, ...] | None = None,
     panel: pd.DataFrame | None = None,
     window: int = 60,
     min_obs: int | None = None,
 ) -> dict:
     """Compute the neutralized residual-return series for ``symbol`` as of ``as_of`` and
-    land it in L2 ``residuals``. ``order`` is the concrete factor-name strip order; only
+    land it in L2 ``residuals``. ``order`` is the concrete factor-*name* strip order; only
     factors present in the panel are stripped, and the order is recorded verbatim on each
-    row (``strip_order``) so the ladder is auditable.
+    row (``strip_order``) so the ladder is auditable. ``order=None`` derives the name order
+    from ``factors.registry`` (§200 rung order) for whatever factors actually landed.
     """
     con = store.connect()
     try:
@@ -545,7 +550,10 @@ def build_residuals(
 
     # strip only factors that actually have a return series in the panel, in ladder order
     present = list(dict.fromkeys(panel["factor"]))
-    strip_order = tuple(f for f in order if f in present)
+    if order is None:
+        strip_order = registry.order_present(present)  # registry §200 rung order
+    else:
+        strip_order = tuple(f for f in order if f in present)  # honor explicit order verbatim
     res = rolling_residuals(
         y, panel, order=strip_order, symbol=symbol, window=window,
         min_obs=min_obs, universe_class=uclass,
@@ -568,7 +576,7 @@ def run_m2_factor_model(
     symbols: list[str],
     as_of: date,
     specs: dict[str, str],
-    order: tuple[str, ...] = _DEFAULT_LADDER_ORDER,
+    order: tuple[str, ...] | None = None,
     window: int = 60,
     min_obs: int | None = None,
     method: str = "ledoit_wolf",
@@ -586,11 +594,14 @@ def run_m2_factor_model(
     panel = build_factor_return_panel(store, as_of=as_of, specs=specs,
                                       require_all=require_all_factors)
     present, missing = factor_coverage(panel, specs)
+    # the effective strip order is concrete factor names in §200 rung order — derived from
+    # the registry when not given explicitly, over only the factors actually present.
+    effective_order = order if order is not None else registry.order_present(present)
     report: dict = {
         "as_of": str(as_of), "window": window, "method": method,
         "configured_factors": list(specs), "present_factors": present,
         "missing_factors": missing,  # surfaced, never silently dropped
-        "ladder": ">".join(order), "betas": [], "residuals": [],
+        "ladder": ">".join(effective_order), "betas": [], "residuals": [],
     }
     for sym in symbols:
         report["betas"].append(
@@ -598,7 +609,7 @@ def run_m2_factor_model(
                         window=window, min_obs=min_obs, method=method)
         )
         report["residuals"].append(
-            build_residuals(store, sym, as_of=as_of, specs=specs, order=order,
+            build_residuals(store, sym, as_of=as_of, specs=specs, order=effective_order,
                             panel=panel, window=window, min_obs=min_obs)
         )
     write_run_report("m2_factor_model", report)
