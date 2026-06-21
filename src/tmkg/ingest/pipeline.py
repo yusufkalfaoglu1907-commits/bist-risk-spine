@@ -34,6 +34,7 @@ _RAW_BARS = True
 
 from tmkg.ingest.audit import write_run_report
 from tmkg.ingest.evds import CPI_TUFE_FACTOR, CPI_TUFE_SERIES, EvdsAdapter
+from tmkg.ingest.fred import VIX_FACTOR, VIX_SERIES, FredAdapter
 from tmkg.factors.betas import rolling_factor_betas
 from tmkg.factors.neutralize import rolling_residuals
 from tmkg.factors.series import compute_factor_returns
@@ -179,6 +180,39 @@ def ingest_cpi(
     """
     payload = adapter.fetch(series, start=start, end=end)
     rows = adapter.parse_cpi(payload, series=series, factor=factor)
+    df = _coerce_dates(pd.DataFrame(rows))
+    df["value"] = pd.to_numeric(df["value"], errors="coerce")
+    store.write_parquet("factors", df)
+    return {
+        "factor": factor,
+        "table": "factors",
+        "series": series,
+        "n_points": len(df),
+        "first": str(df["bar_date"].min()),
+        "last": str(df["bar_date"].max()),
+    }
+
+
+# --- FRED macro series (VIX etc. -> factors, the global-risk leg) -----------
+def ingest_fred_series(
+    adapter: FredAdapter,
+    store: L2Store,
+    *,
+    start: str,
+    end: str,
+    series: str = VIX_SERIES,
+    factor: str = VIX_FACTOR,
+) -> dict:
+    """Fetch a FRED macro series (default VIX/VIXCLS) and land it in L2 ``factors``.
+
+    The global-risk leg of the M2 factor set (design §7.1 "VIX (FRED)"). ``knowledge_date``
+    = ``bar_date`` (a market index close is known end-of-day and never revised). ``ret`` is
+    left NULL (factor returns are derived on read in M2). Raises on an unreachable source
+    via ``adapter.fetch`` (§4); FRED's ``"."`` missing-day sentinel is dropped in
+    ``parse_observations``, never interpolated.
+    """
+    payload = adapter.fetch(series, start=start, end=end)
+    rows = adapter.parse_observations(payload, series=series, factor=factor)
     df = _coerce_dates(pd.DataFrame(rows))
     df["value"] = pd.to_numeric(df["value"], errors="coerce")
     store.write_parquet("factors", df)

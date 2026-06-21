@@ -1,0 +1,89 @@
+{
+  "_provenance": {
+    "source": "FRED (St. Louis Fed) legacy API",
+    "endpoint": "GET api.stlouisfed.org/fred/series/observations (api_key query param)",
+    "params": {
+      "series_id": "VIXCLS",
+      "observation_start": "2025-03-10",
+      "observation_end": "2025-03-31",
+      "file_type": "json"
+    },
+    "captured_at": "2026-06-21",
+    "note": "VIX daily close (VIXCLS). Auth = api_key QUERY PARAM, not Bearer (Bearer -> 400). FRED writes missing days (weekends/holidays) as value '.', dropped by parse_observations (\u00a74)."
+  },
+  "_golden_master": {
+    "backs": "M2 global-risk factor (VIX). Value-anchored drift guard: VIX is never revised, so a live re-fetch must match field-for-field. Window straddles the 19-Mar-2025 BIST shock for cross-reference.",
+    "anchors": {
+      "2025-03-17": "20.51",
+      "2025-03-19": "19.9"
+    }
+  },
+  "data": {
+    "observations": [
+      {
+        "date": "2025-03-10",
+        "value": "27.86"
+      },
+      {
+        "date": "2025-03-11",
+        "value": "26.92"
+      },
+      {
+        "date": "2025-03-12",
+        "value": "24.23"
+      },
+      {
+        "date": "2025-03-13",
+        "value": "24.66"
+      },
+      {
+        "date": "2025-03-14",
+        "value": "21.77"
+      },
+      {
+        "date": "2025-03-17",
+        "value": "20.51"
+      },
+      {
+        "date": "2025-03-18",
+        "value": "21.7"
+      },
+      {
+        "date": "2025-03-19",
+        "value": "19.9"
+      },
+      {
+        "date": "2025-03-20",
+        "value": "19.8"
+      },
+      {
+        "date": "2025-03-21",
+        "value": "19.28"
+      },
+      {
+        "date": "2025-03-24",
+        "value": "17.48"
+      },
+      {
+        "date": "2025-03-25",
+        "value": "17.15"
+      },
+      {
+        "date": "2025-03-26",
+        "value": "18.33"
+      },
+      {
+        "date": "2025-03-27",
+        "value": "18.69"
+      },
+      {
+        "date": "2025-03-28",
+        "value": "21.65"
+      },
+      {
+        "date": "2025-03-31",
+        "value": "22.28"
+      }
+    ]
+  }
+}
