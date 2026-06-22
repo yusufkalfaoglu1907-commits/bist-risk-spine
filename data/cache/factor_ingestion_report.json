@@ -35,6 +35,14 @@
       "last": "2026-06-22"
     },
     {
+      "factor": "TRCDS5Y",
+      "table": "factors",
+      "source": "worldgovbonds",
+      "n_points": 1187,
+      "first": "2023-01-02",
+      "last": "2026-06-22"
+    },
+    {
       "factor": "BRENT",
       "table": "factors",
       "n_points": 895,
@@ -134,12 +142,8 @@
     {
       "factor": "TRY10Y",
       "reason": "source 'scrape' not wired yet"
-    },
-    {
-      "factor": "TRCDS5Y",
-      "reason": "source 'scrape' not wired yet"
     }
   ],
-  "n_ingested": 16,
-  "n_skipped": 4
+  "n_ingested": 17,
+  "n_skipped": 3
 }

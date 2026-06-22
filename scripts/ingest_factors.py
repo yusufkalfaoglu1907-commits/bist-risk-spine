@@ -24,16 +24,19 @@ from tmkg.ingest.evds import EvdsAdapter
 from tmkg.ingest.fred import FredAdapter
 from tmkg.ingest.matriks import MatriksAdapter
 from tmkg.ingest.pipeline import (
+    ingest_cds,
     ingest_factor_series,
     ingest_foreign_flow,
     ingest_fred_series,
 )
+from tmkg.ingest.worldgovbonds import WorldGovBondsAdapter
 from tmkg.l2.store import L2Store
 from tmkg import config
 
-# Sources this driver can ingest today. 'scrape' (rates/CDS, W3) and 'derived'
-# (holding-group) are not yet wired; they are reported skipped, never faked.
-_INGESTABLE = {"matriks", "fred", "evds"}
+# Sources this driver can ingest today. 'scrape' (TRY 2y/10y yields -> actually EVDS,
+# pending the series codes) and 'derived' (holding-group) are not yet wired; they are
+# reported skipped, never faked.
+_INGESTABLE = {"matriks", "fred", "evds", "worldgovbonds"}
 
 # Matriks historicalData caps the bar `limit` at 1000 (the pipeline derives limit from
 # calendar days). Chunk Matriks windows well under that so no bars are silently dropped.
@@ -59,6 +62,7 @@ def main(start: str, end: str) -> int:
     matriks = MatriksAdapter()
     fred = FredAdapter()
     evds = EvdsAdapter()
+    wgb = WorldGovBondsAdapter()
     store = L2Store()
     store.bootstrap_schema()  # create L2 tables if absent (idempotent)
 
@@ -87,6 +91,8 @@ def main(start: str, end: str) -> int:
         elif f.source == "fred":
             res = ingest_fred_series(
                 fred, store, series=f.series_id, factor=f.name, start=start, end=end)
+        elif f.source == "worldgovbonds":  # Turkey 5y CDS
+            res = ingest_cds(wgb, store, start=start, end=end, factor=f.name)
         else:  # evds — the weekly foreign-flow leg (lands FFLOW + FFLOW_STOCK)
             for r in ingest_foreign_flow(evds, store, start=start, end=end):
                 ingested.append(r)

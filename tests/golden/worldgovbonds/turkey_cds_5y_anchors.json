@@ -1,0 +1,22 @@
+{
+  "_provenance": {
+    "source": "WorldGovernmentBonds public chart API (wp-json/common/v1/historical), POST FUNCTION=CDS COUNTRY=Turkey(13) DURATA=60",
+    "endpoint": "https://www.worldgovernmentbonds.com/wp-json/common/v1/historical",
+    "captured_at": "2026-06-22",
+    "note": "Turkey 5y sovereign CDS, daily, basis points. Anchors are FIXED PAST closes (immutable) used as the smoke_check VALUE drift guard. The 2025-03-24 spike to ~300bps is the Imamoglu-shock credit-stress signature."
+  },
+  "_golden_master": {
+    "backs": "The rates/CDS rung's credit factor (TRCDS5Y). WGB is the W3-sanctioned free source (NOT Investing.com / ToS).",
+    "stable_window": "Fixed past dates — historical CDS closes do not change, so these are real value anchors."
+  },
+  "data": {
+    "anchors": {
+      "2024-01-02": 280.23,
+      "2024-06-03": 320.13,
+      "2025-03-19": 256.37,
+      "2025-03-21": 252.18,
+      "2025-03-24": 300.20,
+      "2025-06-02": 319.18
+    }
+  }
+}

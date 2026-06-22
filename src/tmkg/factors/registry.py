@@ -86,8 +86,9 @@ CORE_FACTORS: tuple[Factor, ...] = (
            note="TRY 2y benchmark yield (W3 proxy/scrape); bps change, not pct"),
     Factor("TRY10Y", "rates_cds", DIFF, "scrape", "TR10YT",
            note="TRY 10y benchmark yield (W3 proxy/scrape)"),
-    Factor("TRCDS5Y", "rates_cds", DIFF, "scrape", "TRCDS5Y",
-           note="Turkey 5y sovereign CDS (W3 proxy); a level in bps -> diff"),
+    Factor("TRCDS5Y", "rates_cds", DIFF, "worldgovbonds", "TRCDS5Y",
+           note="Turkey 5y sovereign CDS (bps, daily) — WorldGovernmentBonds public chart "
+                "API (W3-sanctioned, not Investing.com/ToS); a level in bps -> diff. >=2015"),
     # energy / commodity — Brent, natural gas, gold (a commodity, hence this rung).
     Factor("BRENT", "energy", SIMPLE, "matriks", "BRENT"),
     Factor("NATGAS", "energy", SIMPLE, "fred", "DHHNGSP",

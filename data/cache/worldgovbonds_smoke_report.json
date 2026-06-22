@@ -1,0 +1,9 @@
+{
+  "_written_at": "2026-06-22T14:21:45",
+  "source": "worldgovbonds",
+  "base_url": "https://www.worldgovernmentbonds.com",
+  "factor": "TRCDS5Y",
+  "anchors_checked": 6,
+  "value_matched": 6,
+  "drift": []
+}

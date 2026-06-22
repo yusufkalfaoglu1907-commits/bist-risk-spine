@@ -48,6 +48,7 @@ from tmkg.factors.betas import rolling_factor_betas
 from tmkg.factors.neutralize import rolling_residuals
 from tmkg.factors.series import compute_factor_returns
 from tmkg.ingest.matriks import MatriksAdapter
+from tmkg.ingest.worldgovbonds import TURKEY_CDS_FACTOR, WorldGovBondsAdapter
 from tmkg.l2.store import L2Store
 from tmkg.pit.access import PITAccess
 from tmkg.returns.accounting_regime import regime_for_period
@@ -198,6 +199,32 @@ def ingest_cpi(
         "series": series,
         "n_points": len(df),
         "first": str(df["bar_date"].min()),
+        "last": str(df["bar_date"].max()),
+    }
+
+
+# --- Turkey 5y CDS (WorldGovernmentBonds -> the rates/CDS-rung credit factor) ---
+def ingest_cds(
+    adapter: WorldGovBondsAdapter,
+    store: L2Store,
+    *,
+    start: str,
+    end: str,
+    factor: str = TURKEY_CDS_FACTOR,
+) -> dict:
+    """Fetch Turkey 5y sovereign CDS (bps, daily) from WorldGovernmentBonds and land it in
+    L2 ``factors``. ``knowledge_date = bar_date`` (a daily CDS close is known end-of-day);
+    ``ret`` left null (a rate level -> ``series.DIFF`` at read time). Raises on an
+    unreachable source via ``adapter.fetch`` (§4); WGB carries values over non-trading days,
+    which ``diff`` correctly reads as a zero change."""
+    result = adapter.fetch()
+    rows = adapter.parse_cds(result, factor=factor, start=start, end=end)
+    df = _coerce_dates(pd.DataFrame(rows))
+    df["value"] = pd.to_numeric(df["value"], errors="coerce")
+    store.write_parquet("factors", df)
+    return {
+        "factor": factor, "table": "factors", "source": "worldgovbonds",
+        "n_points": len(df), "first": str(df["bar_date"].min()),
         "last": str(df["bar_date"].max()),
     }
 
