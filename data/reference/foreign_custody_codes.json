@@ -1,0 +1,68 @@
+{
+  "source": "MKK/Takasbank member taxonomy (Merkezi Kayıt İstanbul 'Aracı Kurum Üye Listesi' + Takasbank Kurum Kodları), cross-verified against the live Matriks member roster (symbolSearch operation=metaMembers, 1116 members) and Matriks takas/AKD flow tools, 2026-06-22",
+  "fetched_iso": "2026-06-22",
+  "method": "derived-from-member-taxonomy + live-probe verification",
+  "schema_version": 1,
+  "complete": true,
+  "classification_basis": "CUSTODY-account residency, NOT broker parent nationality. MKK segregates each institution's holdings into separate member codes by account purpose: '(YABANCI)' = non-resident/foreign custody sub-account; '(PORTFOY SAKLAMA)' = domestic portfolio custody. An institution can hold several codes at once (e.g. Garanti = GRM broker [domestic] + GPS portföy-saklama [domestic custody] + OSM YABANCI [foreign custody]). This is the authoritative resolution of the 'GARANTI BBVA is domestic despite BBVA parent' problem (BUILD_LOG Q1).",
+  "key_finding": "There is NO official 'these brokers are foreign' list (this is why Matriks support could not supply one) — foreign-ness on BIST is a per-custody-account property tracked by MKK, not a per-broker label. The custody layer below IS the official non-resident segregation.",
+
+  "foreign_custody_members": {
+    "description": "The 'yabancı saklamacı' (foreign custodian) sub-account codes — every '(YABANCI)'-suffixed member in the MKK/Matriks roster. These are the AUTHORITATIVE non-resident custody buckets. The custody-based foreign-flow factor's foreign leg = net daily change in the sum of these positions (equivalently, the MKK per-stock yabancı/takas ratio served by Matriks historicalData includeHistoricalTakasIndicator). Deep history: verified present back to 2011-06-30 (CIY+DBY dominated GARAN custody even then).",
+    "member_type": "B (bank custodian)",
+    "history_depth": ">=2011 (takas/custody path); covers the full backtest window",
+    "codes": {
+      "CIY": "CITIBANK YABANCI N.A",
+      "DBY": "DEUTSCHE BANK (YABANCI)",
+      "EBY": "EUROBANK TEKFEN YABANCI A.S.",
+      "HYA": "HSBC BANK A.Ş. (YABANCI)",
+      "OSM": "GARANTI BANK. YABANCI",
+      "TYS": "TURK EKONOMI BANK (YABANCI)"
+    }
+  },
+
+  "foreign_execution_brokers": {
+    "description": "CURATED set of broker (aracı kurum, type A) codes whose order flow is predominantly non-resident — the foreign leg for the broker-NETTING foreign-flow proxy. These are the global investment-bank execution arms / pure foreign conduits visible in the live AKD flow (e.g. MLB was the #1 net buyer and HSY the #1 net seller of GARAN in 2025-01). This is a curated reference (no official list exists); HSY is included by observed behaviour despite an HSBC retail presence, matching long-standing BIST practitioner convention.",
+    "member_type": "A (brokerage)",
+    "history_depth": "RECENT ONLY — Matriks AKD broker-level historic (v2/akd) returns data for ~2025+ and 400 'veri bulunamadı' for 2024/2023/2020/2018/2015. Use this leg only for the recent period; it CANNOT span the multi-year backtest. Prefer the custody leg above as primary.",
+    "codes": {
+      "MLB": "BANK-OF-AMERICA YATIRIM BANK",
+      "MLM": "MERRILL LYNCH",
+      "HSY": "HSBC YATIRIM",
+      "MSI": "MORGAN STANLEY MENKUL",
+      "JPM": "J.P. MORGAN MENKUL DEGERLER",
+      "GSI": "GOLDMAN SACHS INTERNATIONAL",
+      "CSM": "CREDIT SUISSE MENKUL",
+      "DSI": "DEUTSCHE SEC",
+      "UBS": "UBS MENKUL",
+      "UCI": "UNICREDIT MENKUL",
+      "CIM": "CITI MENKUL",
+      "ESI": "ERSTE SECURITIES ISTANBUL MENKUL",
+      "REN": "RENAISSANCE CAPITAL MENKUL",
+      "AHG": "ABN AMRO YATIRIM",
+      "ACM": "ALKHAIR CAPITAL MENKUL",
+      "CMY": "T.CHASE MANH.MEN",
+      "BNP": "BNP PARIBAS ISSUANCE B.V."
+    },
+    "not_in_matriks_roster": {
+      "BAR": "BARCLAYS MENKUL DEĞERLER A.Ş. — on the Takasbank Kurum Kodları list but absent from the live Matriks active-member roster (dormant). Include only if a source surfaces its flow."
+    }
+  },
+
+  "domestic_despite_foreign_parent": {
+    "description": "Broker codes that MUST be classified DOMESTIC even though their parent is a foreign bank — they route domestic retail/institutional flow and carry their own separate '(YABANCI)' code for the foreign part. Encodes the §5 rule the user flagged. Do NOT net these into the foreign leg.",
+    "codes": {
+      "GRM": "GARANTI BBVA (parent BBVA, ES) — foreign custody is the separate OSM code",
+      "GNI": "ING YATIRIM MENKUL (parent ING, NL)",
+      "FNY": "QNB YATIRIM MENKUL (parent QNB, QA)",
+      "TBY": "TEB YATIRIM (parent BNP Paribas, FR) — foreign custody is the separate TYS code"
+    }
+  },
+
+  "notes": [
+    "PRIMARY recommendation: build the foreign-flow factor from the CUSTODY layer (yabancı takas ratio / the foreign_custody_members net change). It is custody-based by construction, dissolves the parent-nationality problem, and has >=2011 history. Use broker-netting (foreign_execution_brokers) only as a recent-period (~2025+) higher-frequency overlay/cross-check.",
+    "EVDS weekly non-resident equity flow remains the independent macro cross-check per the BUILD_LOG foreign-flow decision.",
+    "Q2 status: Matriks v1/investor/historic (per-investor %-non-resident series) still returns HTTP 400 across all dates and licenses tested via the foreignInvestorMode=historic path — this is a server-side licensing/endpoint issue, not a param-shape bug, and the chosen custody path does not need it.",
+    "'(PORTFOY SAKLAMA)' codes (GPS, IPS, YKC, APS, ZBS, FNP, GIP, TEP, DNS, HLS, ...) are DOMESTIC institutional/fund custody — explicitly NOT foreign. Listed here only to prevent mis-classification."
+  ]
+}
