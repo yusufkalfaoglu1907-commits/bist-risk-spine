@@ -15,19 +15,25 @@ from __future__ import annotations
 
 import json
 import sys
+import time
 from datetime import date, timedelta
 
 import tmkg.config  # noqa: F401  -- triggers load_dotenv() before the adapters read env
 from tmkg.factors import registry
+from tmkg.ingest.evds import EvdsAdapter
 from tmkg.ingest.fred import FredAdapter
 from tmkg.ingest.matriks import MatriksAdapter
-from tmkg.ingest.pipeline import ingest_factor_series, ingest_fred_series
+from tmkg.ingest.pipeline import (
+    ingest_factor_series,
+    ingest_foreign_flow,
+    ingest_fred_series,
+)
 from tmkg.l2.store import L2Store
 from tmkg import config
 
 # Sources this driver can ingest today. 'scrape' (rates/CDS, W3) and 'derived'
 # (holding-group) are not yet wired; they are reported skipped, never faked.
-_INGESTABLE = {"matriks", "fred"}
+_INGESTABLE = {"matriks", "fred", "evds"}
 
 # Matriks historicalData caps the bar `limit` at 1000 (the pipeline derives limit from
 # calendar days). Chunk Matriks windows well under that so no bars are silently dropped.
@@ -52,6 +58,7 @@ def _chunks(start: str, end: str, max_days: int) -> list[tuple[str, str]]:
 def main(start: str, end: str) -> int:
     matriks = MatriksAdapter()
     fred = FredAdapter()
+    evds = EvdsAdapter()
     store = L2Store()
     store.bootstrap_schema()  # create L2 tables if absent (idempotent)
 
@@ -74,11 +81,18 @@ def main(start: str, end: str) -> int:
                 n += r.get("n_points", 0)
                 first = first or r.get("first")
                 last = r.get("last") or last
+                time.sleep(1.5)  # stay under the Matriks gateway rate limit
             res = {"factor": f.name, "table": "factors", "n_points": n,
                    "first": first, "last": last}
-        else:  # fred
+        elif f.source == "fred":
             res = ingest_fred_series(
                 fred, store, series=f.series_id, factor=f.name, start=start, end=end)
+        else:  # evds — the weekly foreign-flow leg (lands FFLOW + FFLOW_STOCK)
+            for r in ingest_foreign_flow(evds, store, start=start, end=end):
+                ingested.append(r)
+                print(f"  OK  {r['factor']:8} <- evds:{r['series']:14} "
+                      f"{r['n_points']} pts [{r['first']} .. {r['last']}]")
+            continue
         ingested.append(res)
         print(f"  OK  {f.name:8} <- {f.source}:{f.series_id:10} "
               f"{res.get('n_points', 0)} pts "

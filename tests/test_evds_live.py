@@ -123,6 +123,40 @@ def test_parse_cpi_drops_nonnumeric_and_refuses_empty():
         EvdsAdapter.parse_cpi({"items": [{"Tarih": "2023-1", "TP_FG_J0": None}]})
 
 
+# --- weekly foreign-flow parser (TP.MKNETHAR.M7) ---------------------------
+def test_parse_weekly_series_to_factor_rows_pit_honest():
+    from tmkg.ingest.evds import FOREIGN_FLOW_FACTOR, FOREIGN_FLOW_SERIES
+
+    # the real shape: Tarih DD-MM-YYYY (Friday week-ending), value column = code-with-underscores
+    payload = {"items": [
+        {"Tarih": "14-03-2025", "YEARWEEK": "2025-11", "TP_MKNETHAR_M7": "480.11"},
+        {"Tarih": "21-03-2025", "YEARWEEK": "2025-12", "TP_MKNETHAR_M7": "-443.61"},
+    ]}
+    rows = EvdsAdapter.parse_weekly_series(
+        payload, series=FOREIGN_FLOW_SERIES, factor=FOREIGN_FLOW_FACTOR)
+    assert [r["factor"] for r in rows] == ["FFLOW", "FFLOW"]
+    shock = rows[1]
+    assert shock["bar_date"] == date(2025, 3, 21)        # the Friday it references
+    assert shock["knowledge_date"] == date(2025, 3, 27)  # +6d release lag (Thursday) — PIT
+    assert shock["value"] == pytest.approx(-443.61)      # the net outflow, verbatim
+    assert shock["ret"] is None and shock["source"] == "evds"
+
+
+def test_parse_weekly_series_drops_blank_and_refuses_empty():
+    rows = EvdsAdapter.parse_weekly_series(
+        {"items": [
+            {"Tarih": "14-03-2025", "TP_MKNETHAR_M7": "ND"},     # dropped
+            {"Tarih": "21-03-2025", "TP_MKNETHAR_M7": "-443.61"},
+        ]},
+        series="TP.MKNETHAR.M7", factor="FFLOW",
+    )
+    assert [r["bar_date"] for r in rows] == [date(2025, 3, 21)]
+    with pytest.raises(ContractDrift):
+        EvdsAdapter.parse_weekly_series(
+            {"items": [{"Tarih": "21-03-2025", "TP_MKNETHAR_M7": None}]},
+            series="TP.MKNETHAR.M7", factor="FFLOW")
+
+
 # --- live drift guard (skips when EVDS is unreachable) ---------------------
 def _evds_or_skip() -> EvdsAdapter:
     if not os.getenv("EVDS_API_KEY") and not config.EVDS_API_KEY:

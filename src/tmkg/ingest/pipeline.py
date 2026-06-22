@@ -33,7 +33,15 @@ import pandas as pd
 _RAW_BARS = True
 
 from tmkg.ingest.audit import write_run_report
-from tmkg.ingest.evds import CPI_TUFE_FACTOR, CPI_TUFE_SERIES, EvdsAdapter
+from tmkg.ingest.evds import (
+    CPI_TUFE_FACTOR,
+    CPI_TUFE_SERIES,
+    FOREIGN_FLOW_FACTOR,
+    FOREIGN_FLOW_SERIES,
+    FOREIGN_FLOW_STOCK_FACTOR,
+    FOREIGN_FLOW_STOCK_SERIES,
+    EvdsAdapter,
+)
 from tmkg.ingest.fred import VIX_FACTOR, VIX_SERIES, FredAdapter
 from tmkg.factors import registry
 from tmkg.factors.betas import rolling_factor_betas
@@ -192,6 +200,41 @@ def ingest_cpi(
         "first": str(df["bar_date"].min()),
         "last": str(df["bar_date"].max()),
     }
+
+
+# --- foreign-flow (EVDS weekly non-resident equity flow -> the §5 driver) ---
+def ingest_foreign_flow(
+    adapter: EvdsAdapter,
+    store: L2Store,
+    *,
+    start: str,
+    end: str,
+) -> list[dict]:
+    """Fetch the EVDS weekly non-resident equity series and land them in L2 ``factors``.
+
+    Two series: ``FFLOW`` = TP.MKNETHAR.M7 (weekly net non-resident equity FLOW, USD mn —
+    the §5 foreign-flow factor; a flow, consumed with ``series.LEVEL``) and ``FFLOW_STOCK``
+    = TP.MKNETHAR.M1 (the holdings LEVEL, for normalization / cross-check). The true WEEKLY
+    observations are stored — no forward-fill onto a daily calendar here (§4); the weekly→
+    daily alignment is a transient step at panel-build. ``knowledge_date`` carries the
+    release lag (PIT-honest). Raises on an unreachable source via ``adapter.fetch`` (§4).
+    """
+    out: list[dict] = []
+    for series, factor in (
+        (FOREIGN_FLOW_SERIES, FOREIGN_FLOW_FACTOR),
+        (FOREIGN_FLOW_STOCK_SERIES, FOREIGN_FLOW_STOCK_FACTOR),
+    ):
+        payload = adapter.fetch(series, start=start, end=end)
+        rows = adapter.parse_weekly_series(payload, series=series, factor=factor)
+        df = _coerce_dates(pd.DataFrame(rows))
+        df["value"] = pd.to_numeric(df["value"], errors="coerce")
+        store.write_parquet("factors", df)
+        out.append({
+            "factor": factor, "table": "factors", "series": series,
+            "n_points": len(df), "first": str(df["bar_date"].min()),
+            "last": str(df["bar_date"].max()),
+        })
+    return out
 
 
 # --- FRED macro series (VIX etc. -> factors, the global-risk leg) -----------
@@ -407,6 +450,32 @@ def factor_coverage(panel: pd.DataFrame, specs: dict[str, str]) -> tuple[list[st
     return present, missing
 
 
+def _align_weekly_factor(rets: pd.DataFrame, factor: str, grid: list) -> pd.DataFrame:
+    """Forward-fill a weekly factor's returns onto the daily ``grid`` (a transient alignment;
+    L2 keeps the true weekly observations — §4). The week's value takes effect from its
+    **knowledge_date** (release), not its bar_date (the Friday it references) — so a daily
+    date gets the most recent weekly reading that was actually PUBLISHED by then, never a
+    look-ahead. Falls back to bar_date if no knowledge_date is carried. Empty grid / factor
+    -> empty frame (no fabricated rows)."""
+    g = rets[rets["factor"] == factor].dropna(subset=["ret"]).copy()
+    if g.empty or not grid:
+        return pd.DataFrame(columns=["factor", "bar_date", "ret"])
+    eff = g["knowledge_date"] if "knowledge_date" in g.columns else g["bar_date"]
+    s = pd.Series(g["ret"].to_numpy(), index=pd.to_datetime(eff)).sort_index()
+    s = s[~s.index.duplicated(keep="last")]
+    daily_idx = pd.to_datetime(pd.Index(grid))
+    aligned = (
+        s.reindex(s.index.union(daily_idx)).ffill().reindex(daily_idx).dropna()
+    )
+    if aligned.empty:
+        return pd.DataFrame(columns=["factor", "bar_date", "ret"])
+    return pd.DataFrame({
+        "factor": factor,
+        "bar_date": [ts.date() for ts in aligned.index],
+        "ret": aligned.to_numpy(),
+    })
+
+
 def build_factor_return_panel(
     store: L2Store,
     *,
@@ -432,16 +501,29 @@ def build_factor_return_panel(
             lv = pit.series("factors", where=f"factor = '{factor}'")
             if lv.empty:
                 continue
-            frames.append(lv[["factor", "bar_date", "value"]])
+            cols = ["factor", "bar_date", "value"]
+            if "knowledge_date" in lv.columns:
+                cols.append("knowledge_date")  # needed to align low-freq factors PIT-honestly
+            frames.append(lv[cols])
     finally:
         con.close()
-    panel = (
-        pd.DataFrame(columns=["factor", "bar_date", "ret"])
-        if not frames
-        else compute_factor_returns(pd.concat(frames, ignore_index=True), method=specs)[
-            ["factor", "bar_date", "ret"]
-        ].dropna(subset=["ret"]).reset_index(drop=True)
-    )
+    if not frames:
+        panel = pd.DataFrame(columns=["factor", "bar_date", "ret"])
+    else:
+        rets = compute_factor_returns(pd.concat(frames, ignore_index=True), method=specs)
+        weekly = registry.weekly_factor_names() & set(specs)
+        daily_part = (
+            rets[~rets["factor"].isin(weekly)][["factor", "bar_date", "ret"]]
+            .dropna(subset=["ret"])
+        )
+        # daily date grid the lower-freq factors are aligned onto
+        grid = sorted(pd.unique(daily_part["bar_date"]))
+        weekly_parts = [_align_weekly_factor(rets, wf, grid) for wf in weekly]
+        panel = (
+            pd.concat([daily_part, *[w for w in weekly_parts if not w.empty]], ignore_index=True)
+            .sort_values(["factor", "bar_date"])
+            .reset_index(drop=True)
+        )
     if require_all:
         _, missing = factor_coverage(panel, specs)
         if missing:

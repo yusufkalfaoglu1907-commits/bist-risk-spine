@@ -25,22 +25,26 @@ def test_every_ladder_rung_has_a_factor():
 
 def test_specs_excludes_blocked_factors_by_default():
     s = registry.specs()
-    assert "FFLOW" not in s   # foreign-flow blocked on the custody-series ingestion
     assert "MSCIEM" not in s  # MSCI-EM blocked: no working Matriks/FRED source yet
-    # but every *available* factor is mapped to a return method
+    assert s["FFLOW"] == "level"  # foreign-flow now sourced (EVDS weekly net flow), a flow
+    # every *available* factor is mapped to a return method
     assert s["XU100"] == SIMPLE and s["VIX"] == DIFF and s["TRY2Y"] == DIFF
 
 
 def test_specs_full_set_includes_the_blocked_factors():
     s = registry.specs(available_only=False)
-    # the design intent is complete; blocked legs are owed, not forgotten
-    assert "FFLOW" in s and "MSCIEM" in s
+    # the design intent is complete; the blocked leg (MSCIEM) is owed, not forgotten
+    assert "MSCIEM" in s and "FFLOW" in s
 
 
 def test_blocked_factors_are_surfaced_not_dropped():
     blocked = {f.name for f in registry.blocked_factors()}
-    # the foreign-flow leg (custody-series ingestion) + MSCI-EM (no source yet)
-    assert blocked == {"FFLOW", "MSCIEM"}
+    assert blocked == {"MSCIEM"}  # only MSCI-EM now; foreign-flow is sourced (EVDS)
+
+
+def test_foreign_flow_is_the_weekly_factor():
+    weekly = registry.weekly_factor_names()
+    assert weekly == {"FFLOW"}  # the one lower-frequency leg, ffilled onto the daily grid
 
 
 def test_ladder_order_is_rung_ordered_over_real_names():
@@ -52,7 +56,8 @@ def test_ladder_order_is_rung_ordered_over_real_names():
     # market rung comes first, holding last; fx precedes energy precedes sector
     assert order[0] in {"XU100", "MSCIEM", "VIX"}
     assert order.index("USDTRY") < order.index("BRENT") < order.index("XBANK")
-    assert "FFLOW" not in order  # blocked leg absent from an available-only run
+    # foreign-flow is now sourced; it sits at the foreign_flow rung, after sector, before holding
+    assert order.index("XBANK") < order.index("FFLOW") < order.index("XHOLD")
 
 
 def test_order_present_sorts_arbitrary_landed_names_into_rung_order():

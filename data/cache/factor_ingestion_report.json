@@ -99,6 +99,22 @@
       "last": "2026-06-22"
     },
     {
+      "factor": "FFLOW",
+      "table": "factors",
+      "series": "TP.MKNETHAR.M7",
+      "n_points": 180,
+      "first": "2023-01-06",
+      "last": "2026-06-12"
+    },
+    {
+      "factor": "FFLOW_STOCK",
+      "table": "factors",
+      "series": "TP.MKNETHAR.M1",
+      "n_points": 180,
+      "first": "2023-01-06",
+      "last": "2026-06-12"
+    },
+    {
       "factor": "XHOLD",
       "table": "factors",
       "n_points": 865,
@@ -122,12 +138,8 @@
     {
       "factor": "TRCDS5Y",
       "reason": "source 'scrape' not wired yet"
-    },
-    {
-      "factor": "FFLOW",
-      "reason": "blocked: custody-based non-resident flow (net change in (YABANCI) takas positions, >=2011); codes resolved in foreign_custody.py; BLOCKED pending custody-series ingestion (Q1 resolved)"
     }
   ],
-  "n_ingested": 14,
-  "n_skipped": 5
+  "n_ingested": 16,
+  "n_skipped": 4
 }

@@ -33,7 +33,10 @@ import pandas as pd
 SIMPLE = "simple"  # value_t / value_{t-1} - 1     (prices, indices, FX, commodities)
 LOG = "log"        # ln(value_t) - ln(value_{t-1}) (same, log scale)
 DIFF = "diff"      # value_t - value_{t-1}          (rates: yields, CDS, VIX)
-_METHODS = frozenset({SIMPLE, LOG, DIFF})
+LEVEL = "level"    # ret_t = value_t                (a series already a per-period FLOW /
+#                    innovation — e.g. weekly non-resident net equity flow; differencing
+#                    or pct-changing a flow is a basis error, the flow IS the factor return)
+_METHODS = frozenset({SIMPLE, LOG, DIFF, LEVEL})
 
 
 def _factor_ret(values: pd.Series, method: str) -> pd.Series:
@@ -44,6 +47,9 @@ def _factor_ret(values: pd.Series, method: str) -> pd.Series:
         return np.log(values.where(values > 0)).diff()
     if method == DIFF:
         return values.diff()
+    if method == LEVEL:
+        # the observation is already a flow/innovation: use it verbatim as the return.
+        return values.astype(float)
     raise ValueError(f"unknown factor-return method {method!r}; expected one of {sorted(_METHODS)}")
 
 

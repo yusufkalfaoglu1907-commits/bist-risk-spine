@@ -33,7 +33,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from tmkg.factors.neutralize import DEFAULT_LADDER
-from tmkg.factors.series import DIFF, LOG, SIMPLE
+from tmkg.factors.series import DIFF, LEVEL, LOG, SIMPLE
 
 # Sourcing status of a factor's *series* (not a tradability flag):
 AVAILABLE = "available"  # a series is sourced (or directly sourceable) and lands in L2
@@ -56,6 +56,8 @@ class Factor:
     source: str          # matriks | evds | fred | scrape | derived
     series_id: str       # the identifier at `source` (vendor symbol / FRED code / …)
     status: str = AVAILABLE
+    frequency: str = "daily"  # daily | weekly — a lower-freq factor is forward-filled onto
+    #                           the daily grid at panel-build (transient; L2 keeps true obs)
     note: str = ""
 
 
@@ -100,16 +102,18 @@ CORE_FACTORS: tuple[Factor, ...] = (
     Factor("XELKT", "sector", SIMPLE, "matriks", "XELKT", note="utilities/electricity"),
     Factor("XGIDA", "sector", SIMPLE, "matriks", "XGIDA", note="food & beverage"),
     Factor("XUTEK", "sector", SIMPLE, "matriks", "XUTEK", note="technology"),
-    # foreign-flow / ownership-tier — THE §5 comovement driver. CUSTODY-based: net change in
-    # the (YABANCI) non-resident custody positions (codes in factors.foreign_custody /
-    # data/reference/foreign_custody_codes.json; Q1 RESOLVED 2026-06-22, BUILD_LOG). A custody
-    # ratio/level -> diff. Still BLOCKED only until the takas custody-series ingestion lands
-    # the FFLOW series in L2 (the live-session piece) — no longer blocked on an unknown list.
-    Factor("FFLOW", "foreign_flow", DIFF, "matriks", "takas_yabanci",
-           status=BLOCKED,
-           note="custody-based non-resident flow (net change in (YABANCI) takas positions, "
-                ">=2011); codes resolved in foreign_custody.py; BLOCKED pending custody-series "
-                "ingestion (Q1 resolved)"),
+    # foreign-flow / ownership-tier — THE §5 comovement driver. SOURCE DECIDED (user,
+    # 2026-06-22): EVDS weekly non-resident net equity flow as the deep, precise, official
+    # primary; institutionalFlow broker-netting (~2025+) is a daily overlay/cross-check (not
+    # this factor). TP.MKNETHAR.M7 = "2.1.1 Hisse Senedi" net değişim (weekly net non-resident
+    # equity flow, USD mn) — verified across the 2025-03-19 shock (flipped +480 -> -444/-652).
+    # A FLOW is already an innovation -> method=LEVEL (the value IS the return, not diffed);
+    # weekly -> forward-filled onto the daily grid at panel-build. Custody-based reference
+    # (foreign_custody.py) backs the AKD overlay, not this primary leg.
+    Factor("FFLOW", "foreign_flow", LEVEL, "evds", "TP.MKNETHAR.M7",
+           frequency="weekly",
+           note="EVDS weekly non-resident net equity flow (USD mn); LEVEL (flow=return); "
+                "ffill weekly->daily at panel-build; stock level = TP.MKNETHAR.M1"),
     # holding-group — derived from L1 CONTROLS clusters in M2; XHOLD index as proxy meanwhile.
     Factor("XHOLD", "holding", SIMPLE, "matriks", "XHOLD",
            note="BIST holding index — available proxy for the M2-derived holding-group factor"),
@@ -129,7 +133,7 @@ def validate(factors: tuple[Factor, ...] = CORE_FACTORS) -> None:
         if f.role not in DEFAULT_LADDER:
             raise ValueError(
                 f"factor {f.name!r} role {f.role!r} is not a ladder rung {DEFAULT_LADDER}")
-        if f.method not in {SIMPLE, LOG, DIFF}:
+        if f.method not in {SIMPLE, LOG, DIFF, LEVEL}:
             raise ValueError(f"factor {f.name!r} has unknown return method {f.method!r}")
         if f.status not in _STATUSES:
             raise ValueError(f"factor {f.name!r} has unknown status {f.status!r}")
@@ -190,6 +194,16 @@ def order_present(
         return (pos, idx)
 
     return tuple(name for _, name in sorted(enumerate(present_list), key=key))
+
+
+def weekly_factor_names(
+    *, available_only: bool = True, factors: tuple[Factor, ...] = CORE_FACTORS
+) -> frozenset[str]:
+    """Names of factors whose native cadence is weekly (today: ``FFLOW``). The factor-return
+    panel forward-fills these onto the daily date grid (a transient alignment, never persisted
+    to L2 — §4 keeps the true weekly observations). Daily factors are unaffected."""
+    return frozenset(
+        f.name for f in _select(available_only, factors) if f.frequency == "weekly")
 
 
 def blocked_factors(factors: tuple[Factor, ...] = CORE_FACTORS) -> list[Factor]:

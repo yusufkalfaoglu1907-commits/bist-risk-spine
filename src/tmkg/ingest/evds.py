@@ -25,7 +25,7 @@ non-JSON body as ``SourceUnreachable`` (fail loud, §4), never parsing it as dat
 from __future__ import annotations
 
 import os
-from datetime import date
+from datetime import date, datetime, timedelta
 
 import httpx
 
@@ -37,6 +37,16 @@ from tmkg.pit.errors import ContractDrift, SourceUnreachable
 # deflator for the total-return cross-check (CLAUDE.md §5).
 CPI_TUFE_SERIES = "TP.FG.J0"
 CPI_TUFE_FACTOR = "CPI_TUFE"
+
+# Foreign-flow factor (§5 driver) — TCMB "Menkul Kıymet İstatistikleri" weekly non-resident
+# holdings. M7 = "2.1.1 Hisse Senedi" net değişim (weekly net non-resident equity FLOW, USD mn);
+# M1 = "1.1.1 Hisse Senedi" stok (the holdings LEVEL). Tarih = the Friday week-ending; the
+# weekly stats are released the following Thursday (~6-day lag) -> PIT knowledge_date.
+FOREIGN_FLOW_SERIES = "TP.MKNETHAR.M7"
+FOREIGN_FLOW_FACTOR = "FFLOW"
+FOREIGN_FLOW_STOCK_SERIES = "TP.MKNETHAR.M1"
+FOREIGN_FLOW_STOCK_FACTOR = "FFLOW_STOCK"
+WEEKLY_RELEASE_LAG_DAYS = 6
 
 _DEFAULT_BASE = "https://evds3.tcmb.gov.tr/igmevdsms-dis"
 
@@ -170,6 +180,48 @@ class EvdsAdapter(IngestionAdapter):
         if not rows:
             raise ContractDrift(
                 f"EVDS parse_cpi: no valid readings for {series} (field {field!r} "
+                f"absent or all values blank) — contract drift, refusing to fabricate."
+            )
+        return rows
+
+    @staticmethod
+    def parse_weekly_series(
+        payload: dict, *, series: str, factor: str,
+        release_lag_days: int = WEEKLY_RELEASE_LAG_DAYS,
+    ) -> list[dict]:
+        """``{items:[{Tarih:'DD-MM-YYYY', YEARWEEK, <CODE>}...]}`` -> ``factors``-schema rows.
+
+        For a WEEKLY series (e.g. the non-resident net-equity-flow factor): ``bar_date`` =
+        the reference ``Tarih`` (the Friday the week ends on); ``value`` = the reading;
+        ``knowledge_date`` = ``bar_date + release_lag_days`` (the weekly stats are released
+        ~the following Thursday — PIT-honest, so a backtest cannot see a week's flow before
+        it was published). ``ret`` is left null (the return constructor handles it; a flow
+        factor uses ``series.LEVEL``). Blank/non-numeric items are DROPPED, never guessed
+        (§4); ``ContractDrift`` if no valid reading survives.
+        """
+        field = _item_field(series)
+        rows: list[dict] = []
+        for it in payload.get("items", []):
+            tarih = (it.get("Tarih") or "").strip()
+            raw = it.get(field)
+            try:
+                bar = datetime.strptime(tarih, "%d-%m-%Y").date()
+                val = float(raw)
+            except (TypeError, ValueError):
+                continue  # no/blank date or value -> drop (§4)
+            rows.append(
+                {
+                    "factor": factor,
+                    "bar_date": bar,
+                    "value": val,
+                    "ret": None,
+                    "knowledge_date": bar + timedelta(days=release_lag_days),
+                    "source": EvdsAdapter.source_name,
+                }
+            )
+        if not rows:
+            raise ContractDrift(
+                f"EVDS parse_weekly_series: no valid readings for {series} (field {field!r} "
                 f"absent or all values blank) — contract drift, refusing to fabricate."
             )
         return rows

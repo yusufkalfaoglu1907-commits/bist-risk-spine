@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from tmkg.factors.series import DIFF, LOG, SIMPLE, compute_factor_returns
+from tmkg.factors.series import DIFF, LEVEL, LOG, SIMPLE, compute_factor_returns
 
 
 def _levels(factor, pairs):
@@ -39,6 +39,15 @@ def test_diff_method_for_rate_factors():
     df = _levels("TRY10Y", [(date(2024, 1, 1), 40.0), (date(2024, 1, 2), 42.0)])
     out = compute_factor_returns(df, method=DIFF)
     assert out.loc[1, "ret"] == pytest.approx(2.0)
+
+
+def test_level_method_uses_value_as_return_for_a_flow():
+    """A FLOW series (e.g. weekly non-resident net equity flow) is already an innovation:
+    the return IS the value (no diff/pct), incl. the first obs (a flow has no 'prior')."""
+    df = _levels("FFLOW", [(date(2025, 3, 14), 480.11), (date(2025, 3, 21), -443.61)])
+    out = compute_factor_returns(df, method=LEVEL)
+    assert out.loc[0, "ret"] == pytest.approx(480.11)   # first obs is a real flow, not NaN
+    assert out.loc[1, "ret"] == pytest.approx(-443.61)
 
 
 def test_per_factor_method_map_and_grouping():

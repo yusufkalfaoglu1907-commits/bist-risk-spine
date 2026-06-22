@@ -83,6 +83,29 @@ def test_factor_panel_derived_from_levels_through_pit(tmp_path):
     assert panel["ret"].notna().all()  # the NaN first-obs is dropped
 
 
+def test_align_weekly_factor_ffills_by_knowledge_date_no_lookahead():
+    """A weekly factor (FFLOW) is forward-filled onto the daily grid, and each week's value
+    takes effect from its KNOWLEDGE_DATE (release), never its bar_date — so no look-ahead."""
+    from tmkg.ingest.pipeline import _align_weekly_factor
+
+    # two weekly flows; knowledge_date = bar_date (Fri) + 6 (the following Thursday)
+    rets = pd.DataFrame({
+        "factor": ["FFLOW", "FFLOW"],
+        "bar_date": [date(2025, 3, 14), date(2025, 3, 21)],
+        "ret": [480.11, -443.61],
+        "knowledge_date": [date(2025, 3, 20), date(2025, 3, 27)],
+    })
+    grid = [date(2025, 3, 19),   # before week-1 release (3/20) -> dropped (no value yet)
+            date(2025, 3, 21),   # after week-1 release, before week-2 release -> 480.11
+            date(2025, 3, 26),   # still week-1 (week-2 not released until 3/27) -> 480.11
+            date(2025, 3, 28)]   # after week-2 release -> -443.61
+    out = _align_weekly_factor(rets, "FFLOW", grid).set_index("bar_date")["ret"]
+    assert date(2025, 3, 19) not in out.index            # no fabricated pre-release value
+    assert out[date(2025, 3, 21)] == pytest.approx(480.11)
+    assert out[date(2025, 3, 26)] == pytest.approx(480.11)  # week-2 NOT used early (no look-ahead)
+    assert out[date(2025, 3, 28)] == pytest.approx(-443.61)
+
+
 def test_betas_recover_known_coefficients_and_land(tmp_path):
     store = _store(tmp_path)
     dates = _seed(store)
