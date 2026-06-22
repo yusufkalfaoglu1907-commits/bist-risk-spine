@@ -5,3 +5,5 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 data/*.kuzu*
+data/l2.duckdb
+data/l2/

@@ -1,0 +1,133 @@
+{
+  "run": "factor_ingestion",
+  "window": {
+    "start": "2023-01-02",
+    "end": "2026-06-22"
+  },
+  "ingested": [
+    {
+      "factor": "XU100",
+      "table": "factors",
+      "n_points": 864,
+      "first": "2023-01-02",
+      "last": "2026-06-22"
+    },
+    {
+      "factor": "VIX",
+      "table": "factors",
+      "series": "VIXCLS",
+      "n_points": 892,
+      "first": "2023-01-03",
+      "last": "2026-06-17"
+    },
+    {
+      "factor": "USDTRY",
+      "table": "factors",
+      "n_points": 906,
+      "first": "2023-01-02",
+      "last": "2026-06-22"
+    },
+    {
+      "factor": "EURTRY",
+      "table": "factors",
+      "n_points": 906,
+      "first": "2023-01-02",
+      "last": "2026-06-22"
+    },
+    {
+      "factor": "BRENT",
+      "table": "factors",
+      "n_points": 895,
+      "first": "2023-01-03",
+      "last": "2026-06-22"
+    },
+    {
+      "factor": "NATGAS",
+      "table": "factors",
+      "series": "DHHNGSP",
+      "n_points": 860,
+      "first": "2023-01-03",
+      "last": "2026-06-15"
+    },
+    {
+      "factor": "GOLD",
+      "table": "factors",
+      "n_points": 901,
+      "first": "2023-01-02",
+      "last": "2026-06-22"
+    },
+    {
+      "factor": "XBANK",
+      "table": "factors",
+      "n_points": 865,
+      "first": "2023-01-02",
+      "last": "2026-06-22"
+    },
+    {
+      "factor": "XUSIN",
+      "table": "factors",
+      "n_points": 865,
+      "first": "2023-01-02",
+      "last": "2026-06-22"
+    },
+    {
+      "factor": "XKMYA",
+      "table": "factors",
+      "n_points": 865,
+      "first": "2023-01-02",
+      "last": "2026-06-22"
+    },
+    {
+      "factor": "XELKT",
+      "table": "factors",
+      "n_points": 865,
+      "first": "2023-01-02",
+      "last": "2026-06-22"
+    },
+    {
+      "factor": "XGIDA",
+      "table": "factors",
+      "n_points": 865,
+      "first": "2023-01-02",
+      "last": "2026-06-22"
+    },
+    {
+      "factor": "XUTEK",
+      "table": "factors",
+      "n_points": 865,
+      "first": "2023-01-02",
+      "last": "2026-06-22"
+    },
+    {
+      "factor": "XHOLD",
+      "table": "factors",
+      "n_points": 865,
+      "first": "2023-01-02",
+      "last": "2026-06-22"
+    }
+  ],
+  "skipped": [
+    {
+      "factor": "MSCIEM",
+      "reason": "blocked: MSCI-EM/EEM: NOT on Matriks historicalData or symbolSearch, NOT on FRED (verified 2026-06-22); market rung covered by XU100+VIX meanwhile. Try Matriks foreignMarkets tool or an alt provider to unblock."
+    },
+    {
+      "factor": "TRY2Y",
+      "reason": "source 'scrape' not wired yet"
+    },
+    {
+      "factor": "TRY10Y",
+      "reason": "source 'scrape' not wired yet"
+    },
+    {
+      "factor": "TRCDS5Y",
+      "reason": "source 'scrape' not wired yet"
+    },
+    {
+      "factor": "FFLOW",
+      "reason": "blocked: custody-based non-resident flow (net change in (YABANCI) takas positions, >=2011); codes resolved in foreign_custody.py; BLOCKED pending custody-series ingestion (Q1 resolved)"
+    }
+  ],
+  "n_ingested": 14,
+  "n_skipped": 5
+}

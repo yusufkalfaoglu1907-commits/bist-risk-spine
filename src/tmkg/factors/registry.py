@@ -69,7 +69,10 @@ CORE_FACTORS: tuple[Factor, ...] = (
     Factor("XU100", "market", SIMPLE, "matriks", "XU100",
            note="BIST-100 — the domestic market factor"),
     Factor("MSCIEM", "market", SIMPLE, "matriks", "EEM",
-           note="MSCI-EM via EEM proxy (try Matriks foreignMarkets first); global risk-on/off"),
+           status=BLOCKED,
+           note="MSCI-EM/EEM: NOT on Matriks historicalData or symbolSearch, NOT on FRED "
+                "(verified 2026-06-22); market rung covered by XU100+VIX meanwhile. "
+                "Try Matriks foreignMarkets tool or an alt provider to unblock."),
     Factor("VIX", "market", DIFF, "fred", "VIXCLS",
            note="global volatility; a LEVEL -> diff, not pct (FRED adapter already built)"),
     # fx — USD/TRY, EUR/TRY (§200 names both at this rung).
@@ -85,8 +88,9 @@ CORE_FACTORS: tuple[Factor, ...] = (
            note="Turkey 5y sovereign CDS (W3 proxy); a level in bps -> diff"),
     # energy / commodity — Brent, natural gas, gold (a commodity, hence this rung).
     Factor("BRENT", "energy", SIMPLE, "matriks", "BRENT"),
-    Factor("NATGAS", "energy", SIMPLE, "matriks", "NATGAS",
-           note="natural gas — Turkey imports ~all hydrocarbons (§64)"),
+    Factor("NATGAS", "energy", SIMPLE, "fred", "DHHNGSP",
+           note="natural gas (Henry Hub spot, FRED DHHNGSP) — Turkey imports ~all "
+                "hydrocarbons (§64); NOT a Matriks symbol (verified 2026-06-22)"),
     Factor("GOLD", "energy", SIMPLE, "matriks", "XAUUSD",
            note="gold (commodity) — stripped at the energy/commodity rung; see CONFIRM note"),
     # sector — principal BIST sector indices (the live ingest confirms the full roster).

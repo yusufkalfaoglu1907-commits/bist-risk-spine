@@ -25,19 +25,22 @@ def test_every_ladder_rung_has_a_factor():
 
 def test_specs_excludes_blocked_factors_by_default():
     s = registry.specs()
-    assert "FFLOW" not in s  # foreign-flow is blocked on Matriks Q1 -> not demanded yet
+    assert "FFLOW" not in s   # foreign-flow blocked on the custody-series ingestion
+    assert "MSCIEM" not in s  # MSCI-EM blocked: no working Matriks/FRED source yet
     # but every *available* factor is mapped to a return method
     assert s["XU100"] == SIMPLE and s["VIX"] == DIFF and s["TRY2Y"] == DIFF
 
 
-def test_specs_full_set_includes_the_blocked_foreign_flow():
+def test_specs_full_set_includes_the_blocked_factors():
     s = registry.specs(available_only=False)
-    assert "FFLOW" in s  # the design intent is complete; it is owed, not forgotten
+    # the design intent is complete; blocked legs are owed, not forgotten
+    assert "FFLOW" in s and "MSCIEM" in s
 
 
 def test_blocked_factors_are_surfaced_not_dropped():
     blocked = {f.name for f in registry.blocked_factors()}
-    assert blocked == {"FFLOW"}  # exactly the foreign-flow leg, today
+    # the foreign-flow leg (custody-series ingestion) + MSCI-EM (no source yet)
+    assert blocked == {"FFLOW", "MSCIEM"}
 
 
 def test_ladder_order_is_rung_ordered_over_real_names():
