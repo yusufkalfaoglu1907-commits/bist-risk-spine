@@ -1,0 +1,42 @@
+{
+  "_written_at": "2026-06-22T15:15:30",
+  "as_of": "2024-04-08",
+  "window": 40,
+  "method": "ols",
+  "configured_factors": [
+    "XU100",
+    "USDTRY"
+  ],
+  "present_factors": [
+    "XU100",
+    "USDTRY"
+  ],
+  "missing_factors": [],
+  "ladder": "XU100>USDTRY",
+  "betas": [
+    {
+      "symbol": "AAA",
+      "table": "betas",
+      "n_betas": 60,
+      "as_of": "2024-04-08",
+      "universe_class": "operating",
+      "factors": [
+        "USDTRY",
+        "XU100"
+      ],
+      "regimes": [
+        "orthodox_turn_2023"
+      ]
+    }
+  ],
+  "residuals": [
+    {
+      "symbol": "AAA",
+      "table": "residuals",
+      "n_residuals": 30,
+      "as_of": "2024-04-08",
+      "universe_class": "operating",
+      "strip_order": "XU100>USDTRY"
+    }
+  ]
+}

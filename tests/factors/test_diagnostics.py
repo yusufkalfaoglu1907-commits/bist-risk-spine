@@ -120,3 +120,68 @@ def test_regime_break_skips_names_thin_on_either_side():
                                np.full(3, 2.0), np.full(10, -1.0))  # only 3 before
     out = assess_regime_break(betas, min_per_regime=5)
     assert out.empty  # no break emitted from a one-sided window — never fabricated
+
+
+def _betas_two_regimes_dated(symbol, factor, before_vals, after_vals):
+    """Like ``_betas_two_regimes`` but with monotone bar_dates so peri-shock ordering works."""
+    n_b, n_a = len(before_vals), len(after_vals)
+    dates = _dates(n_b + n_a)
+    return pd.DataFrame({
+        "symbol": symbol, "factor": factor,
+        "beta": list(before_vals) + list(after_vals),
+        "regime": ["orthodox_turn_2023"] * n_b + ["imamoglu_shock_2025"] * n_a,
+        "bar_date": dates,
+    })
+
+
+def test_peri_obs_isolates_a_local_break_from_long_regime_drift():
+    """A long pre-shock regime that *drifts* inflates the full-regime noise floor and hides a
+    clean boundary jump; the peri-shock window (betas nearest the boundary) recovers it."""
+    rng = np.random.default_rng(5)
+    frames = []
+    for s in range(8):
+        # before regime (60d): the first 45d swing widely (high global variance), the last
+        # 15d are a calm pre-shock plateau ~1.0. after (20d): a clean local jump to ~1.4.
+        swing = 1.0 + 0.7 * np.array([(-1) ** i for i in range(45)], dtype=float)
+        plateau = 1.0 + rng.normal(0, 0.01, 15)
+        before = np.r_[swing, plateau]
+        after = 1.4 + rng.normal(0, 0.01, 20)
+        frames.append(_betas_two_regimes_dated(f"S{s}", "MKT", before, after))
+    betas = pd.concat(frames, ignore_index=True)
+
+    full = assess_regime_break(betas).set_index("factor")
+    peri = assess_regime_break(betas, peri_obs=15).set_index("factor")
+    # full-regime: the early swings inflate the noise floor and hide the jump (ratio < 1);
+    # peri-shock: the calm plateau vs the jump is unmistakable (ratio ≫ 1).
+    assert full.loc["MKT", "median_break_ratio"] < 1.5
+    assert peri.loc["MKT", "median_break_ratio"] > 5
+    assert peri.loc["MKT", "median_break_ratio"] > full.loc["MKT", "median_break_ratio"]
+
+
+def test_peri_obs_requires_bar_date():
+    betas = _betas_two_regimes("ONE", "MKT", np.full(10, 2.0), np.full(10, -1.0))  # no bar_date
+    with pytest.raises(ValueError, match="peri_obs requires"):
+        assess_regime_break(betas, peri_obs=5)
+
+
+def test_regime_break_on_subset_recovers_a_planted_break():
+    """The parsimonious-subset diagnostic: fit reduced betas from returns + a factor panel and
+    recover a beta that genuinely shifts across the boundary (collinearity-free, so clean)."""
+    from tmkg.factors.diagnostics import regime_break_on_subset
+
+    n_b, n_a = 80, 80
+    db = [d.date() for d in pd.bdate_range("2024-10-01", periods=n_b)]   # orthodox_turn_2023
+    da = [d.date() for d in pd.bdate_range("2025-03-20", periods=n_a)]   # imamoglu_shock_2025
+    dates = db + da
+    rng = np.random.default_rng(11)
+    mkt = rng.normal(0, 0.02, n_b + n_a)
+    beta_path = np.r_[np.full(n_b, 0.8), np.full(n_a, 1.9)]  # market beta jumps 0.8 -> 1.9
+    y = beta_path * mkt + rng.normal(0, 1e-4, n_b + n_a)
+    returns = pd.DataFrame({"symbol": "AAA", "bar_date": dates, "ret": y})
+    panel = pd.DataFrame({"factor": "XU100", "bar_date": dates, "ret": mkt})
+
+    out = regime_break_on_subset(
+        returns, panel, factors=("XU100",), window=40, min_obs=40, peri_obs=40,
+    ).set_index("factor")
+    assert out.loc["XU100", "median_shift"] == pytest.approx(1.1, abs=0.2)
+    assert out.loc["XU100", "median_break_ratio"] > 3  # a real break clears the local floor

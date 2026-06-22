@@ -1,0 +1,18 @@
+{
+  "_written_at": "2026-06-22T15:15:29",
+  "table": "universe_membership",
+  "universe": "bist_30",
+  "n_landed": 1,
+  "n_refused": 0,
+  "landed": [
+    {
+      "symbol": "EKGYO",
+      "universe_class": "gyo_reit",
+      "sector": "GAYR\u0130MENKUL YATIRIM ORTAKLIKLARI"
+    }
+  ],
+  "refused": [],
+  "by_class": {
+    "gyo_reit": 1
+  }
+}

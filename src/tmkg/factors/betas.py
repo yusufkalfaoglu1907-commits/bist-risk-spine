@@ -66,20 +66,33 @@ def factor_panel(factor_returns: pd.DataFrame) -> pd.DataFrame:
 
 
 def _estimate_betas(X: np.ndarray, y: np.ndarray, method: str) -> np.ndarray:
-    """Partial betas of ``y`` on the columns of ``X`` (both already finite, n×k / n)."""
+    """Partial betas of ``y`` on the columns of ``X`` (both already finite, n×k / n).
+
+    The factor panel mixes units by orders of magnitude — simple returns (~0.02),
+    yield/CDS level *changes* (bps/%-points, ~1–10), and the foreign-flow level (USD mn,
+    ~10²–10³). Shrinking the *raw* covariance would let the high-variance columns dominate
+    the ill-conditioned inverse and crush the small-scale betas to numerical noise (a
+    market beta came out ~1e-6). So we **standardize each regressor first** — Ledoit–Wolf
+    then shrinks the scale-free *correlation* matrix (the statistically correct target near
+    ``p ≈ n``) — and map the betas back to raw units. For OLS this is exactly equivariant
+    (the recovered partial betas are unchanged); for LW it is what makes them meaningful.
+    """
     Xc = X - X.mean(axis=0)
     yc = y - y.mean()
     n = Xc.shape[0]
-    sigma_xy = (Xc.T @ yc) / (n - 1)
+    sx = Xc.std(axis=0, ddof=1)
+    sx = np.where(sx > 0, sx, 1.0)  # a constant column carries no info; avoid div-by-zero
+    Xs = Xc / sx  # unit-variance regressors -> shrinkage acts on the correlation structure
+    sigma_xy = (Xs.T @ yc) / (n - 1)
     if method == LEDOIT_WOLF:
-        sigma_xx = LedoitWolf(assume_centered=True).fit(Xc).covariance_
+        sigma_xx = LedoitWolf(assume_centered=True).fit(Xs).covariance_
     elif method == OLS:
-        sigma_xx = (Xc.T @ Xc) / (n - 1)
+        sigma_xx = (Xs.T @ Xs) / (n - 1)
     else:
         raise ValueError(f"unknown beta method {method!r}; expected one of {sorted(_METHODS)}")
-    # solve Σ_xx β = σ_xy; lstsq is robust to a residually-singular Σ_xx (k=1 too).
-    beta, *_ = np.linalg.lstsq(sigma_xx, sigma_xy, rcond=None)
-    return beta
+    # solve Σ_xx β_std = σ_xy; lstsq is robust to a residually-singular Σ_xx (k=1 too).
+    beta_std, *_ = np.linalg.lstsq(sigma_xx, sigma_xy, rcond=None)
+    return beta_std / sx  # standardized-regressor betas -> raw units
 
 
 def rolling_factor_betas(

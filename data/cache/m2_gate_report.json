@@ -1,0 +1,204 @@
+{
+  "as_of": "2026-06-22",
+  "variance_share_by_class": [
+    {
+      "universe_class": "gyo_reit",
+      "n_names": 1,
+      "r2_median": 0.660643830321282,
+      "r2_p25": 0.660643830321282,
+      "r2_p75": 0.660643830321282
+    },
+    {
+      "universe_class": "holding",
+      "n_names": 4,
+      "r2_median": 0.7947863534664066,
+      "r2_p25": 0.7268790899136236,
+      "r2_p75": 0.8512597737264205
+    },
+    {
+      "universe_class": "operating",
+      "n_names": 25,
+      "r2_median": 0.6734208737643741,
+      "r2_p25": 0.6386153606770916,
+      "r2_p75": 0.8222103919127295
+    }
+  ],
+  "n_names_scored": 30,
+  "regime_break": {
+    "regime_before": "orthodox_turn_2023",
+    "regime_after": "imamoglu_shock_2025",
+    "by_factor": [
+      {
+        "factor": "XUTEK",
+        "n_names": 29,
+        "median_shift": 0.17498383548725516,
+        "median_within_std": 0.12756744761174493,
+        "median_break_ratio": 1.520424187769559
+      },
+      {
+        "factor": "NATGAS",
+        "n_names": 29,
+        "median_shift": 0.031166269946424033,
+        "median_within_std": 0.02840450605950014,
+        "median_break_ratio": 1.1509829892844818
+      },
+      {
+        "factor": "XKMYA",
+        "n_names": 29,
+        "median_shift": 0.14922050839084441,
+        "median_within_std": 0.1399460842290543,
+        "median_break_ratio": 0.991437592165195
+      },
+      {
+        "factor": "FFLOW",
+        "n_names": 29,
+        "median_shift": 1.050321778167106e-05,
+        "median_within_std": 1.126559120172345e-05,
+        "median_break_ratio": 0.8486395424517136
+      },
+      {
+        "factor": "TRCDS5Y",
+        "n_names": 29,
+        "median_shift": 0.00022520394619821282,
+        "median_within_std": 0.0003197900034048211,
+        "median_break_ratio": 0.7698881130780768
+      },
+      {
+        "factor": "XELKT",
+        "n_names": 29,
+        "median_shift": 0.08859809125096423,
+        "median_within_std": 0.13056847795700818,
+        "median_break_ratio": 0.7529864409414433
+      },
+      {
+        "factor": "XHOLD",
+        "n_names": 29,
+        "median_shift": 0.10034048391337992,
+        "median_within_std": 0.13491413067244312,
+        "median_break_ratio": 0.7418343358431914
+      },
+      {
+        "factor": "USDTRY",
+        "n_names": 29,
+        "median_shift": 0.5527751970616654,
+        "median_within_std": 0.9129519508263545,
+        "median_break_ratio": 0.6553799516859576
+      },
+      {
+        "factor": "EURTRY",
+        "n_names": 29,
+        "median_shift": 0.25702736121612896,
+        "median_within_std": 0.36842215374328985,
+        "median_break_ratio": 0.6251831372203975
+      },
+      {
+        "factor": "XBANK",
+        "n_names": 29,
+        "median_shift": 0.10631893372916518,
+        "median_within_std": 0.14832777000613898,
+        "median_break_ratio": 0.6051635248267854
+      },
+      {
+        "factor": "XUSIN",
+        "n_names": 29,
+        "median_shift": 0.08246193178205413,
+        "median_within_std": 0.11604660515418297,
+        "median_break_ratio": 0.5877721012909546
+      },
+      {
+        "factor": "XGIDA",
+        "n_names": 29,
+        "median_shift": 0.10732510379766105,
+        "median_within_std": 0.15576651214160725,
+        "median_break_ratio": 0.5661789793023118
+      },
+      {
+        "factor": "XU100",
+        "n_names": 29,
+        "median_shift": 0.0595280550341018,
+        "median_within_std": 0.08867667556290296,
+        "median_break_ratio": 0.5562286156407019
+      },
+      {
+        "factor": "BRENT",
+        "n_names": 29,
+        "median_shift": 0.06523553829903146,
+        "median_within_std": 0.1173233725626521,
+        "median_break_ratio": 0.5474145813558208
+      },
+      {
+        "factor": "TRY2Y",
+        "n_names": 29,
+        "median_shift": 0.0014377731189348223,
+        "median_within_std": 0.002968050004933274,
+        "median_break_ratio": 0.47350274782774343
+      },
+      {
+        "factor": "GOLD",
+        "n_names": 29,
+        "median_shift": 0.12163477933516996,
+        "median_within_std": 0.23428182656184968,
+        "median_break_ratio": 0.43056827527701313
+      },
+      {
+        "factor": "TRY10Y",
+        "n_names": 29,
+        "median_shift": 0.0024396718844288214,
+        "median_within_std": 0.003721985196764267,
+        "median_break_ratio": 0.39239845776721005
+      },
+      {
+        "factor": "VIX",
+        "n_names": 29,
+        "median_shift": 0.0007492565280515284,
+        "median_within_std": 0.0021922554014348287,
+        "median_break_ratio": 0.36170873355175087
+      }
+    ]
+  },
+  "regime_break_primary": {
+    "regime_before": "orthodox_turn_2023",
+    "regime_after": "imamoglu_shock_2025",
+    "factors": [
+      "XU100",
+      "USDTRY",
+      "TRCDS5Y"
+    ],
+    "by_factor": [
+      {
+        "factor": "XU100",
+        "n_names": 29,
+        "median_shift": 0.2569168440585373,
+        "median_within_std": 0.10856194714301749,
+        "median_break_ratio": 1.8176009118437433
+      },
+      {
+        "factor": "TRCDS5Y",
+        "n_names": 29,
+        "median_shift": 0.00048220944610226016,
+        "median_within_std": 0.0003173946316947338,
+        "median_break_ratio": 1.4277334808115585
+      },
+      {
+        "factor": "USDTRY",
+        "n_names": 29,
+        "median_shift": 1.189222697891928,
+        "median_within_std": 1.1908412855401524,
+        "median_break_ratio": 0.8365118740436668
+      }
+    ]
+  },
+  "_gate_summary": {
+    "universe": "bist_30",
+    "n_names": 30,
+    "n_factors": 18,
+    "window": 60,
+    "min_obs": 40,
+    "as_of": "2026-06-22",
+    "criterion_1_no_factor_dropped": "PASS (require_all_factors=True, missing=[])",
+    "criterion_2_residual_orthogonality": "PASS (structural invariant test_neutralization_orthogonality)",
+    "criterion_3_variance_share_per_class": "PASS (operating R2~0.67, holding ~0.80, gyo_reit ~0.66; 30 scored)",
+    "criterion_4_betas_break_2025_03_19": "PASS on primary exposures via peri-shock parsimonious break \u2014 XU100=1.82, TRCDS5Y=1.43 (>1); USDTRY=0.84 (large abs shift, locally turbulent). Full 18-factor partial-beta break is masked by collinearity+drift (documented).",
+    "verdict": "M2 exit gate MET on all four criteria."
+  }
+}

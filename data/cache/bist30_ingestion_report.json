@@ -1,0 +1,597 @@
+{
+  "run": "bist30_ingestion",
+  "window": {
+    "start": "2023-01-02",
+    "end": "2026-06-22"
+  },
+  "as_of": "2026-06-22",
+  "n_symbols": 30,
+  "prices": [
+    {
+      "symbol": "AEFES",
+      "n_bars": 864
+    },
+    {
+      "symbol": "AKBNK",
+      "n_bars": 864
+    },
+    {
+      "symbol": "ASELS",
+      "n_bars": 864
+    },
+    {
+      "symbol": "ASTOR",
+      "n_bars": 852
+    },
+    {
+      "symbol": "BIMAS",
+      "n_bars": 864
+    },
+    {
+      "symbol": "DSTKF",
+      "n_bars": 341
+    },
+    {
+      "symbol": "EKGYO",
+      "n_bars": 864
+    },
+    {
+      "symbol": "ENKAI",
+      "n_bars": 864
+    },
+    {
+      "symbol": "EREGL",
+      "n_bars": 864
+    },
+    {
+      "symbol": "FROTO",
+      "n_bars": 864
+    },
+    {
+      "symbol": "GARAN",
+      "n_bars": 864
+    },
+    {
+      "symbol": "GUBRF",
+      "n_bars": 864
+    },
+    {
+      "symbol": "ISCTR",
+      "n_bars": 864
+    },
+    {
+      "symbol": "KCHOL",
+      "n_bars": 864
+    },
+    {
+      "symbol": "KRDMD",
+      "n_bars": 864
+    },
+    {
+      "symbol": "MGROS",
+      "n_bars": 864
+    },
+    {
+      "symbol": "PETKM",
+      "n_bars": 864
+    },
+    {
+      "symbol": "PGSUS",
+      "n_bars": 864
+    },
+    {
+      "symbol": "SAHOL",
+      "n_bars": 864
+    },
+    {
+      "symbol": "SASA",
+      "n_bars": 864
+    },
+    {
+      "symbol": "SISE",
+      "n_bars": 864
+    },
+    {
+      "symbol": "TAVHL",
+      "n_bars": 864
+    },
+    {
+      "symbol": "TCELL",
+      "n_bars": 864
+    },
+    {
+      "symbol": "THYAO",
+      "n_bars": 864
+    },
+    {
+      "symbol": "TOASO",
+      "n_bars": 864
+    },
+    {
+      "symbol": "TRALT",
+      "n_bars": 864
+    },
+    {
+      "symbol": "TTKOM",
+      "n_bars": 864
+    },
+    {
+      "symbol": "TUPRS",
+      "n_bars": 864
+    },
+    {
+      "symbol": "VAKBN",
+      "n_bars": 864
+    },
+    {
+      "symbol": "YKBNK",
+      "n_bars": 864
+    }
+  ],
+  "total_returns": [
+    {
+      "symbol": "AEFES",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 11,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "AKBNK",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 11,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "ASELS",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 4,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "ASTOR",
+      "table": "total_returns",
+      "n_returns": 851,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 38,
+      "ret_real_try_null": 851
+    },
+    {
+      "symbol": "BIMAS",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 7,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "DSTKF",
+      "table": "total_returns",
+      "n_returns": 340,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 55,
+      "ret_real_try_null": 340
+    },
+    {
+      "symbol": "EKGYO",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 10,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "ENKAI",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 6,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "EREGL",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 3,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "FROTO",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 2,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "GARAN",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 10,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "GUBRF",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 37,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "ISCTR",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 10,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "KCHOL",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 7,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "KRDMD",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 12,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "MGROS",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 3,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "PETKM",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 6,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "PGSUS",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 4,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "SAHOL",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 6,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "SASA",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 24,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "SISE",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 6,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "TAVHL",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 5,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "TCELL",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 6,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "THYAO",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 1,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "TOASO",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 7,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "TRALT",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 12,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "TTKOM",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 7,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "TUPRS",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 6,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "VAKBN",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 8,
+      "ret_real_try_null": 863
+    },
+    {
+      "symbol": "YKBNK",
+      "table": "total_returns",
+      "n_returns": 863,
+      "as_of": "2026-06-22",
+      "fx_factor": "USDTRY",
+      "cpi_factor": null,
+      "ret_usd_null": 13,
+      "ret_real_try_null": 863
+    }
+  ],
+  "universe_class": {
+    "table": "universe_membership",
+    "universe": "bist_30",
+    "n_landed": 30,
+    "n_refused": 0,
+    "landed": [
+      {
+        "symbol": "AEFES",
+        "universe_class": "operating",
+        "sector": "GIDA, İÇECEK VE TÜTÜN"
+      },
+      {
+        "symbol": "AKBNK",
+        "universe_class": "operating",
+        "sector": "BANKALAR"
+      },
+      {
+        "symbol": "ASELS",
+        "universe_class": "operating",
+        "sector": "SAVUNMA"
+      },
+      {
+        "symbol": "ASTOR",
+        "universe_class": "operating",
+        "sector": "METAL EŞYA MAKİNE ELEKTRİKLİ CİHAZLAR VE ULAŞIM ARAÇLARI"
+      },
+      {
+        "symbol": "BIMAS",
+        "universe_class": "operating",
+        "sector": "PERAKENDE TİCARET"
+      },
+      {
+        "symbol": "DSTKF",
+        "universe_class": "operating",
+        "sector": "FİNANSAL KİRALAMA VE FAKTORİNG ŞİRKETLERİ"
+      },
+      {
+        "symbol": "EKGYO",
+        "universe_class": "gyo_reit",
+        "sector": "GAYRİMENKUL YATIRIM ORTAKLIKLARI"
+      },
+      {
+        "symbol": "ENKAI",
+        "universe_class": "operating",
+        "sector": "İNŞAAT VE BAYINDIRLIK İŞLERİ"
+      },
+      {
+        "symbol": "EREGL",
+        "universe_class": "operating",
+        "sector": "ANA METAL SANAYİ"
+      },
+      {
+        "symbol": "FROTO",
+        "universe_class": "operating",
+        "sector": "METAL EŞYA MAKİNE ELEKTRİKLİ CİHAZLAR VE ULAŞIM ARAÇLARI"
+      },
+      {
+        "symbol": "GARAN",
+        "universe_class": "operating",
+        "sector": "BANKALAR"
+      },
+      {
+        "symbol": "GUBRF",
+        "universe_class": "operating",
+        "sector": "KİMYA İLAÇ PETROL LASTİK VE PLASTİK ÜRÜNLER"
+      },
+      {
+        "symbol": "ISCTR",
+        "universe_class": "operating",
+        "sector": "BANKALAR"
+      },
+      {
+        "symbol": "KCHOL",
+        "universe_class": "holding",
+        "sector": "HOLDİNGLER VE YATIRIM ŞİRKETLERİ"
+      },
+      {
+        "symbol": "KRDMD",
+        "universe_class": "operating",
+        "sector": "ANA METAL SANAYİ"
+      },
+      {
+        "symbol": "MGROS",
+        "universe_class": "operating",
+        "sector": "PERAKENDE TİCARET"
+      },
+      {
+        "symbol": "PETKM",
+        "universe_class": "operating",
+        "sector": "KİMYA İLAÇ PETROL LASTİK VE PLASTİK ÜRÜNLER"
+      },
+      {
+        "symbol": "PGSUS",
+        "universe_class": "operating",
+        "sector": "ULAŞTIRMA VE DEPOLAMA"
+      },
+      {
+        "symbol": "SAHOL",
+        "universe_class": "holding",
+        "sector": "HOLDİNGLER VE YATIRIM ŞİRKETLERİ"
+      },
+      {
+        "symbol": "SASA",
+        "universe_class": "operating",
+        "sector": "KİMYA İLAÇ PETROL LASTİK VE PLASTİK ÜRÜNLER"
+      },
+      {
+        "symbol": "SISE",
+        "universe_class": "holding",
+        "sector": "HOLDİNGLER VE YATIRIM ŞİRKETLERİ"
+      },
+      {
+        "symbol": "TAVHL",
+        "universe_class": "holding",
+        "sector": "HOLDİNGLER VE YATIRIM ŞİRKETLERİ"
+      },
+      {
+        "symbol": "TCELL",
+        "universe_class": "operating",
+        "sector": "TELEKOMÜNİKASYON"
+      },
+      {
+        "symbol": "THYAO",
+        "universe_class": "operating",
+        "sector": "ULAŞTIRMA VE DEPOLAMA"
+      },
+      {
+        "symbol": "TOASO",
+        "universe_class": "operating",
+        "sector": "METAL EŞYA MAKİNE ELEKTRİKLİ CİHAZLAR VE ULAŞIM ARAÇLARI"
+      },
+      {
+        "symbol": "TRALT",
+        "universe_class": "operating",
+        "sector": "METAL CEVHERİ MADENCİLİĞİ"
+      },
+      {
+        "symbol": "TTKOM",
+        "universe_class": "operating",
+        "sector": "TELEKOMÜNİKASYON"
+      },
+      {
+        "symbol": "TUPRS",
+        "universe_class": "operating",
+        "sector": "KİMYA İLAÇ PETROL LASTİK VE PLASTİK ÜRÜNLER"
+      },
+      {
+        "symbol": "VAKBN",
+        "universe_class": "operating",
+        "sector": "BANKALAR"
+      },
+      {
+        "symbol": "YKBNK",
+        "universe_class": "operating",
+        "sector": "BANKALAR"
+      }
+    ],
+    "refused": [],
+    "by_class": {
+      "operating": 25,
+      "holding": 4,
+      "gyo_reit": 1
+    }
+  }
+}

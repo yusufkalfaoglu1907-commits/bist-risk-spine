@@ -1,5 +1,5 @@
 {
-  "_written_at": "2026-06-20T14:26:15",
+  "_written_at": "2026-06-22T15:05:22",
   "source": "matriks",
   "transport": "rest",
   "rest_url": "https://mcp.matriks.ai/mcp-api/v1",
@@ -9,9 +9,11 @@
   ],
   "reachable_only": [
     "declaration_dates_KCHOL.json",
+    "foreign_flow_GARAN_historic_2025Q1.json",
     "foreign_flow_GARAN_monthly.json",
     "news_sample_2026-06-19.json",
     "ohlcv_EREGL_monthly_2023.json",
+    "takas_GARAN_2025_shock.json",
     "universe_bist30.json"
   ],
   "skipped": [

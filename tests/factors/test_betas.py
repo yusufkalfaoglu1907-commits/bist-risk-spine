@@ -86,6 +86,43 @@ def test_ledoit_wolf_is_finite_and_recovers_the_beta_vector_near_p_equals_n():
     assert np.corrcoef(est, true)[0, 1] > 0.6
 
 
+def test_mixed_scale_factors_do_not_crush_small_factor_betas():
+    """Regression: the real factor panel mixes units by orders of magnitude (simple
+    returns ~0.02 vs the foreign-flow level ~10²–10³). Shrinking the raw covariance let
+    the high-variance column dominate the inverse and crushed the small-scale beta to
+    ~1e-6 (a market beta of zero). The estimator standardizes regressors first, so the
+    recovered betas are in raw units and scale-free: a ~1000× rescaling of one factor's
+    units must not move any beta."""
+    rng = np.random.default_rng(7)
+    n = 120
+    dates = _dates(n)
+    mkt = rng.normal(0, 0.02, n)        # simple-return scale
+    flow = rng.normal(0, 250.0, n)      # foreign-flow scale (USD mn) — ~10⁴× mkt variance
+    # true partial betas chosen so each term contributes comparably to y (so both are
+    # well-identified); the point under test is the scale gap between regressors, not SNR.
+    y = 0.9 * mkt + 7e-5 * flow + rng.normal(0, 1e-4, n)
+    out = rolling_factor_betas(
+        _stock(dates, y), _factor_long(dates, {"MKT": mkt, "FLOW": flow}),
+        symbol="AAA", window=80, method=LEDOIT_WOLF,
+    )
+    last = out[out["bar_date"] == out["bar_date"].max()].set_index("factor")["beta"]
+    # the small-scale market beta survives (order ~1, NOT crushed to ~1e-6 as it was when
+    # Ledoit–Wolf shrank the raw mixed-unit covariance) and both betas are recovered
+    assert abs(last["MKT"]) > 0.1
+    assert last["MKT"] == pytest.approx(0.9, abs=0.1)
+    assert last["FLOW"] == pytest.approx(7e-5, rel=0.3)
+
+    # scale-invariance: expressing FLOW in raw units (÷1000) rescales only that beta by
+    # ×1000 and leaves MKT untouched — proof the shrinkage no longer depends on units.
+    out2 = rolling_factor_betas(
+        _stock(dates, y), _factor_long(dates, {"MKT": mkt, "FLOW": flow / 1000.0}),
+        symbol="AAA", window=80, method=LEDOIT_WOLF,
+    )
+    last2 = out2[out2["bar_date"] == out2["bar_date"].max()].set_index("factor")["beta"]
+    assert last2["MKT"] == pytest.approx(last["MKT"], rel=1e-6)
+    assert last2["FLOW"] == pytest.approx(last["FLOW"] * 1000.0, rel=1e-6)
+
+
 def test_betas_break_across_a_regime_boundary_and_do_not_straddle():
     """The exit-gate behaviour: a window is confined to its end date's regime, so the
     beta is ~b1 well inside regime A, ~b2 well inside regime B, and there is NO estimate

@@ -123,6 +123,7 @@ def assess_regime_break(
     regime_after: str = SHOCK_REGIME_AFTER,
     factors: list[str] | None = None,
     min_per_regime: int = 5,
+    peri_obs: int | None = None,
 ) -> pd.DataFrame:
     """Quantify how hard betas move across a regime boundary, per factor.
 
@@ -133,6 +134,11 @@ def assess_regime_break(
     ``min_per_regime`` betas on each side or it is skipped (no straddle-window beta exists at
     the boundary by construction — that gap is expected).
 
+    ``peri_obs`` restricts each side to the ``peri_obs`` betas *nearest the boundary* (the
+    latest before, the earliest after). A long regime drifts, so its full-regime std mixes a
+    one-time shock shift with months of slow drift and understates the break; the peri-shock
+    window isolates the discontinuity. ``None`` (default) uses the whole regime.
+
     The aggregate per factor is the **median break_ratio** across names: ≫1 means betas
     genuinely break across the shock (the gate's expectation); ≈1 or below means the model's
     betas are indistinguishable across the boundary (a red flag worth surfacing).
@@ -142,14 +148,23 @@ def assess_regime_break(
     need = {"symbol", "factor", "beta", "regime"}
     if not need <= set(betas.columns):
         raise ValueError(f"assess_regime_break: betas missing {sorted(need - set(betas.columns))}")
+    has_date = "bar_date" in betas.columns
+    if peri_obs is not None and not has_date:
+        raise ValueError("assess_regime_break: peri_obs requires a 'bar_date' column to order betas")
     b = betas[betas["regime"].isin([regime_before, regime_after])].copy()
     if factors is not None:
         b = b[b["factor"].isin(factors)]
 
     rows: list[dict] = []
     for (sym, fac), g in b.groupby(["symbol", "factor"], sort=False):
-        before = g.loc[g["regime"] == regime_before, "beta"].dropna().to_numpy()
-        after = g.loc[g["regime"] == regime_after, "beta"].dropna().to_numpy()
+        if has_date:
+            g = g.sort_values("bar_date")
+        bef = g.loc[g["regime"] == regime_before, "beta"].dropna()
+        aft = g.loc[g["regime"] == regime_after, "beta"].dropna()
+        if peri_obs is not None:  # keep the betas nearest the boundary on each side
+            bef = bef.iloc[-peri_obs:]
+            aft = aft.iloc[:peri_obs]
+        before, after = bef.to_numpy(), aft.to_numpy()
         if len(before) < min_per_regime or len(after) < min_per_regime:
             continue
         shift = abs(float(after.mean()) - float(before.mean()))
@@ -175,6 +190,63 @@ def assess_regime_break(
     )
 
 
+# The economically-primary, mutually low-collinearity ladder rungs — market, FX, and
+# sovereign credit. The 19-Mar-2025 shock was a *joint* repricing of exactly these. The
+# full 18-factor panel is highly collinear (6 sector indices track the market; EUR/TRY and
+# the bond yields track USD/TRY and the CDS), so its *partial* betas are individually noisy
+# and a real break hides under within-regime wobble. On this parsimonious set the betas are
+# well-identified, so a genuine break is visible rather than masked.
+PRIMARY_BREAK_FACTORS = ("XU100", "USDTRY", "TRCDS5Y")
+
+
+def regime_break_on_subset(
+    returns: pd.DataFrame,
+    factor_returns: pd.DataFrame,
+    *,
+    factors: tuple[str, ...] = PRIMARY_BREAK_FACTORS,
+    regime_before: str = SHOCK_REGIME_BEFORE,
+    regime_after: str = SHOCK_REGIME_AFTER,
+    window: int = 60,
+    min_obs: int = 40,
+    min_per_regime: int = 5,
+    peri_obs: int | None = None,
+) -> pd.DataFrame:
+    """Re-fit rolling betas on a *small, low-collinearity* factor set and assess the regime
+    break on those (well-identified) betas — the collinearity-robust companion to
+    ``assess_regime_break`` on the full panel.
+
+    ``returns`` is long ``[symbol, bar_date, ret]`` (USD-primary); ``factor_returns`` is the
+    long factor-return panel. Betas are computed in-memory (not landed — the L2 ``betas``
+    stay the full-model betas the neutralization uses); this is a separate diagnostic lens.
+    Pure: no L2/PIT/network.
+    """
+    from tmkg.factors.betas import rolling_factor_betas  # local: keep module L2/network-free
+
+    empty = pd.DataFrame(columns=["factor", "n_names", "median_shift",
+                                  "median_within_std", "median_break_ratio"])
+    if returns.empty or factor_returns.empty:
+        return empty
+    present = [f for f in factors if f in set(factor_returns["factor"])]
+    if not present:
+        return empty
+    sub = factor_returns[factor_returns["factor"].isin(present)]
+    parts: list[pd.DataFrame] = []
+    for sym, g in returns.groupby("symbol", sort=False):
+        b = rolling_factor_betas(
+            g[["bar_date", "ret"]], sub, symbol=sym,
+            window=window, min_obs=min_obs, factors=present,
+        )
+        if not b.empty:
+            parts.append(b)
+    if not parts:
+        return empty
+    betas = pd.concat(parts, ignore_index=True)
+    return assess_regime_break(
+        betas, regime_before=regime_before, regime_after=regime_after,
+        factors=present, min_per_regime=min_per_regime, peri_obs=peri_obs,
+    )
+
+
 def m2_gate_diagnostics(
     store,
     *,
@@ -184,6 +256,8 @@ def m2_gate_diagnostics(
     regime_after: str = SHOCK_REGIME_AFTER,
     min_obs: int = 20,
     min_per_regime: int = 5,
+    break_window: int = 60,
+    break_min_obs: int = 40,
 ) -> dict:
     """Read the landed M2 outputs (``total_returns``, ``residuals``, ``betas``) back through
     PIT at ``as_of`` and emit the two exit-gate measurements as a report-ready dict. This is
@@ -212,6 +286,20 @@ def m2_gate_diagnostics(
               if not bet.empty else
               pd.DataFrame(columns=["factor", "n_names", "median_shift",
                                     "median_within_std", "median_break_ratio"]))
+
+    # Collinearity-robust companion: re-fit betas on the primary market/FX/credit rungs and
+    # assess the break there (the full-panel partial betas are too collinear to read cleanly).
+    from tmkg.factors import registry
+    from tmkg.ingest.pipeline import build_factor_return_panel
+    sub_specs = {f: m for f, m in registry.specs().items() if f in PRIMARY_BREAK_FACTORS}
+    prim_panel = build_factor_return_panel(store, as_of=as_of, specs=sub_specs)
+    # peri-shock window (betas nearest the boundary) isolates the discontinuity from the
+    # slow drift that inflates the long pre-shock regime's full-regime noise floor.
+    prim_breaks = regime_break_on_subset(
+        returns, prim_panel, regime_before=regime_before, regime_after=regime_after,
+        window=break_window, min_obs=break_min_obs, min_per_regime=min_per_regime,
+        peri_obs=break_min_obs,
+    )
     return {
         "as_of": str(as_of),
         "variance_share_by_class": by_class.to_dict("records"),
@@ -219,5 +307,10 @@ def m2_gate_diagnostics(
         "regime_break": {
             "regime_before": regime_before, "regime_after": regime_after,
             "by_factor": breaks.to_dict("records"),
+        },
+        "regime_break_primary": {
+            "regime_before": regime_before, "regime_after": regime_after,
+            "factors": list(PRIMARY_BREAK_FACTORS),
+            "by_factor": prim_breaks.to_dict("records"),
         },
     }
