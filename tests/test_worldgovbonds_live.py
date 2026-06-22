@@ -32,7 +32,7 @@ def _result(quotes):
 
 # --- offline unit guards ---------------------------------------------------
 def test_parse_cds_to_factor_rows():
-    rows = WorldGovBondsAdapter.parse_cds(
+    rows = WorldGovBondsAdapter.parse_series(
         _result([("2025-03-21", 252.18), ("2025-03-24", 300.20)]))
     by = {r["bar_date"]: r for r in rows}
     a = by[date(2025, 3, 24)]
@@ -43,18 +43,29 @@ def test_parse_cds_to_factor_rows():
 
 
 def test_parse_cds_clips_to_window():
-    rows = WorldGovBondsAdapter.parse_cds(
+    rows = WorldGovBondsAdapter.parse_series(
         _result([("2022-12-30", 500.0), ("2024-01-02", 280.23), ("2027-01-01", 100.0)]),
         start="2023-01-01", end="2026-06-22")
     assert [r["bar_date"] for r in rows] == [date(2024, 1, 2)]  # out-of-window dropped
 
 
 def test_parse_cds_drops_nonnumeric_and_refuses_empty():
-    rows = WorldGovBondsAdapter.parse_cds(
+    rows = WorldGovBondsAdapter.parse_series(
         _result([("2025-03-21", None), ("2025-03-24", 300.20)]))
     assert [r["bar_date"] for r in rows] == [date(2025, 3, 24)]  # blank dropped (§4)
     with pytest.raises(ContractDrift):
-        WorldGovBondsAdapter.parse_cds(_result([("2025-03-21", None)]))
+        WorldGovBondsAdapter.parse_series(_result([("2025-03-21", None)]))
+
+
+def test_registry_wgb_factors_all_have_a_fetch_config():
+    """Every registry factor sourced from WGB must have a FUNCTION/tenor config — else the
+    driver would not know how to fetch it. Guards the rates/CDS rung end to end."""
+    from tmkg.factors import registry
+    from tmkg.ingest.worldgovbonds import WGB_FACTORS
+
+    wgb = {f.name for f in registry.CORE_FACTORS if f.source == "worldgovbonds"}
+    assert wgb == {"TRCDS5Y", "TRY2Y", "TRY10Y"}
+    assert wgb <= set(WGB_FACTORS)  # each has a fetch config
 
 
 def test_non_success_envelope_is_unreachable(monkeypatch):

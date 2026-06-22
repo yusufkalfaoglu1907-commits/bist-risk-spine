@@ -24,10 +24,10 @@ from tmkg.ingest.evds import EvdsAdapter
 from tmkg.ingest.fred import FredAdapter
 from tmkg.ingest.matriks import MatriksAdapter
 from tmkg.ingest.pipeline import (
-    ingest_cds,
     ingest_factor_series,
     ingest_foreign_flow,
     ingest_fred_series,
+    ingest_wgb_factor,
 )
 from tmkg.ingest.worldgovbonds import WorldGovBondsAdapter
 from tmkg.l2.store import L2Store
@@ -91,8 +91,8 @@ def main(start: str, end: str) -> int:
         elif f.source == "fred":
             res = ingest_fred_series(
                 fred, store, series=f.series_id, factor=f.name, start=start, end=end)
-        elif f.source == "worldgovbonds":  # Turkey 5y CDS
-            res = ingest_cds(wgb, store, start=start, end=end, factor=f.name)
+        elif f.source == "worldgovbonds":  # Turkey 5y CDS + 2y/10y yields
+            res = ingest_wgb_factor(wgb, store, factor=f.name, start=start, end=end)
         else:  # evds — the weekly foreign-flow leg (lands FFLOW + FFLOW_STOCK)
             for r in ingest_foreign_flow(evds, store, start=start, end=end):
                 ingested.append(r)

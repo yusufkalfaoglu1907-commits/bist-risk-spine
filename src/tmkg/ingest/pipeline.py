@@ -48,7 +48,7 @@ from tmkg.factors.betas import rolling_factor_betas
 from tmkg.factors.neutralize import rolling_residuals
 from tmkg.factors.series import compute_factor_returns
 from tmkg.ingest.matriks import MatriksAdapter
-from tmkg.ingest.worldgovbonds import TURKEY_CDS_FACTOR, WorldGovBondsAdapter
+from tmkg.ingest.worldgovbonds import WGB_FACTORS, WorldGovBondsAdapter
 from tmkg.l2.store import L2Store
 from tmkg.pit.access import PITAccess
 from tmkg.returns.accounting_regime import regime_for_period
@@ -203,22 +203,26 @@ def ingest_cpi(
     }
 
 
-# --- Turkey 5y CDS (WorldGovernmentBonds -> the rates/CDS-rung credit factor) ---
-def ingest_cds(
+# --- rates/CDS rung (WorldGovernmentBonds: Turkey 5y CDS + 2y/10y bond yields) ---
+def ingest_wgb_factor(
     adapter: WorldGovBondsAdapter,
     store: L2Store,
     *,
+    factor: str,
     start: str,
     end: str,
-    factor: str = TURKEY_CDS_FACTOR,
 ) -> dict:
-    """Fetch Turkey 5y sovereign CDS (bps, daily) from WorldGovernmentBonds and land it in
-    L2 ``factors``. ``knowledge_date = bar_date`` (a daily CDS close is known end-of-day);
-    ``ret`` left null (a rate level -> ``series.DIFF`` at read time). Raises on an
-    unreachable source via ``adapter.fetch`` (§4); WGB carries values over non-trading days,
-    which ``diff`` correctly reads as a zero change."""
-    result = adapter.fetch()
-    rows = adapter.parse_cds(result, factor=factor, start=start, end=end)
+    """Fetch a WorldGovernmentBonds rate factor (``TRCDS5Y`` CDS in bps, or ``TRY2Y``/
+    ``TRY10Y`` bond yields in %) and land it in L2 ``factors``. The per-factor FUNCTION/tenor
+    lives in ``worldgovbonds.WGB_FACTORS``. ``knowledge_date = bar_date`` (a daily close is
+    known end-of-day); ``ret`` left null (a rate level -> ``series.DIFF`` at read time).
+    Raises on an unreachable source via ``adapter.fetch`` (§4); WGB carries values over
+    non-trading days, which ``diff`` correctly reads as a zero change."""
+    cfg = WGB_FACTORS[factor]
+    result = adapter.fetch(
+        function=cfg["function"], durata=cfg["durata"],
+        durata_string=cfg["durata_string"])
+    rows = adapter.parse_series(result, factor=factor, start=start, end=end)
     df = _coerce_dates(pd.DataFrame(rows))
     df["value"] = pd.to_numeric(df["value"], errors="coerce")
     store.write_parquet("factors", df)

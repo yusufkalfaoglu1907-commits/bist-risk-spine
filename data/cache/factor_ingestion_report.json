@@ -35,6 +35,22 @@
       "last": "2026-06-22"
     },
     {
+      "factor": "TRY2Y",
+      "table": "factors",
+      "source": "worldgovbonds",
+      "n_points": 1268,
+      "first": "2023-01-02",
+      "last": "2026-06-22"
+    },
+    {
+      "factor": "TRY10Y",
+      "table": "factors",
+      "source": "worldgovbonds",
+      "n_points": 1268,
+      "first": "2023-01-02",
+      "last": "2026-06-22"
+    },
+    {
       "factor": "TRCDS5Y",
       "table": "factors",
       "source": "worldgovbonds",
@@ -134,16 +150,8 @@
     {
       "factor": "MSCIEM",
       "reason": "blocked: MSCI-EM/EEM: NOT on Matriks historicalData or symbolSearch, NOT on FRED (verified 2026-06-22); market rung covered by XU100+VIX meanwhile. Try Matriks foreignMarkets tool or an alt provider to unblock."
-    },
-    {
-      "factor": "TRY2Y",
-      "reason": "source 'scrape' not wired yet"
-    },
-    {
-      "factor": "TRY10Y",
-      "reason": "source 'scrape' not wired yet"
     }
   ],
-  "n_ingested": 17,
-  "n_skipped": 3
+  "n_ingested": 19,
+  "n_skipped": 1
 }

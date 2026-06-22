@@ -82,10 +82,11 @@ CORE_FACTORS: tuple[Factor, ...] = (
            note="USD-primary base FX; also cross-checkable via EVDS"),
     Factor("EURTRY", "fx", SIMPLE, "matriks", "EURTRY"),
     # rates / CDS — yields and the sovereign CDS are LEVELS in their own units -> diff.
-    Factor("TRY2Y", "rates_cds", DIFF, "scrape", "TR2YT",
-           note="TRY 2y benchmark yield (W3 proxy/scrape); bps change, not pct"),
-    Factor("TRY10Y", "rates_cds", DIFF, "scrape", "TR10YT",
-           note="TRY 10y benchmark yield (W3 proxy/scrape)"),
+    Factor("TRY2Y", "rates_cds", DIFF, "worldgovbonds", "TRY2Y",
+           note="TRY 2y benchmark yield (%, daily) — WorldGovernmentBonds; a rate level -> "
+                "diff. Spikes 35->50% across the 2025-03-19 shock"),
+    Factor("TRY10Y", "rates_cds", DIFF, "worldgovbonds", "TRY10Y",
+           note="TRY 10y benchmark yield (%, daily) — WorldGovernmentBonds; a rate level -> diff"),
     Factor("TRCDS5Y", "rates_cds", DIFF, "worldgovbonds", "TRCDS5Y",
            note="Turkey 5y sovereign CDS (bps, daily) — WorldGovernmentBonds public chart "
                 "API (W3-sanctioned, not Investing.com/ToS); a level in bps -> diff. >=2015"),

@@ -25,10 +25,19 @@ from tmkg.ingest.audit import write_run_report
 from tmkg.ingest.base import IngestionAdapter
 from tmkg.pit.errors import ContractDrift, SourceUnreachable
 
-# Turkey 5y CDS — the rates/CDS-rung credit factor. SYMBOL 13 = Turkey, DURATA 60 months.
+# Turkey 5y CDS — the rates/CDS-rung credit factor. SYMBOL 13 = Turkey, DURATA in months.
 TURKEY_CDS_FACTOR = "TRCDS5Y"
 _TURKEY = {"SYMBOL": "13", "PAESE": "Turkey", "PAESE_UPPERCASE": "TURKEY",
            "BANDIERA": "tr", "URL_PAGE": "turkey"}
+
+# The rates/CDS rung, all from this one source: FUNCTION + tenor per factor. CDS is in bps;
+# Bond yields are in % (both are rate LEVELS -> series.DIFF). Verified live 2026-06-22 — each
+# spikes across the 2025-03-19 shock (2y 35->50%, 10y 26->33%, CDS ->300bps).
+WGB_FACTORS: dict[str, dict] = {
+    "TRCDS5Y": {"function": "CDS", "durata": 60, "durata_string": "5 Years"},
+    "TRY2Y": {"function": "Bond", "durata": 24, "durata_string": "2 Years"},
+    "TRY10Y": {"function": "Bond", "durata": 120, "durata_string": "10 Years"},
+}
 
 _DEFAULT_BASE = "https://www.worldgovernmentbonds.com"
 _HIST_PATH = "/wp-json/common/v1/historical"
@@ -101,17 +110,17 @@ class WorldGovBondsAdapter(IngestionAdapter):
 
     # --- parser (WGB result -> L2 `factors`-shaped rows) ------------------
     @staticmethod
-    def parse_cds(
+    def parse_series(
         result: dict, *, factor: str = TURKEY_CDS_FACTOR,
         start: str | None = None, end: str | None = None,
     ) -> list[dict]:
         """``result.quote {id:{CLOSE_VAL, DATA_VAL}}`` -> ``factors``-schema rows.
 
-        ``bar_date`` = ``DATA_VAL``, ``value`` = ``CLOSE_VAL`` (CDS in bps). The endpoint
-        returns the full history; ``start``/``end`` (ISO) clip it to the wanted window.
-        ``knowledge_date = bar_date`` — a daily CDS close is known end-of-day. ``ret`` left
-        null (a rate level -> ``series.DIFF`` at read time). Non-numeric/dateless quotes are
-        DROPPED (§4); ``ContractDrift`` if none survive.
+        ``bar_date`` = ``DATA_VAL``, ``value`` = ``CLOSE_VAL`` (CDS in bps, or a bond yield
+        in %). The endpoint returns the full history; ``start``/``end`` (ISO) clip it to the
+        wanted window. ``knowledge_date = bar_date`` — a daily close is known end-of-day.
+        ``ret`` left null (a rate level -> ``series.DIFF`` at read time). Non-numeric/dateless
+        quotes are DROPPED (§4); ``ContractDrift`` if none survive.
         """
         lo = date.fromisoformat(start) if start else None
         hi = date.fromisoformat(end) if end else None
