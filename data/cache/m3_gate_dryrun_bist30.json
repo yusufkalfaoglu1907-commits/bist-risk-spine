@@ -1,0 +1,96 @@
+{
+  "milestone": "M3",
+  "gate": "residual_survival",
+  "stop_gate": true,
+  "as_of": "2026-06-15",
+  "inputs": {
+    "n_residual_rows": 17239,
+    "n_symbols_panel": 30,
+    "n_symbols_with_sector": 30,
+    "n_dates_panel": 604,
+    "window": 120,
+    "step": 120,
+    "alpha": 0.05,
+    "min_obs": 80,
+    "panel_min_obs": 120,
+    "min_abs_corr": 0.0
+  },
+  "rolling": [
+    {
+      "win_a_end": "2024-01-11",
+      "win_b_end": "2024-07-25",
+      "n_edges_a": 9,
+      "n_edges_b": 8,
+      "n_shared": 4,
+      "jaccard": 0.3076923076923077,
+      "random_jaccard": 0.17102137767220904,
+      "lift": 1.7991452991452992,
+      "weight_rank_rho": 0.39999999999999997
+    },
+    {
+      "win_a_end": "2024-07-25",
+      "win_b_end": "2025-01-23",
+      "n_edges_a": 8,
+      "n_edges_b": 17,
+      "n_shared": 7,
+      "jaccard": 0.3888888888888889,
+      "random_jaccard": 0.23089983022071306,
+      "lift": 1.684232026143791,
+      "weight_rank_rho": 0.7857142857142859
+    },
+    {
+      "win_a_end": "2025-01-23",
+      "win_b_end": "2025-11-21",
+      "n_edges_a": 17,
+      "n_edges_b": 14,
+      "n_shared": 11,
+      "jaccard": 0.55,
+      "random_jaccard": 0.36006051437216346,
+      "lift": 1.5275210084033612,
+      "weight_rank_rho": -0.30000000000000004
+    },
+    {
+      "win_a_end": "2025-11-21",
+      "win_b_end": "2026-06-09",
+      "n_edges_a": 14,
+      "n_edges_b": 8,
+      "n_shared": 7,
+      "jaccard": 0.4666666666666667,
+      "random_jaccard": 0.2129277566539924,
+      "lift": 2.1916666666666664,
+      "weight_rank_rho": 0.5357142857142858
+    }
+  ],
+  "summary": {
+    "n_window_pairs": 4,
+    "median_jaccard": 0.4277777777777778,
+    "median_random_jaccard": 0.22191379343735274,
+    "median_lift": 1.7416886626445451,
+    "n_inf_lift": 0,
+    "median_weight_rank_rho": 0.46785714285714286,
+    "median_n_edges": 11.5
+  },
+  "decision": {
+    "decision": "NO-GO",
+    "failed_checks": [
+      "lift_clears_chance"
+    ],
+    "checks": {
+      "enough_window_pairs": true,
+      "enough_edges": true,
+      "lift_clears_chance": false,
+      "absolute_persistence": true
+    },
+    "diagnostics": {
+      "weight_rank_rho": 0.46785714285714286,
+      "weight_rank_stable": true
+    },
+    "thresholds": {
+      "min_lift": 3.0,
+      "min_jaccard": 0.1,
+      "min_window_pairs": 3,
+      "min_median_edges": 5.0,
+      "diag_rank_rho": 0.3
+    }
+  }
+}
