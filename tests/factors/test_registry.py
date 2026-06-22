@@ -3,7 +3,8 @@
 Pins the manifest's well-formedness and the two derivations the engine consumes
 (``specs`` / ``ladder_order``), plus the §5 guarantees: the foreign-flow leg is present
 in the design intent but correctly *blocked* (surfaced, not silently dropped) until the
-Matriks custodian list returns, and the strip order follows the §200 rung order over
+custody-series ingestion lands its L2 series (Q1 — the custodian codes — is resolved; see
+factors.foreign_custody), and the strip order follows the §200 rung order over
 **real factor names** — the case the old role-keyed default got wrong.
 """
 from __future__ import annotations

@@ -96,11 +96,16 @@ CORE_FACTORS: tuple[Factor, ...] = (
     Factor("XELKT", "sector", SIMPLE, "matriks", "XELKT", note="utilities/electricity"),
     Factor("XGIDA", "sector", SIMPLE, "matriks", "XGIDA", note="food & beverage"),
     Factor("XUTEK", "sector", SIMPLE, "matriks", "XUTEK", note="technology"),
-    # foreign-flow / ownership-tier — THE §5 comovement driver. Broker-netted non-resident
-    # flow; BLOCKED until the Matriks custodian-code list returns (BUILD_LOG Q1).
-    Factor("FFLOW", "foreign_flow", DIFF, "derived", "broker_netting",
+    # foreign-flow / ownership-tier — THE §5 comovement driver. CUSTODY-based: net change in
+    # the (YABANCI) non-resident custody positions (codes in factors.foreign_custody /
+    # data/reference/foreign_custody_codes.json; Q1 RESOLVED 2026-06-22, BUILD_LOG). A custody
+    # ratio/level -> diff. Still BLOCKED only until the takas custody-series ingestion lands
+    # the FFLOW series in L2 (the live-session piece) — no longer blocked on an unknown list.
+    Factor("FFLOW", "foreign_flow", DIFF, "matriks", "takas_yabanci",
            status=BLOCKED,
-           note="non-resident broker-netted flow factor; blocked on Matriks custodian-code list (Q1)"),
+           note="custody-based non-resident flow (net change in (YABANCI) takas positions, "
+                ">=2011); codes resolved in foreign_custody.py; BLOCKED pending custody-series "
+                "ingestion (Q1 resolved)"),
     # holding-group — derived from L1 CONTROLS clusters in M2; XHOLD index as proxy meanwhile.
     Factor("XHOLD", "holding", SIMPLE, "matriks", "XHOLD",
            note="BIST holding index — available proxy for the M2-derived holding-group factor"),
