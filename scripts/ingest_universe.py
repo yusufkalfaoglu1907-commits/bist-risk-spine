@@ -55,6 +55,19 @@ def _universe_symbols(limit: int | None = None) -> list[str]:
     return syms[:limit] if limit else syms
 
 
+def _is_no_data(exc: Exception) -> bool:
+    """A name-level "no daily series" response (gateway WORKING, name has no data).
+
+    Must NOT count toward the burst-abort streak: the burst guard exists to catch a
+    DOWN gateway (504/auth-500/connection), not a healthy gateway honestly reporting
+    a dataless/delisted name. Misclassifying these would falsely abort a long run on
+    a cluster of dataless names. Matriks tags both ``code`` and ``errorCode`` =
+    ``NO_DATA_FOUND`` (and the Turkish ``veri bulunamadı``).
+    """
+    msg = str(exc)
+    return "NO_DATA_FOUND" in msg or "veri bulunamad" in msg
+
+
 def _chunks(start: str, end: str, max_days: int) -> list[tuple[str, str]]:
     s, e = date.fromisoformat(start), date.fromisoformat(end)
     out, cur = [], s
@@ -92,6 +105,13 @@ def main(start: str, end: str, as_of: date, limit: int | None) -> int:
                 price_skips.append({"symbol": sym, "reason": "no_data", "n_bars": 0})
                 print(f"  [{i+1}/{len(symbols)}] SKIP   {sym:7} no data")
         except Exception as exc:  # noqa: BLE001 — log-and-continue; never fabricate a bar
+            if _is_no_data(exc):
+                # Gateway is up; this name simply has no daily series → clean skip,
+                # not evidence of an outage. Reset the burst streak (§4/§6, §8).
+                consecutive_fails = 0
+                price_skips.append({"symbol": sym, "reason": "no_data", "n_bars": 0})
+                print(f"  [{i+1}/{len(symbols)}] SKIP   {sym:7} no data")
+                continue
             consecutive_fails += 1
             price_skips.append({"symbol": sym, "reason": "error", "error": repr(exc)})
             print(f"  [{i+1}/{len(symbols)}] FAIL   {sym:7} {exc!r}  (streak={consecutive_fails})")

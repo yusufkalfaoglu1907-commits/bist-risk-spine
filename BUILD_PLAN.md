@@ -89,7 +89,7 @@ GREEN end-to-end (96 passed / 4 skipped, the skips deferred to M1/M3). Next mile
 
 **Deferred (non-blocking, carried forward):** real declared-dividend full-TR reconciliation (needs the vendor unadjusted ex-date close — from M1); AKD daily foreign-flow overlay (~2025+ cross-check leg, secondary); MSCIEM/EEM (no source on Matriks/FRED — market rung covered by XU100+VIX).
 
-**Next milestone: M3 (residual-survival [STOP] gate).**
+**Next milestone: M3 — DONE ✅ GO (2026-06-23). Now M4 (promotion gate + signal registry + PIT backtester).**
 
 ---
 
@@ -106,7 +106,18 @@ GREEN end-to-end (96 passed / 4 skipped, the skips deferred to M1/M3). Next mile
 
 ---
 
-## M3 — Residual-survival gate **[STOP — project-level go/no-go]**
+## M3 — Residual-survival gate **[STOP — project-level go/no-go]** ✅ GO (2026-06-23 — see `decisions/ADR-0003`)
+
+**Status:** **GO (with documented caveat).** Wide-universe gate run over **573 names / 48 sectors / 605 residual dates**, full 18-rung strip ending `…>FFLOW>XHOLD` (residuals ⊥ FFLOW by the M2 orthogonality invariant — surviving structure is *by construction* not the flow factor). Decision = GO on the **scale-invariant `lift` metric** (chance-adjusted persistence **14–37× across every granularity × window cell**, robustness in `data/cache/m3_robustness_report.json`); the coded gate stays NO-GO on the absolute-Jaccard sub-check (~0.095 vs 0.10), which the sweep proved is **edge-count-confounded** (coarsening sectors *lowers* Jaccard while *raising* lift) — the wrong instrument at this universe size. Threshold **not** weakened (§8); GO is a documented human decision. Evidence:
+
+| Exit criterion | Evidence |
+|---|---|
+| Residual (not raw) correlation engine; sector-restricted, shrinkage before inversion | `signals/correlation.py` (LW on standardized residuals, Alves block-diagonal, MST/PMFG, BH-FDR over within-sector candidate family) — 24 tests |
+| Stability across rolling windows after the strip | `signals/stability.py` edge-set Jaccard vs random-overlap floor → `lift`; `data/cache/m3_gate_report.json` |
+| A documented stability metric + a decision | median `lift` 19.6 (headline), 14–37× across the robustness grid; **GO** ratified by user, recorded in `ADR-0003` |
+| Honest kill-test (a true NO-GO = lift ≈ 1) | lift is unanimously ≫3 → not the flow factor; pillar **survives** |
+
+**Caveat carried to M5:** absolute window-to-window edge overlap is moderate (~9.5%) and weight rank-stability is low (ρ 0.14) — build residual stat-arb from the **persistent core** and prove it in the **venue-feasible** book, not just frictionless research.
 
 **Goal:** answer the one question the correlation pillar lives or dies on — *does stable residual linkage survive the strip, or was the "alpha" just the foreign-flow factor we removed?*
 

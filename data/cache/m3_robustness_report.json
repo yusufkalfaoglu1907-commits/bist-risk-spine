@@ -1,0 +1,89 @@
+{
+  "as_of": "2026-06-23",
+  "min_obs": 60,
+  "windows": [
+    90,
+    120,
+    150
+  ],
+  "cells": [
+    {
+      "granularity": "leaf_L2",
+      "n_blocks": 48,
+      "window": 90,
+      "n_window_pairs": 5,
+      "median_lift": 20.558750434762725,
+      "median_jaccard": 0.09219858156028368,
+      "median_n_edges": 71.0,
+      "decision": "NO-GO",
+      "failed_checks": [
+        "absolute_persistence"
+      ]
+    },
+    {
+      "granularity": "leaf_L2",
+      "n_blocks": 48,
+      "window": 120,
+      "n_window_pairs": 4,
+      "median_lift": 19.606077711347368,
+      "median_jaccard": 0.0961369622475856,
+      "median_n_edges": 82.0,
+      "decision": "NO-GO",
+      "failed_checks": [
+        "absolute_persistence"
+      ]
+    },
+    {
+      "granularity": "leaf_L2",
+      "n_blocks": 48,
+      "window": 150,
+      "n_window_pairs": 3,
+      "median_lift": 14.093281720203196,
+      "median_jaccard": 0.09375,
+      "median_n_edges": 126.0,
+      "decision": "NO-GO",
+      "failed_checks": [
+        "absolute_persistence"
+      ]
+    },
+    {
+      "granularity": "parent_L1",
+      "n_blocks": 15,
+      "window": 90,
+      "n_window_pairs": 5,
+      "median_lift": 36.8175653194248,
+      "median_jaccard": 0.0502283105022831,
+      "median_n_edges": 123.0,
+      "decision": "NO-GO",
+      "failed_checks": [
+        "absolute_persistence"
+      ]
+    },
+    {
+      "granularity": "parent_L1",
+      "n_blocks": 15,
+      "window": 120,
+      "n_window_pairs": 4,
+      "median_lift": 23.791104256933735,
+      "median_jaccard": 0.04537298128684952,
+      "median_n_edges": 170.0,
+      "decision": "NO-GO",
+      "failed_checks": [
+        "absolute_persistence"
+      ]
+    },
+    {
+      "granularity": "parent_L1",
+      "n_blocks": 15,
+      "window": 150,
+      "n_window_pairs": 3,
+      "median_lift": 22.705562619521523,
+      "median_jaccard": 0.058981233243967826,
+      "median_n_edges": 229.5,
+      "decision": "NO-GO",
+      "failed_checks": [
+        "absolute_persistence"
+      ]
+    }
+  ]
+}

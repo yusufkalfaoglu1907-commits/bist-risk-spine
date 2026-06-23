@@ -1,0 +1,96 @@
+{
+  "milestone": "M3",
+  "gate": "residual_survival",
+  "stop_gate": true,
+  "as_of": "2026-06-23",
+  "inputs": {
+    "n_residual_rows": 309235,
+    "n_symbols_panel": 573,
+    "n_symbols_with_sector": 573,
+    "n_dates_panel": 605,
+    "window": 120,
+    "step": 120,
+    "alpha": 0.05,
+    "min_obs": 60,
+    "panel_min_obs": 60,
+    "min_abs_corr": 0.0
+  },
+  "rolling": [
+    {
+      "win_a_end": "2024-01-10",
+      "win_b_end": "2024-07-24",
+      "n_edges_a": 73,
+      "n_edges_b": 71,
+      "n_shared": 10,
+      "jaccard": 0.07462686567164178,
+      "random_jaccard": 0.0042171091119010675,
+      "lift": 17.696214086810784,
+      "weight_rank_rho": 0.6606060606060605
+    },
+    {
+      "win_a_end": "2024-07-24",
+      "win_b_end": "2025-01-22",
+      "n_edges_a": 71,
+      "n_edges_b": 108,
+      "n_shared": 20,
+      "jaccard": 0.12578616352201258,
+      "random_jaccard": 0.005023120898816343,
+      "lift": 25.041436600033467,
+      "weight_rank_rho": 0.31879699248120297
+    },
+    {
+      "win_a_end": "2025-01-22",
+      "win_b_end": "2025-11-20",
+      "n_edges_a": 108,
+      "n_edges_b": 82,
+      "n_shared": 20,
+      "jaccard": 0.11764705882352941,
+      "random_jaccard": 0.005467902007490581,
+      "lift": 21.515941335883948,
+      "weight_rank_rho": -0.1263157894736842
+    },
+    {
+      "win_a_end": "2025-11-20",
+      "win_b_end": "2026-06-08",
+      "n_edges_a": 82,
+      "n_edges_b": 105,
+      "n_shared": 10,
+      "jaccard": 0.05649717514124294,
+      "random_jaccard": 0.005400939801162613,
+      "lift": 10.460619303529597,
+      "weight_rank_rho": -0.0303030303030303
+    }
+  ],
+  "summary": {
+    "n_window_pairs": 4,
+    "median_jaccard": 0.0961369622475856,
+    "median_random_jaccard": 0.005212030349989478,
+    "median_lift": 19.606077711347368,
+    "n_inf_lift": 0,
+    "median_weight_rank_rho": 0.14424698108908635,
+    "median_n_edges": 82.0
+  },
+  "decision": {
+    "decision": "NO-GO",
+    "failed_checks": [
+      "absolute_persistence"
+    ],
+    "checks": {
+      "enough_window_pairs": true,
+      "enough_edges": true,
+      "lift_clears_chance": true,
+      "absolute_persistence": false
+    },
+    "diagnostics": {
+      "weight_rank_rho": 0.14424698108908635,
+      "weight_rank_stable": false
+    },
+    "thresholds": {
+      "min_lift": 3.0,
+      "min_jaccard": 0.1,
+      "min_window_pairs": 3,
+      "min_median_edges": 5.0,
+      "diag_rank_rho": 0.3
+    }
+  }
+}
