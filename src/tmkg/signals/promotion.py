@@ -159,13 +159,14 @@ def evaluate_candidate(
     candidate_weights: pd.DataFrame,
     fwd_returns: pd.DataFrame,
     *,
+    n_trials: int,
     returns_for_baselines: pd.DataFrame | None = None,
     factor_returns: pd.Series | None = None,
     book: BookConfig = VENUE_FEASIBLE,
     cost_model: CostModel | None = None,
     short_eligible: pd.DataFrame | None = None,
     limit_lock: pd.DataFrame | None = None,
-    n_trials: int = 1,
+    trial_pnls: pd.DataFrame | None = None,
     sr_variance: float | None = None,
     pbo_threshold: float = 0.5,
     pbo_partitions: int = 10,
@@ -178,11 +179,27 @@ def evaluate_candidate(
       • the candidate's net Sharpe beats every baseline's;
       • its venue-book net Sharpe clears ``capacity_floor`` (survives frictions);
       • its Deflated Sharpe passes the ``n_trials`` haircut;
-      • PBO over {candidate, baselines} is below ``pbo_threshold`` (in-sample dominance is not a
-        CV artifact).
+      • PBO below ``pbo_threshold`` (in-sample dominance is not a CV artifact).
+
+    ``n_trials`` is **required, never defaulted** — it is the honest count of variants the
+    candidate was selected from, and it is the *entire* protection against data-mined winners:
+    with ``n_trials=1`` the DSR deflation benchmark is 0 and the haircut is inert, so leaving it
+    to default would silently disarm the judge (adversarial finding D1, 2026-06-23). A caller
+    that searched a family of strategies should pass that family as ``trial_pnls`` (a date ×
+    n_variants frame of each variant's per-period net P&L). When given, the cross-trial Sharpe
+    dispersion drives the DSR variance (the *correct* Bailey–LdP input, not the single-strategy
+    estimator floor) **and** every variant enters the PBO strategy set — so PBO can see the
+    selection bias against the mining siblings, not just against the three fixed baselines.
+
+    Lookahead is **not** policed here: this gate trusts that ``candidate_weights`` were formed
+    point-in-time (knowledge_date ≤ t) — an invariant enforced upstream at the data layer by
+    ``tmkg.pit.PITAccess``, not by the backtester. ``fwd_returns.loc[t]`` must be the return the
+    weights held at ``t`` actually earn; the caller owns that alignment.
+
     ``returns_for_baselines`` is the (date × symbol) return panel the baselines build their
-    signals from (defaults to ``fwd_returns``). ``n_trials`` is the honest count of variants the
-    candidate was selected from — pass it large when you searched widely."""
+    signals from (defaults to ``fwd_returns``)."""
+    if n_trials is None or n_trials < 1:
+        raise ValueError("n_trials is required and must be >= 1 (the data-mining haircut; D1)")
     cm = cost_model or CostModel()
     base_panel = returns_for_baselines if returns_for_baselines is not None else fwd_returns
     baselines = baseline_ladder(base_panel, factor_returns=factor_returns)
@@ -200,16 +217,28 @@ def evaluate_candidate(
     best_baseline_sharpe = base_sharpes[best_baseline]
     beats = _gt(cand_res.net_sharpe, best_baseline_sharpe)
 
+    # When the mining family is supplied, honesty improves on two fronts (D1): n_trials must be
+    # at least the number of variants actually run, and the cross-trial Sharpe dispersion is the
+    # right DSR variance (otherwise we fall back to the conservative single-strategy floor).
+    trial_sharpes = None
+    if trial_pnls is not None and trial_pnls.shape[1] > 0:
+        n_trials = max(int(n_trials), int(trial_pnls.shape[1]))
+        if sr_variance is None:
+            from tmkg.signals.stats import sharpe_ratio
+            trial_sharpes = [sharpe_ratio(trial_pnls[c].to_numpy()) for c in trial_pnls.columns]
+
     # DSR on the candidate's per-period net P&L, haircut by n_trials.
     dsr = deflated_sharpe_ratio(cand_res.pnl.to_numpy(), n_trials=n_trials,
-                                sr_variance=sr_variance)
+                                sr_variance=sr_variance, trial_sharpes=trial_sharpes)
 
-    # PBO over the per-period net P&L of {candidate, *baselines} as the strategy set.
-    perf = pd.concat(
-        [cand_res.pnl.rename("candidate")] + [base_res[n].pnl.rename(n) for n in baselines],
-        axis=1,
-    ).fillna(0.0)
-    pbo = probability_of_backtest_overfitting(perf.to_numpy(), n_partitions=pbo_partitions)
+    # PBO over the per-period net P&L of {candidate, *baselines, *trial_pnls} as the strategy
+    # set — folding in the mining siblings is what lets PBO catch selection bias (D1/W1).
+    perf_cols = [cand_res.pnl.rename("candidate")] + \
+        [base_res[n].pnl.rename(n) for n in baselines]
+    if trial_pnls is not None and trial_pnls.shape[1] > 0:
+        perf_cols += [trial_pnls[c].rename(f"trial_{c}") for c in trial_pnls.columns]
+    perf = pd.concat(perf_cols, axis=1).fillna(0.0)
+    pbo = _safe_pbo(perf.to_numpy(), pbo_partitions)
 
     capacity_ok = _gt(cand_res.net_sharpe, capacity_floor) or \
         (np.isfinite(cand_res.net_sharpe) and cand_res.net_sharpe >= capacity_floor)
@@ -233,6 +262,20 @@ def evaluate_candidate(
                               for k, v in base_sharpes.items()},
         failed_checks=failed,
     )
+
+
+def _safe_pbo(perf: np.ndarray, requested_partitions: int) -> PBOResult:
+    """PBO that fails *cleanly* on a too-short history instead of raising (D3). Clamps the
+    partition count to the largest even number ≤ T; if there is not enough history to form a
+    symmetric in/out split (T < 2), returns a NaN verdict — which fails ``pbo_below_threshold``,
+    so a candidate with too little data is rejected, never promoted on an exception."""
+    t = perf.shape[0]
+    parts = min(requested_partitions, t)
+    parts -= parts % 2  # even
+    if parts < 2:
+        return PBOResult(pbo=float("nan"), n_splits=0, n_strategies=perf.shape[1],
+                         n_partitions=0, median_logit=float("nan"))
+    return probability_of_backtest_overfitting(perf, n_partitions=parts)
 
 
 def _gt(a: float, b: float) -> bool:

@@ -89,7 +89,7 @@ GREEN end-to-end (96 passed / 4 skipped, the skips deferred to M1/M3). Next mile
 
 **Deferred (non-blocking, carried forward):** real declared-dividend full-TR reconciliation (needs the vendor unadjusted ex-date close — from M1); AKD daily foreign-flow overlay (~2025+ cross-check leg, secondary); MSCIEM/EEM (no source on Matriks/FRED — market rung covered by XU100+VIX).
 
-**Next milestone: M3 — DONE ✅ GO (2026-06-23). Now M4 (promotion gate + signal registry + PIT backtester).**
+**Next milestone: M3 — DONE ✅ GO (2026-06-23); M4 — DONE ✅ (2026-06-23, judge built + adversarial-reviewed). Now M5 (first real signal — residual stat-arb).**
 
 ---
 
@@ -133,9 +133,9 @@ This is the most important milestone in the plan. It is placed early on purpose.
 
 ---
 
-## M4 — Promotion gate + signal registry + backtester (the judge, before any real signal)  🟢 HARNESS BUILT & SELF-TEST GREEN (2026-06-23) — adversarial review pending
+## M4 — Promotion gate + signal registry + backtester (the judge, before any real signal)  ✅ COMPLETE (2026-06-23)
 
-**Status:** the judge is built and the **exit-gate self-test passes** (`tests/signals/test_harness_selftest.py` + `test_stats.py` + `test_backtest.py`); `make verify` GREEN (327 passed / 1 skipped). Each exit-gate criterion mapped to its evidence:
+**Status:** the judge is built, the **exit-gate self-test passes**, and the **VERIFICATION §4 adversarial review is clean/dispositioned** (a fresh falsifying agent confirmed the DSR/PBO math + P&L are sound, found 2 trust-boundary defects — both now fixed with regression tests). `make verify` GREEN (333 passed / 1 skipped). Each exit-gate criterion mapped to its evidence:
 
 | Exit-gate criterion | Evidence |
 |---|---|
@@ -152,7 +152,12 @@ This is the most important milestone in the plan. It is placed early on purpose.
 - **The promotion gate is the AND of four checks** (`signals/promotion.py::evaluate_candidate`): beats every baseline's net Sharpe · clears the capacity floor in the **venue-feasible** book · DSR passes · PBO < threshold. A lucky null that edged one baseline still dies on DSR/PBO.
 - Modules: `stats.py` (DSR/PBO, pure), `backtest.py` (purge/embargo splits, `CostModel`, three `BookConfig`s, `capacity_curve`), `promotion.py` (ladder + gate), `registry.py` (bitemporal L2 write + §4 report). All L3-clean (no-network AST scan green).
 
-**Remaining before M4 is declared COMPLETE:** ① **adversarial review** of the harness per `VERIFICATION.md` §4 (a fresh agent tries to make the gate promote noise / reject signal) — this is a [STOP]-style gate; surface to the user. ② a thin PIT *runner* that feeds **real** residual panels (from M2/M3 L2) into the gate — naturally folded into M5 (first real signal), since the self-test already proves the harness on synthetic worlds.
+**Adversarial review (VERIFICATION §4, 2026-06-23) — clean/dispositioned.** A fresh falsifying agent confirmed the statistical core (DSR/PSR/E[max] match Bailey–LdP to machine precision; PBO CSCV correct) and the P&L arithmetic are sound. It found two real **trust-boundary** defects, both fixed with regression tests (`tests/signals/test_adversarial.py`):
+- **D1 (critical, FIXED):** the trial-count haircut defaulted to `n_trials=1` (⇒ benchmark 0 ⇒ inert), so a data-mined noise winner was promoted 17–19/20 seeds. `n_trials` is now **required**; an optional `trial_pnls` carries the mined family into both the DSR variance and the PBO strategy set so selection bias is visible.
+- **D3 (low, FIXED):** short history raised `ValueError`; `_safe_pbo` now clamps/NaN-rejects cleanly.
+- **D2 (high, DISPOSITIONED):** no in-harness lookahead guard — by design, lookahead is a **data-layer invariant** (`tmkg.pit.PITAccess`), now stated in the gate docstring; wiring the (built, unused) `purged_walk_forward_splits` into real train/test evaluation is an **M5 entry condition**.
+
+**M5 entry conditions (carried from the review):** wire purge/embargo CV for real train/test splits · thin PIT runner feeding real M2/M3 residual panels into the gate · survivorship-NaN guard in `run_book` (W2) · a *stated* capacity floor (W3, already mandated by the M5 exit gate).
 
 **Next milestone: M5 — first real signal (residual stat-arb), gated by this harness.**
 
