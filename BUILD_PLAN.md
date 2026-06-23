@@ -133,7 +133,28 @@ This is the most important milestone in the plan. It is placed early on purpose.
 
 ---
 
-## M4 — Promotion gate + signal registry + backtester (the judge, before any real signal)
+## M4 — Promotion gate + signal registry + backtester (the judge, before any real signal)  🟢 HARNESS BUILT & SELF-TEST GREEN (2026-06-23) — adversarial review pending
+
+**Status:** the judge is built and the **exit-gate self-test passes** (`tests/signals/test_harness_selftest.py` + `test_stats.py` + `test_backtest.py`); `make verify` GREEN (327 passed / 1 skipped). Each exit-gate criterion mapped to its evidence:
+
+| Exit-gate criterion | Evidence |
+|---|---|
+| Known-null (shuffled labels) **fails** the gate | `test_known_null_shuffled_labels_is_rejected` — permuting the forward-return rows destroys the edge: candidate net Sharpe ≈ 0.02, DSR 0.03 (< 0.95), fails `beats_baselines` + `dsr_passes` + `pbo` ⇒ **not promoted** |
+| Known-good toy **passes** | `test_known_good_candidate_is_promoted` — clean persistent predictor: candidate net Sharpe 1.19 vs best baseline 0.66 (persistence), DSR 1.000 (benchmark 0.121 after a 50-trial haircut), PBO 0.000 ⇒ **promoted** |
+| Backtester reproduces a hand-checked toy P&L | `test_research_book_pnl_is_hand_checked` + `test_venue_feasible_book_pnl_is_hand_checked` — 2-name/2-date P&L reconciled to the penny incl. turnover cost + borrow |
+| All three books produce output | `test_all_three_books_produce_output` — research / venue_feasible / stress all emit a finite net Sharpe over the same weights; constraints bite (`short_eligible` clip, blanket short-ban, limit-lock carry) |
+| DSR / PBO pinned before any real signal | `test_stats.py` — DSR null-fails / good-passes asymmetry; PBO=1.0 on a sign-flip overfit, 0.0 on a real edge, ~0.5 on noise (CSCV) |
+| Verdict is auditable + PIT-honest | `test_verdict_round_trips_through_l2_and_pit` — registry row lands in L2; a PITAccess read dated before the write sees nothing, after sees the verdict |
+
+**Key implementation notes (durable):**
+- **"`DSR > 0` after trial-count adjustment" is implemented as DSR (a probability ∈ [0,1]) ≥ a documented confidence (default 0.95).** The Bailey–LdP DSR is the Probabilistic Sharpe evaluated at the *expected-max* Sharpe of `n_trials` (the haircut). Gating on a literal ">0 probability" is meaningless; gating at 0.95 is the faithful reading of "the deflated excess Sharpe is *credibly* positive". Documented in `signals/stats.py`, **not** a weakened invariant.
+- **PBO is computed over {candidate, *baselines}** as the strategy set (CSCV, `n_partitions=10`) — it asks whether the candidate's in-sample dominance over the ladder is a cross-validation artifact.
+- **The promotion gate is the AND of four checks** (`signals/promotion.py::evaluate_candidate`): beats every baseline's net Sharpe · clears the capacity floor in the **venue-feasible** book · DSR passes · PBO < threshold. A lucky null that edged one baseline still dies on DSR/PBO.
+- Modules: `stats.py` (DSR/PBO, pure), `backtest.py` (purge/embargo splits, `CostModel`, three `BookConfig`s, `capacity_curve`), `promotion.py` (ladder + gate), `registry.py` (bitemporal L2 write + §4 report). All L3-clean (no-network AST scan green).
+
+**Remaining before M4 is declared COMPLETE:** ① **adversarial review** of the harness per `VERIFICATION.md` §4 (a fresh agent tries to make the gate promote noise / reject signal) — this is a [STOP]-style gate; surface to the user. ② a thin PIT *runner* that feeds **real** residual panels (from M2/M3 L2) into the gate — naturally folded into M5 (first real signal), since the self-test already proves the harness on synthetic worlds.
+
+**Next milestone: M5 — first real signal (residual stat-arb), gated by this harness.**
 
 **Goal:** the scoring harness that decides whether *any* future signal is real. Built before M5 so no signal is ever graded by a harness written to flatter it.
 
