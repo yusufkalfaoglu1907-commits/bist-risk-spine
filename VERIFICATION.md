@@ -50,6 +50,8 @@ No signal — and emphatically no "advanced" layer — is trusted until the harn
 
 **Harness self-test (M4 exit):** a **shuffled-label (known-null)** signal must **fail** the gate, and a **known-good toy** signal must pass. A harness that can't reject noise can't certify signal.
 
+**M5 runner self-test (`tests/signals/test_m5_exit_gate.py`):** the *end-to-end* runner (`run_statarb.run_m5_statarb`) on a synthetic L2 store must **promote** a strong low-turnover edge through the full pipeline (PIT reads → purged walk-forward OOS selection → 3 books → DSR/PBO) and **reject** the same world with shuffled labels; the verdict must round-trip into `signal_registry` through `PITAccess` and the filtered `residual_corr` snapshot must land (never the dense matrix). This guards the *wiring*, separately from the pure stats (§stats tests) — a runner that flatters is as dangerous as a stat that flatters. The first real candidate (M5 residual stat-arb) was **NO-GO** through this gate — a small frictionless edge that dies in the venue-feasible book (ADR-0004); the run-script verdict is itself a §4-style honest result.
+
 ## 4. Adversarial review at each `[STOP]` gate
 
 This project has already paid off from adversarial auditing once (the 2026-06-11 audit caught the blast-radius being ≈1–2% of reality). Repeat it at project-level gates (M3 residual-survival, M4 harness self-test, M5 first real signal):

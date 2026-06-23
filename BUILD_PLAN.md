@@ -172,13 +172,21 @@ This is the most important milestone in the plan. It is placed early on purpose.
 
 ---
 
-## M5 — First real signal: residual stat-arb
+## M5 — First real signal: residual stat-arb  ✅ COMPLETE — NO-GO (2026-06-23, ADR-0004)
 
 **Goal:** the first edge through the full harness (only if M3 = GO).
 
-**Build:** residual mean-reversion pairs/baskets from surviving M3 edges → through M4's gate → write filtered `RESIDUAL_CORR` / `LEAD_LAG` snapshots back to L1 (time-stamped, never the dense matrix).
+**Build:** residual mean-reversion pairs/baskets from surviving M3 edges → through M4's gate → write filtered `RESIDUAL_CORR` snapshots (time-stamped, never the dense matrix).
 
 **Exit gate:** survives the **venue-feasible** book (not just research) · `DSR > 0` · clears a stated capacity floor · registry entry complete. If it survives only in the frictionless research book, **it is not real** — log and move on.
+
+**Built:** `tmkg/signals/statarb.py` (peer-relative residual mean reversion: comove-predicted residual from M3 surviving edges → faded accumulated dislocation z-score, `shift(1)` PIT) + `run_statarb.py` (PIT panels · liquid sub-universe · honest variant grid = `n_trials` · **purged walk-forward OOS selection** [wires `purged_walk_forward_splits` into real train/test — the M4 D2/W1 entry condition] · full promotion gate over 3 books + capacity curve · lands filtered `residual_corr` snapshot + `signal_registry` verdict + JSON report). `scripts/run_m5_statarb.py`. M5 exit-gate self-test (`tests/signals/test_m5_exit_gate.py`): a strong low-turnover synthetic edge is **promoted** end-to-end; shuffled-label null **rejected**; registry round-trips through PITAccess; snapshot lands.
+
+**Result — NO-GO (ADR-0004):** real run (as_of 2026-06-15, 200 liquid names, n_trials=12, 505 OOS dates). Net Sharpe research **+0.074** / venue **−0.052** / stress **−0.038**. Candidate **beats the baseline ladder** (−0.052 > −0.073) and **PBO 0.40**, but **DSR ≈ 0** and venue net is negative ⇒ fails the capacity floor ⇒ **not promoted**. Robust across all 12 variants and holding horizons (the reversal is genuinely short-horizon; the frictionless edge itself decays before costs are outrun). A small genuine frictionless edge that is **economically too thin to trade net of 10 bps + borrow.** Cost model NOT weakened (§8). Verdict logged to `signal_registry`; 92 FDR + sector-restricted survivor edges landed to L2 `residual_corr` (economically sensible — insurance / REIT / retail pairs).
+
+**Carried forward:** `short_eligible` empty (M2 blocked on Matriks foreign-custodian list) ⇒ venue book can't police per-name short bans ⇒ **stress book is the binding short test** until that map lands. `LEAD_LAG` snapshot + L1 (Kuzu) graph projection of `residual_corr` deferred (no Kuzu `RESIDUAL_CORR` rel table yet; the L2 `residual_corr` table is the design's allow-listed landing spot and is populated). Correlation pillar = clean residual substrate, no standalone daily/weekly alpha.
+
+**Next milestone: M6 — geopolitical event engine** (next pillar), carrying the `residual_corr` snapshot as a reusable input.
 
 ---
 

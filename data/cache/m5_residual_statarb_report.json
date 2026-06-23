@@ -1,0 +1,165 @@
+{
+  "milestone": "M5",
+  "signal_id": "m5_residual_statarb",
+  "feature_family": "residual_statarb",
+  "as_of": "2026-06-15",
+  "exit_gate": {
+    "survives_venue_feasible": false,
+    "dsr_passes": false,
+    "beats_baselines": true,
+    "pbo_below_threshold": true,
+    "clears_capacity_floor": false,
+    "capacity_floor": 0.0,
+    "promoted": false
+  },
+  "inputs": {
+    "n_names": 200,
+    "n_dates_panel": 605,
+    "n_oos_test_dates": 505,
+    "n_trials_grid": 12,
+    "oos_test_start": "2023-12-07",
+    "oos_test_end": "2026-06-15",
+    "cost_model": {
+      "cost_bps": 10.0,
+      "borrow_bps_annual": 100.0
+    },
+    "short_eligible_available": false
+  },
+  "verdict": {
+    "promoted": false,
+    "beats_baselines": true,
+    "candidate_net_sharpe": -0.05194320170366233,
+    "best_baseline_net_sharpe": -0.07287065508681795,
+    "best_baseline": "differential_exposure",
+    "book": "venue_feasible",
+    "n_trials": 12,
+    "capacity_ok": false,
+    "dsr": {
+      "dsr": 3.461360308212567e-06,
+      "sr_observed": -0.05194320170366233,
+      "sr_benchmark": 0.14707099739823012,
+      "n_obs": 505,
+      "n_trials": 12,
+      "skew": -0.31556121338998777,
+      "kurtosis": 6.76600097397886,
+      "passes": false
+    },
+    "pbo": {
+      "pbo": 0.40476190476190477,
+      "n_splits": 252,
+      "n_strategies": 16,
+      "n_partitions": 10,
+      "median_logit": 0.3566749439387324
+    },
+    "baseline_net_sharpes": {
+      "persistence": -0.15294617703517363,
+      "differential_exposure": -0.07287065508681795,
+      "own_factor_event": -0.1822241761001494
+    },
+    "failed_checks": [
+      "capacity_clears_floor",
+      "dsr_passes"
+    ]
+  },
+  "books": {
+    "research": {
+      "book": "research",
+      "n_periods": 505,
+      "gross_sharpe": 0.07402519306221088,
+      "net_sharpe": 0.07402519306221088,
+      "total_net_return": 0.10666127843569795,
+      "avg_turnover": 0.3776312423028134,
+      "avg_gross_exposure": 0.6455445544554455
+    },
+    "venue_feasible": {
+      "book": "venue_feasible",
+      "n_periods": 505,
+      "gross_sharpe": 0.08990356872508523,
+      "net_sharpe": -0.05194320170366233,
+      "total_net_return": -0.07144788179440292,
+      "avg_turnover": 0.37344611442203685,
+      "avg_gross_exposure": 0.644722713255793
+    },
+    "stress": {
+      "book": "stress",
+      "n_periods": 505,
+      "gross_sharpe": 0.06481780613343145,
+      "net_sharpe": -0.03756235619117862,
+      "total_net_return": -0.10363874087884828,
+      "avg_turnover": 0.1853796469044217,
+      "avg_gross_exposure": 0.3224326727712727
+    }
+  },
+  "capacity_curve": [
+    {
+      "notional_scale": 0.5,
+      "net_sharpe": -0.05194320170366233,
+      "total_net_return": -0.03572394089720146
+    },
+    {
+      "notional_scale": 1.0,
+      "net_sharpe": -0.05194320170366233,
+      "total_net_return": -0.07144788179440292
+    },
+    {
+      "notional_scale": 2.0,
+      "net_sharpe": -0.05194320170366233,
+      "total_net_return": -0.14289576358880585
+    },
+    {
+      "notional_scale": 5.0,
+      "net_sharpe": -0.05194320170366236,
+      "total_net_return": -0.3572394089720148
+    },
+    {
+      "notional_scale": 10.0,
+      "net_sharpe": -0.05194320170366236,
+      "total_net_return": -0.7144788179440296
+    }
+  ],
+  "walk_forward_picks": [
+    {
+      "train_end": "2023-11-28",
+      "test_start": "2023-12-07",
+      "test_end": "2024-05-21",
+      "chosen": "ew250_rs60_a0.05_mc0.0_zl60_zt0.0_aw1",
+      "train_sharpe": NaN
+    },
+    {
+      "train_end": "2024-05-14",
+      "test_start": "2024-05-22",
+      "test_end": "2024-10-23",
+      "chosen": "ew250_rs60_a0.05_mc0.0_zl60_zt0.0_aw1",
+      "train_sharpe": NaN
+    },
+    {
+      "train_end": "2024-10-16",
+      "test_start": "2024-10-24",
+      "test_end": "2025-05-23",
+      "chosen": "ew250_rs60_a0.05_mc0.0_zl60_zt0.0_aw10",
+      "train_sharpe": -0.006081865865912543
+    },
+    {
+      "train_end": "2025-03-14",
+      "test_start": "2025-05-27",
+      "test_end": "2025-12-22",
+      "chosen": "ew250_rs60_a0.05_mc0.2_zl60_zt0.0_aw10",
+      "train_sharpe": -0.01830776090141003
+    },
+    {
+      "train_end": "2025-12-15",
+      "test_start": "2025-12-23",
+      "test_end": "2026-06-15",
+      "chosen": "ew250_rs60_a0.05_mc0.0_zl60_zt1.0_aw10",
+      "train_sharpe": -0.043162207083058526
+    }
+  ],
+  "latest_edge_snapshot": {
+    "effective_date": "2026-03-17",
+    "n_edges": 92,
+    "window_start": "2024-10-24",
+    "window_end": "2026-03-17"
+  },
+  "venue_net_sharpe": -0.05194320170366233,
+  "stress_net_sharpe": -0.03756235619117862
+}

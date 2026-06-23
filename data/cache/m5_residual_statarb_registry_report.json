@@ -1,0 +1,25 @@
+{
+  "milestone": "M4",
+  "artifact": "signal_registry",
+  "signal_id": "m5_residual_statarb",
+  "promoted": false,
+  "knowledge_date": "2026-06-15",
+  "row": {
+    "signal_id": "m5_residual_statarb",
+    "hypothesis": "peer-relative residual mean reversion: fade a name's residual in excess of its M3 surviving-edge peers (correlation pillar, ADR-0003)",
+    "feature_family": "residual_statarb",
+    "train_start": null,
+    "train_end": "2023-11-28",
+    "test_start": "2023-12-07",
+    "test_end": "2026-06-15",
+    "n_trials": 12,
+    "cost_model": "CostModel(default 10bps + 100bps/yr borrow)",
+    "purge_embargo": "purged_walk_forward n_splits=5 purge=5 embargo=5",
+    "deflated_sharpe": 3.461360308212567e-06,
+    "pbo": 0.40476190476190477,
+    "beat_baselines": true,
+    "book": "venue_feasible",
+    "promoted": false,
+    "knowledge_date": "2026-06-15"
+  }
+}
