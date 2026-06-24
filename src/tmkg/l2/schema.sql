@@ -153,3 +153,40 @@ CREATE TABLE IF NOT EXISTS signal_registry (
     knowledge_date  DATE    NOT NULL,
     PRIMARY KEY (signal_id, knowledge_date)
 );
+
+-- Dated geopolitical / macro Event nodes (the L2 projection of the L1 `Event`). M6.
+-- event_date = when it occurred in the world; date_precision flags how exactly that is
+-- known (a 'month'-precision event must NOT be treated as a single-day shock); severity
+-- is a 0..1 modeled magnitude; knowledge_date = when WE learned of it (publication), so a
+-- PIT read never sees an event before it was reported. event_type ∈ tmkg.events.taxonomy.
+CREATE TABLE IF NOT EXISTS events (
+    event_id        VARCHAR NOT NULL,
+    event_date      DATE    NOT NULL,
+    date_precision  VARCHAR NOT NULL,       -- day | week | month | quarter
+    event_type      VARCHAR NOT NULL,       -- taxonomy category (events.taxonomy.EVENT_TYPES)
+    actors          VARCHAR,                -- principal actor(s), e.g. 'TUR;USA'
+    geography       VARCHAR,                -- ISO-ish geography tag, e.g. 'TUR'
+    severity        DOUBLE,                 -- 0..1 modeled magnitude (NOT price-derived)
+    source          VARCHAR NOT NULL,       -- gdelt | matriks_news | mevzuat | curated
+    knowledge_date  DATE    NOT NULL,
+    PRIMARY KEY (event_id, knowledge_date)
+);
+
+-- Event → channel incidence (the `TARGETS` edge — MODELED, not price-derived). M6.
+-- One row per (event, channel): which channel the event shocks, the signed direction and
+-- a magnitude in channel-shock units (for the §240 stress re-pricing). This is a SOFT edge,
+-- so it carries the full §5 provenance quartet — source, confidence, evidence_tier, uncertainty
+-- — and an inferred edge is never silently promoted into a verified path. channel ∈
+-- tmkg.events.taxonomy.CHANNELS (the factor-ladder roles the exposure tensor is built on).
+CREATE TABLE IF NOT EXISTS event_targets (
+    event_id        VARCHAR NOT NULL,
+    channel         VARCHAR NOT NULL,       -- factor-ladder role: fx|rates_cds|energy|sector|...
+    shock_sign      INTEGER NOT NULL,       -- +1 / -1 signed direction of the channel shock
+    shock_magnitude DOUBLE,                 -- signed shock in channel units (stress vector); NULL = sign-only
+    confidence      DOUBLE,                 -- 0..1 — §5 soft-edge provenance
+    evidence_tier   VARCHAR NOT NULL,       -- verified | inferred (§5: never silently promoted)
+    uncertainty     DOUBLE,                 -- 0..1 — modeled mapping uncertainty
+    source          VARCHAR NOT NULL,       -- gdelt_llm | curated | taxonomy_prior
+    knowledge_date  DATE    NOT NULL,
+    PRIMARY KEY (event_id, channel, knowledge_date)
+);

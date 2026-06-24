@@ -20,6 +20,7 @@ GOLDEN = pathlib.Path(__file__).resolve().parents[1] / "golden" / "matriks"
 EXPECTED_TABLES = {
     "prices", "total_returns", "factors", "foreign_flow", "betas", "residuals",
     "residual_corr", "accounting_regime", "short_eligible", "signal_registry",
+    "events", "event_targets",
 }
 
 

@@ -23,7 +23,7 @@ _L2_TABLES = frozenset(
     {
         "prices", "total_returns", "factors", "foreign_flow", "betas",
         "residuals", "residual_corr", "accounting_regime", "short_eligible",
-        "signal_registry", "universe_membership",
+        "signal_registry", "universe_membership", "events", "event_targets",
     }
 )
 
