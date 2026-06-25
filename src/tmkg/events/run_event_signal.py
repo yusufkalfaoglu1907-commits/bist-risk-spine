@@ -116,9 +116,17 @@ def build_betas_by_channel(
 
 
 def event_specs_from_l2(events_df: pd.DataFrame, targets_df: pd.DataFrame) -> list[EventSpec]:
-    """Join ``events`` (event_date) with ``event_targets`` (channel, shock_sign) into EventSpecs —
-    one per (event, channel). An event with no target rows contributes nothing (no modeled
-    channel ⇒ no cross-section). Rows are deduped on the latest knowledge_date per event."""
+    """Join ``events`` with ``event_targets`` into the distinct **(event_date, channel, shock_sign)
+    cross-sections** to run.
+
+    GDELT GKG rows are per-DOCUMENT (hundreds/day about the same underlying events), so the raw
+    join yields huge numbers of duplicate (date, channel, sign) specs. Because a channel's exposure
+    is the name's beta — identical for every event targeting that channel — those duplicates collapse
+    to the *same* cross-section spread. We therefore **dedup to the distinct triples**: this is
+    weight-preserving for the shape of each spread and avoids letting raw document VOLUME (a coverage
+    artifact) silently weight one channel over another on a given day. (Cross-document event
+    clustering into single events is a deeper refinement; this is the honest first cut.) A target with
+    no visible parent event is skipped (never invent a date)."""
     if events_df.empty or targets_df.empty:
         return []
     ev = events_df.copy()
@@ -126,17 +134,17 @@ def event_specs_from_l2(events_df: pd.DataFrame, targets_df: pd.DataFrame) -> li
     # latest-known event row per event_id (bitemporal: PITAccess already filtered knowledge_date)
     ev = ev.sort_values("knowledge_date").drop_duplicates("event_id", keep="last")
     date_by_id = dict(zip(ev["event_id"], ev["event_date"]))
-    tg = targets_df.sort_values("knowledge_date").drop_duplicates(
-        ["event_id", "channel"], keep="last")
-    specs: list[EventSpec] = []
-    for _, r in tg.iterrows():
-        d = date_by_id.get(r["event_id"])
-        if d is None:
-            continue  # a target with no visible parent event -> skip (never invent a date)
-        specs.append(EventSpec(
-            event_id=str(r["event_id"]), event_date=d,
-            channel=str(r["channel"]), shock_sign=int(r["shock_sign"])))
-    return specs
+
+    tg = targets_df[["event_id", "channel", "shock_sign"]].copy()
+    tg["event_date"] = tg["event_id"].map(date_by_id)
+    tg = tg.dropna(subset=["event_date"])
+    tg["shock_sign"] = tg["shock_sign"].astype(int)
+    triples = tg.drop_duplicates(["event_date", "channel", "shock_sign"])
+    return [
+        EventSpec(event_id=f"{r.event_date}|{r.channel}|{r.shock_sign:+d}",
+                  event_date=r.event_date, channel=str(r.channel), shock_sign=int(r.shock_sign))
+        for r in triples.itertuples(index=False)
+    ]
 
 
 def _load_event_inputs(store, as_of: date, *, channel_factor: dict[str, str],
