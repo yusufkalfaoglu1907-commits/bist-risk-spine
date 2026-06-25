@@ -190,7 +190,16 @@ This is the most important milestone in the plan. It is placed early on purpose.
 
 ---
 
-## M6 — Geopolitical event engine
+## M6 — Geopolitical event engine  ⛔ ALPHA NO-GO / ✅ RISK-SPINE DELIVERED (2026-06-25, ADR-0005)
+
+**Status:** the differential-exposure **alpha is NO-GO** — structural, user-ratified, evidence-backed
+by a 4-agent statistical investigation (ADR-0005). Negative even frictionless (research net Sharpe
+−0.105); the apparent significance was overlap + multiple-testing artifact (0 cells survive FDR);
+not rescuable by residual returns, salience filtering, or LLM per-event sign extraction (the oracle
+sign is a hindsight trap). Root cause: GDELT GKG's per-document daily density violates the design's
+*distinguishable-shock* premise. The **§240 channel-stress risk-spine is delivered and works** (the
+"second output"). GDELT ingestion stack + Q1-2025 `events`/`event_targets` substrate remain reusable.
+The one valuable LLM direction (firm/sector targeting) is folded into **M7**. → proceed to M7.
 
 **Goal:** differential-exposure event signal **and** a risk spine.
 
