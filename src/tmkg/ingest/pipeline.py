@@ -43,6 +43,7 @@ from tmkg.ingest.evds import (
     EvdsAdapter,
 )
 from tmkg.ingest.fred import VIX_FACTOR, VIX_SERIES, FredAdapter
+from tmkg.ingest.gdelt import GdeltAdapter, gkg_records_to_l2_rows
 from tmkg.factors import registry
 from tmkg.factors.betas import rolling_factor_betas
 from tmkg.factors.neutralize import rolling_residuals
@@ -56,7 +57,7 @@ from tmkg.returns.limit_lock import flag_limit_lock
 from tmkg.returns.staleness import flag_staleness
 from tmkg.returns.total_return import compute_total_returns
 
-_DATE_COLS = ("bar_date", "knowledge_date")
+_DATE_COLS = ("bar_date", "knowledge_date", "event_date")
 _RET_COLS = ("ret_usd", "ret_real_try", "ret_nominal_try")
 
 
@@ -299,6 +300,62 @@ def ingest_fred_series(
         "first": str(df["bar_date"].min()),
         "last": str(df["bar_date"].max()),
     }
+
+
+# --- GDELT events (geopolitical event stream -> L2 events + event_targets) --
+_EVENTS_COLS = (
+    "event_id", "event_date", "date_precision", "event_type", "actors",
+    "geography", "severity", "source", "knowledge_date",
+)
+_EVENT_TARGETS_COLS = (
+    "event_id", "channel", "shock_sign", "shock_magnitude", "confidence",
+    "evidence_tier", "uncertainty", "source", "knowledge_date",
+)
+
+
+def _land_gdelt_records(store: L2Store, records: list[dict], *, window: str) -> dict:
+    """Land parsed GKG records into L2 ``events`` + ``event_targets`` (no network — testable).
+
+    Confidence-tiered (§6): only typed Turkey events are written; non-Turkey / untyped records
+    are counted in the audit report, never guessed into a type. Both writes are PK-idempotent,
+    so a re-land of the same ``(event_id, knowledge_date)`` is ignored (bitemporal append-only).
+    The ``event_targets`` rows are the inferred-tier prior seed (LLM override is a later step).
+    """
+    event_rows, target_rows, skipped = gkg_records_to_l2_rows(records)
+    if event_rows:
+        store.write_parquet(
+            "events", _coerce_dates(pd.DataFrame(event_rows, columns=list(_EVENTS_COLS)))
+        )
+    if target_rows:
+        store.write_parquet(
+            "event_targets",
+            _coerce_dates(pd.DataFrame(target_rows, columns=list(_EVENT_TARGETS_COLS))),
+        )
+    report = {
+        "source": "gdelt",
+        "table": "events+event_targets",
+        "window": window,
+        "n_events": len(event_rows),
+        "n_targets": len(target_rows),
+        "skipped": skipped,
+    }
+    write_run_report("gdelt_ingestion", report)
+    return report
+
+
+def ingest_gdelt_events(
+    adapter: GdeltAdapter, store: L2Store, *, start: date, end: date
+) -> dict:
+    """Pull the Turkey GKG event stream over ``[start, end]`` and land it in L2 (M6).
+
+    The one network-touching M6 step (§4): ``adapter.fetch`` crawls the raw 15-minute GKG feed
+    and returns the Turkey-filtered records; ``_land_gdelt_records`` types them and writes the
+    ``events`` / ``event_targets`` rows. ``event_date = knowledge_date = V2.1DATE`` (the GKG
+    publication date — a PIT read never sees an event before the news carrying it was published).
+    Raises ``SourceUnreachable`` on a transport failure; missing 15-minute slots are skipped.
+    """
+    records = adapter.fetch(start=start, end=end)
+    return _land_gdelt_records(store, records, window=f"{start}..{end}")
 
 
 # --- accounting_regime (fundamentals declaration dates -> regime tags) ------

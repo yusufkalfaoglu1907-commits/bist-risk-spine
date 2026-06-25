@@ -1,0 +1,19 @@
+{
+  "_provenance": {
+    "source": "gdelt",
+    "stream": "gkg",
+    "timestamp": "20250319093000",
+    "url": "http://data.gdeltproject.org/gdeltv2/20250319093000.gkg.csv.zip",
+    "captured_at": "2026-06-25T09:23:55Z",
+    "note": "REAL GDELT GKG 2.1 slice; immutable historical 15-min file (project reference shock date 2025-03-19). Value anchor for the smoke_check drift guard \u2014 re-fetch must reproduce turkey_record_count exactly."
+  },
+  "expected": {
+    "turkey_record_count": 26,
+    "typed_turkey_count": 16,
+    "type_distribution": {
+      "terror_security": 13,
+      "energy_supply_disruption": 1,
+      "natural_disaster": 2
+    }
+  }
+}
