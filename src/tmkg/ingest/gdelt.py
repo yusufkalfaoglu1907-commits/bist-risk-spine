@@ -30,6 +30,7 @@ against a labelled fixture); only ``fetch``/``smoke_check`` touch the network (�
 from __future__ import annotations
 
 import io
+import time
 import zipfile
 from datetime import date, datetime, timedelta
 
@@ -313,18 +314,39 @@ def gkg_records_to_l2_rows(records: list[dict]) -> tuple[list[dict], list[dict],
 class GdeltAdapter(IngestionAdapter):
     source_name = "gdelt"
 
-    def __init__(self, *, timeout: float = 60.0, base_url: str = _DEFAULT_BASE) -> None:
+    def __init__(self, *, timeout: float = 60.0, base_url: str = _DEFAULT_BASE,
+                 retries: int = 4, backoff: float = 2.0) -> None:
         self.timeout = timeout
         self.base_url = base_url.rstrip("/")
+        self.retries = retries          # transient-error retries before failing a file (§4-clean)
+        self.backoff = backoff          # linear backoff base in seconds
+
+    def _get_with_retry(self, url: str):
+        """GET ``url`` with bounded retry on **transient** errors — a flaky DNS/connection blip or
+        a 5xx is retried (the long backfill traverses tens of thousands of files; an unattended
+        crawl must survive an intermittent network), with linear backoff. Retrying the real source
+        is not fabrication (§4). A 404 is returned for the caller to treat as a real gap; a 4xx
+        (other than 404) fails fast. Raises ``SourceUnreachable`` once the retries are exhausted."""
+        last: Exception | None = None
+        for attempt in range(self.retries + 1):
+            try:
+                resp = httpx.get(url, timeout=self.timeout)
+            except httpx.HTTPError as e:          # DNS / connect / read timeout — transient
+                last = e
+            else:
+                if resp.status_code < 500:        # 200/404/other 4xx -> let the caller decide
+                    return resp
+                last = SourceUnreachable(f"GDELT HTTP {resp.status_code}: {url}")  # 5xx -> retry
+            if attempt < self.retries:
+                time.sleep(self.backoff * (attempt + 1))
+        raise SourceUnreachable(f"GDELT GET failed after {self.retries} retries: {url}: {last}")
 
     def _fetch_one(self, url: str) -> list[dict] | None:
         """Download + unzip + parse one 15-minute GKG file. Returns parsed records, or ``None``
         if the slot does not exist (HTTP 404 — a real gap in GDELT history, skipped not faked).
-        Raises ``SourceUnreachable`` on transport / other HTTP failures (§4 fail-loud)."""
-        try:
-            resp = httpx.get(url, timeout=self.timeout)
-        except httpx.HTTPError as e:
-            raise SourceUnreachable(f"GDELT GET failed: {url}: {e}") from e
+        Transient transport/5xx errors are retried (``_get_with_retry``); other HTTP errors raise
+        ``SourceUnreachable`` (§4 fail-loud)."""
+        resp = self._get_with_retry(url)
         if resp.status_code == 404:
             return None  # missing 15-min slot — skip, never fabricate
         if resp.status_code != 200:

@@ -16,6 +16,7 @@ from __future__ import annotations
 import pathlib
 from datetime import date, datetime
 
+import httpx
 import pytest
 
 import tmkg.config as config
@@ -192,6 +193,48 @@ def test_records_to_l2_rows_writes_typed_turkey_counts_skips():
     assert skipped == {"non_turkey": 1, "untyped": 1}
     # every event contributed >=1 target row, all referencing a kept event
     assert {t["event_id"] for t in target_rows} == ids
+
+
+# --- transient-error retry (the unattended backfill must survive a flaky network) -------
+def test_get_with_retry_recovers_from_transient_then_succeeds(monkeypatch):
+    a = GdeltAdapter(retries=3, backoff=0.0)
+    calls = {"n": 0}
+
+    def flaky_get(url, **kw):
+        calls["n"] += 1
+        if calls["n"] < 3:  # two transient DNS-style failures, then a 200
+            raise httpx.ConnectError("nodename nor servname provided")
+        return httpx.Response(200, content=b"ok", request=httpx.Request("GET", url))
+
+    monkeypatch.setattr("tmkg.ingest.gdelt.httpx.get", flaky_get)
+    monkeypatch.setattr("tmkg.ingest.gdelt.time.sleep", lambda s: None)
+    resp = a._get_with_retry("http://x/y.zip")
+    assert resp.status_code == 200 and calls["n"] == 3  # retried twice, then served
+
+
+def test_get_with_retry_raises_after_exhausting(monkeypatch):
+    a = GdeltAdapter(retries=2, backoff=0.0)
+
+    def always_fail(url, **kw):
+        raise httpx.ConnectError("dns down")
+
+    monkeypatch.setattr("tmkg.ingest.gdelt.httpx.get", always_fail)
+    monkeypatch.setattr("tmkg.ingest.gdelt.time.sleep", lambda s: None)
+    with pytest.raises(SourceUnreachable):
+        a._get_with_retry("http://x/y.zip")
+
+
+def test_404_is_not_retried_returns_none(monkeypatch):
+    a = GdeltAdapter(retries=3, backoff=0.0)
+    calls = {"n": 0}
+
+    def not_found(url, **kw):
+        calls["n"] += 1
+        return httpx.Response(404, request=httpx.Request("GET", url))
+
+    monkeypatch.setattr("tmkg.ingest.gdelt.httpx.get", not_found)
+    assert a._fetch_one("http://x/y.zip") is None
+    assert calls["n"] == 1  # a real gap (404) fails fast, never retried
 
 
 # --- live drift guard (skips when GDELT/golden unavailable) -----------------------------
