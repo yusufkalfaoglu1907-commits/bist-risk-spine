@@ -41,6 +41,7 @@ _NET_ADAPTER_MODULES = frozenset(
         "tmkg.ingest.evds",
         "tmkg.ingest.fred",
         "tmkg.ingest.worldgovbonds",
+        "tmkg.ingest.gdelt",
         "tmkg.ingest.base",
     }
 )
