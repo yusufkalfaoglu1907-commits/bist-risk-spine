@@ -139,8 +139,14 @@ def event_specs_from_l2(events_df: pd.DataFrame, targets_df: pd.DataFrame) -> li
     return specs
 
 
-def _load_event_inputs(store, as_of: date, *, channel_factor: dict[str, str]):
-    """Read events/event_targets/betas/total_returns through PITAccess and assemble the inputs."""
+def _load_event_inputs(store, as_of: date, *, channel_factor: dict[str, str],
+                       panel_start: date | None = None):
+    """Read events/event_targets/betas/total_returns through PITAccess and assemble the inputs.
+
+    ``panel_start`` floors the evaluation window: an event signal only fires on event days, so
+    evaluating it over years of pre-event zero-signal history just dilutes the Sharpe. Flooring
+    the return/exposure panel to the event-active span is the honest evaluation window (the events
+    themselves still gate where weights are nonzero)."""
     from tmkg.pit.access import PITAccess
 
     con = store.connect()
@@ -161,6 +167,8 @@ def _load_event_inputs(store, as_of: date, *, channel_factor: dict[str, str]):
     ret_panel = rets.pivot_table(index="bar_date", columns="symbol", values="ret_usd",
                                  aggfunc="mean").sort_index()
     ret_panel.columns.name = None
+    if panel_start is not None:
+        ret_panel = ret_panel.loc[[d for d in ret_panel.index if d >= panel_start]]
     betas_by_channel = build_betas_by_channel(betas_df, channel_factor, index=ret_panel.index)
     return specs, betas_by_channel, ret_panel, events_df
 
@@ -200,6 +208,7 @@ def run_m6_event_signal(
     as_of: date,
     inputs=None,
     channel_factor: dict[str, str] | None = None,
+    panel_start: date | None = None,
     grid: list[EventVariant] | None = None,
     control_threshold: float = 0.5,
     n_splits: int = 5,
@@ -227,7 +236,7 @@ def run_m6_event_signal(
         if store is None:
             raise ValueError("run_m6_event_signal needs either `store` or injected `inputs`")
         specs, betas_by_channel, ret_panel, events_df = _load_event_inputs(
-            store, as_of, channel_factor=channel_factor)
+            store, as_of, channel_factor=channel_factor, panel_start=panel_start)
     else:
         specs, betas_by_channel, ret_panel, events_df = inputs
 
