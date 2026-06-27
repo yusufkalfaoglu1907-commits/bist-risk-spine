@@ -91,3 +91,60 @@ def freshness_report(con, store, *, as_of: date | None = None, max_age_days: int
     report = classify_freshness(latest, symbols, as_of, max_age_days=max_age_days)
     report["tool"] = "incremental_freshness"
     return report
+
+
+# --- daily update runner ----------------------------------------------------------------------
+
+
+def plan_daily_pulls(
+    stale_entries: list[dict], as_of: date, *, overlap_days: int = 5, limit: int | None = None
+) -> list[dict]:
+    """Pure: turn the freshness report's ``stale`` list into per-symbol incremental pull windows."""
+    plan: list[dict] = []
+    for e in stale_entries:
+        last = date.fromisoformat(e["last_bar"])
+        win = incremental_window(last, as_of, overlap_days=overlap_days)
+        if win is None:
+            continue
+        plan.append({"symbol": e["symbol"], "start": win[0], "end": win[1], "age_days": e["age_days"]})
+    return plan[:limit] if limit else plan
+
+
+def run_daily_update(
+    con, store, adapter=None, *, as_of: date | None = None, max_age_days: int = 7,
+    overlap_days: int = 5, dry_run: bool = True, limit: int | None = None,
+) -> dict:
+    """Refresh only the **stale** names, each over its incremental window (efficient daily top-up).
+
+    Dry-run by default — computes the freshness report + the per-symbol pull plan, performs no network
+    call or mutation. ``dry_run=False`` pulls each stale symbol's incremental window (targeted
+    ``ingest_prices`` + ``build_total_returns``), fail-loud per symbol. Does NOT refit factors (that is a
+    separate regime-aware step). Returns a report."""
+    as_of = as_of or date.today()
+    fresh = freshness_report(con, store, as_of=as_of, max_age_days=max_age_days)
+    plan = plan_daily_pulls(fresh["stale"], as_of, overlap_days=overlap_days, limit=limit)
+
+    executed: list[dict] = []
+    if not dry_run and plan:
+        from tmkg.ingest.pipeline import build_total_returns, ingest_prices
+        for item in plan:
+            sym = item["symbol"]
+            try:
+                p = ingest_prices(adapter, store, sym, start=item["start"], end=item["end"])
+                if p.get("n_bars"):
+                    build_total_returns(store, sym, as_of=as_of)
+                executed.append({"symbol": sym, "ok": True, "n_bars": p.get("n_bars", 0)})
+            except Exception as e:  # fail-loud per symbol; continue the rest
+                executed.append({"symbol": sym, "ok": False, "error": str(e)[:160]})
+
+    return {
+        "tool": "daily_update",
+        "mode": "execute" if not dry_run else "dry-run",
+        "as_of": str(as_of),
+        "freshness": {k: fresh[k] for k in ("n_current", "n_stale", "n_missing", "n_symbols")},
+        "n_to_pull": len(plan),
+        "plan": plan[:50],
+        "executed": executed,
+        "note": ("refreshes only stale names over their incremental window; current names skipped; "
+                 "factor refit is a separate regime-aware step. dry-run does no network/mutation."),
+    }

@@ -56,3 +56,20 @@ def test_stale_sorted_oldest_first():
     latest = {"A": dt.date(2026, 6, 1), "B": dt.date(2026, 3, 1)}
     r = classify_freshness(latest, ["A", "B"], AS_OF, max_age_days=7)
     assert [s["symbol"] for s in r["stale"]] == ["B", "A"]   # oldest (most stale) first
+
+
+# --- plan_daily_pulls -------------------------------------------------------------------------
+
+def test_plan_daily_pulls_builds_incremental_windows():
+    from tmkg.ingest.incremental import plan_daily_pulls
+    stale = [{"symbol": "A", "last_bar": "2026-06-20", "age_days": 7},
+             {"symbol": "B", "last_bar": "2026-03-01", "age_days": 118}]
+    plan = plan_daily_pulls(stale, AS_OF, overlap_days=5)
+    assert plan[0] == {"symbol": "A", "start": "2026-06-15", "end": "2026-06-27", "age_days": 7}
+    assert plan[1]["symbol"] == "B" and plan[1]["start"] == "2026-02-24"
+
+
+def test_plan_daily_pulls_respects_limit():
+    from tmkg.ingest.incremental import plan_daily_pulls
+    stale = [{"symbol": s, "last_bar": "2026-01-01", "age_days": 177} for s in ("A", "B", "C")]
+    assert len(plan_daily_pulls(stale, AS_OF, limit=2)) == 2
