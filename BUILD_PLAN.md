@@ -260,8 +260,8 @@ definition-of-done is a hand-checked reconciliation, not an edge.**
   name/group/sector shock through the **CONTROLS DAG** (group blast-radius — the analytics in
   `schema/integrity.py`) + HOLDS_STAKE/IN_SECTOR, so a shock to one node propagates to controlled/linked
   names. PIT-honest via `PITAccess.graph` (Cypher over the L1 Kuzu graph).
-- **M8.3 — Substrate hardening (standing).** id-bridge round-trip monitoring, data-drift smoke checks,
-  `signal_registry` hygiene. **id-bridge health monitor ✅ BUILT (2026-06-27):** `tmkg/monitor/idbridge_health.py`
+- **M8.3 — Substrate hardening ✅ COMPLETE (2026-06-27).** Three standing monitors under `tmkg/monitor/`,
+  each a pure no-network local read + a regression invariant + a §4 report + a CLI: **id-bridge health monitor ✅ BUILT (2026-06-27):** `tmkg/monitor/idbridge_health.py`
   sweeps the whole 730-name ticker universe → per-leg coverage (isin 0.83 / kap_oid 1.00 / lei 0.92),
   collision detection (ambiguous identity), full round-trip sweep (730 ok / 0 broken / 0 ambiguous);
   `scripts/monitor_idbridge.py` CLI → `data/cache/idbridge_health_report.json`; regression-guarded by
@@ -270,7 +270,12 @@ definition-of-done is a hand-checked reconciliation, not an edge.**
   `tmkg/monitor/smoke_drift.py` aggregates the per-adapter `<source>_smoke_report.json` outcomes (it does
   NOT re-run the network smoke — reads the recorded results, §4) → per-source status (drift/missing/stale/ok)
   for matriks/evds/fred/worldgovbonds/gdelt; `scripts/monitor_smoke_drift.py` CLI → `data/cache/smoke_drift_report.json`;
-  `tests/invariants/test_smoke_drift.py` (no recorded drift + core reports present). **Registry hygiene next.**
+  `tests/invariants/test_smoke_drift.py` (no recorded drift + core reports present).
+  **③ `signal_registry` hygiene** — `tmkg/monitor/registry_hygiene.py` sweeps the bitemporal verdict ledger
+  (via `PITAccess`, §5) for incoherent rows: promoted-but-fails-gate, missing `n_trials` haircut, out-of-range
+  DSR/PBO; surfaces multi-version signals + latest verdict (never fails on legitimate versioning).
+  `scripts/monitor_registry.py` CLI → `data/cache/registry_hygiene_report.json`; `tests/invariants/test_registry_hygiene.py`
+  (teeth tests + real-ledger clean: the 2 NO-GO rows m5/m6 pass).
 
 **Optional advanced layers (deferred, only on explicit direction):** GraphRAG / NL-explanation over L1;
 OpenSanctions enrichment; **GNN overlays only if they clear the M4 gate** (at n ≈ 500 they likely won't).

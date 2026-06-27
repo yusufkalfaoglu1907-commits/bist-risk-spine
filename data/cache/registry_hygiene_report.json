@@ -1,0 +1,25 @@
+{
+  "_written_at": "2026-06-27T11:44:17",
+  "monitor": "registry_hygiene",
+  "n_rows": 2,
+  "n_signals": 2,
+  "promoted_count": 0,
+  "issues": [],
+  "multi_version_signals": {},
+  "latest_verdicts": [
+    {
+      "signal_id": "m5_residual_statarb",
+      "knowledge_date": "2026-06-15 00:00:00",
+      "promoted": false,
+      "n_versions": 1
+    },
+    {
+      "signal_id": "m6_event_diffexp",
+      "knowledge_date": "2025-03-28 00:00:00",
+      "promoted": false,
+      "n_versions": 1
+    }
+  ],
+  "passes": true,
+  "failures": []
+}
