@@ -193,3 +193,59 @@ def _execute_remaining(remaining_steps: list[dict]) -> list[dict]:
 def _os_environ() -> dict:
     import os
     return dict(os.environ)
+
+
+# --- targeted, vendor-lag-aware single-name quant onboarding ----------------------------------
+# (the correct executor for the quant steps — per-symbol, NOT the whole-universe scripts; see the
+#  FAIRF onboarding finding 2026-06-27. Identity steps (kap/gleif/sector) stay graph-side.)
+
+
+def onboard_symbol(adapter, store, con, symbol: str, *, as_of: date,
+                   price_start: str = "2023-01-01", check_market: bool = True) -> dict:
+    """Quant-onboard ONE already-identified symbol: prices → total_returns → universe_class.
+
+    Vendor-lag-aware: if the market-data vendor does not carry ``symbol`` yet (a new IPO whose bars
+    feed lags its KAP listing), returns ``deferred_vendor_lag`` **without erroring** (retry later).
+    Pulls only this symbol (not the universe). Each stage reports done/skipped/error honestly; the
+    factor refit (betas/residuals) is left to the M2/M3 refit and only after the name has the
+    ~60-session window a fresh listing lacks — surfaced as ``deferred``, not failed."""
+    from tmkg.ingest.pipeline import build_total_returns, ingest_prices
+    from tmkg.ingest.onboarding_queue import market_data_status
+
+    steps: list[dict] = []
+    if check_market:
+        md = market_data_status(adapter, symbol)
+        if md["market_data"] == "not_carried_yet":
+            return {"symbol": symbol, "status": "deferred_vendor_lag", "market_data": md, "steps": steps}
+
+    # prices (fail-loud on an unreachable source, §4)
+    try:
+        p = ingest_prices(adapter, store, symbol, start=price_start, end=str(as_of))
+    except Exception as e:  # SourceUnreachable etc.
+        steps.append({"step": "prices", "ok": False, "error": str(e)[:200]})
+        return {"symbol": symbol, "status": "error", "steps": steps}
+    n_bars = p.get("n_bars", 0)
+    steps.append({"step": "prices", "ok": bool(n_bars), "n_bars": n_bars})
+    if not n_bars:
+        return {"symbol": symbol, "status": "no_bars", "steps": steps}
+
+    # total_returns
+    tr = build_total_returns(store, symbol, as_of=as_of)
+    steps.append({"step": "total_returns", "ok": True, "detail": tr})
+
+    # universe_class (refuses cleanly if the name has no resolvable sector — e.g. a brand-new name
+    # absent from the dated sector taxonomy)
+    from tmkg.ingest.universe import graph_sector_resolver, ingest_universe_class
+    uc = ingest_universe_class(
+        store, [symbol], universe="listed", sector_of=graph_sector_resolver(con),
+        valid_from=date.fromisoformat(price_start), knowledge_date=as_of)
+    sector_ok = bool(uc.get("landed"))
+    steps.append({"step": "universe_class", "ok": sector_ok,
+                  "detail": uc if sector_ok else "sector unresolved (refused, not guessed)"})
+
+    # factor refit — needs the rolling-window history a fresh listing does not yet have
+    steps.append({"step": "factor_refit", "ok": False,
+                  "deferred": "run M2/M3 refit once the name has >= min_obs in-regime history"})
+
+    status = "quant_started" if sector_ok else "prices_only_no_sector"
+    return {"symbol": symbol, "status": status, "steps": steps}

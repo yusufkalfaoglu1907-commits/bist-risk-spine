@@ -15,6 +15,15 @@ The handoff mechanism between sessions. A fresh Claude Code session reconstructs
 
 ---
 
+## 2026-06-27 (cont. 11) — Targeted vendor-lag-aware onboarding executor BUILT
+**Did:** Built `onboarding.onboard_symbol` — the correct per-name quant-onboarding executor (fixes the "whole-universe scripts are wrong for one name" finding). Steps for ONE identified symbol: market-data check → prices → total_returns → universe_class; **vendor-lag-aware** (if `market_data_status`→`not_carried_yet`, returns `deferred_vendor_lag` WITHOUT erroring — retry later); refuses cleanly on unresolved sector; defers the factor refit until the name has ~60-session history. Per-symbol functions (`ingest_prices`/`build_total_returns`/`ingest_universe_class`), pulls only the one name.
+**Result:** verify GREEN (pending; +1 offline test = vendor-lag short-circuit via fake adapter). **Live `onboard_symbol('FAIRF')` → `deferred_vendor_lag`** (clean — no error, no failed pull, no fabrication). When Matriks carries FAIRF, the same call proceeds.
+**Decided:** new-IPO onboarding is now handled gracefully end-to-end — identity now (done for FAIRF), quant deferred until the vendor catches up, surfaced by the 3c queue + M9.1 heartbeat, executed targeted per-name. No half-onboard, no fabrication (§4).
+**Open (M9 remaining):** equity-scope the queue (211 noisy); M9.2 incremental "since last knowledge_date" + regime-aware refit; resume FAIRF when carried. M9 is now substantially complete (3a detect · 3b orchestrate · 3c queue+vendor-lag · targeted executor · M9.1 heartbeat); only M9.2 + the equity-scope refinement remain.
+**Next action:** M9.2 incremental mode, or equity-scope the queue. Repo GREEN.
+
+---
+
 ## 2026-06-27 (cont. 10) — M9.1 keep-current heartbeat BUILT (schedulable read-only gate)
 **Did:** Built **M9.1 — the keep-current cycle** `tmkg/ingest/keep_current.py`: composes the 3a new-listing detector + the three M8.3 health monitors (id-bridge/smoke-drift/registry) + the 3c onboarding queue into ONE read-only status pass. `summarize_cycle` (pure, tested) folds them into an `attention` verdict (+ `health_ok` isolating monitor failures from softer pending-onboarding). `scripts/keep_current.py` prints status, writes `data/cache/keep_current_report.json`, **exits nonzero on attention** — the scheduler hook (cron/launchd snippets in the docstring; wire exit→alert). Investigated equity-scoping the queue first: the authoritative equity universe is `_universe_symbols` = ticker+ISIN+sector, but a brand-new name lacks ISIN/sector until onboarded, and KAP `financial_type` is NOT a clean equity/derivative signal (None spans both) ⇒ equity-scoping a *new* name is a genuine design question (vendor availability + ISIN-class at onboard time), documented as a follow-up rather than guessed.
 **Result:** verify GREEN (pending; +5 `tests/ingest/test_keep_current.py`). Live heartbeat: monitors all green, 0 new listings (FAIRF now seeded so no longer "new"), queue 211 → **ATTENTION, exit 1**.

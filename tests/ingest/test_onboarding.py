@@ -55,3 +55,20 @@ def test_plan_empty_when_complete():
     plan = plan_for_entity(entity, status, _steps())
     assert plan["remaining_steps"] == []
     assert plan["complete"]
+
+
+class _VendorLagAdapter:
+    """A fake Matriks adapter whose symbolSearch returns 0 results (vendor-lag, the FAIRF case)."""
+    def fetch(self, tool, **params):
+        assert tool == "symbolSearch"
+        return {"totalResults": 0, "results": []}
+
+
+def test_onboard_symbol_defers_on_vendor_lag():
+    # a new IPO the vendor does not carry yet -> deferred, NOT an error, and no price pull attempted
+    from tmkg.ingest.onboarding import onboard_symbol
+    res = onboard_symbol(_VendorLagAdapter(), store=None, con=None, symbol="FAIRF",
+                         as_of=dt.date(2026, 6, 27))
+    assert res["status"] == "deferred_vendor_lag"
+    assert res["market_data"]["market_data"] == "not_carried_yet"
+    assert res["steps"] == []   # short-circuited before touching store/con

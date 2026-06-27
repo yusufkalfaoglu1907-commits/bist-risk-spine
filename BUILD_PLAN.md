@@ -333,7 +333,13 @@ Build order chosen by the user: **3 (new-listing onboarding) → 1 (scheduler) �
   mutation, no onboarding. Live: monitors all green, 0 new, queue 211 → ATTENTION/exit 1. Still TODO before
   it drives *automatic* onboarding: equity-scope the queue (211 includes non-equity) + a targeted
   vendor-lag-aware executor.
-- **2 — Daily incremental mode.** A "since last `knowledge_date`" pull for existing names (most ingest
+- **Targeted onboarding executor ✅ BUILT (2026-06-27).** `onboarding.onboard_symbol` quant-onboards ONE
+  identified symbol (prices → total_returns → universe_class) — per-symbol, not the whole-universe scripts.
+  **Vendor-lag-aware:** if the vendor does not carry the symbol yet (`market_data_status` → `not_carried_yet`),
+  returns `deferred_vendor_lag` without erroring (retry later); refuses cleanly on an unresolved sector;
+  defers the factor refit until the name has the ~60-session window a fresh listing lacks. Live on FAIRF →
+  `deferred_vendor_lag` (correct). Test: vendor-lag short-circuit (offline, fake adapter).
+- **2 — Daily incremental mode (next).** A "since last `knowledge_date`" pull for existing names (most ingest
   scripts pull ranges) + a refit trigger that respects the regime warm-up (no residual for ~40 sessions
   after a regime break).
 
