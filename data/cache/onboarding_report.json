@@ -1,10 +1,10 @@
 {
-  "_written_at": "2026-06-27T17:01:28",
+  "_written_at": "2026-06-27T17:12:35",
   "tool": "new_listing_onboarding",
-  "_generated_at": "2026-06-27T17:01:28",
+  "_generated_at": "2026-06-27T17:12:35",
   "mode": "dry-run",
   "as_of": "2026-06-27",
-  "n_entities": 1,
+  "n_entities": 0,
   "pipeline": [
     {
       "step": "kap_identity",
@@ -42,50 +42,6 @@
       "idempotent": true
     }
   ],
-  "entities": [
-    {
-      "kap_oid": "8acae2c5998f25d7019a38e6edf272ec",
-      "ticker": "FAIRF",
-      "name": "FA\u0130R F\u0130NANSMAN A.\u015e.",
-      "complete": false,
-      "remaining_steps": [
-        {
-          "step": "kap_identity",
-          "description": "seed Company/Security/ISSUES from the KAP member list (MERGE)",
-          "command": "scripts/ingest_kap.py --seed",
-          "writes": "L1 Company/Security/ISSUES",
-          "idempotent": true
-        },
-        {
-          "step": "gleif_identity",
-          "description": "back-fill LEI + ISIN (the id-bridge legs) for names still missing them",
-          "command": "scripts/backfill_gleif.py",
-          "writes": "L1 Company.lei / Company.isin",
-          "idempotent": true
-        },
-        {
-          "step": "sector",
-          "description": "link IN_SECTOR from the committed KAP sector taxonomy",
-          "command": "scripts/backfill_sectors.py",
-          "writes": "L1 IN_SECTOR",
-          "idempotent": true
-        },
-        {
-          "step": "universe_prices",
-          "description": "pull Matriks OHLCV -> prices + USD total_returns + universe_class",
-          "command": "scripts/ingest_universe.py 2023-01-01 2026-06-27 2026-06-27",
-          "writes": "L2 prices/total_returns/universe_membership",
-          "idempotent": true
-        },
-        {
-          "step": "factor_refit",
-          "description": "M2/M3 refit -> betas + residuals for the new name",
-          "command": "scripts/run_m3_gate.py 2026-06-27",
-          "writes": "L2 betas/residuals",
-          "idempotent": true
-        }
-      ]
-    }
-  ],
+  "entities": [],
   "note": "dry-run plans + verifies only (no network/mutation). execute=True runs the remaining idempotent steps in order, fail-loud per entity. Each step is a whole-job run that picks up the new entity and no-ops the rest (\u00a74)."
 }
