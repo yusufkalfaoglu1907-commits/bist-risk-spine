@@ -1,0 +1,65 @@
+{
+  "_written_at": "2026-06-27T11:39:49",
+  "monitor": "smoke_drift",
+  "max_age_days": 30.0,
+  "sources": [
+    {
+      "source": "matriks",
+      "status": "ok",
+      "report": "matriks_smoke_report.json",
+      "written_at": "2026-06-27T11:01:02",
+      "age_days": 0.03,
+      "drift": [],
+      "value_matched": [
+        "ohlcv_ASELS_2023-08.json",
+        "ohlcv_EREGL_2024-11.json"
+      ]
+    },
+    {
+      "source": "evds",
+      "status": "ok",
+      "report": "evds_smoke_report.json",
+      "written_at": "2026-06-27T11:00:39",
+      "age_days": 0.03,
+      "drift": [],
+      "value_matched": 12
+    },
+    {
+      "source": "fred",
+      "status": "ok",
+      "report": "fred_smoke_report.json",
+      "written_at": "2026-06-27T11:00:42",
+      "age_days": 0.03,
+      "drift": [],
+      "value_matched": 16
+    },
+    {
+      "source": "worldgovbonds",
+      "status": "ok",
+      "report": "worldgovbonds_smoke_report.json",
+      "written_at": "2026-06-27T11:01:12",
+      "age_days": 0.03,
+      "drift": [],
+      "value_matched": 6
+    },
+    {
+      "source": "gdelt",
+      "status": "ok",
+      "report": "gdelt_smoke_report.json",
+      "written_at": "2026-06-27T11:00:24",
+      "age_days": 0.03,
+      "drift": [],
+      "value_matched": null
+    }
+  ],
+  "counts": {
+    "ok": 5,
+    "drift": 0,
+    "missing": 0,
+    "stale": 0,
+    "unreadable": 0
+  },
+  "stale_sources": [],
+  "passes": true,
+  "failures": []
+}

@@ -266,7 +266,11 @@ definition-of-done is a hand-checked reconciliation, not an edge.**
   collision detection (ambiguous identity), full round-trip sweep (730 ok / 0 broken / 0 ambiguous);
   `scripts/monitor_idbridge.py` CLI → `data/cache/idbridge_health_report.json`; regression-guarded by
   `tests/invariants/test_idbridge_health.py` (coverage floors + zero-collision + zero-broken). Pure L1
-  read; `monitor` added to the no-network L3 invariant. Drift-smoke aggregation + registry hygiene next.
+  read; `monitor` added to the no-network L3 invariant. **Data-source drift monitor ✅ BUILT (2026-06-27):**
+  `tmkg/monitor/smoke_drift.py` aggregates the per-adapter `<source>_smoke_report.json` outcomes (it does
+  NOT re-run the network smoke — reads the recorded results, §4) → per-source status (drift/missing/stale/ok)
+  for matriks/evds/fred/worldgovbonds/gdelt; `scripts/monitor_smoke_drift.py` CLI → `data/cache/smoke_drift_report.json`;
+  `tests/invariants/test_smoke_drift.py` (no recorded drift + core reports present). **Registry hygiene next.**
 
 **Optional advanced layers (deferred, only on explicit direction):** GraphRAG / NL-explanation over L1;
 OpenSanctions enrichment; **GNN overlays only if they clear the M4 gate** (at n ≈ 500 they likely won't).

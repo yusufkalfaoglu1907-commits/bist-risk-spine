@@ -15,6 +15,15 @@ The handoff mechanism between sessions. A fresh Claude Code session reconstructs
 
 ---
 
+## 2026-06-27 (cont. 3) — M8.3 hardening: data-source drift monitor BUILT
+**Did:** Continued M8.3. Built the **data-source drift monitor** `tmkg/monitor/smoke_drift.py` — aggregates the per-adapter `<source>_smoke_report.json` outcomes (matriks/evds/fred/worldgovbonds/gdelt) into one health surface. Key design call (§4): the adapters' `smoke_check()` guards hit the **network**, so the aggregator does NOT re-run them — it reads the **recorded** outcomes from the local cache (the `drift` list each smoke run writes), keeping the monitor a pure no-network local read that fits `tmkg/monitor/`. Per-source status = drift / missing / stale (>max_age_days, warn-only) / ok. `scripts/monitor_smoke_drift.py` CLI → `data/cache/smoke_drift_report.json` (§4).
+**Result:** verify **GREEN 411 passed / 4 skipped** (+2 `tests/invariants/test_smoke_drift.py` = no-recorded-drift + core-reports-present; the extra skips vs last run are the live network-drift tests auto-skipping after the heavy pull, by design). Real run: all 5 sources **ok**, 0 drift / 0 missing / 0 stale → PASS.
+**Decided:** drift (a contract change a live run already caught) and a missing core report are hard fails; staleness is a surfaced warning only (smoke cadence is environmental, would flake CI). The live network smoke stays in `make smoke` / the live-drift tests; this monitor is the standing *surface* over their recorded results, so a caught drift can't sit unnoticed in the cache.
+**Open:** M8.3 last slice = **`signal_registry` hygiene** (dup/stale verdict-row check over L2). M8.2 linkage-graph propagation still queued.
+**Next action:** build the `signal_registry` hygiene monitor to close M8.3, then M8.2 (or per user). Repo GREEN; slice self-contained and committed.
+
+---
+
 ## 2026-06-27 (cont. 2) — M8.3 hardening: id-bridge health monitor BUILT
 **Did:** User directed: commit M8.1, then prioritize M8.3 hardening. Committed the ADR-0006 + M8.1 work (`a363306`). Then built the **id-bridge health monitor** — the §5 single-point-of-failure made observable + regression-guarded. New package `tmkg/monitor/` + `tmkg/monitor/idbridge_health.py`: sweeps the **whole 730-name ticker universe** (not just the 4 anchors `test_idbridge.py` checks) → per-leg coverage + **collision detection** (any id value shared by >1 company = ambiguous identity, the exact failure the resolver refuses on, surfaced proactively) + a full **round-trip sweep** (defense in depth). `scripts/monitor_idbridge.py` CLI → `data/cache/idbridge_health_report.json` (§4). Pure L1 read (no network/L2/mutation); `monitor` added to the no-network L3 AST invariant.
 **Result:** verify **GREEN 412 passed / 1 skipped** (+3 `tests/invariants/test_idbridge_health.py` = passes-on-real-graph + zero-collision + coverage-floors; skip cleanly without the v1 graph). Real run: **730 ticker names, coverage isin 0.826 / kap_oid 1.000 / lei 0.919, 0 collisions, 730 round-trips ok / 0 broken / 0 ambiguous → PASS.** Full 730-name sweep runs <2s.
