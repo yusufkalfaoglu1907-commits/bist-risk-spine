@@ -1,0 +1,829 @@
+{
+  "milestone": "M6",
+  "signal_id": "m6_event_diffexp",
+  "feature_family": "event_diffexp",
+  "as_of": "2025-03-31",
+  "exit_gate": {
+    "spread_clears_venue_feasible": false,
+    "dsr_passes": false,
+    "beats_baselines": false,
+    "clears_capacity_floor": false,
+    "median_control_fraction": 0.8883760254478485,
+    "promoted": false
+  },
+  "inputs": {
+    "n_dates": 62,
+    "n_names": 574,
+    "channels_with_exposure": [
+      "energy",
+      "foreign_flow",
+      "fx",
+      "holding",
+      "market",
+      "rates_cds"
+    ],
+    "n_events_channels": 718,
+    "n_trials_grid": 12,
+    "n_oos_test_dates": 52,
+    "short_eligible_available": false
+  },
+  "verdict": {
+    "promoted": false,
+    "beats_baselines": false,
+    "candidate_net_sharpe": -0.18000465736085433,
+    "best_baseline_net_sharpe": 0.18570997211621293,
+    "best_baseline": "differential_exposure",
+    "book": "venue_feasible",
+    "n_trials": 12,
+    "capacity_ok": false,
+    "dsr": {
+      "dsr": 0.05314307370352311,
+      "sr_observed": -0.18000465736085433,
+      "sr_benchmark": 0.05352249406267277,
+      "n_obs": 52,
+      "n_trials": 12,
+      "skew": 0.30209247679491646,
+      "kurtosis": 2.4594969383460796,
+      "passes": false
+    },
+    "pbo": {
+      "pbo": 0.1910569105691057,
+      "n_splits": 246,
+      "n_strategies": 16,
+      "n_partitions": 10,
+      "median_logit": 2.0149030205422647
+    },
+    "baseline_net_sharpes": {
+      "persistence": -0.07352221884237962,
+      "differential_exposure": 0.18570997211621293,
+      "own_factor_event": 0.1499714211589452
+    },
+    "failed_checks": [
+      "beats_baselines",
+      "capacity_clears_floor",
+      "dsr_passes"
+    ]
+  },
+  "books": {
+    "research": {
+      "book": "research",
+      "n_periods": 52,
+      "gross_sharpe": -0.10549616812595235,
+      "net_sharpe": -0.10549616812595235,
+      "total_net_return": -0.013001568903460822,
+      "avg_turnover": 0.15790024204317474,
+      "avg_gross_exposure": 0.9999999999999993
+    },
+    "venue_feasible": {
+      "book": "venue_feasible",
+      "n_periods": 52,
+      "gross_sharpe": -0.10549616812595235,
+      "net_sharpe": -0.18000465736085433,
+      "total_net_return": -0.02224412752145194,
+      "avg_turnover": 0.15790024204317474,
+      "avg_gross_exposure": 0.9999999999999993
+    },
+    "stress": {
+      "book": "stress",
+      "n_periods": 52,
+      "gross_sharpe": -0.10265986808597638,
+      "net_sharpe": -0.13372403571384278,
+      "total_net_return": -0.05538194958956394,
+      "avg_turnover": 0.08091854409713727,
+      "avg_gross_exposure": 0.5
+    }
+  },
+  "capacity_curve": [
+    {
+      "notional_scale": 0.5,
+      "net_sharpe": -0.18000465736085433
+    },
+    {
+      "notional_scale": 1.0,
+      "net_sharpe": -0.18000465736085433
+    },
+    {
+      "notional_scale": 2.0,
+      "net_sharpe": -0.18000465736085433
+    },
+    {
+      "notional_scale": 5.0,
+      "net_sharpe": -0.18000465736085464
+    },
+    {
+      "notional_scale": 10.0,
+      "net_sharpe": -0.18000465736085464
+    }
+  ],
+  "control_survival": [
+    {
+      "event_id": "2025-03-19|rates_cds|+1",
+      "n_names": 539,
+      "n_high": 0,
+      "n_control": 539,
+      "control_fraction": 1.0
+    },
+    {
+      "event_id": "2025-03-19|foreign_flow|-1",
+      "n_names": 539,
+      "n_high": 0,
+      "n_control": 539,
+      "control_fraction": 1.0
+    },
+    {
+      "event_id": "2025-03-19|market|-1",
+      "n_names": 539,
+      "n_high": 59,
+      "n_control": 480,
+      "control_fraction": 0.8905380333951762
+    },
+    {
+      "event_id": "2025-03-19|sector|-1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-03-19|energy|+1",
+      "n_names": 539,
+      "n_high": 56,
+      "n_control": 483,
+      "control_fraction": 0.8961038961038961
+    },
+    {
+      "event_id": "2025-03-19|fx|+1",
+      "n_names": 539,
+      "n_high": 432,
+      "n_control": 107,
+      "control_fraction": 0.19851576994434136
+    },
+    {
+      "event_id": "2025-03-19|energy|-1",
+      "n_names": 539,
+      "n_high": 56,
+      "n_control": 483,
+      "control_fraction": 0.8961038961038961
+    },
+    {
+      "event_id": "2025-03-19|fx|-1",
+      "n_names": 539,
+      "n_high": 432,
+      "n_control": 107,
+      "control_fraction": 0.19851576994434136
+    },
+    {
+      "event_id": "2025-01-01|foreign_flow|-1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-01|rates_cds|+1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-01|fx|-1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-01|fx|+1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-01|market|-1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-01|sector|-1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-01|energy|+1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-01|energy|-1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-02|energy|+1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-02|market|-1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-02|foreign_flow|-1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-02|fx|+1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-02|fx|-1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-02|sector|-1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-02|rates_cds|+1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-02|energy|-1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-03|foreign_flow|-1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-03|fx|-1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-03|fx|+1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-03|rates_cds|+1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-03|market|-1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-03|sector|-1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-03|energy|+1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-03|energy|-1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-04|market|-1",
+      "n_names": 540,
+      "n_high": 18,
+      "n_control": 522,
+      "control_fraction": 0.9666666666666667
+    },
+    {
+      "event_id": "2025-01-04|sector|-1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-04|foreign_flow|-1",
+      "n_names": 540,
+      "n_high": 0,
+      "n_control": 540,
+      "control_fraction": 1.0
+    },
+    {
+      "event_id": "2025-01-04|fx|+1",
+      "n_names": 540,
+      "n_high": 428,
+      "n_control": 112,
+      "control_fraction": 0.2074074074074074
+    },
+    {
+      "event_id": "2025-01-04|fx|-1",
+      "n_names": 540,
+      "n_high": 428,
+      "n_control": 112,
+      "control_fraction": 0.2074074074074074
+    },
+    {
+      "event_id": "2025-01-04|energy|+1",
+      "n_names": 540,
+      "n_high": 28,
+      "n_control": 512,
+      "control_fraction": 0.9481481481481482
+    },
+    {
+      "event_id": "2025-01-04|rates_cds|+1",
+      "n_names": 540,
+      "n_high": 0,
+      "n_control": 540,
+      "control_fraction": 1.0
+    },
+    {
+      "event_id": "2025-01-04|energy|-1",
+      "n_names": 540,
+      "n_high": 28,
+      "n_control": 512,
+      "control_fraction": 0.9481481481481482
+    },
+    {
+      "event_id": "2025-01-05|foreign_flow|-1",
+      "n_names": 540,
+      "n_high": 0,
+      "n_control": 540,
+      "control_fraction": 1.0
+    },
+    {
+      "event_id": "2025-01-05|sector|-1",
+      "n_names": 0,
+      "n_high": 0,
+      "n_control": 0,
+      "control_fraction": 0.0
+    },
+    {
+      "event_id": "2025-01-05|market|-1",
+      "n_names": 540,
+      "n_high": 18,
+      "n_control": 522,
+      "control_fraction": 0.9666666666666667
+    },
+    {
+      "event_id": "2025-01-05|rates_cds|+1",
+      "n_names": 540,
+      "n_high": 0,
+      "n_control": 540,
+      "control_fraction": 1.0
+    },
+    {
+      "event_id": "2025-01-05|fx|+1",
+      "n_names": 540,
+      "n_high": 428,
+      "n_control": 112,
+      "control_fraction": 0.2074074074074074
+    },
+    {
+      "event_id": "2025-01-05|energy|+1",
+      "n_names": 540,
+      "n_high": 28,
+      "n_control": 512,
+      "control_fraction": 0.9481481481481482
+    },
+    {
+      "event_id": "2025-01-05|energy|-1",
+      "n_names": 540,
+      "n_high": 28,
+      "n_control": 512,
+      "control_fraction": 0.9481481481481482
+    },
+    {
+      "event_id": "2025-01-05|fx|-1",
+      "n_names": 540,
+      "n_high": 428,
+      "n_control": 112,
+      "control_fraction": 0.2074074074074074
+    },
+    {
+      "event_id": "2025-01-06|foreign_flow|-1",
+      "n_names": 540,
+      "n_high": 0,
+      "n_control": 540,
+      "control_fraction": 1.0
+    },
+    {
+      "event_id": "2025-01-06|fx|+1",
+      "n_names": 540,
+      "n_high": 428,
+      "n_control": 112,
+      "control_fraction": 0.2074074074074074
+    }
+  ],
+  "channel_stress": {
+    "scenarios": [
+      {
+        "n_names": 574,
+        "shocked_channels": [
+          "energy",
+          "fx",
+          "rates_cds",
+          "foreign_flow"
+        ],
+        "unmodelled_channels": [],
+        "portfolio_pnl": null,
+        "worst_exposed": {
+          "A1CAP": 0.0,
+          "NETAS": 0.0,
+          "NATEN": 0.0,
+          "MZHLD": 0.0,
+          "MTRYO": 0.0
+        },
+        "best_exposed": {
+          "A1CAP": 0.0,
+          "MRSHL": 0.0,
+          "MNDTR": 0.0,
+          "MOBTL": 0.0,
+          "MOGAN": 0.0
+        },
+        "min_coverage": 0.0,
+        "event_type": "armed_conflict",
+        "n_events": 10258,
+        "mean_severity": 0.3215300718202062,
+        "tier": "inferred"
+      },
+      {
+        "n_names": 574,
+        "shocked_channels": [
+          "rates_cds",
+          "fx"
+        ],
+        "unmodelled_channels": [],
+        "portfolio_pnl": null,
+        "worst_exposed": {
+          "A1CAP": 0.0,
+          "NETAS": 0.0,
+          "NATEN": 0.0,
+          "MZHLD": 0.0,
+          "MTRYO": 0.0
+        },
+        "best_exposed": {
+          "A1CAP": 0.0,
+          "MRSHL": 0.0,
+          "MNDTR": 0.0,
+          "MOBTL": 0.0,
+          "MOGAN": 0.0
+        },
+        "min_coverage": 0.0,
+        "event_type": "cbrt_regulatory_action",
+        "n_events": 5344,
+        "mean_severity": 0.34711650079539436,
+        "tier": "inferred"
+      },
+      {
+        "n_names": 574,
+        "shocked_channels": [
+          "fx",
+          "foreign_flow",
+          "rates_cds"
+        ],
+        "unmodelled_channels": [],
+        "portfolio_pnl": null,
+        "worst_exposed": {
+          "A1CAP": 0.0,
+          "NETAS": 0.0,
+          "NATEN": 0.0,
+          "MZHLD": 0.0,
+          "MTRYO": 0.0
+        },
+        "best_exposed": {
+          "A1CAP": 0.0,
+          "MRSHL": 0.0,
+          "MNDTR": 0.0,
+          "MOBTL": 0.0,
+          "MOGAN": 0.0
+        },
+        "min_coverage": 0.0,
+        "event_type": "diplomatic_shift",
+        "n_events": 8917,
+        "mean_severity": 0.20921855338637874,
+        "tier": "inferred"
+      },
+      {
+        "n_names": 574,
+        "shocked_channels": [
+          "fx",
+          "rates_cds",
+          "foreign_flow",
+          "market"
+        ],
+        "unmodelled_channels": [],
+        "portfolio_pnl": null,
+        "worst_exposed": {
+          "A1CAP": 0.0,
+          "NETAS": 0.0,
+          "NATEN": 0.0,
+          "MZHLD": 0.0,
+          "MTRYO": 0.0
+        },
+        "best_exposed": {
+          "A1CAP": 0.0,
+          "MRSHL": 0.0,
+          "MNDTR": 0.0,
+          "MOBTL": 0.0,
+          "MOGAN": 0.0
+        },
+        "min_coverage": 0.0,
+        "event_type": "elections_political_transition",
+        "n_events": 2445,
+        "mean_severity": 0.3551656179136258,
+        "tier": "inferred"
+      },
+      {
+        "n_names": 574,
+        "shocked_channels": [
+          "energy",
+          "market"
+        ],
+        "unmodelled_channels": [],
+        "portfolio_pnl": null,
+        "worst_exposed": {
+          "A1CAP": 0.0,
+          "NETAS": 0.0,
+          "NATEN": 0.0,
+          "MZHLD": 0.0,
+          "MTRYO": 0.0
+        },
+        "best_exposed": {
+          "A1CAP": 0.0,
+          "MRSHL": 0.0,
+          "MNDTR": 0.0,
+          "MOBTL": 0.0,
+          "MOGAN": 0.0
+        },
+        "min_coverage": 0.0,
+        "event_type": "energy_supply_disruption",
+        "n_events": 4461,
+        "mean_severity": 0.28681547863877044,
+        "tier": "inferred"
+      },
+      {
+        "n_names": 574,
+        "shocked_channels": [
+          "fx",
+          "rates_cds",
+          "market"
+        ],
+        "unmodelled_channels": [],
+        "portfolio_pnl": null,
+        "worst_exposed": {
+          "A1CAP": 0.0,
+          "NETAS": 0.0,
+          "NATEN": 0.0,
+          "MZHLD": 0.0,
+          "MTRYO": 0.0
+        },
+        "best_exposed": {
+          "A1CAP": 0.0,
+          "MRSHL": 0.0,
+          "MNDTR": 0.0,
+          "MOBTL": 0.0,
+          "MOGAN": 0.0
+        },
+        "min_coverage": 0.0,
+        "event_type": "fx_monetary_shock",
+        "n_events": 975,
+        "mean_severity": 0.19645421743713692,
+        "tier": "inferred"
+      },
+      {
+        "n_names": 574,
+        "shocked_channels": [
+          "market"
+        ],
+        "unmodelled_channels": [
+          "sector"
+        ],
+        "portfolio_pnl": null,
+        "worst_exposed": {
+          "A1CAP": 0.0,
+          "NETAS": 0.0,
+          "NATEN": 0.0,
+          "MZHLD": 0.0,
+          "MTRYO": 0.0
+        },
+        "best_exposed": {
+          "A1CAP": 0.0,
+          "MRSHL": 0.0,
+          "MNDTR": 0.0,
+          "MOBTL": 0.0,
+          "MOGAN": 0.0
+        },
+        "min_coverage": 0.0,
+        "event_type": "natural_disaster",
+        "n_events": 16693,
+        "mean_severity": 0.31456071278205405,
+        "tier": "inferred"
+      },
+      {
+        "n_names": 574,
+        "shocked_channels": [
+          "market",
+          "energy"
+        ],
+        "unmodelled_channels": [
+          "sector"
+        ],
+        "portfolio_pnl": null,
+        "worst_exposed": {
+          "A1CAP": 0.0,
+          "NETAS": 0.0,
+          "NATEN": 0.0,
+          "MZHLD": 0.0,
+          "MTRYO": 0.0
+        },
+        "best_exposed": {
+          "A1CAP": 0.0,
+          "MRSHL": 0.0,
+          "MNDTR": 0.0,
+          "MOBTL": 0.0,
+          "MOGAN": 0.0
+        },
+        "min_coverage": 0.0,
+        "event_type": "pandemic",
+        "n_events": 825,
+        "mean_severity": 0.2866130846819383,
+        "tier": "inferred"
+      },
+      {
+        "n_names": 574,
+        "shocked_channels": [
+          "fx",
+          "foreign_flow"
+        ],
+        "unmodelled_channels": [
+          "sector"
+        ],
+        "portfolio_pnl": null,
+        "worst_exposed": {
+          "A1CAP": 0.0,
+          "NETAS": 0.0,
+          "NATEN": 0.0,
+          "MZHLD": 0.0,
+          "MTRYO": 0.0
+        },
+        "best_exposed": {
+          "A1CAP": 0.0,
+          "MRSHL": 0.0,
+          "MNDTR": 0.0,
+          "MOBTL": 0.0,
+          "MOGAN": 0.0
+        },
+        "min_coverage": 0.0,
+        "event_type": "sanctions_export_controls",
+        "n_events": 252,
+        "mean_severity": 0.2996423219495842,
+        "tier": "inferred"
+      },
+      {
+        "n_names": 574,
+        "shocked_channels": [
+          "fx",
+          "foreign_flow",
+          "market"
+        ],
+        "unmodelled_channels": [],
+        "portfolio_pnl": null,
+        "worst_exposed": {
+          "A1CAP": 0.0,
+          "NETAS": 0.0,
+          "NATEN": 0.0,
+          "MZHLD": 0.0,
+          "MTRYO": 0.0
+        },
+        "best_exposed": {
+          "A1CAP": 0.0,
+          "MRSHL": 0.0,
+          "MNDTR": 0.0,
+          "MOBTL": 0.0,
+          "MOGAN": 0.0
+        },
+        "min_coverage": 0.0,
+        "event_type": "terror_security",
+        "n_events": 21011,
+        "mean_severity": 0.4621566555757741,
+        "tier": "inferred"
+      },
+      {
+        "n_names": 574,
+        "shocked_channels": [
+          "fx"
+        ],
+        "unmodelled_channels": [
+          "sector"
+        ],
+        "portfolio_pnl": null,
+        "worst_exposed": {
+          "A1CAP": 0.0,
+          "NETAS": 0.0,
+          "NATEN": 0.0,
+          "MZHLD": 0.0,
+          "MTRYO": 0.0
+        },
+        "best_exposed": {
+          "A1CAP": 0.0,
+          "MRSHL": 0.0,
+          "MNDTR": 0.0,
+          "MOBTL": 0.0,
+          "MOGAN": 0.0
+        },
+        "min_coverage": 0.0,
+        "event_type": "trade_policy_tariff",
+        "n_events": 484,
+        "mean_severity": 0.26326401818436285,
+        "tier": "inferred"
+      }
+    ]
+  },
+  "walk_forward_picks": [
+    {
+      "test_start": "2025-01-16",
+      "test_end": "2025-01-29",
+      "chosen": "q0.2_d3_l2",
+      "train_sharpe": 0.012786396507648816
+    },
+    {
+      "test_start": "2025-01-30",
+      "test_end": "2025-02-12",
+      "chosen": "q0.3_d5_l2",
+      "train_sharpe": -0.24476542888297018
+    },
+    {
+      "test_start": "2025-02-13",
+      "test_end": "2025-02-26",
+      "chosen": "q0.3_d5_l1",
+      "train_sharpe": -0.40744692835911017
+    },
+    {
+      "test_start": "2025-02-27",
+      "test_end": "2025-03-12",
+      "chosen": "q0.2_d5_l2",
+      "train_sharpe": -0.32190556726442926
+    },
+    {
+      "test_start": "2025-03-13",
+      "test_end": "2025-03-28",
+      "chosen": "q0.2_d10_l2",
+      "train_sharpe": -0.22392077770563892
+    }
+  ],
+  "venue_net_sharpe": -0.18000465736085433,
+  "stress_net_sharpe": -0.13372403571384278
+}

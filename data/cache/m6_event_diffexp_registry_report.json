@@ -1,0 +1,25 @@
+{
+  "milestone": "M4",
+  "artifact": "signal_registry",
+  "signal_id": "m6_event_diffexp",
+  "promoted": false,
+  "knowledge_date": "2025-03-28",
+  "row": {
+    "signal_id": "m6_event_diffexp",
+    "hypothesis": "cross-sectional differential exposure: within an event window, the spread between high- and low-exposure names to the shocked channel under-reacts and drifts (geopolitical-event pillar, \u00a7236)",
+    "feature_family": "event_diffexp",
+    "train_start": null,
+    "train_end": null,
+    "test_start": "2025-01-16",
+    "test_end": "2025-03-28",
+    "n_trials": 12,
+    "cost_model": "CostModel(default 10bps + 100bps/yr borrow)",
+    "purge_embargo": "purged_walk_forward n_splits=5 purge=5 embargo=5",
+    "deflated_sharpe": 0.05314307370352311,
+    "pbo": 0.1910569105691057,
+    "beat_baselines": false,
+    "book": "venue_feasible",
+    "promoted": false,
+    "knowledge_date": "2025-03-28"
+  }
+}

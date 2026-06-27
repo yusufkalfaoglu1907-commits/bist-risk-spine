@@ -1,0 +1,11 @@
+{
+  "_written_at": "2026-06-25T18:23:57",
+  "source": "gdelt",
+  "window": "2025-01-01..2025-03-31",
+  "events": 4875,
+  "targets": 13624,
+  "untyped_skipped": 1601,
+  "days_done": 6,
+  "days_skipped": 84,
+  "days_failed": 0
+}

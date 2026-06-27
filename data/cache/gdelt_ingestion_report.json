@@ -1,0 +1,12 @@
+{
+  "_written_at": "2026-06-27T11:44:31",
+  "source": "gdelt",
+  "table": "events+event_targets",
+  "window": "fixture",
+  "n_events": 3,
+  "n_targets": 9,
+  "skipped": {
+    "non_turkey": 1,
+    "untyped": 1
+  }
+}
