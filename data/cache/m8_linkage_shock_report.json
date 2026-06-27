@@ -1,0 +1,63 @@
+{
+  "milestone": "M8",
+  "tool": "linkage_shock_propagation",
+  "report": "m8_linkage_shock_report",
+  "note": "risk re-pricing through the ownership/control graph, not alpha \u2014 structural look-through exposure (who is mechanically exposed), NOT a linked-firm co-move prediction (that was NO-GO, ADR-0006). No Sharpe / gate / registry write.",
+  "shocks": {
+    "ARCLK": -0.2,
+    "FROTO": -0.15
+  },
+  "ownership": {
+    "n_edges": 14,
+    "listed_only": false,
+    "min_confidence": 0.0,
+    "n_holders_exposed": 1,
+    "n_paths": 2,
+    "unmapped_origins": [],
+    "cycles": [],
+    "worst_exposed": {
+      "KCHOL": -0.155035
+    },
+    "caveat": "look-through weights a holder's exposure by the stake fraction only; it does NOT scale by the held stake's share of the holder's total assets (no fundamentals yet) \u2014 treat magnitudes as upper-bound structural exposure.",
+    "paths": [
+      {
+        "holder": "KCHOL",
+        "origin": "ARCLK",
+        "hops": 1,
+        "fraction_product": 0.4853,
+        "contribution": -0.09706000000000001,
+        "min_confidence": 0.85,
+        "path": [
+          "ARCLK",
+          "KCHOL"
+        ]
+      },
+      {
+        "holder": "KCHOL",
+        "origin": "FROTO",
+        "hops": 1,
+        "fraction_product": 0.3865,
+        "contribution": -0.057975,
+        "min_confidence": 0.85,
+        "path": [
+          "FROTO",
+          "KCHOL"
+        ]
+      }
+    ]
+  },
+  "control_blast_radius": {
+    "ARCLK": {
+      "n_in_blast_radius": 1,
+      "controllers": {
+        "KCHOL": 1
+      },
+      "controlled": {}
+    },
+    "FROTO": {
+      "n_in_blast_radius": 0,
+      "controllers": {},
+      "controlled": {}
+    }
+  }
+}

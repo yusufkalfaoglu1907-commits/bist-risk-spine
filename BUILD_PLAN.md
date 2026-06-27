@@ -237,11 +237,14 @@ substrate + risk spine (ADR-0006).** No L2 write (never reached the M4 gate); no
 
 ---
 
-## M8 — Risk/scenario tooling + hardening (the non-alpha deliverable — alpha program CLOSED 2026-06-27, ADR-0006)
+## M8 — Risk/scenario tooling + hardening ✅ CORE SLICES COMPLETE (2026-06-27, non-alpha — alpha program CLOSED, ADR-0006)
 
 The three-pillar **cross-sectional alpha search is concluded** (M5/M6/M7 all NO-GO). No alpha milestone
 is queued. The remaining track is the **non-alpha use of the substrate** — turn the exposure tensor +
-linkage graph into a risk/scenario tool, and harden the substrate. Opened on user direction 2026-06-27.
+linkage graph into a risk/scenario tool, and harden the substrate. Opened on user direction 2026-06-27;
+**M8.1 (scenario re-pricing), M8.2 (linkage-graph propagation) and M8.3 (substrate hardening) are all built
+and GREEN.** Remaining = the optional advanced layers below, only on explicit direction. The risk spine —
+macro channel re-pricing (M8.1) + idiosyncratic ownership-graph propagation (M8.2) — is the standing product.
 **These are risk tools, not signals: no Sharpe, no promotion gate, no `signal_registry` write — the
 definition-of-done is a hand-checked reconciliation, not an edge.**
 
@@ -256,10 +259,18 @@ definition-of-done is a hand-checked reconciliation, not an edge.**
   `tests/risk/test_scenario_repricing.py` (reconciliation to the penny + §4 honesty: coverage surfaced,
   unmodelled channels never zero-filled, empty intersection raises). `risk` added to the no-network L3
   invariant. No L2 write.
-- **M8.2 — Linkage-graph propagation (next).** The genuinely *non-cross-sectional* use: cascade a
-  name/group/sector shock through the **CONTROLS DAG** (group blast-radius — the analytics in
-  `schema/integrity.py`) + HOLDS_STAKE/IN_SECTOR, so a shock to one node propagates to controlled/linked
-  names. PIT-honest via `PITAccess.graph` (Cypher over the L1 Kuzu graph).
+- **M8.2 — Linkage-graph propagation ✅ BUILT (2026-06-27).** The genuinely *non-cross-sectional* use:
+  an idiosyncratic node shock cascades through the ownership/control graph. `tmkg/risk/linkage_propagation.py`
+  (pure): **ownership look-through** (`propagate_ownership_shock` — a held name's shock flows UP to holders
+  ∝ `HOLDS_STAKE.pct`, compounding along multi-hop chains; magnitude-bearing) + **control blast-radius**
+  (`control_blast_radius` — reachability over the verified `CONTROLS` DAG, controllers up / controlled down).
+  `tmkg/risk/run_linkage.py` reads the L1 Kuzu edges (14 HOLDS_STAKE C→C + 212 CONTROLS, normalises pct→fraction)
+  + `scripts/run_linkage_shock.py` CLI → `data/cache/m8_linkage_shock_report.json`. Tests `tests/risk/test_linkage_propagation.py`
+  (multi-hop reconciliation + direct/indirect sum + cycle-safe + confidence-prune + out-of-range raise + blast-radius).
+  **Risk tool, not alpha** — structural look-through exposure, explicitly NOT the linked-firm co-move
+  prediction (NO-GO, ADR-0006); no Sharpe / gate / registry write. Caveat surfaced: look-through weights by
+  stake fraction only, not the stake's share of holder assets (no fundamentals yet). Real run: ARCLK −20% +
+  FROTO −15% → KCHOL −15.5% look-through (0.4853·−0.20 + 0.3865·−0.15).
 - **M8.3 — Substrate hardening ✅ COMPLETE (2026-06-27).** Three standing monitors under `tmkg/monitor/`,
   each a pure no-network local read + a regression invariant + a §4 report + a CLI: **id-bridge health monitor ✅ BUILT (2026-06-27):** `tmkg/monitor/idbridge_health.py`
   sweeps the whole 730-name ticker universe → per-leg coverage (isin 0.83 / kap_oid 1.00 / lei 0.92),
