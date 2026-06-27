@@ -1,26 +1,56 @@
 # Turkish Equities Knowledge Graph (tmkg)
 
-Property-graph research substrate over BİST entities — ownership, control, governance,
-events, regulation, and macro sensitivity. See `system-design-v2.md` for the
-current design (the correlation / supply-chain / geopolitical-event redesign).
+Property-graph + point-in-time quant research substrate over BİST entities (~500 names) —
+ownership, control, governance, events, regulation, and macro sensitivity. Authoritative
+design: `system-design-v2.md`; phased build + go/no-go gates: `BUILD_PLAN.md`; session journal:
+`BUILD_LOG.md`; consequential decisions: `decisions/ADR-*.md`.
 
-**Scope (after the 2026-06-18 pre-pillar cleanup): a clean, trustworthy
-*equities ownership/identity* core. The off-mission corporate-debt/refinancing
-subsystem has been retired — archived intact at
-`archive/debt-subsystem-2026-06-18.zip`, removed from the active tree — and the
-live graph rebuilt from on-mission stages only (zero debt instruments, zero
-fabricated `EXTERNAL_STUB` placeholders).**
+## Project status (2026-06-27)
 
-**Live graph (rebuilt 2026-06-18): 730 KAP companies + 730 equity securities;
-+72 real external parents (GLEIF-L2 / KAP ownership, e.g. Sabancı, Koç, İş
-Bankası, OYAK, QIA, BBVA) → 802 `Company` nodes total. Equity-traded coverage:
-ISIN 100% (594/594), sector 100%, LEI 92%. `CONTROLS` 212 edges, a verified DAG.
-All identity stages are confidence-tiered: only high-confidence results are
-written; ambiguous cases are logged for review, never guessed.**
+The **v1 equities identity/ownership core is built and trustworthy**, and on top of it a full
+**v2 quant substrate + risk spine** has been built. The original goal — a tradeable
+**cross-sectional alpha** signal across three pillars (asset correlation, geopolitical-event
+impact, supply-chain linkage) — was pursued to a rigorous conclusion: **all three pillars
+returned NO-GO** through an honest venue-feasible / Deflated-Sharpe / PBO promotion gate
+(ADR-0004 correlation, ADR-0005 event, ADR-0006 supply-chain). Tradeable cross-sectional
+firm-linkage alpha on BIST residuals appears **exhausted at this scale (n≈500)**.
 
-**Next: three pillars on top of this core — (1) asset correlations, (2)
-geopolitical-event impact, (3) supply-chain dependencies. Build order and
-rationale below.**
+So the deliverable was **repositioned (ADR-0006): an honest research substrate + risk spine,
+not a live alpha book.** What it is now:
+
+- **A point-in-time, bitemporal research engine** — USD-primary corporate-action-adjusted
+  returns, a factor/residual machine (foreign-flow stripped), and limit-lock / accounting-regime /
+  short-eligible state machines — that **cheaply and credibly rejects** plausible-but-unreal
+  signals. The M4 promotion judge (Deflated Sharpe + PBO/CSCV, a purged-walk-forward backtester
+  with cost+borrow across three books) earned its keep by rejecting two live candidates.
+- **A risk spine (M8):** *scenario re-pricing* (a macro channel shock re-priced through the
+  exposure tensor → worst-exposed names + stress P&L) and *linkage propagation* (an idiosyncratic
+  shock cascaded through the ownership/control graph), plus three standing health monitors
+  (id-bridge, data-drift, registry hygiene).
+
+A rigorously-established three-pillar NO-GO **is** the result — worth more than an overfit book
+that would lose money live. The substrate and risk spine are the durable assets.
+
+**Live graph: 802 `Company` nodes (730 ticker-bearing), ISIN/sector 100% on equity-traded names,
+LEI 92%, `CONTROLS` 212-edge verified DAG.** Identity is confidence-tiered — ambiguous cases are
+logged, never guessed.
+
+### v2 code map — where it lives
+
+- `src/tmkg/pit/` — the point-in-time / bitemporal access wrapper (the honest-backtest keystone) + the id-bridge resolver.
+- `src/tmkg/l2/` + `src/tmkg/ingest/` — the DuckDB+Parquet quant store and the network ingestion adapters (Matriks / EVDS / FRED / WorldGovBonds / GDELT); every run writes a `data/cache/*_report.json` audit.
+- `src/tmkg/returns/`, `src/tmkg/factors/` — USD total-return series + the factor / neutralization / residual machine (M1/M2).
+- `src/tmkg/signals/` — the M4 promotion judge (Deflated Sharpe, PBO/CSCV, PIT backtester, baseline ladder, L2 `signal_registry`) + the M3/M5 residual correlation stat-arb.
+- `src/tmkg/events/` — GDELT event ingestion + the §240 channel-stress engine.
+- `src/tmkg/risk/` — the risk spine: scenario re-pricing (`scenarios`/`repricing`/`run_scenarios`) + linkage-graph propagation (`linkage_propagation`/`run_linkage`).
+- `src/tmkg/monitor/` — the standing health monitors (id-bridge health, smoke-drift, registry hygiene).
+
+Run the risk tools: `PYTHONPATH=src python scripts/run_scenarios.py 2026-06-15 2025-03-18 2025-03-25` ·
+`scripts/run_linkage_shock.py ARCLK:-0.20` · the monitors `scripts/monitor_{idbridge,smoke_drift,registry}.py`.
+
+---
+
+The sections below document the **v1 identity/ownership core** (still accurate and foundational).
 
 ## What's here
 
@@ -228,18 +258,40 @@ risky migration, ready if a "credit-shock" event type revives the subsystem. The
 `backfill_gleif.py --stage debt|nominal|issuance|spv|stubs` stages were removed;
 surviving stages are `lei, isin, bist, classify, l2, subsidiary, both, all`.
 
-## Roadmap — three pillars on the equities core
+## Outcome — the three pillars (all tested, all NO-GO)
 
-Build order (lowest data risk first; rationale in `system-design-v2.md`):
+Each pillar was built and run through the same honest venue-feasible / Deflated-Sharpe / PBO gate
+(the M4 judge), not a vibe. The verdicts:
 
-1. **Asset correlations / price time-series** — keystone for correlations *and*
-   event studies; lowest data risk (BİST market-data MCP available). DuckDB
-   time-series (EVDS macro + BİST OHLCV) joined to the graph on the ISIN/LEI
-   identity spine.
-2. **Geopolitical-event impact** — `Event` + `SENSITIVE_TO`, measurable once
-   returns exist. The retained external parents (Çalık, Carrier Global, BBVA,
-   QIA, …) are valuable anchors here.
-3. **Supply-chain dependencies** — hardest data problem (no clean TR feed; needs
-   LLM extraction from KAP filings or curation); built last.
+1. **Asset correlation** (M3/M5) — a genuine *frictionless* residual edge, but **too thin to
+   survive 10bps + borrow** in the venue-feasible book → **NO-GO** (ADR-0004). 92 survivor edges
+   landed in L2 `residual_corr`; the cost model was not weakened to manufacture a pass.
+2. **Geopolitical-event impact** (M6) — **structurally dead**: negative even frictionless; the
+   apparent significance was an overlap / multiple-testing artifact (0 cells survive FDR), not
+   rescuable by residual returns, salience filtering, or LLM per-event sign → **NO-GO** (ADR-0005).
+   Its §240 channel-stress **risk** output survives as a real deliverable (now the M8.1 risk spine).
+3. **Supply-chain / linkage** (M7) — tier-1 firm-level KAP new-business too sparse (~10–15 tradeable
+   listed-to-listed edges/yr), tier-2 intra-group is the already-priced null, tier-3 sector-IO has
+   no out-of-sample predictability → **NO-GO** (ADR-0006).
 
-Later: OpenSanctions PEP/sanction enrichment (keys on LEI); GraphRAG NL → Cypher.
+**Net: tradeable cross-sectional alpha on BIST residuals is exhausted at n≈500.** The substrate +
+risk spine are the durable deliverable; the honest-evaluation protocol that killed three plausible
+signals cheaply (before any capital, without weakening an invariant) is itself reusable IP.
+
+**Declined advanced layers:** OpenSanctions PEP/sanction enrichment; GraphRAG NL-over-graph (useful
+as an explanation skin, not pursued); GNN overlays (overfit-prone at n≈500, and the alpha case is
+already settled).
+
+## Keeping the data current
+
+Today the pipeline is **reproducible but manually triggered** — not a self-updating service. You run
+the ingestion scripts (`scripts/ingest_*.py`) and they update the local L1/L2 caches; signal/risk
+code then reads only the cache, never the network (§4). The architecture is built *for* safe
+automation — **idempotent primary-key writes** (re-running is a no-op), **bitemporal
+`knowledge_date`** (new data lands without rewriting history), a **resumable** GDELT backfill,
+**fail-loud-never-fabricate**, and the **M8.3 drift/health monitors** as safety rails. What is *not*
+yet wired for hands-off operation: a scheduler (cron/launchd/CI), a daily *incremental* ("since last
+`knowledge_date`") mode, and **new-listing / IPO onboarding** — a newly-listed name needs its identity
+bridge (ticker↔ISIN↔kap_oid↔LEI), price history, universe-class, and a factor/residual refit before
+it is tradeable in the substrate. There is an IPO-calendar source available (Matriks), but it is not
+yet turned into an automatic onboarding adapter.
