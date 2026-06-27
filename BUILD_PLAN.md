@@ -308,9 +308,15 @@ Build order chosen by the user: **3 (new-listing onboarding) → 1 (scheduler) �
   survivorship — flag only), and ticker changes (id-bridge reconciliations). `scripts/detect_new_listings.py`
   → `data/cache/new_listings_report.json`; `tests/ingest/test_new_listings.py`. **Real run: 1 new — `FAIRF`
   (FAİR FİNANSMAN A.Ş.).** Detection only; no graph mutation / price pull.
-- **3b — Onboarding orchestrator (next).** Consume the detector's new-entity list and run the existing
-  per-source steps for just those kap_oids: KAP seed (Company/Security + id-bridge) → GLEIF (LEI/ISIN) →
-  sector → universe-class → price/return history pull → factor/residual refit. Idempotent; fail-loud.
+- **3b — Onboarding orchestrator ✅ BUILT (2026-06-27, dry-run; live execution gated).**
+  `tmkg/ingest/onboarding.py` defines the ordered idempotent pipeline (kap_identity → gleif_identity →
+  sector → universe_prices → factor_refit), each step a whole-job run that *picks up* the new entity and
+  no-ops the rest. `onboarding_status` verifies completion against the real L1 graph + L2 (Company/legs/
+  IN_SECTOR · total_returns/universe_membership · betas); `plan_for_entity` lists only the remaining
+  steps. **Dry-run by default (no network/mutation); `execute=True` runs the chain fail-loud per entity.**
+  `scripts/onboard_new_listings.py [--execute]` → `data/cache/onboarding_report.json`; `tests/ingest/test_onboarding.py`
+  (recipe order/idempotency, real script targets, plan skips done stages). Dry-run on FAIRF: needs all 5
+  steps. **Live onboarding of FAIRF is user-gated (mutates the canonical graph + L2, hits the network).**
 - **1 — Scheduler.** cron/launchd/CI that runs the ingest steps on a cadence, then the M8.3 monitors +
   the 3a detector as a gate, alerting on FAIL.
 - **2 — Daily incremental mode.** A "since last `knowledge_date`" pull for existing names (most ingest
