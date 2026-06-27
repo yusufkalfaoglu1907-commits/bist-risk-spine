@@ -339,9 +339,13 @@ Build order chosen by the user: **3 (new-listing onboarding) → 1 (scheduler) �
   returns `deferred_vendor_lag` without erroring (retry later); refuses cleanly on an unresolved sector;
   defers the factor refit until the name has the ~60-session window a fresh listing lacks. Live on FAIRF →
   `deferred_vendor_lag` (correct). Test: vendor-lag short-circuit (offline, fake adapter).
-- **2 — Daily incremental mode (next).** A "since last `knowledge_date`" pull for existing names (most ingest
-  scripts pull ranges) + a refit trigger that respects the regime warm-up (no residual for ~40 sessions
-  after a regime break).
+- **2 — Daily incremental mode ✅ CORE BUILT (2026-06-27).** `tmkg/ingest/incremental.py`: `incremental_window`
+  (pure — no pull when current, full backfill when empty, else an overlap re-fetch from the last held bar) +
+  `classify_freshness`/`freshness_report` (split listed names into current / stale / missing by their latest
+  L2 bar). `scripts/freshness.py` (read-only scan, exits nonzero if anything stale/missing). Live: 569 current,
+  1 stale (ISATR alias), 161 missing (of 731). Remaining: the thin daily *runner* that loops the targeted
+  per-name pull (`onboard_symbol`/`ingest_prices` over the stale set) + the regime-aware refit trigger (no
+  residual for ~40 sessions after a regime break).
 
 **Exit gate:** onboarding a real new name (e.g. FAIRF) produces a complete, tradeable substrate row
 (identity bridge round-trips · price history · universe-class · betas/residuals) with full §4 audit, and

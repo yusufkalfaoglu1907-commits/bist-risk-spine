@@ -15,6 +15,15 @@ The handoff mechanism between sessions. A fresh Claude Code session reconstructs
 
 ---
 
+## 2026-06-27 (cont. 12) — M9.2 incremental core BUILT (window + freshness)
+**Did:** Built the M9.2 incremental-update brain `tmkg/ingest/incremental.py`: `incremental_window` (pure — `None` when current, full backfill when no history, else an overlap re-fetch from the last held bar so late/revised bars are absorbed idempotently) + `classify_freshness`/`freshness_report` (split listed names into current / stale / missing by their latest L2 bar). `scripts/freshness.py` (read-only scan; nonzero exit if stale/missing).
+**Result:** verify GREEN 461 passed / 1 skipped (+7 `tests/ingest/test_incremental.py`). Live: **569 current, 1 stale (ISATR — share-class alias, bars under ISCTR), 161 missing** (of 731 — the non-equity + un-onboarded names).
+**Decided:** the freshness scan targets the daily runner (refresh only stale names via their incremental window, skip current) — efficient daily top-up, idempotent overlap. The 161 "missing" overlaps the onboarding queue (non-equity + new names); equity-scoping resolves both.
+**Open (M9 tail):** the thin daily *runner* (loop targeted per-name pull over the stale set + regime-aware refit trigger) and the equity-scope refinement. The cores for detect/onboard/queue/heartbeat/incremental are all built + tested.
+**Next action:** the daily runner wrapper + equity-scoping, or hand off — M9 is substantially complete. Repo GREEN.
+
+---
+
 ## 2026-06-27 (cont. 11) — Targeted vendor-lag-aware onboarding executor BUILT
 **Did:** Built `onboarding.onboard_symbol` — the correct per-name quant-onboarding executor (fixes the "whole-universe scripts are wrong for one name" finding). Steps for ONE identified symbol: market-data check → prices → total_returns → universe_class; **vendor-lag-aware** (if `market_data_status`→`not_carried_yet`, returns `deferred_vendor_lag` WITHOUT erroring — retry later); refuses cleanly on unresolved sector; defers the factor refit until the name has ~60-session history. Per-symbol functions (`ingest_prices`/`build_total_returns`/`ingest_universe_class`), pulls only the one name.
 **Result:** verify GREEN (pending; +1 offline test = vendor-lag short-circuit via fake adapter). **Live `onboard_symbol('FAIRF')` → `deferred_vendor_lag`** (clean — no error, no failed pull, no fabrication). When Matriks carries FAIRF, the same call proceeds.
