@@ -1,0 +1,286 @@
+{
+  "_written_at": "2026-06-26T21:19:31",
+  "probe": "m7_tier1_newbusiness_feasibility",
+  "source": "matriks/newsAndEvents includeNews KAP 'i\u015f ili\u015fkisi'",
+  "n_disclosures": 290,
+  "counterparty_buckets": {
+    "unnamed": 96,
+    "government": 35,
+    "foreign": 41,
+    "anonymized": 38,
+    "named_domestic": 80
+  },
+  "materiality_ratio_present": 39,
+  "materiality_ratio_present_pct": 13.4,
+  "listed_independent_candidates": [
+    {
+      "declaring": "KONTR",
+      "counterparty": "ADM Elektrik Da\u011f\u0131t\u0131m A.\u015e.",
+      "matched_ticker": "AHGAZ",
+      "date": "2025-03-28"
+    },
+    {
+      "declaring": "CONSE",
+      "counterparty": "Boyner B\u00fcy\u00fck Ma\u011fazac\u0131l\u0131k A.\u015e.",
+      "matched_ticker": "EBEBK",
+      "date": "2025-03-27"
+    },
+    {
+      "declaring": "TRILC",
+      "counterparty": "Pharmaget Sp. \u0130la\u00e7 Da\u011f\u0131t\u0131m \u015eirketi ve Zeus Ecza Deposu",
+      "matched_ticker": "SELEC",
+      "date": "2025-03-24"
+    },
+    {
+      "declaring": "ORGE",
+      "counterparty": "Alarko Gayrimenkul Yat\u0131r\u0131m Ortakl\u0131\u011f\u0131 A.\u015e.",
+      "matched_ticker": "ADGYO",
+      "date": "2025-03-18"
+    },
+    {
+      "declaring": "PCILT",
+      "counterparty": "IPEKYOL GIYIM SANAY\u0130 PAZARLAMA VE TICARET A.\u015e. (\u0130pekyol, Twi",
+      "matched_ticker": "BRYAT",
+      "date": "2025-03-17"
+    },
+    {
+      "declaring": "GESAN",
+      "counterparty": "SAF\u0130 \u00c7\u0130MENTO \u00dcRET\u0130M SAN. VE T\u0130C. A.\u015e.",
+      "matched_ticker": "AFYON",
+      "date": "2025-03-11"
+    },
+    {
+      "declaring": "YEOTK",
+      "counterparty": "Enerjisa Enerji \u00dcretim A.\u015e.",
+      "matched_ticker": "ENJSA",
+      "date": "2025-03-10"
+    },
+    {
+      "declaring": "KMPUR",
+      "counterparty": "Ravago Petrokimya A.\u015e.",
+      "matched_ticker": "PETKM",
+      "date": "2025-03-07"
+    },
+    {
+      "declaring": "PCILT",
+      "counterparty": "HEPS\u0130BURADA (D-Market Elektronik Hizmetler ve Ticaret A.\u015e.) ",
+      "matched_ticker": "ASELS",
+      "date": "2025-03-06"
+    },
+    {
+      "declaring": "HTTBT",
+      "counterparty": "PEGASUS HAVA TA\u015eIMACILI\u011eI A.\u015e",
+      "matched_ticker": "HRKET",
+      "date": "2025-02-28"
+    },
+    {
+      "declaring": "SDTTR",
+      "counterparty": "T\u00fcrk Havac\u0131l\u0131k ve Uzay Sanayii A.\u015e.(TUSA\u015e)",
+      "matched_ticker": "AKSA",
+      "date": "2025-02-24"
+    },
+    {
+      "declaring": "ASELS",
+      "counterparty": "BMC OTOMOT\u0130V",
+      "matched_ticker": "ASUZU",
+      "date": "2025-02-24"
+    },
+    {
+      "declaring": "SMART",
+      "counterparty": "Ziraat Teknoloji A.\u015e.",
+      "matched_ticker": "TTRAK",
+      "date": "2025-02-18"
+    },
+    {
+      "declaring": "GEDZA",
+      "counterparty": "T\u00dcRK\u0130YE \u015e\u0130\u015eE VE CAM FABR\u0130KALARI A.\u015e.",
+      "matched_ticker": "BAGFS",
+      "date": "2025-02-18"
+    },
+    {
+      "declaring": "GEDZA",
+      "counterparty": "T\u00dcRK\u0130YE \u015e\u0130\u015eE VE CAM FABR\u0130KALARI A.\u015e.",
+      "matched_ticker": "BAGFS",
+      "date": "2025-02-17"
+    },
+    {
+      "declaring": "YEOTK",
+      "counterparty": "Karesi Polyester ve Petrokimya Sanayi A.\u015e.",
+      "matched_ticker": "PETKM",
+      "date": "2025-02-13"
+    },
+    {
+      "declaring": "BRLSM",
+      "counterparty": "Pegasus Hava Ta\u015f\u0131mac\u0131l\u0131\u011f\u0131 A.\u015e.",
+      "matched_ticker": "HRKET",
+      "date": "2025-11-27"
+    },
+    {
+      "declaring": "KLSYN",
+      "counterparty": "DMO (Devlet Malzeme Ofisi)",
+      "matched_ticker": "MEDTR",
+      "date": "2025-11-26"
+    },
+    {
+      "declaring": "CONSE",
+      "counterparty": "Boyner B\u00fcy\u00fck Ma\u011fazac\u0131l\u0131k A.\u015e.",
+      "matched_ticker": "EBEBK",
+      "date": "2025-11-26"
+    },
+    {
+      "declaring": "GENIL",
+      "counterparty": "BALT INTERNATIONAL SAS",
+      "matched_ticker": "GSIPD",
+      "date": "2025-11-26"
+    },
+    {
+      "declaring": "MACKO",
+      "counterparty": "D Elektronik \u015eans Oyunlar\u0131 ve Yay\u0131nc\u0131l\u0131k A.\u015e.",
+      "matched_ticker": "ASELS",
+      "date": "2025-11-26"
+    },
+    {
+      "declaring": "HRKET",
+      "counterparty": "SOCAR Turkey Akaryak\u0131t Depolama A.\u015e., STAR Rafineri A.\u015e. ve ",
+      "matched_ticker": "PETKM",
+      "date": "2025-11-25"
+    },
+    {
+      "declaring": "OBASE",
+      "counterparty": "Ebebek Ma\u011fazac\u0131l\u0131k A.\u015e.",
+      "matched_ticker": "EBEBK",
+      "date": "2025-11-21"
+    },
+    {
+      "declaring": "GESAN",
+      "counterparty": "Ba\u015fkent Elektrik Da\u011f\u0131t\u0131m A.\u015e. ve Toroslar Elektrik Da\u011f\u0131t\u0131m A",
+      "matched_ticker": "BASGZ",
+      "date": "2025-11-21"
+    },
+    {
+      "declaring": "MACKO",
+      "counterparty": "E Elektronik Bahis Oyunlar\u0131 A.\u015e.",
+      "matched_ticker": "ASELS",
+      "date": "2025-11-20"
+    },
+    {
+      "declaring": "GESAN",
+      "counterparty": "DTM ENERJ\u0130 YATIRIMLARI AD\u0130 ORTAKLI\u011eI",
+      "matched_ticker": "ADGYO",
+      "date": "2025-11-20"
+    },
+    {
+      "declaring": "ASELS",
+      "counterparty": "TUSA\u015e - T\u00fcrk Havac\u0131l\u0131k ve Uzay Sanayii A.\u015e.",
+      "matched_ticker": "AKSA",
+      "date": "2025-11-19"
+    },
+    {
+      "declaring": "ORGE",
+      "counterparty": "Algoritma Sa\u011fl\u0131k Hizmetleri A.\u015e.",
+      "matched_ticker": "BLKOM",
+      "date": "2025-11-06"
+    },
+    {
+      "declaring": "CWENE",
+      "counterparty": "LC Waikiki Ma\u011fazac\u0131l\u0131k Hizmetleri Ticaret A\u015e",
+      "matched_ticker": "EBEBK",
+      "date": "2025-11-06"
+    },
+    {
+      "declaring": "ODINE",
+      "counterparty": "Turkcell \u0130leti\u015fim Hizmetleri A.\u015e.,  Superonline \u0130leti\u015fim Hiz",
+      "matched_ticker": "TCELL",
+      "date": "2025-11-05"
+    },
+    {
+      "declaring": "BOBET",
+      "counterparty": "Kalyon \u00d6zg\u00fcn Metro \u0130n\u015faat\u0131 Adi Ortakl\u0131\u011f\u0131 Ticari \u0130\u015fletmesi",
+      "matched_ticker": "ETILR",
+      "date": "2025-10-27"
+    },
+    {
+      "declaring": "TOASO",
+      "counterparty": "Stellantis Europe S.P.A.",
+      "matched_ticker": "KSFIN",
+      "date": "2025-10-20"
+    },
+    {
+      "declaring": "BOBET",
+      "counterparty": "Geli\u015fim Yap\u0131 Sanayi ve Ticaret A.\u015e. \u2013 Ardalya \u0130n\u015faat Adi Ort",
+      "matched_ticker": "ADGYO",
+      "date": "2025-10-20"
+    },
+    {
+      "declaring": "ARDYZ",
+      "counterparty": "HAVELSAN Hava Elektronik Sanayi ve Ticaret A.\u015e.\u2019",
+      "matched_ticker": "ASELS",
+      "date": "2026-06-26"
+    },
+    {
+      "declaring": "ORGE",
+      "counterparty": "Alarko Gayrimenkul Yat\u0131r\u0131m Ortakl\u0131\u011f\u0131 A.\u015e.",
+      "matched_ticker": "ADGYO",
+      "date": "2026-05-18"
+    },
+    {
+      "declaring": "CWENE",
+      "counterparty": "\u00c7emta\u015f \u00c7elik Makina Sanayi Ve Ticaret A.\u015e.",
+      "matched_ticker": "CEMTS",
+      "date": "2026-05-05"
+    },
+    {
+      "declaring": "ORGE",
+      "counterparty": "S\u00f6\u011f\u00fct-Ta\u015fyap\u0131 HRS \u0130n\u015faat\u0131 Adi Ortakl\u0131\u011f\u0131",
+      "matched_ticker": "ADGYO",
+      "date": "2026-05-04"
+    },
+    {
+      "declaring": "ORGE",
+      "counterparty": "Asta\u015f - Yap\u0131 ve Yap\u0131 Adi Ortakl\u0131\u011f\u0131",
+      "matched_ticker": "ADGYO",
+      "date": "2026-04-24"
+    }
+  ],
+  "listed_independent_count_raw": 38,
+  "tradeable_leg_fraction": 0.131,
+  "per_window": [
+    {
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "n": 90,
+      "buckets": {
+        "unnamed": 28,
+        "government": 12,
+        "foreign": 9,
+        "anonymized": 11,
+        "named_domestic": 30
+      }
+    },
+    {
+      "start": "2025-09-01",
+      "end": "2025-11-30",
+      "n": 100,
+      "buckets": {
+        "unnamed": 36,
+        "government": 7,
+        "foreign": 10,
+        "anonymized": 15,
+        "named_domestic": 32
+      }
+    },
+    {
+      "start": null,
+      "end": null,
+      "n": 100,
+      "buckets": {
+        "unnamed": 32,
+        "government": 16,
+        "foreign": 22,
+        "anonymized": 12,
+        "named_domestic": 18
+      }
+    }
+  ],
+  "note": "listed_independent_count_raw is an UPPER bound \u2014 token matching still admits false positives (generic tokens) and intra-group counterparties (the M7 already-priced null). Manual inspection of the 2026 window left ~1 genuine independent listed-BIST counterparty in 100 disclosures. Materiality ratios are >90% absent; amounts are free-text only. Conclusion surfaced to user as an M7 tier-1 go/no-go (\u00a78); no L2 write."
+}

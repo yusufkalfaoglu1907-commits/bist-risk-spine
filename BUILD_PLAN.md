@@ -212,7 +212,19 @@ The one valuable LLM direction (firm/sector targeting) is folded into **M7**. �
 
 ---
 
-## M7 — Supply-chain / linkage pillar (last — scarcest data, least-proven premise)
+## M7 — Supply-chain / linkage pillar  ⛔ ALL-TIERS NO-GO → PROJECT-LEVEL [STOP] (2026-06-27, ADR-0006)
+
+**Status:** **NO-GO across all three tiers**, user-ratified (ADR-0006). Tier-1 firm-level KAP
+new-business fails on **data feasibility** before M4 (~1 genuine listed-independent counterparty per 100
+disclosures ⇒ ~10–15 tradeable edges/yr, too sparse for a cross-sectional sort); tier-2 intra-group **is
+the already-priced null** the gate exists to reject; tier-3 sector-IO lead-lag is dead **OOS** at every
+horizon (in-sample IC +0.24 → OOS −0.005 daily; monthly sample-starved at 13 OOS blocks; OECD-ICIO
+cannot rescue weights over a null). Evidence: `scripts/probe_m7_{newbusiness,sector_io}.py` +
+`data/cache/m7_{newbusiness_coverage,sector_io_feasibility}_report.json`. **This is the project-level
+go/no-go** for the whole cross-sectional firm-linkage thesis: with M5 (corr) and M6 (event) already
+NO-GO, **all three pillars are now NO-GO** — tradeable cross-sectional alpha on BIST residuals appears
+exhausted. **The alpha search is concluded; the deliverable is repositioned as an honest research
+substrate + risk spine (ADR-0006).** No L2 write (never reached the M4 gate); no invariant weakened.
 
 **Goal:** the linked-firm predictability edge — built last because it needs the scarcest data and its premise is **US-documented, not BIST-proven** (treat as a hypothesis to falsify, §10).
 
@@ -225,9 +237,37 @@ The one valuable LLM direction (firm/sector targeting) is folded into **M7**. �
 
 ---
 
-## M8+ — Hardening & optional advanced layers
+## M8 — Risk/scenario tooling + hardening (the non-alpha deliverable — alpha program CLOSED 2026-06-27, ADR-0006)
 
-GraphRAG / NL-explanation over L1; OpenSanctions enrichment; **GNN overlays only if they clear the M4 gate** (at n ≈ 500 they likely won't — deferred to year 2 deliberately). Continuous: id-bridge monitoring, data-drift smoke checks, registry hygiene.
+The three-pillar **cross-sectional alpha search is concluded** (M5/M6/M7 all NO-GO). No alpha milestone
+is queued. The remaining track is the **non-alpha use of the substrate** — turn the exposure tensor +
+linkage graph into a risk/scenario tool, and harden the substrate. Opened on user direction 2026-06-27.
+**These are risk tools, not signals: no Sharpe, no promotion gate, no `signal_registry` write — the
+definition-of-done is a hand-checked reconciliation, not an edge.**
+
+- **M8.1 — Scenario re-pricing tool ✅ BUILT (2026-06-27).** Lifted the §240 channel-stress engine out
+  of the (concluded) M6 event runner into a first-class tool: `tmkg/risk/` = `scenarios.py` (a
+  `Scenario` = signed channel-shock vector + a stylized library, tier-tagged, on the unit-homogeneous
+  fractional channels; + `scenario_from_factor_returns` for the empirical path) · `repricing.py`
+  (`latest_exposure_tensor` from L2 betas + `realized_channel_shock` from real factor levels, native
+  units · reuses `channel_stress_pnl`) · `run_scenarios.py` (PIT runner → §4 report). `scripts/run_scenarios.py`
+  CLI re-prices 573 names against the library **and** the real 2025-03 İmamoğlu-shock window (empirical
+  shock: market −10.1%, CDS +67.8, foreign_flow −443.6 USD-mn — the real episode, unit-correct). Tests:
+  `tests/risk/test_scenario_repricing.py` (reconciliation to the penny + §4 honesty: coverage surfaced,
+  unmodelled channels never zero-filled, empty intersection raises). `risk` added to the no-network L3
+  invariant. No L2 write.
+- **M8.2 — Linkage-graph propagation (next).** The genuinely *non-cross-sectional* use: cascade a
+  name/group/sector shock through the **CONTROLS DAG** (group blast-radius — the analytics in
+  `schema/integrity.py`) + HOLDS_STAKE/IN_SECTOR, so a shock to one node propagates to controlled/linked
+  names. PIT-honest via `PITAccess.graph` (Cypher over the L1 Kuzu graph).
+- **M8.3 — Substrate hardening (standing).** id-bridge round-trip monitoring, data-drift smoke checks,
+  `signal_registry` hygiene.
+
+**Optional advanced layers (deferred, only on explicit direction):** GraphRAG / NL-explanation over L1;
+OpenSanctions enrichment; **GNN overlays only if they clear the M4 gate** (at n ≈ 500 they likely won't).
+
+**Exit gate (per tool):** the re-pricing reconciles to a hand-checked shock · coverage/unmodelled
+channels are surfaced, never fabricated (§4) · no risk tool writes a tradeable claim to `signal_registry`.
 
 ---
 

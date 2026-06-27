@@ -1,0 +1,243 @@
+{
+  "_written_at": "2026-06-26T21:32:17",
+  "probe": "m7_tier3_sector_io_leadlag_feasibility",
+  "source": "L2 residuals (M2 strip) x graph IN_SECTOR",
+  "n_sectors": 21,
+  "n_trading_days": 604,
+  "min_names_per_sector_day": 8,
+  "horizons": [
+    {
+      "win_days": 1,
+      "n_blocks": 604,
+      "oos_test_blocks": 301,
+      "generic_oos_ic": -0.0051,
+      "textbook_pairs_mean_oos_corr": -0.0051,
+      "train_confirmed_pairs": 0,
+      "pairs": [
+        {
+          "supplier": "ELEKTR\u0130K GAZ VE BUHAR",
+          "customer": "METAL E\u015eYA MAK\u0130NE",
+          "train_corr": 0.0438,
+          "test_corr": 0.1684
+        },
+        {
+          "supplier": "ELEKTR\u0130K GAZ VE BUHAR",
+          "customer": "ANA METAL SANAY\u0130",
+          "train_corr": 0.0363,
+          "test_corr": -0.0126
+        },
+        {
+          "supplier": "ANA METAL SANAY\u0130",
+          "customer": "METAL E\u015eYA MAK\u0130NE",
+          "train_corr": -0.0268,
+          "test_corr": -0.0527
+        },
+        {
+          "supplier": "K\u0130MYA \u0130LA\u00c7 PETROL",
+          "customer": "TEKST\u0130L",
+          "train_corr": 0.1049,
+          "test_corr": 0.0691
+        },
+        {
+          "supplier": "K\u0130MYA \u0130LA\u00c7 PETROL",
+          "customer": "TA\u015e VE TOPRA\u011eA",
+          "train_corr": -0.0589,
+          "test_corr": 0.0978
+        },
+        {
+          "supplier": "BANKALAR",
+          "customer": "HOLD\u0130NGLER",
+          "train_corr": 0.0208,
+          "test_corr": -0.0612
+        },
+        {
+          "supplier": "ANA METAL SANAY\u0130",
+          "customer": "\u0130N\u015eAAT",
+          "train_corr": -0.001,
+          "test_corr": -0.1454
+        },
+        {
+          "supplier": "TA\u015e VE TOPRA\u011eA",
+          "customer": "\u0130N\u015eAAT",
+          "train_corr": -0.004,
+          "test_corr": -0.1043
+        }
+      ]
+    },
+    {
+      "win_days": 5,
+      "n_blocks": 120,
+      "oos_test_blocks": 59,
+      "generic_oos_ic": 0.0028,
+      "textbook_pairs_mean_oos_corr": 0.03,
+      "train_confirmed_pairs": 0,
+      "pairs": [
+        {
+          "supplier": "ELEKTR\u0130K GAZ VE BUHAR",
+          "customer": "METAL E\u015eYA MAK\u0130NE",
+          "train_corr": 0.2501,
+          "test_corr": -0.0088
+        },
+        {
+          "supplier": "ELEKTR\u0130K GAZ VE BUHAR",
+          "customer": "ANA METAL SANAY\u0130",
+          "train_corr": 0.1552,
+          "test_corr": -0.1482
+        },
+        {
+          "supplier": "ANA METAL SANAY\u0130",
+          "customer": "METAL E\u015eYA MAK\u0130NE",
+          "train_corr": -0.171,
+          "test_corr": -0.1019
+        },
+        {
+          "supplier": "K\u0130MYA \u0130LA\u00c7 PETROL",
+          "customer": "TEKST\u0130L",
+          "train_corr": -0.068,
+          "test_corr": 0.117
+        },
+        {
+          "supplier": "K\u0130MYA \u0130LA\u00c7 PETROL",
+          "customer": "TA\u015e VE TOPRA\u011eA",
+          "train_corr": -0.1321,
+          "test_corr": 0.1946
+        },
+        {
+          "supplier": "BANKALAR",
+          "customer": "HOLD\u0130NGLER",
+          "train_corr": 0.1562,
+          "test_corr": -0.0483
+        },
+        {
+          "supplier": "ANA METAL SANAY\u0130",
+          "customer": "\u0130N\u015eAAT",
+          "train_corr": -0.0873,
+          "test_corr": 0.1576
+        },
+        {
+          "supplier": "TA\u015e VE TOPRA\u011eA",
+          "customer": "\u0130N\u015eAAT",
+          "train_corr": 0.0512,
+          "test_corr": 0.0781
+        }
+      ]
+    },
+    {
+      "win_days": 10,
+      "n_blocks": 60,
+      "oos_test_blocks": 29,
+      "generic_oos_ic": 0.0169,
+      "textbook_pairs_mean_oos_corr": -0.0323,
+      "train_confirmed_pairs": 0,
+      "pairs": [
+        {
+          "supplier": "ELEKTR\u0130K GAZ VE BUHAR",
+          "customer": "METAL E\u015eYA MAK\u0130NE",
+          "train_corr": 0.2154,
+          "test_corr": -0.241
+        },
+        {
+          "supplier": "ELEKTR\u0130K GAZ VE BUHAR",
+          "customer": "ANA METAL SANAY\u0130",
+          "train_corr": 0.1383,
+          "test_corr": -0.0817
+        },
+        {
+          "supplier": "ANA METAL SANAY\u0130",
+          "customer": "METAL E\u015eYA MAK\u0130NE",
+          "train_corr": -0.0269,
+          "test_corr": 0.0676
+        },
+        {
+          "supplier": "K\u0130MYA \u0130LA\u00c7 PETROL",
+          "customer": "TEKST\u0130L",
+          "train_corr": -0.0576,
+          "test_corr": 0.2374
+        },
+        {
+          "supplier": "K\u0130MYA \u0130LA\u00c7 PETROL",
+          "customer": "TA\u015e VE TOPRA\u011eA",
+          "train_corr": -0.1182,
+          "test_corr": 0.2321
+        },
+        {
+          "supplier": "BANKALAR",
+          "customer": "HOLD\u0130NGLER",
+          "train_corr": 0.1289,
+          "test_corr": -0.1072
+        },
+        {
+          "supplier": "ANA METAL SANAY\u0130",
+          "customer": "\u0130N\u015eAAT",
+          "train_corr": -0.0408,
+          "test_corr": -0.4135
+        },
+        {
+          "supplier": "TA\u015e VE TOPRA\u011eA",
+          "customer": "\u0130N\u015eAAT",
+          "train_corr": 0.2454,
+          "test_corr": 0.0477
+        }
+      ]
+    },
+    {
+      "win_days": 21,
+      "n_blocks": 28,
+      "oos_test_blocks": 13,
+      "generic_oos_ic": 0.0372,
+      "textbook_pairs_mean_oos_corr": -0.0967,
+      "train_confirmed_pairs": 3,
+      "pairs": [
+        {
+          "supplier": "ELEKTR\u0130K GAZ VE BUHAR",
+          "customer": "METAL E\u015eYA MAK\u0130NE",
+          "train_corr": -0.1999,
+          "test_corr": -0.7339
+        },
+        {
+          "supplier": "ELEKTR\u0130K GAZ VE BUHAR",
+          "customer": "ANA METAL SANAY\u0130",
+          "train_corr": 0.2867,
+          "test_corr": 0.2886
+        },
+        {
+          "supplier": "ANA METAL SANAY\u0130",
+          "customer": "METAL E\u015eYA MAK\u0130NE",
+          "train_corr": -0.3325,
+          "test_corr": 0.2117
+        },
+        {
+          "supplier": "K\u0130MYA \u0130LA\u00c7 PETROL",
+          "customer": "TEKST\u0130L",
+          "train_corr": -0.3944,
+          "test_corr": 0.0436
+        },
+        {
+          "supplier": "K\u0130MYA \u0130LA\u00c7 PETROL",
+          "customer": "TA\u015e VE TOPRA\u011eA",
+          "train_corr": -0.16,
+          "test_corr": -0.268
+        },
+        {
+          "supplier": "BANKALAR",
+          "customer": "HOLD\u0130NGLER",
+          "train_corr": 0.1325,
+          "test_corr": -0.141
+        },
+        {
+          "supplier": "ANA METAL SANAY\u0130",
+          "customer": "\u0130N\u015eAAT",
+          "train_corr": -0.4687,
+          "test_corr": 0.3039
+        },
+        {
+          "supplier": "TA\u015e VE TOPRA\u011eA",
+          "customer": "\u0130N\u015eAAT",
+          "train_corr": 0.4497,
+          "test_corr": -0.4781
+        }
+      ]
+    }
+  ],
+  "verdict": "NO sector-IO lead-lag survives OOS at any horizon. Daily/weekly generic OOS IC ~0 and 0/8 textbook IO pairs train-confirmed; the monthly horizon (where customer-momentum should peak) has too few independent OOS blocks (~13 over 3yr) to establish significance. Sourcing OECD-ICIO cannot rescue this \u2014 it weights sector-pair lead-lags that carry no stable OOS signal. Tier-3 go/no-go surfaced to user (\u00a78)."
+}

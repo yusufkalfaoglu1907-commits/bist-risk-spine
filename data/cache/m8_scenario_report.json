@@ -1,0 +1,252 @@
+{
+  "milestone": "M8",
+  "tool": "scenario_repricing",
+  "report": "m8_scenario_report",
+  "as_of": "2026-06-15",
+  "note": "risk re-pricing, not a signal \u2014 no Sharpe / promotion gate / registry write. A scenario answers 'if these channels move, what happens to the book', not 'will they'.",
+  "exposure_tensor": {
+    "n_names": 573,
+    "channels": [
+      "market",
+      "fx",
+      "rates_cds",
+      "energy",
+      "foreign_flow",
+      "holding"
+    ],
+    "channel_factor": {
+      "market": "XU100",
+      "fx": "USDTRY",
+      "rates_cds": "TRCDS5Y",
+      "energy": "BRENT",
+      "foreign_flow": "FFLOW",
+      "holding": "XHOLD"
+    },
+    "min_per_channel_coverage": {
+      "market": 1.0,
+      "fx": 1.0,
+      "rates_cds": 1.0,
+      "energy": 1.0,
+      "foreign_flow": 1.0,
+      "holding": 1.0
+    }
+  },
+  "weighted_book": false,
+  "empirical": {
+    "window": [
+      "2025-03-18",
+      "2025-03-25"
+    ],
+    "shock": {
+      "market": -0.10059500146917344,
+      "fx": 0.035085519591141257,
+      "rates_cds": 67.82,
+      "energy": 0.03600864892637712,
+      "foreign_flow": -443.61,
+      "holding": -0.08528688375797622
+    }
+  },
+  "scenarios": [
+    {
+      "n_names": 573,
+      "shocked_channels": [
+        "fx"
+      ],
+      "unmodelled_channels": [],
+      "portfolio_pnl": null,
+      "worst_exposed": {
+        "OZATD": -2.9973434065256233,
+        "MANAS": -2.5106554279461344,
+        "CRFSA": -2.4807638503999208,
+        "MAGEN": -2.250672544357269,
+        "KLRHO": -2.148215174423685
+      },
+      "best_exposed": {
+        "BIGEN": 6.83729306204853,
+        "ANELE": 4.801230565963177,
+        "KLSYN": 1.8907914884033072,
+        "DITAS": 1.7711848356198836,
+        "EFOR": 1.6387285546231671
+      },
+      "min_coverage": 1.0,
+      "scenario": "try_depreciation_10",
+      "tier": "stylized",
+      "description": "A 10% one-move TRY depreciation (USDTRY +10%), all other channels held flat.",
+      "shocks": {
+        "fx": 0.1
+      }
+    },
+    {
+      "n_names": 573,
+      "shocked_channels": [
+        "rates_cds",
+        "market"
+      ],
+      "unmodelled_channels": [],
+      "portfolio_pnl": null,
+      "worst_exposed": {
+        "ANELE": -0.07164985819362432,
+        "BORLS": -0.041072747177746005,
+        "AYCES": -0.03938764580355003,
+        "DSTKF": -0.029654525837517414,
+        "BURVA": -0.02501883982511272
+      },
+      "best_exposed": {
+        "BIGEN": 0.05652594923510808,
+        "DMRGD": 0.02837386580595409,
+        "OZATD": 0.026830870991854133,
+        "SANEL": 0.02539385856360938,
+        "DGNMO": 0.02228412641437806
+      },
+      "min_coverage": 1.0,
+      "scenario": "rate_cds_widening",
+      "tier": "stylized",
+      "description": "A sharp sovereign-risk repricing: 5Y CDS / rates +20%, broad market \u22124%.",
+      "shocks": {
+        "rates_cds": 0.2,
+        "market": -0.04
+      }
+    },
+    {
+      "n_names": 573,
+      "shocked_channels": [
+        "energy",
+        "fx"
+      ],
+      "unmodelled_channels": [],
+      "portfolio_pnl": null,
+      "worst_exposed": {
+        "OZATD": -1.2534826389010365,
+        "MANAS": -0.7617096170519876,
+        "CRFSA": -0.7354088878673303,
+        "KLRHO": -0.7304026304723482,
+        "MAGEN": -0.6648630428935994
+      },
+      "best_exposed": {
+        "BIGEN": 2.1904093543754195,
+        "ANELE": 1.3074492237344513,
+        "KLSYN": 0.6081377512773095,
+        "EFOR": 0.5270411560705694,
+        "DITAS": 0.4908874882913118
+      },
+      "min_coverage": 1.0,
+      "scenario": "oil_spike",
+      "tier": "stylized",
+      "description": "An energy supply shock: Brent +20%, a small TRY depreciation (importer drag).",
+      "shocks": {
+        "energy": 0.2,
+        "fx": 0.03
+      }
+    },
+    {
+      "n_names": 573,
+      "shocked_channels": [
+        "market",
+        "fx",
+        "rates_cds",
+        "energy"
+      ],
+      "unmodelled_channels": [],
+      "portfolio_pnl": null,
+      "worst_exposed": {
+        "OZATD": -1.3400916139731,
+        "CRFSA": -1.2498758388456142,
+        "MANAS": -1.2212355935804309,
+        "MAGEN": -1.1398661152743637,
+        "KLRHO": -1.0420129073584115
+      },
+      "best_exposed": {
+        "BIGEN": 3.4891923161956964,
+        "ANELE": 2.2981821112273697,
+        "KLSYN": 0.9113991725114284,
+        "DITAS": 0.887730082856103,
+        "EFOR": 0.7721352125507115
+      },
+      "min_coverage": 1.0,
+      "scenario": "global_risk_off",
+      "tier": "stylized",
+      "description": "A broad global risk-off: XU100 \u22128%, USDTRY +5%, CDS +8%, Brent \u22126% (growth scare). Stylized, multi-channel.",
+      "shocks": {
+        "market": -0.08,
+        "fx": 0.05,
+        "rates_cds": 0.08,
+        "energy": -0.06
+      }
+    },
+    {
+      "n_names": 573,
+      "shocked_channels": [
+        "market",
+        "fx",
+        "rates_cds",
+        "holding"
+      ],
+      "unmodelled_channels": [],
+      "portfolio_pnl": null,
+      "worst_exposed": {
+        "OZATD": -3.001742934680138,
+        "CRFSA": -2.5571752891113344,
+        "MAGEN": -2.320431792856306,
+        "KLRHO": -2.288338952949648,
+        "MANAS": -2.271115275211912
+      },
+      "best_exposed": {
+        "BIGEN": 6.884889626102192,
+        "ANELE": 4.2991776178907894,
+        "KLSYN": 1.7870196259990767,
+        "DITAS": 1.69187092054934,
+        "EFOR": 1.5875883318057842
+      },
+      "min_coverage": 1.0,
+      "scenario": "imamoglu_shock_stylized",
+      "tier": "stylized",
+      "description": "A stylized analog of the 2025-03-19 \u0130mamo\u011flu-detention regime break: XU100 \u221212%, USDTRY +10%, CDS +15%, holding index \u221210%. STYLIZED \u2014 for a unit-correct re-pricing of the real episode use the empirical path over the actual 2025-03-18\u219203-25 factor returns.",
+      "shocks": {
+        "market": -0.12,
+        "fx": 0.1,
+        "rates_cds": 0.15,
+        "holding": -0.1
+      }
+    },
+    {
+      "n_names": 573,
+      "shocked_channels": [
+        "market",
+        "fx",
+        "rates_cds",
+        "energy",
+        "foreign_flow",
+        "holding"
+      ],
+      "unmodelled_channels": [],
+      "portfolio_pnl": null,
+      "worst_exposed": {
+        "KLRHO": -1.2200677157335205,
+        "CRFSA": -0.9379804286958761,
+        "OZATD": -0.8642613416558386,
+        "MAGEN": -0.8585907439553269,
+        "ATSYH": -0.7274300076267624
+      },
+      "best_exposed": {
+        "BIGEN": 2.5852015048377073,
+        "ANELE": 0.9382637429587259,
+        "BRMEN": 0.7090219001593195,
+        "KLSYN": 0.5881411309405594,
+        "ULAS": 0.5818393820704303
+      },
+      "min_coverage": 1.0,
+      "scenario": "imamoglu_real",
+      "tier": "empirical",
+      "description": "Realized factor returns over 2025-03-18\u21922025-03-25 (empirical, unit-correct).",
+      "shocks": {
+        "market": -0.10059500146917344,
+        "fx": 0.035085519591141257,
+        "rates_cds": 67.82,
+        "energy": 0.03600864892637712,
+        "foreign_flow": -443.61,
+        "holding": -0.08528688375797622
+      }
+    }
+  ],
+  "skipped_scenarios": []
+}
