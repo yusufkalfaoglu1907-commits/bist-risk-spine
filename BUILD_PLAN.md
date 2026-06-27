@@ -296,6 +296,33 @@ channels are surfaced, never fabricated (§4) · no risk tool writes a tradeable
 
 ---
 
+## M9 — Operationalization / keep-current (opened 2026-06-27, user direction)
+
+Make the reproducible-but-manual pipeline keep itself current as firms IPO and data arrives daily.
+Build order chosen by the user: **3 (new-listing onboarding) → 1 (scheduler) → 2 (incremental mode)**.
+
+- **3a — New-listing detector ✅ BUILT (2026-06-27).** `tmkg/ingest/new_listings.py` diffs the cached KAP
+  listed universe against the graph **on `kap_oid`** (the stable key — a raw-ticker diff over-reports
+  44 false-new / 43 false-retired from ticker drift like `GARAN`→`GARAN, TGB`; the kap_oid diff finds the
+  *one* genuinely new entity). Surfaces new-to-onboard (carrying KAP identity), retired candidates (kept,
+  survivorship — flag only), and ticker changes (id-bridge reconciliations). `scripts/detect_new_listings.py`
+  → `data/cache/new_listings_report.json`; `tests/ingest/test_new_listings.py`. **Real run: 1 new — `FAIRF`
+  (FAİR FİNANSMAN A.Ş.).** Detection only; no graph mutation / price pull.
+- **3b — Onboarding orchestrator (next).** Consume the detector's new-entity list and run the existing
+  per-source steps for just those kap_oids: KAP seed (Company/Security + id-bridge) → GLEIF (LEI/ISIN) →
+  sector → universe-class → price/return history pull → factor/residual refit. Idempotent; fail-loud.
+- **1 — Scheduler.** cron/launchd/CI that runs the ingest steps on a cadence, then the M8.3 monitors +
+  the 3a detector as a gate, alerting on FAIL.
+- **2 — Daily incremental mode.** A "since last `knowledge_date`" pull for existing names (most ingest
+  scripts pull ranges) + a refit trigger that respects the regime warm-up (no residual for ~40 sessions
+  after a regime break).
+
+**Exit gate:** onboarding a real new name (e.g. FAIRF) produces a complete, tradeable substrate row
+(identity bridge round-trips · price history · universe-class · betas/residuals) with full §4 audit, and
+the scheduled run is idempotent + fails loud on a bad feed.
+
+---
+
 ## Live risk register (from design §10 — keep visible, revisit each milestone)
 
 | Risk | Where it bites | Mitigation in this plan |

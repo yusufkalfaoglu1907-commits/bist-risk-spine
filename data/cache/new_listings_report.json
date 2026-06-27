@@ -1,0 +1,24 @@
+{
+  "_written_at": "2026-06-27T16:55:22",
+  "tool": "new_listing_detector",
+  "_generated_at": "2026-06-27T16:55:22",
+  "upstream_source": "kap_members.json (fetched 2026-06-27T08:54:00.761363+00:00, 731 listed)",
+  "diff_key": "kap_oid (stable; tickers drift)",
+  "n_upstream_listed": 731,
+  "n_known_in_graph": 730,
+  "n_new": 1,
+  "n_retired_candidates": 0,
+  "n_ticker_changes": 0,
+  "in_sync": false,
+  "new_listings": [
+    {
+      "kap_oid": "8acae2c5998f25d7019a38e6edf272ec",
+      "ticker": "FAIRF",
+      "name": "FA\u0130R F\u0130NANSMAN A.\u015e.",
+      "mkk_oid": "8acae2c5991b90af019961c939bd1e63"
+    }
+  ],
+  "retired_candidates": [],
+  "ticker_changes": [],
+  "note": "detection only \u2014 does not mutate the graph or pull prices. New entities carry KAP identity (kap_oid/mkk_oid) for the onboarding orchestrator (step 3b). Retired candidates are KEPT (survivorship), only flagged. Ticker changes are id-bridge reconciliations, not new listings."
+}
