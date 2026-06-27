@@ -1,0 +1,95 @@
+{
+  "_written_at": "2026-06-27T18:03:20",
+  "tool": "keep_current_cycle",
+  "_generated_at": "2026-06-27T18:03:20",
+  "as_of": "2026-06-27",
+  "verdict": {
+    "attention": true,
+    "health_ok": true,
+    "monitors": {
+      "idbridge": true,
+      "smoke_drift": true,
+      "registry": true
+    },
+    "n_new_listings": 0,
+    "onboarding_queue_len": 211,
+    "reasons": [
+      "211 name(s) awaiting onboarding"
+    ]
+  },
+  "new_listings": {
+    "n_new": 0,
+    "tickers": []
+  },
+  "health": {
+    "idbridge": true,
+    "smoke_drift": true,
+    "registry": true
+  },
+  "onboarding_queue": {
+    "len": 211,
+    "top": [
+      {
+        "ticker": "ZKBVR",
+        "next_step": "gleif_identity"
+      },
+      {
+        "ticker": "ZKBVK",
+        "next_step": "gleif_identity"
+      },
+      {
+        "ticker": "YKR",
+        "next_step": "gleif_identity"
+      },
+      {
+        "ticker": "YKFKT",
+        "next_step": "gleif_identity"
+      },
+      {
+        "ticker": "YATVK",
+        "next_step": "gleif_identity"
+      },
+      {
+        "ticker": "VDFLO",
+        "next_step": "gleif_identity"
+      },
+      {
+        "ticker": "VDFAS",
+        "next_step": "gleif_identity"
+      },
+      {
+        "ticker": "VAKVK",
+        "next_step": "gleif_identity"
+      },
+      {
+        "ticker": "TV8TV",
+        "next_step": "gleif_identity"
+      },
+      {
+        "ticker": "TRYKI",
+        "next_step": "gleif_identity"
+      },
+      {
+        "ticker": "TRMEN",
+        "next_step": "gleif_identity"
+      },
+      {
+        "ticker": "TRKNT",
+        "next_step": "gleif_identity"
+      },
+      {
+        "ticker": "TRKFN",
+        "next_step": "gleif_identity"
+      },
+      {
+        "ticker": "TRFFA",
+        "next_step": "gleif_identity"
+      },
+      {
+        "ticker": "TIMUR",
+        "next_step": "gleif_identity"
+      }
+    ]
+  },
+  "note": "read-only heartbeat \u2014 no mutation, no onboarding. Onboarding is an explicit targeted vendor-lag-aware action; a new IPO's market data lags its KAP listing, so this reports the name rather than pulling data the vendor does not carry yet."
+}

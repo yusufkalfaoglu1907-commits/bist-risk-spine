@@ -325,9 +325,14 @@ Build order chosen by the user: **3 (new-listing onboarding) → 1 (scheduler) �
   **FAIRF root cause confirmed: Matriks does not carry the symbol yet (vendor data lag), NOT an outage**
   (GARAN/ASELS pulled 62 bars; symbolSearch FAIRF→0). Caveat: the queue is scoped to all `is_listed`
   nodes (211), dominated by non-equity instruments (warrants/funds) — equity-scope filtering is a follow-up.
-- **1 — Scheduler.** cron/launchd/CI that runs the ingest steps on a cadence, then the M8.3 monitors +
-  the 3a detector + the 3c queue as a gate, alerting on FAIL. Onboarding must be **targeted per-name**
-  (not the whole-universe scripts) and driven by the 3c queue, skipping vendor-lagged names.
+- **1 — Scheduler / keep-current heartbeat ✅ BUILT (2026-06-27).** `tmkg/ingest/keep_current.py` composes
+  the 3a detector + the three M8.3 health monitors + the 3c queue into one **read-only** cycle with an
+  `attention` verdict (`summarize_cycle`, pure/tested). `scripts/keep_current.py` prints the status, writes
+  `data/cache/keep_current_report.json`, and **exits nonzero on attention** (new listing / monitor fail /
+  pending onboarding) — wire to cron/launchd (snippets in the script docstring) + an alert. Safe: no
+  mutation, no onboarding. Live: monitors all green, 0 new, queue 211 → ATTENTION/exit 1. Still TODO before
+  it drives *automatic* onboarding: equity-scope the queue (211 includes non-equity) + a targeted
+  vendor-lag-aware executor.
 - **2 — Daily incremental mode.** A "since last `knowledge_date`" pull for existing names (most ingest
   scripts pull ranges) + a refit trigger that respects the regime warm-up (no residual for ~40 sessions
   after a regime break).
