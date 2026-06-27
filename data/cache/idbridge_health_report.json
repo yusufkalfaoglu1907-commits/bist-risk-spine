@@ -1,0 +1,35 @@
+{
+  "_written_at": "2026-06-27T11:00:08",
+  "monitor": "idbridge_health",
+  "n_companies_ticker": 730,
+  "coverage": {
+    "isin": 0.826,
+    "kap_oid": 1.0,
+    "lei": 0.9192
+  },
+  "coverage_floors": {
+    "isin": 0.8,
+    "kap_oid": 0.99,
+    "lei": 0.88
+  },
+  "collisions": {
+    "isin": [],
+    "kap_oid": [],
+    "lei": []
+  },
+  "collision_counts": {
+    "isin": 0,
+    "kap_oid": 0,
+    "lei": 0
+  },
+  "round_trip": {
+    "swept": true,
+    "ok": 730,
+    "broken": [],
+    "ambiguous": [],
+    "broken_count": 0,
+    "ambiguous_count": 0
+  },
+  "passes": true,
+  "failures": []
+}

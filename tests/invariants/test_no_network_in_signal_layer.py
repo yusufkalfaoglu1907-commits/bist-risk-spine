@@ -25,7 +25,7 @@ import pytest
 import tmkg.config as config
 
 # Packages that form the L3 compute / signal layer (must never hit the network).
-_L3_PACKAGES = ("signals", "factors", "returns", "analytics", "events", "risk")
+_L3_PACKAGES = ("signals", "factors", "returns", "analytics", "events", "risk", "monitor")
 
 # A network call is impossible without one of these client libraries — forbid them outright.
 _NET_CLIENT_ROOTS = frozenset(

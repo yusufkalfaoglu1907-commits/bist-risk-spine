@@ -261,7 +261,12 @@ definition-of-done is a hand-checked reconciliation, not an edge.**
   `schema/integrity.py`) + HOLDS_STAKE/IN_SECTOR, so a shock to one node propagates to controlled/linked
   names. PIT-honest via `PITAccess.graph` (Cypher over the L1 Kuzu graph).
 - **M8.3 — Substrate hardening (standing).** id-bridge round-trip monitoring, data-drift smoke checks,
-  `signal_registry` hygiene.
+  `signal_registry` hygiene. **id-bridge health monitor ✅ BUILT (2026-06-27):** `tmkg/monitor/idbridge_health.py`
+  sweeps the whole 730-name ticker universe → per-leg coverage (isin 0.83 / kap_oid 1.00 / lei 0.92),
+  collision detection (ambiguous identity), full round-trip sweep (730 ok / 0 broken / 0 ambiguous);
+  `scripts/monitor_idbridge.py` CLI → `data/cache/idbridge_health_report.json`; regression-guarded by
+  `tests/invariants/test_idbridge_health.py` (coverage floors + zero-collision + zero-broken). Pure L1
+  read; `monitor` added to the no-network L3 invariant. Drift-smoke aggregation + registry hygiene next.
 
 **Optional advanced layers (deferred, only on explicit direction):** GraphRAG / NL-explanation over L1;
 OpenSanctions enrichment; **GNN overlays only if they clear the M4 gate** (at n ≈ 500 they likely won't).
