@@ -317,8 +317,17 @@ Build order chosen by the user: **3 (new-listing onboarding) → 1 (scheduler) �
   `scripts/onboard_new_listings.py [--execute]` → `data/cache/onboarding_report.json`; `tests/ingest/test_onboarding.py`
   (recipe order/idempotency, real script targets, plan skips done stages). Dry-run on FAIRF: needs all 5
   steps. **Live onboarding of FAIRF is user-gated (mutates the canonical graph + L2, hits the network).**
+- **3c — Onboarding queue + vendor-lag classifier ✅ BUILT (2026-06-27).** `tmkg/ingest/onboarding_queue.py`:
+  `onboarding_queue` = every *listed* graph name with an incomplete quant row (the real retry source —
+  not the 3a brand-new list, which stops flagging a name once seeded) via bulk graph+L2 reads;
+  `classify_market_data`/`market_data_status` distinguish **vendor-lag** (`not_carried_yet`, symbolSearch
+  0 results → retry later) from `carried`. `scripts/onboarding_queue.py [--check-market]` + tests.
+  **FAIRF root cause confirmed: Matriks does not carry the symbol yet (vendor data lag), NOT an outage**
+  (GARAN/ASELS pulled 62 bars; symbolSearch FAIRF→0). Caveat: the queue is scoped to all `is_listed`
+  nodes (211), dominated by non-equity instruments (warrants/funds) — equity-scope filtering is a follow-up.
 - **1 — Scheduler.** cron/launchd/CI that runs the ingest steps on a cadence, then the M8.3 monitors +
-  the 3a detector as a gate, alerting on FAIL.
+  the 3a detector + the 3c queue as a gate, alerting on FAIL. Onboarding must be **targeted per-name**
+  (not the whole-universe scripts) and driven by the 3c queue, skipping vendor-lagged names.
 - **2 — Daily incremental mode.** A "since last `knowledge_date`" pull for existing names (most ingest
   scripts pull ranges) + a refit trigger that respects the regime warm-up (no residual for ~40 sessions
   after a regime break).

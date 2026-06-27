@@ -15,6 +15,17 @@ The handoff mechanism between sessions. A fresh Claude Code session reconstructs
 
 ---
 
+## 2026-06-27 (cont. 9) — Matriks bars root cause = vendor data-lag (NOT outage); M9.3c onboarding queue + vendor-lag classifier BUILT
+**Did:** Per user, retried the Matriks bars pull for FAIRF + diagnosed the root cause, then continued building.
+**ROOT CAUSE (decisive):** the bars `SERVICE_UNAVAILABLE` is **FAIRF-specific, not a service outage** — GARAN/ASELS bars both returned 62 bars fine (service + auth alive), and **`symbolSearch` for FAIRF (and every name variant) returns 0 results: Matriks does not carry the symbol yet.** This is the expected **new-IPO market-data lag**: KAP registers a company at listing (so 3a detects it), but the market-data vendor adds the tradeable symbol's bars feed days/weeks later. Matriks returns a generic `SERVICE_UNAVAILABLE` for an unknown symbol rather than a clean not-found. So FAIRF's price step is a *transient expected pending* (retry later), not a failure.
+**Built M9.3c** to operationalize this + the earlier findings: `tmkg/ingest/onboarding_queue.py` — `onboarding_queue` (every *listed* graph name with an incomplete quant row, via bulk graph+L2 reads — the real retry source, since the 3a detector stops flagging a name once it's seeded) + `classify_market_data`/`market_data_status` (symbolSearch → `carried` / `not_carried_yet` (vendor-lag) / `carried_other_code`). `scripts/onboarding_queue.py [--check-market]`.
+**Result:** verify GREEN (pending; +7 `tests/ingest/test_onboarding_queue.py`). Live classifier: **FAIRF→`not_carried_yet`**, GARAN→`carried`, ZKBVR(warrant)→`not_carried_yet`. Real queue: **211 incomplete listed names**.
+**Decided / findings (durable):** (1) **FAIRF blocker = vendor data-lag** — retry the price pull periodically; it will succeed once Matriks carries FAIRF. (2) **The queue is scoped to all `is_listed` nodes (211) and is dominated by NON-EQUITY instruments (warrants ZKBVR/ZKBVK, fund codes)** that were never in the equity modeling scope (M3 = ~570 equity names). **Equity-scope filtering is a required follow-up** before the queue drives automated onboarding (signal: equity-class ISIN TRA/TRE, or a KAP financial_type filter — needs investigation). FAIRF is the one genuine equity target. (3) Vendor-lag must be classified distinctly so a scheduler skips/retries rather than erroring.
+**Open:** equity-scope the onboarding queue; targeted per-name onboarding executor (using `ingest_prices`/`build_total_returns`/`ingest_universe_class`, vendor-lag-aware); then M9.1 scheduler driven by the 3c queue; M9.2 incremental. FAIRF quant onboarding resumes when Matriks carries it.
+**Next action:** continue — equity-scope the queue (or build the targeted vendor-lag-aware executor), then M9.1. Repo GREEN.
+
+---
+
 ## 2026-06-27 (cont. 8) — FAIRF live-onboarded (identity DONE; quant pending — Matriks bars outage + new-listing constraints)
 **Did:** User authorized the live onboarding of FAIRF (the 1 detected new listing). Onboarded **surgically** (per-name, NOT the whole-universe `--execute` path, which would re-pull ~570 names — a flaw to fix). Canonical graph mutated (`data/tmkg.kuzu`, local/gitignored):
 - **kap_identity ✅** — `seed_companies_from_kap` (cached members, offline) → FAIRF Company + Security + ISSUES in the graph (kap_oid `8acae2c5…`, is_listed).
