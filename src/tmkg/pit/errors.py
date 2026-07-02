@@ -16,6 +16,14 @@ class SourceUnreachable(RuntimeError):
     LOUDLY and stops — it never returns placeholder/interpolated data."""
 
 
+class RateLimited(SourceUnreachable):
+    """The upstream gateway returned HTTP 429 RATE_LIMIT_EXCEEDED. A *transient*,
+    retryable form of SourceUnreachable: the data exists and the creds are valid —
+    the caller has simply pulled too fast. A paced retry loop should back off and
+    retry rather than drop the symbol (BUILD_LOG 2026-07-01). Subclasses
+    SourceUnreachable so any existing `except SourceUnreachable` still catches it."""
+
+
 class FabricationGuard(RuntimeError):
     """Code would synthesize, mock, or interpolate market data into L2.
     Fabricated quant data that looks real is the most dangerous bug in this project."""

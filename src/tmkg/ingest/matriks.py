@@ -32,7 +32,7 @@ import httpx
 
 from tmkg.ingest.audit import write_run_report
 from tmkg.ingest.base import IngestionAdapter
-from tmkg.pit.errors import ContractDrift, SourceUnreachable
+from tmkg.pit.errors import ContractDrift, RateLimited, SourceUnreachable
 
 _REPO = pathlib.Path(__file__).resolve().parents[3]
 _GOLDEN = _REPO / "tests" / "golden" / "matriks"
@@ -168,6 +168,13 @@ class MatriksAdapter(IngestionAdapter):
             )
         except httpx.HTTPError as e:  # network / DNS / timeout
             raise SourceUnreachable(f"Matriks {tool} POST failed: {e}") from e
+        if resp.status_code == 429:
+            # RATE_LIMIT_EXCEEDED — transient/retryable, not a dead source. A paced
+            # pull loop backs off and retries rather than dropping the symbol (§4,
+            # BUILD_LOG 2026-07-01). Distinct from a hard SourceUnreachable.
+            raise RateLimited(
+                f"Matriks {tool} HTTP 429 RATE_LIMIT_EXCEEDED: {resp.text[:200]}"
+            )
         if resp.status_code != 200:
             raise SourceUnreachable(
                 f"Matriks {tool} HTTP {resp.status_code}: {resp.text[:200]}"

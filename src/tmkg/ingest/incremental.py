@@ -14,6 +14,7 @@ Design choices:
 """
 from __future__ import annotations
 
+import time as _time
 from datetime import date, timedelta
 
 
@@ -110,41 +111,79 @@ def plan_daily_pulls(
     return plan[:limit] if limit else plan
 
 
+def _pull_one(adapter, store, item: dict, as_of: date, *, backoff_seconds: float,
+              max_retries: int, sleep) -> dict:
+    """Pull + build one stale symbol, retrying on HTTP 429 with a fixed backoff.
+
+    A 429 (``RateLimited``) is transient: the source is alive, we were just too fast.
+    We sleep ``backoff_seconds`` and retry the SAME symbol up to ``max_retries`` times
+    rather than dropping it (the 511/570-dropped bug, BUILD_LOG 2026-07-01). Any other
+    error fails that one symbol and moves on. ``build_total_returns(overwrite=True)`` so
+    a re-pull corrects a previously-null ``ret_usd`` row (ON CONFLICT DO NOTHING can't)."""
+    from tmkg.ingest.pipeline import build_total_returns, ingest_prices
+    from tmkg.pit.errors import RateLimited
+
+    sym = item["symbol"]
+    for attempt in range(max_retries + 1):
+        try:
+            p = ingest_prices(adapter, store, sym, start=item["start"], end=item["end"])
+            if p.get("n_bars"):
+                build_total_returns(store, sym, as_of=as_of, overwrite=True)
+            return {"symbol": sym, "ok": True, "n_bars": p.get("n_bars", 0),
+                    "retries": attempt}
+        except RateLimited as e:
+            if attempt >= max_retries:  # exhausted — surface as a failed symbol
+                return {"symbol": sym, "ok": False, "rate_limited": True,
+                        "error": str(e)[:160], "retries": attempt}
+            sleep(backoff_seconds)  # back off, then retry the same symbol
+        except Exception as e:  # fail-loud per symbol; continue the rest
+            return {"symbol": sym, "ok": False, "error": str(e)[:160], "retries": attempt}
+    return {"symbol": sym, "ok": False, "error": "unreachable retry fallthrough"}
+
+
 def run_daily_update(
     con, store, adapter=None, *, as_of: date | None = None, max_age_days: int = 7,
     overlap_days: int = 5, dry_run: bool = True, limit: int | None = None,
+    pace_seconds: float = 1.5, backoff_seconds: float = 65.0, max_retries: int = 3,
+    sleep=_time.sleep,
 ) -> dict:
     """Refresh only the **stale** names, each over its incremental window (efficient daily top-up).
 
     Dry-run by default — computes the freshness report + the per-symbol pull plan, performs no network
     call or mutation. ``dry_run=False`` pulls each stale symbol's incremental window (targeted
     ``ingest_prices`` + ``build_total_returns``), fail-loud per symbol. Does NOT refit factors (that is a
-    separate regime-aware step). Returns a report."""
+    separate regime-aware step). Returns a report.
+
+    Rate-limit safety (BUILD_LOG 2026-07-01): the pull loop **paces** ``pace_seconds`` between symbols
+    and, on an HTTP 429 (``RateLimited``), **backs off** ``backoff_seconds`` and retries the same symbol
+    up to ``max_retries`` times — the Matriks gateway 429s after ~59 back-to-back pulls, and the old
+    loop dropped the other ~500 names. ``sleep`` is injectable so the retry path is testable offline."""
     as_of = as_of or date.today()
     fresh = freshness_report(con, store, as_of=as_of, max_age_days=max_age_days)
     plan = plan_daily_pulls(fresh["stale"], as_of, overlap_days=overlap_days, limit=limit)
 
     executed: list[dict] = []
     if not dry_run and plan:
-        from tmkg.ingest.pipeline import build_total_returns, ingest_prices
-        for item in plan:
-            sym = item["symbol"]
-            try:
-                p = ingest_prices(adapter, store, sym, start=item["start"], end=item["end"])
-                if p.get("n_bars"):
-                    build_total_returns(store, sym, as_of=as_of)
-                executed.append({"symbol": sym, "ok": True, "n_bars": p.get("n_bars", 0)})
-            except Exception as e:  # fail-loud per symbol; continue the rest
-                executed.append({"symbol": sym, "ok": False, "error": str(e)[:160]})
+        for i, item in enumerate(plan):
+            if i > 0 and pace_seconds:
+                sleep(pace_seconds)  # stay under the Matriks gateway rate limit
+            executed.append(_pull_one(adapter, store, item, as_of,
+                                      backoff_seconds=backoff_seconds,
+                                      max_retries=max_retries, sleep=sleep))
 
+    n_ok = sum(1 for e in executed if e["ok"])
+    n_failed = len(executed) - n_ok
     return {
         "tool": "daily_update",
         "mode": "execute" if not dry_run else "dry-run",
         "as_of": str(as_of),
         "freshness": {k: fresh[k] for k in ("n_current", "n_stale", "n_missing", "n_symbols")},
         "n_to_pull": len(plan),
+        "n_ok": n_ok,
+        "n_failed": n_failed,
         "plan": plan[:50],
         "executed": executed,
         "note": ("refreshes only stale names over their incremental window; current names skipped; "
-                 "factor refit is a separate regime-aware step. dry-run does no network/mutation."),
+                 "paced + 429-backoff retry per symbol; factor refit is a separate regime-aware step. "
+                 "dry-run does no network/mutation."),
     }

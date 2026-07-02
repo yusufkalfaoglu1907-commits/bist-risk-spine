@@ -40,6 +40,14 @@ def main(argv: list[str]) -> int:
               + (f"{e.get('n_bars')} bars" if e["ok"] else e.get("error", "")))
     if not execute and r["n_to_pull"]:
         print("\n  (dry-run — re-run with --execute to pull)")
+
+    # Honest exit code: a run that fails most names must NOT report success (so the
+    # refresh_all chain / scheduler surfaces it). Non-zero when any pull failed.
+    n_failed = r.get("n_failed", 0)
+    if n_failed:
+        print(f"\n  {n_failed}/{r['n_to_pull']} pulls FAILED "
+              f"({r.get('n_ok', 0)} ok) — exiting non-zero")
+        return 1
     return 0
 
 

@@ -411,6 +411,7 @@ def build_total_returns(
     fx_factor: str | None = "USDTRY",
     cpi_factor: str | None = CPI_TUFE_FACTOR,
     dividend_yields: dict | None = None,
+    overwrite: bool = False,
 ) -> dict:
     """Build and land the USD-primary ``total_returns`` for ``symbol`` as of ``as_of``.
 
@@ -421,6 +422,14 @@ def build_total_returns(
     once that month's CPI print was knowable at ``as_of`` (else the column stays NULL,
     never an interpolated deflator — §4). The pure ``compute_total_returns`` does the
     financial construction; this function is the L2/PIT plumbing around it.
+
+    ``overwrite=True`` DELETEs the symbol's existing ``total_returns`` rows over the
+    recomputed ``bar_date`` span before writing, so a *correction* actually lands —
+    ``write_parquet`` is ON CONFLICT DO NOTHING and cannot fix a row that was written
+    with a NULL ``ret_usd`` because USDTRY was pulled after this ran (the ordering bug,
+    BUILD_LOG 2026-07-01). ``total_returns`` is a *derived* table with
+    ``knowledge_date = bar_date``, so re-deriving the same ``(symbol, bar_date)`` is a
+    recomputation, not a bitemporal-history rewrite. Default (append-only) is unchanged.
     """
     con = store.connect()
     try:
@@ -454,6 +463,17 @@ def build_total_returns(
     tr = _coerce_dates(tr)
     for c in _RET_COLS:  # pd.NA (object) -> float NaN so DuckDB sees a DOUBLE NULL
         tr[c] = pd.to_numeric(tr[c], errors="coerce")
+    if overwrite and not tr.empty:
+        # clear the recomputed span so a corrected value replaces a prior NULL/stale row
+        lo, hi = str(tr["bar_date"].min()), str(tr["bar_date"].max())
+        con = store.connect()
+        try:
+            con.execute(
+                "DELETE FROM total_returns WHERE symbol = ? AND bar_date BETWEEN ? AND ?",
+                [symbol, lo, hi],
+            )
+        finally:
+            con.close()
     store.write_parquet("total_returns", tr)
     return {
         "symbol": symbol,
