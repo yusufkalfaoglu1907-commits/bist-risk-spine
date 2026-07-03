@@ -7,3 +7,4 @@ __pycache__/
 data/*.kuzu*
 data/l2.duckdb
 data/l2/
+data/cache/*.log

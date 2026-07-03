@@ -1,0 +1,9 @@
+{
+  "run": "fill_days",
+  "as_of": "2026-07-01",
+  "frontier": "2026-06-23",
+  "n_stale_pulled_ok": 516,
+  "n_pull_failed": 0,
+  "n_total_returns_rebuilt": 575,
+  "failed": []
+}

@@ -1,0 +1,27 @@
+{
+  "run": "refresh_all",
+  "mode": "execute",
+  "started_utc": "2026-07-02T18:16:03.944153+00:00",
+  "finished_utc": "2026-07-02T18:25:27.728391+00:00",
+  "steps": [
+    {
+      "step": "ingest_factors",
+      "skipped": false,
+      "rc": 1,
+      "seconds": 7.0
+    },
+    {
+      "step": "daily_update",
+      "skipped": false,
+      "rc": 1,
+      "seconds": 28.4
+    },
+    {
+      "step": "refit",
+      "skipped": false,
+      "rc": 0,
+      "seconds": 528.4
+    }
+  ],
+  "ok": false
+}

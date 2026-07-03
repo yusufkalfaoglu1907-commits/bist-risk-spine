@@ -2,148 +2,148 @@
   "run": "factor_ingestion",
   "window": {
     "start": "2023-01-02",
-    "end": "2026-06-22"
+    "end": "2026-07-02"
   },
   "ingested": [
     {
       "factor": "XU100",
       "table": "factors",
-      "n_points": 864,
+      "n_points": 872,
       "first": "2023-01-02",
-      "last": "2026-06-22"
+      "last": "2026-07-02"
     },
     {
       "factor": "VIX",
       "table": "factors",
       "series": "VIXCLS",
-      "n_points": 892,
+      "n_points": 901,
       "first": "2023-01-03",
-      "last": "2026-06-17"
+      "last": "2026-06-30"
     },
     {
       "factor": "USDTRY",
       "table": "factors",
-      "n_points": 906,
+      "n_points": 914,
       "first": "2023-01-02",
-      "last": "2026-06-22"
+      "last": "2026-07-02"
     },
     {
       "factor": "EURTRY",
       "table": "factors",
-      "n_points": 906,
+      "n_points": 914,
       "first": "2023-01-02",
-      "last": "2026-06-22"
+      "last": "2026-07-02"
     },
     {
       "factor": "TRY2Y",
       "table": "factors",
       "source": "worldgovbonds",
-      "n_points": 1268,
+      "n_points": 1278,
       "first": "2023-01-02",
-      "last": "2026-06-22"
+      "last": "2026-07-02"
     },
     {
       "factor": "TRY10Y",
       "table": "factors",
       "source": "worldgovbonds",
-      "n_points": 1268,
+      "n_points": 1278,
       "first": "2023-01-02",
-      "last": "2026-06-22"
+      "last": "2026-07-02"
     },
     {
       "factor": "TRCDS5Y",
       "table": "factors",
       "source": "worldgovbonds",
-      "n_points": 1187,
+      "n_points": 1197,
       "first": "2023-01-02",
-      "last": "2026-06-22"
+      "last": "2026-07-02"
     },
     {
       "factor": "BRENT",
       "table": "factors",
-      "n_points": 895,
+      "n_points": 903,
       "first": "2023-01-03",
-      "last": "2026-06-22"
+      "last": "2026-07-02"
     },
     {
       "factor": "NATGAS",
       "table": "factors",
       "series": "DHHNGSP",
-      "n_points": 860,
+      "n_points": 869,
       "first": "2023-01-03",
-      "last": "2026-06-15"
+      "last": "2026-06-29"
     },
     {
       "factor": "GOLD",
       "table": "factors",
-      "n_points": 901,
+      "n_points": 909,
       "first": "2023-01-02",
-      "last": "2026-06-22"
+      "last": "2026-07-02"
     },
     {
       "factor": "XBANK",
       "table": "factors",
-      "n_points": 865,
+      "n_points": 873,
       "first": "2023-01-02",
-      "last": "2026-06-22"
+      "last": "2026-07-02"
     },
     {
       "factor": "XUSIN",
       "table": "factors",
-      "n_points": 865,
+      "n_points": 873,
       "first": "2023-01-02",
-      "last": "2026-06-22"
+      "last": "2026-07-02"
     },
     {
       "factor": "XKMYA",
       "table": "factors",
-      "n_points": 865,
+      "n_points": 873,
       "first": "2023-01-02",
-      "last": "2026-06-22"
+      "last": "2026-07-02"
     },
     {
       "factor": "XELKT",
       "table": "factors",
-      "n_points": 865,
+      "n_points": 873,
       "first": "2023-01-02",
-      "last": "2026-06-22"
+      "last": "2026-07-02"
     },
     {
       "factor": "XGIDA",
       "table": "factors",
-      "n_points": 865,
+      "n_points": 873,
       "first": "2023-01-02",
-      "last": "2026-06-22"
+      "last": "2026-07-02"
     },
     {
       "factor": "XUTEK",
       "table": "factors",
-      "n_points": 865,
+      "n_points": 873,
       "first": "2023-01-02",
-      "last": "2026-06-22"
+      "last": "2026-07-02"
     },
     {
       "factor": "FFLOW",
       "table": "factors",
       "series": "TP.MKNETHAR.M7",
-      "n_points": 180,
+      "n_points": 181,
       "first": "2023-01-06",
-      "last": "2026-06-12"
+      "last": "2026-06-19"
     },
     {
       "factor": "FFLOW_STOCK",
       "table": "factors",
       "series": "TP.MKNETHAR.M1",
-      "n_points": 180,
+      "n_points": 181,
       "first": "2023-01-06",
-      "last": "2026-06-12"
+      "last": "2026-06-19"
     },
     {
       "factor": "XHOLD",
       "table": "factors",
-      "n_points": 865,
+      "n_points": 873,
       "first": "2023-01-02",
-      "last": "2026-06-22"
+      "last": "2026-07-02"
     }
   ],
   "skipped": [
