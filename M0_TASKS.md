@@ -10,7 +10,7 @@ First, session start (CLAUDE.md §7): read the latest `BUILD_LOG.md` entry, run 
 
 ## T1 — Wire and PROVE the Matriks data path  ⟶ [STOP] gate
 
-Auth is fully documented (`Matriks_MCP_Dokumani.pdf`). Three identities live in `.env` (gitignored): `MATRIKS_USERNAME` (5-digit, `39617`), `MATRIKS_CLIENT_ID` (OAuth Client ID), `MATRIKS_API_KEY` (`sk_live_…`). Two **header-auth** transports — *not* the `/claude` endpoint (that is Claude-Desktop OAuth only):
+Auth is fully documented (`Matriks_MCP_Dokumani.pdf`). Three identities live in `.env` (gitignored): `MATRIKS_USERNAME` (5-digit, `00000`), `MATRIKS_CLIENT_ID` (OAuth Client ID), `MATRIKS_API_KEY` (`sk_live_…`). Two **header-auth** transports — *not* the `/claude` endpoint (that is Claude-Desktop OAuth only):
 
 - **REST API** = what the ingestion adapter uses (plain httpx, reproducible; MCP tools can't be called from Python). `POST {MATRIKS_REST_URL}/tools/{tool}/execute`, headers `X-API-Key: <username>:<key>` + `X-Client-ID: <username|client_id>`, JSON body = params. Schema: `https://mcp.matriks.ai/openapi.json`. Verified example: `POST .../tools/market_price/execute` body `{"symbol":"THYAO"}`.
 - **Header-auth MCP** (optional, interactive only) = `https://mcp.matriks.ai/mcp`, `type: http`, headers `X-Client-ID` + `X-API-Key`. `.mcp.json` is preconfigured but Claude Code expands `${VARS}` from the **shell env, not .env**.
@@ -21,7 +21,7 @@ Steps, in order:
 3. Implement `MatriksAdapter.fetch()` (REST `httpx.post(self._rest_endpoint(tool), headers=self._rest_headers(), json=params)`; raise `SourceUnreachable` on failure — never fabricate) and `smoke_check()` (re-fetch each golden sample's `_provenance.params` in `tests/golden/matriks/`, assert the live response matches; raise `ContractDrift` on mismatch). The header/URL helpers are already implemented in the stub.
 4. Sanity-check the known quirks (`tests/golden/matriks/MANIFEST.md`): pull a **specific historical** foreign-flow month (try `historic` mode + dates), and filter `news` categories client-side.
 5. *(Optional)* interactive MCP check — either rely on the preconfigured `.mcp.json` (after step 1's `source .env`) or run:
-   `claude mcp add --transport http matriks-finance https://mcp.matriks.ai/mcp --header "X-Client-ID: 39617" --header "X-API-Key: <sk_live_…>"` — then `claude mcp list` shows it green.
+   `claude mcp add --transport http matriks-finance https://mcp.matriks.ai/mcp --header "X-Client-ID: 00000" --header "X-API-Key: <sk_live_…>"` — then `claude mcp list` shows it green.
 
 **Exit:** `make smoke` → PASS (REST reachable + golden samples match). Record in `BUILD_LOG.md` which transport/headers worked (→ ADR-0002). If unreachable after checking creds + openapi.json → **STOP, log, ask the user**.
 

@@ -15,7 +15,7 @@
 ```
 POST  https://mcp.matriks.ai/mcp-api/v1/tools/{tool}/execute
 headers:
-    X-API-Key:    "<MATRIKS_USERNAME>:<MATRIKS_API_KEY>"   e.g. "39617:sk_live_…"
+    X-API-Key:    "<MATRIKS_USERNAME>:<MATRIKS_API_KEY>"   e.g. "00000:sk_live_…"
     Content-Type: application/json
 body: {<params>}            # e.g. {"action":"price","symbol":"THYAO"}
 ```

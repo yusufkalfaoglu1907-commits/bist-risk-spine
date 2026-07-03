@@ -21,9 +21,9 @@ def test_auth_header_is_username_key_no_client_id():
     """ADR-0002: auth is X-API-Key '<username>:<key>' ALONE. An X-Client-ID header
     makes the gateway 500 'Authentication failed', so it must never be sent."""
     a = MatriksAdapter()
-    a.username, a.api_key = "39617", "sk_live_demo"
+    a.username, a.api_key = "00000", "sk_live_demo"
     h = a._rest_headers()
-    assert h["X-API-Key"] == "39617:sk_live_demo"
+    assert h["X-API-Key"] == "00000:sk_live_demo"
     assert "X-Client-ID" not in h
 
 

@@ -37,7 +37,7 @@ def test_missing_credentials_raise_not_fabricate():
 def test_unresolvable_host_raises_not_fabricate():
     """A network failure must surface as SourceUnreachable, not a fabricated value."""
     a = MatriksAdapter(timeout=2.0)
-    a.username, a.api_key = "39617", "sk_live_dummy"
+    a.username, a.api_key = "00000", "sk_live_dummy"
     a.rest_url = "https://matriks.invalid/mcp-api/v1"  # .invalid never resolves (RFC 6761)
     with pytest.raises(SourceUnreachable):
         a.fetch("marketPrice", action="price", symbol="THYAO")
