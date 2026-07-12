@@ -21,5 +21,5 @@ EVDS_API_KEY = os.getenv("EVDS_API_KEY", "")
 FRED_API_KEY = os.getenv("FRED_API_KEY", "")  # VIX (VIXCLS) + macro; auth = api_key query param
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 GLEIF_USER_AGENT = os.getenv(
-    "GLEIF_USER_AGENT", "turkish-markets-kg/0.1 (info@arteklab.com)"
+    "GLEIF_USER_AGENT", "turkish-markets-kg/0.1 (+https://github.com/yusufkalfaoglu1907-commits/bist-risk-spine)"
 )
