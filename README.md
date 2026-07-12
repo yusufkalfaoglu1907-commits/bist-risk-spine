@@ -147,7 +147,16 @@ any capital and without weakening an invariant — is itself the reusable asset.
 - **[docs/BUILD_LOG.md](docs/BUILD_LOG.md)** — the full append-only session journal, kept for
   transparency into how the conclusions were reached.
 
+## License
+
+Source code is released under the **[PolyForm Noncommercial License 1.0.0](LICENSE)** — free to
+use, study, modify, and share for any noncommercial purpose; commercial use is not granted.
+
+This covers the original code only. **Third-party data** — Matriks, BİST, KAP, EVDS/TCMB, GLEIF,
+FRED, GDELT — is governed by each source's own terms (several prohibit commercial use and/or
+redistribution) and is **not** covered by this license. No market data or vendor reference
+document is redistributed in this repository.
+
 ---
 
-*Personal, non-commercial research. Vendor reference PDFs (Matriks, GDELT codebooks) are used
-locally under their own terms and are intentionally not redistributed in this repository.*
+*Personal, non-commercial research.*
