@@ -8,3 +8,9 @@ data/*.kuzu*
 data/l2.duckdb
 data/l2/
 data/cache/*.log
+
+# third-party vendor reference docs — kept locally, not redistributable in a public repo
+*.pdf
+# retired-subsystem archive snapshots and raw source exports
+archive/*.zip
+archive/*.xlsx

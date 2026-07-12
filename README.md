@@ -1,214 +1,114 @@
-# Turkish Equities Knowledge Graph (tmkg)
+# BİST Risk Spine & Point-in-Time Research Substrate
 
-Property-graph + point-in-time quant research substrate over BİST entities (~500 names) —
-ownership, control, governance, events, regulation, and macro sensitivity. Authoritative
-design: `system-design-v2.md`; phased build + go/no-go gates: `BUILD_PLAN.md`; session journal:
-`BUILD_LOG.md`; consequential decisions: `decisions/ADR-*.md`.
+A research engine over **Turkish equities (BİST, ~500 names)** that treats correlation,
+geopolitical events, and supply-chain links as three views of one object — how a shock
+propagates through ownership and factor exposure to a price.
 
-## Project status (2026-06-27)
+Its distinguishing feature is not a winning trade. It is an **honest evaluation harness**
+rigorous enough to *reject* plausible-but-unreal signals before any capital is committed —
+and a **risk spine** that re-prices shocks through the graph. Built on a strictly
+point-in-time, bitemporal core so that every backtest is reproducible and leak-free.
 
-The **v1 equities identity/ownership core is built and trustworthy**, and on top of it a full
-**v2 quant substrate + risk spine** has been built. The original goal — a tradeable
-**cross-sectional alpha** signal across three pillars (asset correlation, geopolitical-event
-impact, supply-chain linkage) — was pursued to a rigorous conclusion: **all three pillars
-returned NO-GO** through an honest venue-feasible / Deflated-Sharpe / PBO promotion gate
-(ADR-0004 correlation, ADR-0005 event, ADR-0006 supply-chain). Tradeable cross-sectional
-firm-linkage alpha on BIST residuals appears **exhausted at this scale (n≈500)**.
-
-So the deliverable was **repositioned (ADR-0006): an honest research substrate + risk spine,
-not a live alpha book.** What it is now:
-
-- **A point-in-time, bitemporal research engine** — USD-primary corporate-action-adjusted
-  returns, a factor/residual machine (foreign-flow stripped), and limit-lock / accounting-regime /
-  short-eligible state machines — that **cheaply and credibly rejects** plausible-but-unreal
-  signals. The M4 promotion judge (Deflated Sharpe + PBO/CSCV, a purged-walk-forward backtester
-  with cost+borrow across three books) earned its keep by rejecting two live candidates.
-- **A risk spine (M8):** *scenario re-pricing* (a macro channel shock re-priced through the
-  exposure tensor → worst-exposed names + stress P&L) and *linkage propagation* (an idiosyncratic
-  shock cascaded through the ownership/control graph), plus three standing health monitors
-  (id-bridge, data-drift, registry hygiene).
-
-A rigorously-established three-pillar NO-GO **is** the result — worth more than an overfit book
-that would lose money live. The substrate and risk spine are the durable assets.
-
-**Live graph: 802 `Company` nodes (730 ticker-bearing), ISIN/sector 100% on equity-traded names,
-LEI 92%, `CONTROLS` 212-edge verified DAG.** Identity is confidence-tiered — ambiguous cases are
-logged, never guessed.
-
-### v2 code map — where it lives
-
-- `src/tmkg/pit/` — the point-in-time / bitemporal access wrapper (the honest-backtest keystone) + the id-bridge resolver.
-- `src/tmkg/l2/` + `src/tmkg/ingest/` — the DuckDB+Parquet quant store and the network ingestion adapters (Matriks / EVDS / FRED / WorldGovBonds / GDELT); every run writes a `data/cache/*_report.json` audit.
-- `src/tmkg/returns/`, `src/tmkg/factors/` — USD total-return series + the factor / neutralization / residual machine (M1/M2).
-- `src/tmkg/signals/` — the M4 promotion judge (Deflated Sharpe, PBO/CSCV, PIT backtester, baseline ladder, L2 `signal_registry`) + the M3/M5 residual correlation stat-arb.
-- `src/tmkg/events/` — GDELT event ingestion + the §240 channel-stress engine.
-- `src/tmkg/risk/` — the risk spine: scenario re-pricing (`scenarios`/`repricing`/`run_scenarios`) + linkage-graph propagation (`linkage_propagation`/`run_linkage`).
-- `src/tmkg/monitor/` — the standing health monitors (id-bridge health, smoke-drift, registry hygiene).
-
-Run the risk tools: `PYTHONPATH=src python scripts/run_scenarios.py 2026-06-15 2025-03-18 2025-03-25` ·
-`scripts/run_linkage_shock.py ARCLK:-0.20` · the monitors `scripts/monitor_{idbridge,smoke_drift,registry}.py`.
+> **Result, stated plainly:** the original goal was a tradeable cross-sectional alpha signal
+> across three pillars. All three were built and run through the same venue-feasible,
+> Deflated-Sharpe / PBO promotion gate, and **all three returned NO-GO** — a genuine but
+> too-thin correlation edge, a structurally dead event signal, and a supply-chain layer with
+> no out-of-sample predictability. A rigorously established NO-GO *is* the deliverable: it is
+> worth more than an overfit book that loses money live. The substrate and risk spine that
+> proved it are the durable assets.
 
 ---
 
-The sections below document the **v1 identity/ownership core** (still accurate and foundational).
+## Why this is interesting
 
-## What's here
+Most "quant" portfolios show a backtest with a beautiful equity curve. This one shows the
+opposite discipline: **the machinery that kills beautiful equity curves that aren't real.**
+
+- **A promotion judge that cannot be fooled cheaply.** Deflated Sharpe Ratio + Probability of
+  Backtest Overfitting (PBO via CSCV), a purged/embargoed walk-forward backtester with
+  transaction costs *and* borrow, evaluated across three books (research → venue-feasible →
+  stress). It rejected two live candidates and never had its cost model weakened to manufacture
+  a pass.
+- **Invariants engineered in from the first commit**, not bolted on: bitemporal point-in-time
+  reads (nothing with `knowledge_date > as_of` is ever returned), USD-primary corporate-action
+  adjusted total returns, limit-lock censoring, an `accounting_regime` state machine (IAS-29 is
+  suspended by law FY2025–2027), per-name-per-date short eligibility, and a foreign-flow factor
+  in the core set so flow-driven comovement can't masquerade as linkage.
+- **Fail-loud, never fabricate.** If a data source is unreachable the adapter stops — it never
+  interpolates or invents market data. Every ingestion run writes a JSON audit report.
+
+## Architecture
+
+A strict layered data contract: **only the ingestion layer touches the network.** Everything
+downstream reads a local cache, so no backtest depends on a live connection.
+
+```
+  Matriks · EVDS · KAP · GDELT · GLEIF   (network — ingestion layer only)
+            │
+            ▼
+  ingestion adapters ──▶ local cache
+            │            L1  KuzuDB graph  (identity, ownership, control, sectors)
+            │            L2  DuckDB + Parquet  (prices, returns, factors, residuals)
+            ▼
+  factor · correlation · event · risk · backtest engines   (never hit the network)
+            │
+            ▼   all reads pass through the point-in-time wrapper (requires an as_of date)
+```
+
+- **L1 — structural graph (KuzuDB):** embedded, local-first, no server. 802 companies with
+  ownership/control/sector edges. ([ADR-0001](decisions/ADR-0001-graph-store.md))
+- **L2 — quant store (DuckDB + Parquet):** prices, returns, factors, betas, residuals — never
+  stored as graph properties. At ~500 names this is the right scale.
+- **L3 — signal & risk (Python):** factor/residual machine, the promotion judge, the risk
+  spine — all behind the point-in-time wrapper.
+
+## The identity graph
+
+The foundation is a trustworthy entity/ownership core. Identity is **confidence-tiered** —
+ambiguous cases are logged for review, never guessed:
+
+- **802 `Company` nodes** (730 ticker-bearing); ISIN and sector **100%** on equity-traded names.
+- **LEI coverage 92%**, matched via a diacritic-aware, brand-token-scored GLEIF join that
+  refuses low-confidence matches rather than inventing them.
+- **212 verified `CONTROLS` edges**, forming a directed acyclic control graph.
+- Delisted / merged / renamed names stay in the graph with dead histories (survivorship-safe);
+  sector membership is time-varying.
+
+## The risk spine
+
+The part that graduated to a standing deliverable:
+
+- **Scenario re-pricing** — a macro channel shock (e.g. a rate or FX move) re-priced through the
+  exposure tensor to surface the worst-exposed names and a stress P&L.
+- **Linkage propagation** — an idiosyncratic shock to one name cascaded through the
+  ownership/control graph (look-through + blast radius).
+- **Three standing health monitors** — id-bridge integrity, data-source drift, and signal-registry
+  hygiene — that make the substrate's single points of failure observable and regression-guarded.
+
+```bash
+# re-price a channel shock as of a date, over an event window
+PYTHONPATH=src python scripts/run_scenarios.py 2026-06-15 2025-03-18 2025-03-25
+# cascade a -20% shock to ARCLK through the ownership graph
+PYTHONPATH=src python scripts/run_linkage_shock.py ARCLK:-0.20
+```
+
+## Repository layout
 
 ```
 src/tmkg/
-  config.py                 paths + .env (optional in Phase 1)
-  graph/connection.py       KuzuDB connection (embedded, local-first)
-  schema/ddl.py             all node/rel tables; Phase-1 subset is populated
-  adapters/kap_adapter.py   LIVE KAP adapter: own member-list fetch + kap-client
-                            for disclosures; smoke_check() guards API drift
-  adapters/gleif_adapter.py LIVE GLEIF Level-1 adapter: diacritic-aware name
-                            matching, coverage scoring, cache; smoke_check() drift guard
-  adapters/sector_adapter.py KAP sector taxonomy from a committed reference file:
-                            tree + ticker→leaf lookups + roll-up; smoke_check() drift guard
-  loaders/gleif_backfill.py back-fill lei/legal_form/jurisdiction onto Company
-                            nodes for confident matches; writes an audit report
-  loaders/sector_backfill.py Sector nodes + SUBSECTOR_OF hierarchy + IN_SECTOR
-                            (company→leaf) onto the live graph; writes an audit report
-  loaders/identity.py       Company / Person / Security / Sector / Portfolio (fixtures)
-  loaders/ownership.py      HOLDS_STAKE / CONTROLS / SUBSIDIARY_OF / BOARD_MEMBER_OF / IN_SECTOR
-  loaders/kap_ingest.py     LIVE: seed companies/securities + ingest disclosures
-  analytics/exposure.py     Phase-1 exit query: aggregated group exposure
-fixtures/                   ILLUSTRATIVE Koç-group sample data (offline)
-data/reference/sectors.json committed KAP sector taxonomy (see data/reference/README.md)
-scripts/build_phase1.py     create schema, load fixtures, run exit query (offline)
-scripts/ingest_kap.py       LIVE: seed from KAP + pull disclosures
-scripts/backfill_gleif.py   LIVE: match seeded companies to GLEIF, write LEIs
-scripts/import_sectors.py   parse a KAP Sektörler .xlsx export → data/reference/sectors.json
-scripts/backfill_sectors.py apply the sector taxonomy to the live graph
-tests/test_phase1.py        offline smoke test (5 tests)
-tests/test_sectors.py       offline sector adapter/loader tests + live-reference check (7)
-tests/test_kap_live.py      live KAP drift guard (3 tests; auto-skip if offline)
-tests/test_gleif.py         offline matcher unit tests + live GLEIF drift guard
-                            (11 tests; live ones auto-skip if offline)
+  pit/         point-in-time / bitemporal access wrapper + id-bridge resolver
+  l2/ ingest/  DuckDB+Parquet quant store + network ingestion adapters (audited)
+  returns/     USD-primary corporate-action-adjusted total-return series
+  factors/     factor / neutralization / residual machine (foreign-flow stripped)
+  signals/     the promotion judge (DSR, PBO/CSCV, PIT backtester, signal registry)
+  events/      GDELT ingestion + channel-stress engine
+  risk/        scenario re-pricing + linkage-graph propagation
+  monitor/     id-bridge, data-drift, and registry health monitors
+tests/         invariant, reconciliation, and golden-master suite
+scripts/       reproducible ingestion / gate / risk runners
+decisions/     append-only ADRs — one consequential decision each
+docs/          design, data-sourcing, build plan, and full session journal
 ```
-
-## Sector classification (KAP Sektörler taxonomy)
-
-KAP seeds Company identity but exposes no sector field, so the live graph starts
-with zero `Sector` nodes. The authoritative classification is KAP's two-level
-"Sektörler" listing — committed as a dated reference file and applied to the graph:
-
-```bash
-# (re)generate the reference file from a KAP Sektörler .xlsx export
-PYTHONPATH=src python scripts/import_sectors.py "Sektörler.xlsx" \
-    --source "KAP Sektörler listing (kap.org.tr) export"
-
-# apply: Sector nodes + SUBSECTOR_OF hierarchy + IN_SECTOR (company→leaf)
-PYTHONPATH=src python scripts/backfill_sectors.py --db ./data/tmkg.kuzu
-# preview coverage without writing:
-PYTHONPATH=src python scripts/backfill_sectors.py --db ./data/tmkg.kuzu --dry-run
-```
-
-Each company links to its **leaf** sub-sector; the main sector is one
-`SUBSECTOR_OF` hop up, so a sector roll-up is a single traversal:
-
-```cypher
-MATCH (c:Company)-[:IN_SECTOR]->(:Sector)-[:SUBSECTOR_OF]->(main:Sector)
-RETURN main.name, count(c) ORDER BY count(c) DESC
-```
-
-Unmatched companies (debt-only issuers, funds, names absent from the equities
-taxonomy) are left unlinked and listed in `data/cache/sector_backfill_report.json`
-— never guessed. See `data/reference/README.md` for the file format and refresh path.
-
-## GLEIF back-fill (the identity-spine join keys: LEI + ISIN)
-
-```bash
-# LEI + ISIN back-fill for the first 25 listed companies (quick proof)
-PYTHONPATH=src python scripts/backfill_gleif.py --db ./data/tmkg.kuzu --limit 25
-
-# full LEI + ISIN back-fill for every listed company still missing them
-PYTHONPATH=src python scripts/backfill_gleif.py --db ./data/tmkg.kuzu
-
-# just one stage (LEIs must exist before the ISIN stage runs)
-PYTHONPATH=src python scripts/backfill_gleif.py --db ./data/tmkg.kuzu --stage isin
-```
-
-GLEIF supplies the canonical external join keys (architecture §3): the LEI is
-what Phase-4's OpenSanctions matching keys on, and the equity ISIN is what
-Phase-2's time-series price join keys on. The API is public, CC0, no key
-required (api.gleif.org).
-
-### Matching is fuzzy — so it's scored and audited (verified 2026-06-06)
-
-KAP gives company names with Turkish diacritics ("...SANAYİ VE TİCARET A.Ş.");
-GLEIF stores them inconsistently — sometimes fully diacritic ("KOÇ HOLDİNG
-ANONİM ŞİRKETİ"), sometimes ASCII-folded ("TURKIYE GARANTİ BANKASI ANONIM
-SIRKETI") — and its name filter is diacritic-SENSITIVE per token. So the adapter:
-
-- strips legal-form boilerplate (`A.Ş.`, `ANONİM ŞİRKETİ`, `SANAYİ VE TİCARET`)
-  but keeps distinctive tokens like `HOLDİNG` (a holding ≠ its operating namesake);
-- tries diacritic brand-token queries, then ASCII-folded, then a single-token
-  last resort — taking whichever returns candidates;
-- scores by **brand-token coverage** (not raw string similarity, which breaks on
-  the very different name lengths), discounts generic-only matches, and **skips
-  fund/foundation candidates** that collide on embedded brand names;
-- writes only matches at/above a confidence threshold (default 0.6) to the graph,
-  and logs **every** attempt — matched, below-threshold, or no-candidate — to
-  `data/cache/gleif_backfill_report.json` for human review.
-
-On a 30-company sample this auto-matched 26 with zero cross-brand false
-positives; the 4 misses (e.g. Aksigorta has no GLEIF record under that name; ADESE
-trades under a different registered name) are correctly held back for review
-rather than guessed. Name matching is INFERRED, never filings-grade — the report
-is its provenance record. `GleifAdapter.smoke_check()` + `tests/test_gleif.py`
-guard against API drift.
-
-### ISIN selection — equity vs. everything else (verified 2026-06-06)
-
-A GLEIF LEI maps to ALL of an issuer's instruments. Turkish ISINs encode the
-class in the 3rd character: **TRA/TRE = common shares**, TRS = rights, TRF =
-debt, TRW = warrants. The back-fill picks the listed equity by:
-
-- `TRA+ticker` — a TRA ISIN embedding the full ticker (e.g. Garanti equity
-  `TRAGARAN91N1`, never the warrant `TRWGRAN...`). Garanti has 700+ instruments;
-  fetching pages and stops as soon as this is found.
-- `single-equity` — exactly one equity-class (TRA/TRE) ISIN exists, so it must
-  be the listed line (covers newer TRE-coded issuers whose abbreviated code ≠
-  ticker, e.g. `TREACSS00017` for ACSEL).
-- otherwise it **refuses and logs candidates**: `ambiguous-multi-equity` (several
-  share classes, no type field to choose — common for GYOs/holdings with A/B
-  groups) or `no-equity-class` (GLEIF lists only debt/rights for that LEI).
-
-Only confident picks are written (to both `Company.isin` and the issued EQUITY
-`Security.isin`); the rest land in `data/cache/gleif_isin_report.json` with their
-candidate ISINs. This deliberately trades recall for precision — a wrong ISIN
-would silently corrupt the Phase-2 price join. Full coverage of the ambiguous
-names needs an authoritative BİST/MKK ticker→ISIN map (a later add).
-
-## Live KAP acquisition
-
-```bash
-# seed all 729 listed (IGS) companies + equity securities
-PYTHONPATH=src python scripts/ingest_kap.py --db ./data/tmkg.kuzu --seed
-
-# seed + pull a year of disclosure metadata for chosen tickers
-PYTHONPATH=src python scripts/ingest_kap.py --db ./data/tmkg.kuzu --seed \
-    --tickers KCHOL,TUPRS,FROTO --start 2025-01-01 --end 2025-12-31 --cache-raw
-```
-
-The member list is cached on disk and refreshed weekly; `--cache-raw` stores raw
-disclosure HTML so Phase-3 LLM extraction can re-run without re-hitting KAP.
-
-### kap-client reality check (verified 2026-06-06)
-
-The architecture (§11) recommended leaning on `kap-client`. Half of it works, half
-doesn't — exactly why §11 said to isolate it behind an adapter:
-
-- **Member list — BROKEN in kap-client 1.1.1.** It queries stale member-type codes
-  and its row model expects field names KAP no longer returns, so
-  `fetch_companies()`/`find_company()` return empty. The adapter fetches the member
-  list itself from the live `/tr/api/company/items/{TYPE}/{A|P}` endpoint.
-- **Disclosures/attachments — work**, but the query keys on `mkkMemberOid`, NOT
-  `kapMemberOid`. The adapter delegates to `kap-client`, passing the mkk OID.
-
-`KapAdapter.smoke_check()` (and `tests/test_kap_live.py`) re-verify both halves and
-fail loudly if KAP drifts again.
 
 ## Run it
 
@@ -216,82 +116,38 @@ fail loudly if KAP drifts again.
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
+# build the identity/ownership core (offline fixtures)
 PYTHONPATH=src python scripts/build_phase1.py --db ./data/tmkg.kuzu --fresh
+
+# run the verification suite (invariants, reconciliation, golden masters)
 PYTHONPATH=src python -m pytest tests/ -q
 ```
 
-Phase-1 exit test output (the "does it earn its keep" check from architecture §6):
+Ingestion scripts (`scripts/ingest_*.py`) refresh the local L1/L2 caches from live sources;
+signal and risk code then reads only the cache. Live-source tests auto-skip when offline.
 
-```
-[KOÇ] TUPRS  w=0.25   (1 hop)
-[KOÇ] FROTO  w=0.20   (1 hop)
-[KOÇ] ARCLK  w=0.15   (1 hop)
-[KOÇ] YKBNK  w=0.10   (1 hop)
-[   ] THYAO  w=0.30
->>> Aggregated Koç-group portfolio weight: 70.0%
-```
+## The three pillars — all tested, all NO-GO
 
-## Decisions made in this build (worth reviewing)
+| Pillar | Verdict | Why |
+|---|---|---|
+| **Asset correlation** | NO-GO ([ADR-0004](decisions/ADR-0004-m5-residual-statarb-nogo.md)) | A genuine *frictionless* residual edge, but too thin to survive 10 bps + borrow in the venue-feasible book. The cost model was not weakened to force a pass. |
+| **Geopolitical events** | NO-GO ([ADR-0005](decisions/ADR-0005-m6-event-diffexp-nogo.md)) | Structurally dead — negative even frictionless; the apparent significance was an overlap / multiple-testing artifact (nothing survives FDR). Its channel-stress *risk* output survives as the risk spine. |
+| **Supply-chain linkage** | NO-GO ([ADR-0006](decisions/ADR-0006-m7-supply-chain-nogo-reposition.md)) | Firm-level disclosures too sparse (~10–15 tradeable listed-to-listed edges/yr), intra-group is the already-priced null, sector-IO has no out-of-sample signal. |
 
-1. **KuzuDB, not Neo4j.** Embedded, no server, runs in CI and offline — best fit for
-   "local-first, small team." Revisit if you want Neo4j's GraphRAG/visualization tooling
-   or OpenSanctions' native Cypher import (Phase 4).
-2. **Reconstructed ontology.** `turkish-markets-kg-ontology.md` was missing from the
-   folder, so the schema here was rebuilt from the node/edge vocabulary in the
-   architecture doc. If you have the original, diff it against this — names/enums may differ.
-3. **`Portfolio` node added** `[design choice]`. The architecture's questions assume
-   "my holdings" but no Portfolio node was enumerated. Added with a `HOLDS` edge.
-4. **Fixtures are illustrative, not filings-grade.** Stake percentages are approximate and
-   some real chains run through intermediate entities (Enerji Yatırımları, Koç Finansal
-   Hizmetler) that are collapsed here. They exist to prove the graph and queries work —
-   replace with live KAP extraction before trusting any number.
+**Net:** tradeable cross-sectional alpha on BİST residuals appears exhausted at this scale
+(n ≈ 500). The honest-evaluation protocol that killed three plausible signals cheaply — before
+any capital and without weakening an invariant — is itself the reusable asset.
 
-## Archived: corporate-debt subsystem
+## Design & decisions
 
-A working, tested debt/refinancing layer (MKK "Menkul Kıymetler Listesi"
-ingestion, nominal/issuance pricing, blast-radius analytics) was built earlier
-but served none of the three target pillars. The 2026-06-18 cleanup retired it:
-the code, tests, reference data and raw MKK export are archived intact at
-`archive/debt-subsystem-2026-06-18.zip`. The debt-specific `Security`/`ISSUES`
-schema columns are left in `ddl.py` as **dormant** (unpopulated) to avoid a
-risky migration, ready if a "credit-shock" event type revives the subsystem. The
-`backfill_gleif.py --stage debt|nominal|issuance|spv|stubs` stages were removed;
-surviving stages are `lei, isin, bist, classify, l2, subsidiary, both, all`.
+- **[docs/system-design-v2.md](docs/system-design-v2.md)** — the authoritative design and the
+  exposure-tensor idea it's built around.
+- **[decisions/](decisions/)** — append-only ADRs recording each consequential fork.
+- **[docs/data-sourcing-v2.md](docs/data-sourcing-v2.md)** — verified sources and their walls.
+- **[docs/BUILD_LOG.md](docs/BUILD_LOG.md)** — the full append-only session journal, kept for
+  transparency into how the conclusions were reached.
 
-## Outcome — the three pillars (all tested, all NO-GO)
+---
 
-Each pillar was built and run through the same honest venue-feasible / Deflated-Sharpe / PBO gate
-(the M4 judge), not a vibe. The verdicts:
-
-1. **Asset correlation** (M3/M5) — a genuine *frictionless* residual edge, but **too thin to
-   survive 10bps + borrow** in the venue-feasible book → **NO-GO** (ADR-0004). 92 survivor edges
-   landed in L2 `residual_corr`; the cost model was not weakened to manufacture a pass.
-2. **Geopolitical-event impact** (M6) — **structurally dead**: negative even frictionless; the
-   apparent significance was an overlap / multiple-testing artifact (0 cells survive FDR), not
-   rescuable by residual returns, salience filtering, or LLM per-event sign → **NO-GO** (ADR-0005).
-   Its §240 channel-stress **risk** output survives as a real deliverable (now the M8.1 risk spine).
-3. **Supply-chain / linkage** (M7) — tier-1 firm-level KAP new-business too sparse (~10–15 tradeable
-   listed-to-listed edges/yr), tier-2 intra-group is the already-priced null, tier-3 sector-IO has
-   no out-of-sample predictability → **NO-GO** (ADR-0006).
-
-**Net: tradeable cross-sectional alpha on BIST residuals is exhausted at n≈500.** The substrate +
-risk spine are the durable deliverable; the honest-evaluation protocol that killed three plausible
-signals cheaply (before any capital, without weakening an invariant) is itself reusable IP.
-
-**Declined advanced layers:** OpenSanctions PEP/sanction enrichment; GraphRAG NL-over-graph (useful
-as an explanation skin, not pursued); GNN overlays (overfit-prone at n≈500, and the alpha case is
-already settled).
-
-## Keeping the data current
-
-Today the pipeline is **reproducible but manually triggered** — not a self-updating service. You run
-the ingestion scripts (`scripts/ingest_*.py`) and they update the local L1/L2 caches; signal/risk
-code then reads only the cache, never the network (§4). The architecture is built *for* safe
-automation — **idempotent primary-key writes** (re-running is a no-op), **bitemporal
-`knowledge_date`** (new data lands without rewriting history), a **resumable** GDELT backfill,
-**fail-loud-never-fabricate**, and the **M8.3 drift/health monitors** as safety rails. What is *not*
-yet wired for hands-off operation: a scheduler (cron/launchd/CI), a daily *incremental* ("since last
-`knowledge_date`") mode, and **new-listing / IPO onboarding** — a newly-listed name needs its identity
-bridge (ticker↔ISIN↔kap_oid↔LEI), price history, universe-class, and a factor/residual refit before
-it is tradeable in the substrate. There is an IPO-calendar source available (Matriks), but it is not
-yet turned into an automatic onboarding adapter.
+*Personal, non-commercial research. Vendor reference PDFs (Matriks, GDELT codebooks) are used
+locally under their own terms and are intentionally not redistributed in this repository.*
